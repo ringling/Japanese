@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JLPT N5 — Study Tools</title>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;700&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1a1a;
+  --ink-soft: #3a3a3a;
+  --paper: #f4efe6;
+  --paper-soft: #ebe4d6;
+  --paper-deep: #e2d9c4;
+  --rule: #c9bfa9;
+  --accent: #8b1a1a;
+  --accent-soft: #b85c5c;
+  --muted: #6b6357;
+  --gold: #b8893d;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  min-height: 100vh;
+  padding: 48px 24px;
+}
+
+.page {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+header {
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 20px;
+  margin-bottom: 40px;
+}
+
+.ja-title {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 0.12em;
+  margin-bottom: 6px;
+}
+
+h1 {
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: -0.01em;
+}
+
+h1 span {
+  color: var(--ink-soft);
+  font-weight: 300;
+}
+
+.subtitle {
+  margin-top: 6px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+section {
+  margin-bottom: 40px;
+}
+
+h2 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--muted);
+  margin-bottom: 16px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.link-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.link-list li a {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding: 12px 16px;
+  background: var(--paper-soft);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  text-decoration: none;
+  color: var(--ink);
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.link-list li a:hover {
+  background: var(--paper-deep);
+  border-color: var(--accent-soft);
+}
+
+.link-list li a .label {
+  font-size: 14px;
+  font-weight: 500;
+  flex: 1;
+}
+
+.link-list li a .tag {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+footer {
+  margin-top: 60px;
+  padding-top: 20px;
+  border-top: 1px solid var(--rule);
+  font-size: 12px;
+  color: var(--muted);
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div class="ja-title">日本語能力試験 N5 — 勉強ツール</div>
+    <h1>JLPT N5 <span>Study Tools</span></h1>
+    <div class="subtitle">Thomas Ringling · FOF København 2025–2026</div>
+  </header>
+
+  <section>
+    <h2>Schedules &amp; Planning</h2>
+    <ul class="link-list">
+      <li><a href="files/jlpt_n5_full_schedule.html">
+        <span class="label">Full Study Schedule</span>
+        <span class="tag">kanji · grammar · vocab</span>
+      </a></li>
+      <li><a href="files/jlpt_pacing_tracker.html">
+        <span class="label">Pacing Tracker</span>
+        <span class="tag">progress</span>
+      </a></li>
+      <li><a href="files/jlpt_n5_pensum.html">
+        <span class="label">Pensum</span>
+        <span class="tag">curriculum</span>
+      </a></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Week 1 Daily Plans</h2>
+    <ul class="link-list">
+      <li><a href="files/jlpt_n5_w1_monday.html">
+        <span class="label">Monday</span>
+        <span class="tag">week 1</span>
+      </a></li>
+      <li><a href="files/jlpt_n5_w1_tuesday.html">
+        <span class="label">Tuesday</span>
+        <span class="tag">week 1</span>
+      </a></li>
+      <li><a href="files/jlpt_n5_w1_wednesday.html">
+        <span class="label">Wednesday</span>
+        <span class="tag">week 1</span>
+      </a></li>
+      <li><a href="files/jlpt_n5_w1_friday.html">
+        <span class="label">Friday</span>
+        <span class="tag">week 1</span>
+      </a></li>
+      <li><a href="files/jlpt_n5_w1_saturday.html">
+        <span class="label">Saturday</span>
+        <span class="tag">week 1</span>
+      </a></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Study Tools</h2>
+    <ul class="link-list">
+      <li><a href="files/jlpt_n5_kanji_tracker.html">
+        <span class="label">Kanji Tracker</span>
+        <span class="tag">漢字</span>
+      </a></li>
+      <li><a href="files/jlpt_n5_vocab_flashcards.html">
+        <span class="label">Vocabulary Flashcards</span>
+        <span class="tag">たんご</span>
+      </a></li>
+      <li><a href="files/jlpt_n5_grammar_tool.html">
+        <span class="label">Grammar Tool</span>
+        <span class="tag">文法</span>
+      </a></li>
+      <li><a href="files/jlpt_n5_grammar_gap_check.html">
+        <span class="label">Grammar Gap Check</span>
+        <span class="tag">文法</span>
+      </a></li>
+    </ul>
+  </section>
+
+  <footer>
+    まるごと初級２ A2 · Marugoto Elementary 2
+  </footer>
+
+</div>
+</body>
+</html>
