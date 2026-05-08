@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JLPT N5 — Pensum</title>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;700&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1a1a;
+  --paper: #f4efe6;
+  --paper-soft: #ebe4d6;
+  --rule: #c9bfa9;
+  --accent: #8b1a1a;
+  --accent-soft: #b85c5c;
+  --muted: #6b6357;
+  --highlight: #d4a574;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 300;
+  line-height: 1.6;
+  padding: 60px 40px;
+  background-image:
+    radial-gradient(circle at 15% 25%, rgba(139, 26, 26, 0.03) 0%, transparent 40%),
+    radial-gradient(circle at 85% 75%, rgba(139, 26, 26, 0.04) 0%, transparent 50%);
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Header */
+.masthead {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: end;
+  gap: 30px;
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 20px;
+  margin-bottom: 50px;
+}
+
+.masthead-mark {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 90px;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 0.85;
+  letter-spacing: -4px;
+}
+
+.masthead-title h1 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 42px;
+  font-weight: 500;
+  letter-spacing: -1px;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.masthead-title .sub {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.masthead-meta {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 1.5px;
+  text-align: right;
+  text-transform: uppercase;
+  line-height: 1.8;
+}
+
+/* Stat row */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border: 1px solid var(--rule);
+  margin-bottom: 60px;
+  background: var(--paper-soft);
+}
+
+.stat {
+  padding: 24px 20px;
+  border-right: 1px solid var(--rule);
+  text-align: center;
+}
+.stat:last-child { border-right: none; }
+
+.stat-num {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.stat-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Section */
+section {
+  margin-bottom: 70px;
+}
+
+.section-head {
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+  margin-bottom: 30px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.section-num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: 2px;
+  font-weight: 500;
+}
+
+.section-head h2 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 28px;
+  font-weight: 500;
+  flex: 1;
+}
+
+.section-head .jp {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 18px;
+  color: var(--muted);
+}
+
+/* Test structure layout */
+.test-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.test-block {
+  background: var(--paper-soft);
+  border-left: 3px solid var(--accent);
+  padding: 24px;
+}
+
+.test-block h3 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+
+.test-block .duration {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: 1px;
+  margin-bottom: 14px;
+}
+
+.test-block ul {
+  list-style: none;
+  font-size: 14px;
+}
+
+.test-block li {
+  padding-left: 16px;
+  position: relative;
+  margin-bottom: 6px;
+  color: var(--muted);
+}
+
+.test-block li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--accent-soft);
+}
+
+/* Kanji table */
+.kanji-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+}
+
+.kanji-cat {
+  background: var(--paper-soft);
+  padding: 24px;
+}
+
+.kanji-cat h3 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--accent);
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.kanji-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.k {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  font-family: 'Shippori Mincho', serif;
+  font-size: 22px;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  cursor: default;
+  transition: all 0.2s;
+}
+
+.k:hover {
+  background: var(--accent);
+  color: var(--paper);
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+/* Grammar */
+.grammar-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+  border: 1px solid var(--rule);
+}
+
+.grammar-cat {
+  padding: 22px 26px;
+  border-right: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+.grammar-cat:nth-child(2n) { border-right: none; }
+
+.grammar-cat h3 {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+
+.grammar-cat ul {
+  list-style: none;
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.grammar-cat .pattern {
+  font-family: 'Shippori Mincho', serif;
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.grammar-cat .gloss {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* Vocab categories */
+.vocab-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.vocab-cat {
+  border-top: 2px solid var(--ink);
+  padding: 16px 0;
+}
+
+.vocab-cat .count {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--accent);
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+
+.vocab-cat h3 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 18px;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.vocab-cat .examples {
+  font-size: 13px;
+  color: var(--muted);
+  font-family: 'Shippori Mincho', serif;
+  line-height: 1.7;
+}
+
+/* Footer */
+footer {
+  margin-top: 80px;
+  padding-top: 30px;
+  border-top: 1px solid var(--rule);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+  text-align: center;
+}
+
+footer .note {
+  margin-bottom: 10px;
+}
+
+/* Responsive */
+@media (max-width: 800px) {
+  body { padding: 30px 20px; }
+  .masthead { grid-template-columns: 1fr; gap: 16px; }
+  .masthead-meta { text-align: left; }
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .stat:nth-child(2) { border-right: none; }
+  .stat:nth-child(1), .stat:nth-child(2) { border-bottom: 1px solid var(--rule); }
+  .test-grid, .kanji-grid, .grammar-grid, .vocab-grid { grid-template-columns: 1fr; }
+  .grammar-cat { border-right: none; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Masthead -->
+  <header class="masthead">
+    <div class="masthead-mark">五</div>
+    <div class="masthead-title">
+      <h1>JLPT N5 — Pensum</h1>
+      <div class="sub">Japanese Language Proficiency Test · Level 5</div>
+    </div>
+    <div class="masthead-meta">
+      Study reference<br>
+      Target: July 2026<br>
+      ~2 months · 3–5 h/week
+    </div>
+  </header>
+
+  <!-- Top stats -->
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-num">~103</div>
+      <div class="stat-label">Kanji</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">~800</div>
+      <div class="stat-label">Vocabulary</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">~80</div>
+      <div class="stat-label">Grammar Points</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">105m</div>
+      <div class="stat-label">Test Duration</div>
+    </div>
+  </div>
+
+  <!-- Test structure -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">01</span>
+      <h2>Test Structure</h2>
+      <span class="jp">試験の構成</span>
+    </div>
+    <div class="test-grid">
+      <div class="test-block">
+        <h3>Vocabulary</h3>
+        <div class="duration">25 minutes · 文字・語彙</div>
+        <ul>
+          <li>Kanji reading</li>
+          <li>Orthography (kana → kanji)</li>
+          <li>Context selection</li>
+          <li>Paraphrasing</li>
+        </ul>
+      </div>
+      <div class="test-block">
+        <h3>Grammar &amp; Reading</h3>
+        <div class="duration">50 minutes · 文法・読解</div>
+        <ul>
+          <li>Grammar form selection</li>
+          <li>Sentence composition</li>
+          <li>Text grammar (cohesion)</li>
+          <li>Short reading passages</li>
+          <li>Information retrieval</li>
+        </ul>
+      </div>
+      <div class="test-block">
+        <h3>Listening</h3>
+        <div class="duration">30 minutes · 聴解</div>
+        <ul>
+          <li>Task-based listening</li>
+          <li>Key-point listening</li>
+          <li>Utterance expressions</li>
+          <li>Quick response</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Kanji -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">02</span>
+      <h2>Kanji — 103 Characters</h2>
+      <span class="jp">漢字</span>
+    </div>
+    <div class="kanji-grid">
+      <div class="kanji-cat">
+        <h3>Numbers (13)</h3>
+        <div class="kanji-list">
+          <span class="k">一</span><span class="k">二</span><span class="k">三</span><span class="k">四</span><span class="k">五</span><span class="k">六</span><span class="k">七</span><span class="k">八</span><span class="k">九</span><span class="k">十</span><span class="k">百</span><span class="k">千</span><span class="k">万</span>
+        </div>
+      </div>
+      <div class="kanji-cat">
+        <h3>Time &amp; Calendar (15)</h3>
+        <div class="kanji-list">
+          <span class="k">日</span><span class="k">月</span><span class="k">火</span><span class="k">水</span><span class="k">木</span><span class="k">金</span><span class="k">土</span><span class="k">曜</span><span class="k">年</span><span class="k">時</span><span class="k">分</span><span class="k">半</span><span class="k">今</span><span class="k">何</span><span class="k">毎</span>
+        </div>
+      </div>
+      <div class="kanji-cat">
+        <h3>People &amp; Family (10)</h3>
+        <div class="kanji-list">
+          <span class="k">人</span><span class="k">男</span><span class="k">女</span><span class="k">子</span><span class="k">父</span><span class="k">母</span><span class="k">友</span><span class="k">先</span><span class="k">生</span><span class="k">名</span>
+        </div>
+      </div>
+      <div class="kanji-cat">
+        <h3>Body (4)</h3>
+        <div class="kanji-list">
+          <span class="k">目</span><span class="k">耳</span><span class="k">口</span><span class="k">手</span>
+        </div>
+      </div>
+      <div class="kanji-cat">
+        <h3>Nature &amp; Weather (10)</h3>
+        <div class="kanji-list">
+          <span class="k">山</span><span class="k">川</span><span class="k">花</span><span class="k">天</span><span class="k">空</span><span class="k">雨</span><span class="k">電</span><span class="k">気</span><span class="k">魚</span><span class="k">犬</span>
+        </div>
+      </div>
+      <div class="kanji-cat">
+        <h3>Places (10)</h3>
+        <div class="kanji-list">
+          <span class="k">国</span><span class="k">外</span><span class="k">中</span><span class="k">町</span><span class="k">学</span><span class="k">校</span><span class="k">店</span><span class="k">社</span><span class="k">駅</span><span class="k">道</span>
+        </div>
+      </div>
+      <div class="kanji-cat">
+        <h3>Direction &amp; Position (10)</h3>
+        <div class="kanji-list">
+          <span class="k">上</span><span class="k">下</span><span class="k">前</span><span class="k">後</span><span class="k">左</span><span class="k">右</span><span class="k">東</span><span class="k">西</span><span class="k">南</span><span class="k">北</span>
+        </div>
+      </div>
+      <div class="kanji-cat">
+        <h3>Verbs (15)</h3>
+        <div class="kanji-list">
+          <span class="k">行</span><span class="k">来</span><span class="k">入</span><span class="k">出</span><span class="k">見</span><span class="k">聞</span><span class="k">話</span><span class="k">読</span><span class="k">書</span><span class="k">食</span><span class="k">飲</span><span class="k">買</span><span class="k">立</span><span class="k">休</span><span class="k">会</span>
+        </div>
+      </div>
+      <div class="kanji-cat">
+        <h3>Adjectives (8)</h3>
+        <div class="kanji-list">
+          <span class="k">大</span><span class="k">小</span><span class="k">高</span><span class="k">安</span><span class="k">新</span><span class="k">古</span><span class="k">長</span><span class="k">少</span>
+        </div>
+      </div>
+      <div class="kanji-cat">
+        <h3>Common Nouns (8)</h3>
+        <div class="kanji-list">
+          <span class="k">本</span><span class="k">車</span><span class="k">語</span><span class="k">英</span><span class="k">円</span><span class="k">力</span><span class="k">音</span><span class="k">白</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Grammar -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">03</span>
+      <h2>Grammar — Core Patterns</h2>
+      <span class="jp">文法</span>
+    </div>
+    <div class="grammar-grid">
+
+      <div class="grammar-cat">
+        <h3>Particles</h3>
+        <ul>
+          <li><span class="pattern">は</span> · <span class="gloss">topic marker</span></li>
+          <li><span class="pattern">が</span> · <span class="gloss">subject marker</span></li>
+          <li><span class="pattern">を</span> · <span class="gloss">direct object</span></li>
+          <li><span class="pattern">に</span> · <span class="gloss">direction, time, indirect object</span></li>
+          <li><span class="pattern">で</span> · <span class="gloss">location of action, means</span></li>
+          <li><span class="pattern">へ</span> · <span class="gloss">direction</span></li>
+          <li><span class="pattern">と</span> · <span class="gloss">"and", "with"</span></li>
+          <li><span class="pattern">の</span> · <span class="gloss">possession, modification</span></li>
+          <li><span class="pattern">も</span> · <span class="gloss">"also"</span></li>
+          <li><span class="pattern">から / まで</span> · <span class="gloss">from / until</span></li>
+          <li><span class="pattern">か</span> · <span class="gloss">question marker</span></li>
+          <li><span class="pattern">ね / よ</span> · <span class="gloss">sentence-end particles</span></li>
+        </ul>
+      </div>
+
+      <div class="grammar-cat">
+        <h3>Copula &amp; Sentence Frames</h3>
+        <ul>
+          <li><span class="pattern">〜です / 〜じゃありません</span> · <span class="gloss">is / is not</span></li>
+          <li><span class="pattern">〜でした / 〜じゃありませんでした</span> · <span class="gloss">past forms</span></li>
+          <li><span class="pattern">〜は〜です</span> · <span class="gloss">basic A is B</span></li>
+          <li><span class="pattern">〜が あります / います</span> · <span class="gloss">there is (thing / person)</span></li>
+          <li><span class="pattern">〜に〜が あります</span> · <span class="gloss">existence at a place</span></li>
+        </ul>
+      </div>
+
+      <div class="grammar-cat">
+        <h3>Verb Forms (ます-form)</h3>
+        <ul>
+          <li><span class="pattern">〜ます / 〜ません</span> · <span class="gloss">non-past affirmative / negative</span></li>
+          <li><span class="pattern">〜ました / 〜ませんでした</span> · <span class="gloss">past forms</span></li>
+          <li><span class="pattern">〜ましょう / 〜ませんか</span> · <span class="gloss">let's / shall we</span></li>
+          <li><span class="pattern">〜たい</span> · <span class="gloss">want to do</span></li>
+          <li><span class="pattern">〜て form</span> · <span class="gloss">connector, request, sequence</span></li>
+          <li><span class="pattern">〜てください</span> · <span class="gloss">please do</span></li>
+          <li><span class="pattern">〜ています</span> · <span class="gloss">progressive / state</span></li>
+          <li><span class="pattern">〜ないでください</span> · <span class="gloss">please don't</span></li>
+        </ul>
+      </div>
+
+      <div class="grammar-cat">
+        <h3>Adjectives</h3>
+        <ul>
+          <li><span class="pattern">い-adj + です</span> · <span class="gloss">e.g. 高いです</span></li>
+          <li><span class="pattern">い-adj → 〜くないです</span> · <span class="gloss">negative</span></li>
+          <li><span class="pattern">い-adj → 〜かったです</span> · <span class="gloss">past</span></li>
+          <li><span class="pattern">な-adj + です / じゃない</span> · <span class="gloss">e.g. 静かです</span></li>
+          <li><span class="pattern">い-adj → 〜くて / な-adj → 〜で</span> · <span class="gloss">connecting form</span></li>
+          <li><span class="pattern">〜が好きです / 上手です</span> · <span class="gloss">like / be good at</span></li>
+        </ul>
+      </div>
+
+      <div class="grammar-cat">
+        <h3>Question Words</h3>
+        <ul>
+          <li><span class="pattern">何 (なに/なん)</span> · <span class="gloss">what</span></li>
+          <li><span class="pattern">だれ / どなた</span> · <span class="gloss">who</span></li>
+          <li><span class="pattern">いつ</span> · <span class="gloss">when</span></li>
+          <li><span class="pattern">どこ</span> · <span class="gloss">where</span></li>
+          <li><span class="pattern">どう / どんな</span> · <span class="gloss">how / what kind</span></li>
+          <li><span class="pattern">いくら / いくつ</span> · <span class="gloss">how much / how many</span></li>
+          <li><span class="pattern">どれ / どちら</span> · <span class="gloss">which</span></li>
+          <li><span class="pattern">なぜ / どうして</span> · <span class="gloss">why</span></li>
+        </ul>
+      </div>
+
+      <div class="grammar-cat">
+        <h3>Comparison &amp; Connection</h3>
+        <ul>
+          <li><span class="pattern">〜より〜のほうが</span> · <span class="gloss">more than</span></li>
+          <li><span class="pattern">〜の中で〜が一番</span> · <span class="gloss">most/best among</span></li>
+          <li><span class="pattern">〜と〜とどちらが</span> · <span class="gloss">which of two</span></li>
+          <li><span class="pattern">〜から</span> · <span class="gloss">because (reason)</span></li>
+          <li><span class="pattern">〜が</span> · <span class="gloss">but (contrast)</span></li>
+          <li><span class="pattern">そして / それから</span> · <span class="gloss">and / then</span></li>
+        </ul>
+      </div>
+
+      <div class="grammar-cat">
+        <h3>Demonstratives</h3>
+        <ul>
+          <li><span class="pattern">これ / それ / あれ / どれ</span> · <span class="gloss">this / that / that over there / which</span></li>
+          <li><span class="pattern">この / その / あの / どの + N</span> · <span class="gloss">this/that/etc. + noun</span></li>
+          <li><span class="pattern">ここ / そこ / あそこ / どこ</span> · <span class="gloss">here / there / over there / where</span></li>
+          <li><span class="pattern">こちら / そちら / あちら / どちら</span> · <span class="gloss">polite directions</span></li>
+        </ul>
+      </div>
+
+      <div class="grammar-cat">
+        <h3>Counters &amp; Time</h3>
+        <ul>
+          <li><span class="pattern">〜時 / 〜分</span> · <span class="gloss">o'clock / minutes</span></li>
+          <li><span class="pattern">〜日 / 〜月 / 〜年</span> · <span class="gloss">day / month / year</span></li>
+          <li><span class="pattern">〜つ (general)</span> · <span class="gloss">1〜10 native counter</span></li>
+          <li><span class="pattern">〜人 / 〜匹 / 〜本 / 〜枚</span> · <span class="gloss">people / animals / long / flat</span></li>
+          <li><span class="pattern">〜回 / 〜階 / 〜台</span> · <span class="gloss">times / floors / vehicles</span></li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Vocabulary -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">04</span>
+      <h2>Vocabulary — ~800 Words</h2>
+      <span class="jp">語彙</span>
+    </div>
+    <div class="vocab-grid">
+      <div class="vocab-cat">
+        <div class="count">~280 WORDS</div>
+        <h3>Verbs</h3>
+        <div class="examples">食べる · 飲む · 行く · 来る · 見る · 聞く · 読む · 書く · 話す · する · 買う · 待つ · 帰る</div>
+      </div>
+      <div class="vocab-cat">
+        <div class="count">~180 WORDS</div>
+        <h3>Adjectives</h3>
+        <div class="examples">大きい · 小さい · 高い · 安い · 新しい · 古い · 美味しい · 静か · 元気 · 好き · きれい</div>
+      </div>
+      <div class="vocab-cat">
+        <div class="count">~250 WORDS</div>
+        <h3>Nouns</h3>
+        <div class="examples">家 · 学校 · 会社 · 駅 · 電車 · 本 · 食べ物 · 時間 · 朝 · 昼 · 夜 · 友達 · 家族</div>
+      </div>
+      <div class="vocab-cat">
+        <div class="count">~50 WORDS</div>
+        <h3>Adverbs</h3>
+        <div class="examples">よく · あまり · ぜんぜん · もう · まだ · すぐ · ゆっくり · たくさん · ちょっと · 少し</div>
+      </div>
+      <div class="vocab-cat">
+        <div class="count">~40 WORDS</div>
+        <h3>Question / Demo</h3>
+        <div class="examples">何 · 誰 · いつ · どこ · どう · これ · それ · あれ · この · その · あの</div>
+      </div>
+      <div class="vocab-cat">
+        <div class="count">~30 WORDS</div>
+        <h3>Greetings &amp; Set Phrases</h3>
+        <div class="examples">こんにちは · おはようございます · ありがとう · すみません · さようなら · おねがいします</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="note">Sources: JLPT Sensei · Nihongo Ichiban · MLC Japanese · Migaku</div>
+    <div>Note · Officially, no published lists exist post-2010. These are reverse-engineered targets, ~95% reliable.</div>
+  </footer>
+
+</div>
+</body>
+</html>

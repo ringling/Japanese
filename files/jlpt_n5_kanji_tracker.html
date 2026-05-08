@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JLPT N5 — Kanji Tracker · 8 Weeks</title>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;700&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1a1a;
+  --ink-soft: #3a3a3a;
+  --paper: #f4efe6;
+  --paper-soft: #ebe4d6;
+  --paper-deep: #e2d9c4;
+  --rule: #c9bfa9;
+  --rule-soft: #d8cfb9;
+  --accent: #8b1a1a;
+  --accent-soft: #b85c5c;
+  --muted: #6b6357;
+  --gold: #b8893d;
+  --done: #5a7a3a;
+  --done-bg: #d8e0c4;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 300;
+  line-height: 1.6;
+  padding: 50px 32px;
+  background-image:
+    radial-gradient(circle at 15% 25%, rgba(139, 26, 26, 0.03) 0%, transparent 40%),
+    radial-gradient(circle at 85% 75%, rgba(184, 137, 61, 0.04) 0%, transparent 50%);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ====== Masthead ====== */
+.masthead {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: end;
+  gap: 30px;
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 20px;
+  margin-bottom: 40px;
+}
+
+.masthead-mark {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 90px;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 0.85;
+  letter-spacing: -4px;
+}
+
+.masthead-title h1 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 38px;
+  font-weight: 500;
+  letter-spacing: -1px;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.masthead-title .sub {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.masthead-meta {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 1.5px;
+  text-align: right;
+  text-transform: uppercase;
+  line-height: 1.8;
+}
+
+/* ====== Progress overview ====== */
+.progress-bar {
+  background: var(--paper-soft);
+  border: 1px solid var(--rule);
+  padding: 18px 24px;
+  margin-bottom: 50px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 30px;
+}
+
+.progress-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.progress-track {
+  height: 8px;
+  background: var(--paper-deep);
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-fill {
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  background: var(--accent);
+  width: 0%;
+  transition: width 0.4s ease;
+}
+
+.progress-stats {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--accent);
+  text-align: right;
+  white-space: nowrap;
+}
+
+.progress-stats .total {
+  color: var(--muted);
+  font-weight: 400;
+  font-size: 18px;
+}
+
+/* ====== Week navigation ====== */
+.week-nav {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.week-pill {
+  flex: 1;
+  min-width: 100px;
+  padding: 10px 14px;
+  background: var(--paper-soft);
+  border: 1px solid var(--rule);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--muted);
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.2s;
+  user-select: none;
+}
+
+.week-pill:hover {
+  background: var(--paper-deep);
+  color: var(--ink);
+}
+
+.week-pill.complete {
+  background: var(--done-bg);
+  color: var(--done);
+  border-color: var(--done);
+}
+
+.week-pill .pill-num {
+  font-weight: 500;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 2px;
+}
+
+.week-pill.complete .pill-num { color: var(--done); }
+
+/* ====== Week sections ====== */
+.week {
+  margin-bottom: 60px;
+}
+
+.week-head {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: baseline;
+  gap: 20px;
+  padding-bottom: 14px;
+  margin-bottom: 26px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.week-num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: 2px;
+  font-weight: 500;
+}
+
+.week-head h2 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 26px;
+  font-weight: 500;
+}
+
+.week-head .jp {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 16px;
+  color: var(--muted);
+}
+
+.week-count {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+/* ====== Kanji card grid ====== */
+.day-block {
+  margin-bottom: 22px;
+}
+
+.day-block:last-child {
+  margin-bottom: 0;
+}
+
+.day-header {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 12px;
+  padding-bottom: 6px;
+  border-bottom: 1px dashed var(--rule);
+}
+
+.day-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.day-meta {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.kanji-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 14px;
+}
+
+.kanji-card {
+  background: var(--paper-soft);
+  border: 1px solid var(--rule);
+  padding: 16px 18px;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: 14px;
+  align-items: start;
+}
+
+.kanji-card:hover {
+  border-color: var(--accent-soft);
+  background: var(--paper);
+}
+
+.kanji-card.known {
+  background: var(--done-bg);
+  border-color: var(--done);
+}
+
+.kanji-card.known .k-glyph {
+  color: var(--done);
+}
+
+.k-glyph {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 56px;
+  font-weight: 500;
+  color: var(--accent);
+  line-height: 1;
+  text-align: center;
+  align-self: center;
+}
+
+.k-info {
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.k-meaning {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+
+.k-readings {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+  line-height: 1.5;
+}
+
+.k-readings .on { color: var(--accent); }
+.k-readings .kun { color: var(--gold); }
+
+.k-mnemonic {
+  font-size: 11px;
+  font-style: italic;
+  color: var(--ink-soft);
+  border-left: 2px solid var(--rule);
+  padding-left: 8px;
+  margin-bottom: 6px;
+  line-height: 1.5;
+}
+
+.k-example {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.k-example ruby rt {
+  font-size: 8px;
+  color: var(--accent);
+}
+
+.k-checkmark {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 16px;
+  height: 16px;
+  border: 1px solid var(--rule);
+  background: var(--paper);
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: transparent;
+  transition: all 0.2s;
+}
+
+.kanji-card.known .k-checkmark {
+  background: var(--done);
+  border-color: var(--done);
+  color: var(--paper);
+}
+
+/* ====== Footer ====== */
+footer {
+  margin-top: 70px;
+  padding-top: 24px;
+  border-top: 1px solid var(--rule);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+  text-align: center;
+  line-height: 1.8;
+}
+
+footer .reset-btn {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 6px 14px;
+  background: transparent;
+  border: 1px solid var(--rule);
+  color: var(--muted);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+footer .reset-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ====== Responsive ====== */
+@media (max-width: 700px) {
+  body { padding: 30px 18px; }
+  .masthead { grid-template-columns: 1fr; gap: 16px; }
+  .masthead-meta { text-align: left; }
+  .progress-bar { grid-template-columns: 1fr; gap: 14px; }
+  .progress-stats { text-align: left; }
+  .week-pill { flex-basis: calc(50% - 3px); min-width: 0; }
+  .kanji-grid { grid-template-columns: 1fr; }
+}
+
+/* Print */
+@media print {
+  body { background: white; padding: 20px; }
+  .week-pill, .k-checkmark, footer .reset-btn { display: none; }
+  .kanji-card { break-inside: avoid; page-break-inside: avoid; }
+  .week { page-break-after: always; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Masthead -->
+  <header class="masthead">
+    <div class="masthead-mark">字</div>
+    <div class="masthead-title">
+      <h1>Kanji Tracker · N5</h1>
+      <div class="sub">8 Weeks · 13 Kanji per week · Mon (~7) + Wed (~6) split</div>
+    </div>
+    <div class="masthead-meta">
+      Target: July 2026<br>
+      Tap a card to mark known<br>
+      Progress saved locally
+    </div>
+  </header>
+
+  <!-- Progress -->
+  <div class="progress-bar">
+    <div>
+      <div class="progress-label">Overall Progress</div>
+      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    </div>
+    <div class="progress-stats">
+      <span id="progressNum">0</span><span class="total"> / 104</span>
+    </div>
+  </div>
+
+  <!-- Week navigation -->
+  <div class="week-nav" id="weekNav"></div>
+
+  <!-- Weeks rendered here -->
+  <div id="weeks"></div>
+
+  <footer>
+    <div>Click a kanji card to toggle "known" · Progress is saved in your browser</div>
+    <button class="reset-btn" onclick="resetProgress()">Reset all progress</button>
+  </footer>
+</div>
+
+<script>
+// ============================================================
+// KANJI DATA — 104 N5 kanji, themed across 8 weeks
+// Format: { k, on, kun, meaning, mnemonic, example: { jp, reading, en } }
+// ============================================================
+const weeks = [
+  {
+    title: "Numbers",
+    titleJp: "数字",
+    focus: "Foundation — appears in dates, prices, counters",
+    kanji: [
+      { k: "一", on: "イチ", kun: "ひと(つ)", meaning: "one", mnemonic: "A single horizontal stroke = one.", ex: { jp: "一人", read: "ひとり", en: "one person / alone" }},
+      { k: "二", on: "ニ", kun: "ふた(つ)", meaning: "two", mnemonic: "Two strokes = two.", ex: { jp: "二月", read: "にがつ", en: "February" }},
+      { k: "三", on: "サン", kun: "みっ(つ)", meaning: "three", mnemonic: "Three strokes = three.", ex: { jp: "三人", read: "さんにん", en: "three people" }},
+      { k: "四", on: "シ", kun: "よん／よっ(つ)", meaning: "four", mnemonic: "A box with legs — four corners.", ex: { jp: "四月", read: "しがつ", en: "April" }},
+      { k: "五", on: "ゴ", kun: "いつ(つ)", meaning: "five", mnemonic: "Looks like a hand frozen mid-count.", ex: { jp: "五時", read: "ごじ", en: "5 o'clock" }},
+      { k: "六", on: "ロク", kun: "むっ(つ)", meaning: "six", mnemonic: "A hat on legs — count the strokes.", ex: { jp: "六月", read: "ろくがつ", en: "June" }},
+      { k: "七", on: "シチ", kun: "なな", meaning: "seven", mnemonic: "Like a hook or a 7 mirrored.", ex: { jp: "七時", read: "しちじ", en: "7 o'clock" }},
+      { k: "八", on: "ハチ", kun: "やっ(つ)", meaning: "eight", mnemonic: "Two strokes splitting open — like the number 8 cut in half.", ex: { jp: "八月", read: "はちがつ", en: "August" }},
+      { k: "九", on: "キュウ／ク", kun: "ここの(つ)", meaning: "nine", mnemonic: "A flag bent over — almost ten.", ex: { jp: "九時", read: "くじ", en: "9 o'clock" }},
+      { k: "十", on: "ジュウ", kun: "とお", meaning: "ten", mnemonic: "A plus sign — ten is complete.", ex: { jp: "十円", read: "じゅうえん", en: "10 yen" }},
+      { k: "百", on: "ヒャク", kun: "—", meaning: "hundred", mnemonic: "One (一) on top of white (白) — a hundred white things.", ex: { jp: "百円", read: "ひゃくえん", en: "100 yen" }},
+      { k: "千", on: "セン", kun: "ち", meaning: "thousand", mnemonic: "Like the kanji for ten with a slash — much more.", ex: { jp: "千円", read: "せんえん", en: "1000 yen" }},
+      { k: "万", on: "マン", kun: "—", meaning: "ten thousand", mnemonic: "A flag waving over a vast number.", ex: { jp: "一万円", read: "いちまんえん", en: "10,000 yen" }},
+    ]
+  },
+  {
+    title: "Time & Calendar",
+    titleJp: "時・暦",
+    focus: "Days of week, telling time, dates",
+    kanji: [
+      { k: "日", on: "ニチ／ジツ", kun: "ひ／び", meaning: "day, sun", mnemonic: "A pictograph of the sun — and 'day' by extension.", ex: { jp: "日本", read: "にほん", en: "Japan" }},
+      { k: "月", on: "ゲツ／ガツ", kun: "つき", meaning: "moon, month", mnemonic: "A crescent moon — also marks months.", ex: { jp: "月曜日", read: "げつようび", en: "Monday" }},
+      { k: "火", on: "カ", kun: "ひ", meaning: "fire", mnemonic: "Looks like a person with sparks — flames.", ex: { jp: "火曜日", read: "かようび", en: "Tuesday" }},
+      { k: "水", on: "スイ", kun: "みず", meaning: "water", mnemonic: "Streams flowing outward from a center.", ex: { jp: "水曜日", read: "すいようび", en: "Wednesday" }},
+      { k: "木", on: "モク／ボク", kun: "き", meaning: "tree, wood", mnemonic: "A tree with branches and roots.", ex: { jp: "木曜日", read: "もくようび", en: "Thursday" }},
+      { k: "金", on: "キン", kun: "かね", meaning: "gold, money", mnemonic: "A roof over precious things — gold.", ex: { jp: "金曜日", read: "きんようび", en: "Friday" }},
+      { k: "土", on: "ド", kun: "つち", meaning: "earth, soil", mnemonic: "A cross planted in the ground.", ex: { jp: "土曜日", read: "どようび", en: "Saturday" }},
+      { k: "曜", on: "ヨウ", kun: "—", meaning: "weekday", mnemonic: "Used only in compounds for days of the week.", ex: { jp: "何曜日", read: "なんようび", en: "what day of the week?" }},
+      { k: "年", on: "ネン", kun: "とし", meaning: "year", mnemonic: "A person bending under the weight of years.", ex: { jp: "今年", read: "ことし", en: "this year" }},
+      { k: "時", on: "ジ", kun: "とき", meaning: "time, hour", mnemonic: "Sun (日) + temple (寺) — temples kept time.", ex: { jp: "三時", read: "さんじ", en: "3 o'clock" }},
+      { k: "分", on: "フン／プン／ブン", kun: "わ(ける)", meaning: "minute, divide", mnemonic: "A sword (刀) cutting (八) — to divide into minutes.", ex: { jp: "五分", read: "ごふん", en: "5 minutes" }},
+      { k: "半", on: "ハン", kun: "なか(ば)", meaning: "half", mnemonic: "Eight (八) over a vertical line — split in half.", ex: { jp: "六時半", read: "ろくじはん", en: "6:30" }},
+      { k: "今", on: "コン／キン", kun: "いま", meaning: "now", mnemonic: "A roof over the present moment.", ex: { jp: "今日", read: "きょう", en: "today" }},
+    ]
+  },
+  {
+    title: "People & Family",
+    titleJp: "人・家族",
+    focus: "Pronouns, family members, social roles",
+    kanji: [
+      { k: "人", on: "ジン／ニン", kun: "ひと", meaning: "person", mnemonic: "Two legs walking — a person.", ex: { jp: "日本人", read: "にほんじん", en: "Japanese person" }},
+      { k: "男", on: "ダン／ナン", kun: "おとこ", meaning: "man, male", mnemonic: "Field (田) + power (力) — the man works the fields.", ex: { jp: "男の人", read: "おとこのひと", en: "man" }},
+      { k: "女", on: "ジョ", kun: "おんな", meaning: "woman, female", mnemonic: "A figure with crossed legs sitting elegantly.", ex: { jp: "女の人", read: "おんなのひと", en: "woman" }},
+      { k: "子", on: "シ", kun: "こ", meaning: "child", mnemonic: "A baby with arms outstretched and legs swaddled.", ex: { jp: "子供", read: "こども", en: "child" }},
+      { k: "父", on: "フ", kun: "ちち", meaning: "father", mnemonic: "Crossed sticks — father chopping wood.", ex: { jp: "お父さん", read: "おとうさん", en: "father (polite)" }},
+      { k: "母", on: "ボ", kun: "はは", meaning: "mother", mnemonic: "Two dots = breasts — the nurturing mother.", ex: { jp: "お母さん", read: "おかあさん", en: "mother (polite)" }},
+      { k: "友", on: "ユウ", kun: "とも", meaning: "friend", mnemonic: "Two hands clasped together — friendship.", ex: { jp: "友達", read: "ともだち", en: "friend" }},
+      { k: "先", on: "セン", kun: "さき", meaning: "ahead, previous", mnemonic: "Person with legs going forward — going first.", ex: { jp: "先生", read: "せんせい", en: "teacher" }},
+      { k: "生", on: "セイ／ショウ", kun: "い(きる)／う(まれる)", meaning: "life, birth", mnemonic: "A plant sprouting from the ground — new life.", ex: { jp: "学生", read: "がくせい", en: "student" }},
+      { k: "名", on: "メイ", kun: "な", meaning: "name", mnemonic: "Evening (夕) + mouth (口) — calling names at dusk.", ex: { jp: "名前", read: "なまえ", en: "name" }},
+      { k: "目", on: "モク", kun: "め", meaning: "eye", mnemonic: "An eye stood on its end — pupils visible.", ex: { jp: "目", read: "め", en: "eye" }},
+      { k: "耳", on: "ジ", kun: "みみ", meaning: "ear", mnemonic: "An ear shape with the lobe.", ex: { jp: "耳", read: "みみ", en: "ear" }},
+      { k: "口", on: "コウ", kun: "くち", meaning: "mouth", mnemonic: "A square — open mouth.", ex: { jp: "出口", read: "でぐち", en: "exit" }},
+    ]
+  },
+  {
+    title: "Nature & Elements",
+    titleJp: "自然",
+    focus: "Weather, landscape, animals",
+    kanji: [
+      { k: "山", on: "サン", kun: "やま", meaning: "mountain", mnemonic: "Three peaks — clearly a mountain range.", ex: { jp: "富士山", read: "ふじさん", en: "Mt. Fuji" }},
+      { k: "川", on: "セン", kun: "かわ", meaning: "river", mnemonic: "Three vertical lines — flowing water.", ex: { jp: "川", read: "かわ", en: "river" }},
+      { k: "花", on: "カ", kun: "はな", meaning: "flower", mnemonic: "Grass (艹) + change (化) — grass that transforms.", ex: { jp: "花見", read: "はなみ", en: "flower viewing" }},
+      { k: "天", on: "テン", kun: "—", meaning: "heaven, sky", mnemonic: "A person (大) reaching up — to the heavens.", ex: { jp: "天気", read: "てんき", en: "weather" }},
+      { k: "空", on: "クウ", kun: "そら／あ(く)", meaning: "sky, empty", mnemonic: "A roof over emptiness — the open sky.", ex: { jp: "空気", read: "くうき", en: "air" }},
+      { k: "雨", on: "ウ", kun: "あめ", meaning: "rain", mnemonic: "Drops falling from a cloud.", ex: { jp: "雨", read: "あめ", en: "rain" }},
+      { k: "電", on: "デン", kun: "—", meaning: "electricity", mnemonic: "Rain (雨) with a lightning bolt — electricity.", ex: { jp: "電車", read: "でんしゃ", en: "train" }},
+      { k: "気", on: "キ／ケ", kun: "—", meaning: "spirit, energy, air", mnemonic: "Rising steam — the energy of things.", ex: { jp: "元気", read: "げんき", en: "healthy / lively" }},
+      { k: "魚", on: "ギョ", kun: "さかな", meaning: "fish", mnemonic: "A fish shape: head, body, tail.", ex: { jp: "魚", read: "さかな", en: "fish" }},
+      { k: "犬", on: "ケン", kun: "いぬ", meaning: "dog", mnemonic: "A big (大) creature with a dot — a dog.", ex: { jp: "犬", read: "いぬ", en: "dog" }},
+      { k: "白", on: "ハク", kun: "しろ(い)", meaning: "white", mnemonic: "A drop on the sun — bleached white.", ex: { jp: "白い", read: "しろい", en: "white" }},
+      { k: "音", on: "オン", kun: "おと", meaning: "sound", mnemonic: "Stand (立) + sun (日) — standing sound.", ex: { jp: "音楽", read: "おんがく", en: "music" }},
+      { k: "力", on: "リョク／リキ", kun: "ちから", meaning: "power, strength", mnemonic: "A flexed arm — pure strength.", ex: { jp: "力", read: "ちから", en: "strength" }},
+    ]
+  },
+  {
+    title: "Places & Direction",
+    titleJp: "場所・方向",
+    focus: "Locations, navigation, position words",
+    kanji: [
+      { k: "国", on: "コク", kun: "くに", meaning: "country", mnemonic: "Jewel (玉) inside an enclosure — the precious country.", ex: { jp: "外国", read: "がいこく", en: "foreign country" }},
+      { k: "外", on: "ガイ", kun: "そと", meaning: "outside", mnemonic: "Evening (夕) + divination (卜) — outside in the dusk.", ex: { jp: "外", read: "そと", en: "outside" }},
+      { k: "中", on: "チュウ", kun: "なか", meaning: "middle, inside", mnemonic: "A line through a box — center.", ex: { jp: "中国", read: "ちゅうごく", en: "China" }},
+      { k: "町", on: "チョウ", kun: "まち", meaning: "town", mnemonic: "Field (田) + nail (丁) — fields nailed into a town.", ex: { jp: "町", read: "まち", en: "town" }},
+      { k: "学", on: "ガク", kun: "まな(ぶ)", meaning: "study, learn", mnemonic: "A roof over a child (子) — under the roof of learning.", ex: { jp: "学生", read: "がくせい", en: "student" }},
+      { k: "校", on: "コウ", kun: "—", meaning: "school", mnemonic: "Tree (木) + cross (交) — the place where paths cross.", ex: { jp: "学校", read: "がっこう", en: "school" }},
+      { k: "上", on: "ジョウ", kun: "うえ", meaning: "above, up", mnemonic: "A line above the ground — up.", ex: { jp: "上", read: "うえ", en: "above" }},
+      { k: "下", on: "カ／ゲ", kun: "した", meaning: "below, down", mnemonic: "A line below the ground — down.", ex: { jp: "下", read: "した", en: "below" }},
+      { k: "前", on: "ゼン", kun: "まえ", meaning: "before, front", mnemonic: "Looking forward — what's in front.", ex: { jp: "名前", read: "なまえ", en: "name" }},
+      { k: "後", on: "ゴ／コウ", kun: "あと／うし(ろ)", meaning: "after, behind", mnemonic: "Looking back — what's behind.", ex: { jp: "後ろ", read: "うしろ", en: "behind" }},
+      { k: "左", on: "サ", kun: "ひだり", meaning: "left", mnemonic: "Hand (ナ) above work (工) — your weaker left hand assists.", ex: { jp: "左", read: "ひだり", en: "left" }},
+      { k: "右", on: "ウ", kun: "みぎ", meaning: "right", mnemonic: "Hand (ナ) above mouth (口) — eat with your right.", ex: { jp: "右", read: "みぎ", en: "right" }},
+      { k: "東", on: "トウ", kun: "ひがし", meaning: "east", mnemonic: "Sun (日) rising behind a tree (木) — the east.", ex: { jp: "東京", read: "とうきょう", en: "Tokyo" }},
+    ]
+  },
+  {
+    title: "More Direction & Travel",
+    titleJp: "方向・移動",
+    focus: "West/south/north, transit, roads",
+    kanji: [
+      { k: "西", on: "セイ／サイ", kun: "にし", meaning: "west", mnemonic: "Wine bottle — the sun sets in the west like wine.", ex: { jp: "西", read: "にし", en: "west" }},
+      { k: "南", on: "ナン", kun: "みなみ", meaning: "south", mnemonic: "A warm tent — the south is warm.", ex: { jp: "南", read: "みなみ", en: "south" }},
+      { k: "北", on: "ホク", kun: "きた", meaning: "north", mnemonic: "Two people back-to-back — turning their backs to the cold north.", ex: { jp: "北", read: "きた", en: "north" }},
+      { k: "店", on: "テン", kun: "みせ", meaning: "shop, store", mnemonic: "Roof (广) + divination (占) — the shop predicts what to sell.", ex: { jp: "店", read: "みせ", en: "shop" }},
+      { k: "社", on: "シャ", kun: "—", meaning: "company, shrine", mnemonic: "Show (示) + earth (土) — sacred ground.", ex: { jp: "会社", read: "かいしゃ", en: "company" }},
+      { k: "駅", on: "エキ", kun: "—", meaning: "station", mnemonic: "Horse (馬) + ruler (尺) — measured stops on a horse route.", ex: { jp: "駅", read: "えき", en: "station" }},
+      { k: "道", on: "ドウ", kun: "みち", meaning: "road, way", mnemonic: "Neck (首) on the move (⻌) — the path you travel.", ex: { jp: "道", read: "みち", en: "road" }},
+      { k: "車", on: "シャ", kun: "くるま", meaning: "car, vehicle", mnemonic: "An overhead view of a cart with axle.", ex: { jp: "電車", read: "でんしゃ", en: "train" }},
+      { k: "本", on: "ホン", kun: "もと", meaning: "book, origin", mnemonic: "Tree (木) with a line at the base — root, origin, books from trees.", ex: { jp: "日本", read: "にほん", en: "Japan" }},
+      { k: "語", on: "ゴ", kun: "—", meaning: "language, word", mnemonic: "Speak (言) + I (吾) — I speak the language.", ex: { jp: "日本語", read: "にほんご", en: "Japanese language" }},
+      { k: "英", on: "エイ", kun: "—", meaning: "English, brilliance", mnemonic: "Grass (艹) + center (央) — flowering at the center.", ex: { jp: "英語", read: "えいご", en: "English language" }},
+      { k: "円", on: "エン", kun: "—", meaning: "yen, circle", mnemonic: "A box with a line — coin shape.", ex: { jp: "千円", read: "せんえん", en: "1000 yen" }},
+      { k: "何", on: "カ", kun: "なに／なん", meaning: "what", mnemonic: "Person (亻) + can (可) — what can the person do?", ex: { jp: "何", read: "なに", en: "what" }},
+    ]
+  },
+  {
+    title: "Verbs of Motion & Senses",
+    titleJp: "動作の漢字",
+    focus: "Common action verbs you'll see constantly",
+    kanji: [
+      { k: "行", on: "コウ", kun: "い(く)", meaning: "go", mnemonic: "Crossroads — going in a direction.", ex: { jp: "行きます", read: "いきます", en: "to go" }},
+      { k: "来", on: "ライ", kun: "く(る)", meaning: "come", mnemonic: "A tree with two people coming under it.", ex: { jp: "来ます", read: "きます", en: "to come" }},
+      { k: "入", on: "ニュウ", kun: "はい(る)", meaning: "enter", mnemonic: "An arrow pointing into something — enter.", ex: { jp: "入口", read: "いりぐち", en: "entrance" }},
+      { k: "出", on: "シュツ", kun: "で(る)", meaning: "exit, leave", mnemonic: "Mountain on mountain — emerging out.", ex: { jp: "出口", read: "でぐち", en: "exit" }},
+      { k: "見", on: "ケン", kun: "み(る)", meaning: "see, look", mnemonic: "An eye (目) on legs — moving eyes that look.", ex: { jp: "見ます", read: "みます", en: "to see" }},
+      { k: "聞", on: "ブン／モン", kun: "き(く)", meaning: "hear, ask", mnemonic: "Ear (耳) inside a gate (門) — listening through a gate.", ex: { jp: "聞きます", read: "ききます", en: "to listen" }},
+      { k: "話", on: "ワ", kun: "はな(す)", meaning: "speak, talk", mnemonic: "Speak (言) + tongue (舌) — what you talk with.", ex: { jp: "話します", read: "はなします", en: "to speak" }},
+      { k: "読", on: "ドク", kun: "よ(む)", meaning: "read", mnemonic: "Speak (言) + sell (売) — to speak the words sold on the page.", ex: { jp: "読みます", read: "よみます", en: "to read" }},
+      { k: "書", on: "ショ", kun: "か(く)", meaning: "write", mnemonic: "A brush stroking down a page — writing.", ex: { jp: "書きます", read: "かきます", en: "to write" }},
+      { k: "食", on: "ショク", kun: "た(べる)", meaning: "eat, food", mnemonic: "A roof over food — the place to eat.", ex: { jp: "食べます", read: "たべます", en: "to eat" }},
+      { k: "飲", on: "イン", kun: "の(む)", meaning: "drink", mnemonic: "Food (食) + lack (欠) — drinking what food can't fill.", ex: { jp: "飲みます", read: "のみます", en: "to drink" }},
+      { k: "買", on: "バイ", kun: "か(う)", meaning: "buy", mnemonic: "Net (网) + shell (貝) — netting shells (old money) to buy.", ex: { jp: "買います", read: "かいます", en: "to buy" }},
+      { k: "立", on: "リツ", kun: "た(つ)", meaning: "stand", mnemonic: "A person standing on the ground.", ex: { jp: "立ちます", read: "たちます", en: "to stand" }},
+    ]
+  },
+  {
+    title: "Adjectives, Daily Life & Misc.",
+    titleJp: "形容詞・日常",
+    focus: "Common descriptive kanji and remaining essentials",
+    kanji: [
+      { k: "大", on: "ダイ／タイ", kun: "おお(きい)", meaning: "big", mnemonic: "A person with arms outstretched — BIG.", ex: { jp: "大きい", read: "おおきい", en: "big" }},
+      { k: "小", on: "ショウ", kun: "ちい(さい)", meaning: "small", mnemonic: "Three small dots — small things.", ex: { jp: "小さい", read: "ちいさい", en: "small" }},
+      { k: "高", on: "コウ", kun: "たか(い)", meaning: "tall, expensive", mnemonic: "A tall building with multiple floors.", ex: { jp: "高い", read: "たかい", en: "expensive / tall" }},
+      { k: "安", on: "アン", kun: "やす(い)", meaning: "cheap, peaceful", mnemonic: "A woman (女) under a roof (宀) — peaceful, low cost.", ex: { jp: "安い", read: "やすい", en: "cheap" }},
+      { k: "新", on: "シン", kun: "あたら(しい)", meaning: "new", mnemonic: "Stand (立) + tree (木) + axe (斤) — fresh-cut wood is new.", ex: { jp: "新しい", read: "あたらしい", en: "new" }},
+      { k: "古", on: "コ", kun: "ふる(い)", meaning: "old", mnemonic: "Ten (十) + mouth (口) — passed through ten mouths, it's old.", ex: { jp: "古い", read: "ふるい", en: "old (objects)" }},
+      { k: "長", on: "チョウ", kun: "なが(い)", meaning: "long, leader", mnemonic: "A figure with long flowing hair.", ex: { jp: "長い", read: "ながい", en: "long" }},
+      { k: "少", on: "ショウ", kun: "すく(ない)／すこ(し)", meaning: "few, little", mnemonic: "Small (小) with a stroke off — even fewer.", ex: { jp: "少し", read: "すこし", en: "a little" }},
+      { k: "毎", on: "マイ", kun: "—", meaning: "every", mnemonic: "Mother (母) with a hat — every mother.", ex: { jp: "毎日", read: "まいにち", en: "every day" }},
+      { k: "休", on: "キュウ", kun: "やす(む)", meaning: "rest", mnemonic: "Person (亻) leaning on a tree (木) — resting.", ex: { jp: "休みます", read: "やすみます", en: "to rest" }},
+      { k: "会", on: "カイ", kun: "あ(う)", meaning: "meet, association", mnemonic: "A roof over a meeting place.", ex: { jp: "会います", read: "あいます", en: "to meet" }},
+      { k: "間", on: "カン", kun: "あいだ", meaning: "interval, between", mnemonic: "Sun (日) seen through a gate (門) — the space between.", ex: { jp: "時間", read: "じかん", en: "time" }},
+      { k: "週", on: "シュウ", kun: "—", meaning: "week", mnemonic: "Move (⻌) + circumference (周) — the cycle of a week.", ex: { jp: "今週", read: "こんしゅう", en: "this week" }},
+    ]
+  }
+];
+
+// ============================================================
+// Render
+// ============================================================
+const STORAGE_KEY = "n5_kanji_known";
+
+function loadKnown() {
+  try {
+    return new Set(JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]"));
+  } catch { return new Set(); }
+}
+
+function saveKnown(set) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify([...set]));
+}
+
+let known = loadKnown();
+const total = weeks.reduce((sum, w) => sum + w.kanji.length, 0);
+
+function renderWeekNav() {
+  const nav = document.getElementById("weekNav");
+  nav.innerHTML = weeks.map((w, i) => {
+    const completed = w.kanji.filter(k => known.has(k.k)).length;
+    const isComplete = completed === w.kanji.length;
+    return `<div class="week-pill ${isComplete ? 'complete' : ''}" onclick="document.getElementById('week${i}').scrollIntoView({behavior:'smooth'})">
+      <span class="pill-num">Week ${i+1}</span>
+      ${completed}/${w.kanji.length}
+    </div>`;
+  }).join("");
+}
+
+function renderWeeks() {
+  const container = document.getElementById("weeks");
+  container.innerHTML = weeks.map((w, wi) => {
+    // Split: Monday gets first ~7, Wednesday gets the rest
+    // Per the Full Weekly Schedule (companion tool)
+    const monCount = Math.ceil(w.kanji.length / 2);
+    const monKanji = w.kanji.slice(0, monCount);
+    const wedKanji = w.kanji.slice(monCount);
+    const renderCard = k => `
+      <div class="kanji-card ${known.has(k.k) ? 'known' : ''}" data-kanji="${k.k}" onclick="toggleKnown('${k.k}')">
+        <div class="k-checkmark">✓</div>
+        <div class="k-glyph">${k.k}</div>
+        <div class="k-info">
+          <div class="k-meaning">${k.meaning}</div>
+          <div class="k-readings">
+            <span class="on">音 ${k.on}</span> · <span class="kun">訓 ${k.kun}</span>
+          </div>
+          <div class="k-mnemonic">${k.mnemonic}</div>
+          <div class="k-example">
+            <ruby>${k.ex.jp}<rt>${k.ex.read}</rt></ruby> — ${k.ex.en}
+          </div>
+        </div>
+      </div>`;
+    return `
+    <section class="week" id="week${wi}">
+      <div class="week-head">
+        <span class="week-num">WEEK ${String(wi+1).padStart(2,'0')}</span>
+        <h2>${w.title} <span class="jp" style="font-size:18px;color:var(--muted);margin-left:10px;">${w.titleJp}</span></h2>
+        <span class="week-count">${w.kanji.length} kanji · ${w.focus}</span>
+      </div>
+      <div class="day-block">
+        <div class="day-header">
+          <span class="day-label">Monday · introduce</span>
+          <span class="day-meta">${monKanji.length} kanji · shape + meaning + mnemonic</span>
+        </div>
+        <div class="kanji-grid">
+          ${monKanji.map(renderCard).join("")}
+        </div>
+      </div>
+      <div class="day-block">
+        <div class="day-header">
+          <span class="day-label">Wednesday · introduce + reinforce</span>
+          <span class="day-meta">${wedKanji.length} kanji · drill readings + write Mon's by hand</span>
+        </div>
+        <div class="kanji-grid">
+          ${wedKanji.map(renderCard).join("")}
+        </div>
+      </div>
+    </section>`;
+  }).join("");
+}
+
+function updateProgress() {
+  const count = known.size;
+  document.getElementById("progressNum").textContent = count;
+  document.getElementById("progressFill").style.width = (count / total * 100) + "%";
+}
+
+function toggleKnown(kanji) {
+  if (known.has(kanji)) known.delete(kanji);
+  else known.add(kanji);
+  saveKnown(known);
+  // Update only the affected card and stats — no full re-render
+  document.querySelectorAll(`[data-kanji="${kanji}"]`).forEach(card => {
+    card.classList.toggle("known");
+  });
+  updateProgress();
+  renderWeekNav();
+}
+
+function resetProgress() {
+  if (confirm("Reset all progress? This cannot be undone.")) {
+    known = new Set();
+    saveKnown(known);
+    renderWeekNav();
+    renderWeeks();
+    updateProgress();
+  }
+}
+
+// Initial render
+renderWeekNav();
+renderWeeks();
+updateProgress();
+</script>
+</body>
+</html>

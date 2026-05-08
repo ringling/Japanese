@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JLPT N5 — Vocabulary Flashcards</title>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;700&family=Noto+Serif+JP:wght@400;500;700&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1a1a; --ink-soft: #3a3a3a;
+  --paper: #f4efe6; --paper-soft: #ebe4d6; --paper-deep: #e2d9c4;
+  --rule: #c9bfa9;
+  --accent: #8b1a1a; --accent-soft: #b85c5c;
+  --muted: #6b6357;
+  --gold: #b8893d;
+  --done: #5a7a3a; --done-bg: #d8e0c4;
+  --vocab: #b8893d;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--paper); color: var(--ink);
+  font-family: 'IBM Plex Sans', sans-serif; font-weight: 300;
+  line-height: 1.6; padding: 50px 32px;
+  background-image:
+    radial-gradient(circle at 15% 25%, rgba(184, 137, 61, 0.04) 0%, transparent 40%),
+    radial-gradient(circle at 85% 75%, rgba(139, 26, 26, 0.03) 0%, transparent 50%);
+}
+.container { max-width: 1100px; margin: 0 auto; }
+
+.masthead {
+  display: grid; grid-template-columns: auto 1fr auto;
+  align-items: end; gap: 30px;
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 20px; margin-bottom: 36px;
+}
+.masthead-mark {
+  font-family: 'Shippori Mincho', serif; font-size: 80px;
+  font-weight: 700; color: var(--vocab);
+  line-height: 0.85; letter-spacing: -4px;
+}
+.masthead-title h1 {
+  font-family: 'Shippori Mincho', serif; font-size: 32px;
+  font-weight: 500; letter-spacing: -1px; line-height: 1.1; margin-bottom: 6px;
+}
+.masthead-title .sub {
+  font-family: 'IBM Plex Mono', monospace; font-size: 11px;
+  color: var(--muted); letter-spacing: 2px; text-transform: uppercase;
+}
+.masthead-meta {
+  font-family: 'IBM Plex Mono', monospace; font-size: 10px;
+  color: var(--muted); letter-spacing: 1.5px; text-align: right;
+  text-transform: uppercase; line-height: 1.8;
+}
+
+/* Mode tabs */
+.modes {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 6px; margin-bottom: 24px;
+}
+.mode-btn {
+  padding: 14px 18px; background: var(--paper-soft);
+  border: 1px solid var(--rule); cursor: pointer;
+  font-family: 'IBM Plex Mono', monospace; font-size: 11px;
+  letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted);
+  transition: all 0.2s; text-align: center;
+}
+.mode-btn:hover { background: var(--paper-deep); color: var(--ink); }
+.mode-btn.active {
+  background: var(--ink); color: var(--paper); border-color: var(--ink);
+}
+.mode-btn .mode-name {
+  display: block; font-family: 'Shippori Mincho', serif;
+  font-size: 16px; letter-spacing: 0; text-transform: none;
+  font-weight: 500; margin-bottom: 2px;
+}
+.mode-btn.active .mode-name { color: var(--paper); }
+
+/* Filters */
+.filters {
+  display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 24px;
+}
+.cat-pill {
+  padding: 8px 14px; background: var(--paper-soft);
+  border: 1px solid var(--rule); font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px; letter-spacing: 1px; text-transform: uppercase;
+  color: var(--muted); cursor: pointer; transition: all 0.2s;
+  user-select: none;
+}
+.cat-pill:hover { background: var(--paper-deep); color: var(--ink); }
+.cat-pill.active {
+  background: var(--vocab); color: var(--paper); border-color: var(--vocab);
+}
+.cat-pill .cat-count {
+  font-size: 9px; opacity: 0.7; margin-left: 6px;
+}
+
+/* Stats */
+.stats {
+  background: var(--paper-soft); border: 1px solid var(--rule);
+  padding: 16px 24px; margin-bottom: 28px;
+  display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 24px;
+  align-items: center;
+}
+.stat-item { text-align: center; }
+.stat-num {
+  font-family: 'Shippori Mincho', serif; font-size: 24px;
+  font-weight: 700; color: var(--vocab); line-height: 1; margin-bottom: 4px;
+}
+.stat-label {
+  font-family: 'IBM Plex Mono', monospace; font-size: 9px;
+  letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted);
+}
+.stat-item.known .stat-num { color: var(--done); }
+
+/* List view */
+.vocab-list {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 8px;
+}
+.vocab-card {
+  background: var(--paper-soft); border: 1px solid var(--rule);
+  border-left: 3px solid var(--rule); padding: 12px 16px;
+  cursor: pointer; transition: all 0.15s; position: relative;
+}
+.vocab-card:hover { border-color: var(--vocab); }
+.vocab-card.known {
+  background: var(--done-bg); border-color: var(--done); border-left-color: var(--done);
+}
+.vocab-jp {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 17px; font-weight: 500; margin-bottom: 4px; color: var(--ink);
+}
+.vocab-jp .reading {
+  font-size: 13px; color: var(--vocab); font-weight: 400; margin-left: 8px;
+}
+.vocab-card.known .vocab-jp .reading { color: var(--done); }
+.vocab-en {
+  font-size: 12px; color: var(--muted); line-height: 1.4;
+}
+.vocab-cat-tag {
+  position: absolute; top: 6px; right: 8px;
+  font-family: 'IBM Plex Mono', monospace; font-size: 8px;
+  letter-spacing: 1px; text-transform: uppercase; color: var(--muted);
+  opacity: 0.6;
+}
+.vocab-check {
+  position: absolute; top: 6px; right: 8px;
+  width: 14px; height: 14px; border: 1px solid var(--rule);
+  background: var(--paper); font-size: 9px;
+  display: flex; align-items: center; justify-content: center;
+  color: transparent;
+}
+.vocab-card.known .vocab-check {
+  background: var(--done); border-color: var(--done); color: var(--paper);
+}
+.vocab-card.known .vocab-cat-tag { display: none; }
+
+/* Flashcard view */
+.flashcard-view {
+  display: flex; flex-direction: column; align-items: center;
+  padding: 20px 0;
+}
+.flashcard {
+  width: 100%; max-width: 600px; min-height: 320px;
+  background: var(--paper-soft); border: 1px solid var(--rule);
+  padding: 50px 40px; cursor: pointer; transition: all 0.2s;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; user-select: none;
+}
+.flashcard:hover { border-color: var(--vocab); }
+.flashcard.flipped {
+  background: var(--paper-deep);
+}
+.flashcard-front, .flashcard-back {
+  width: 100%;
+}
+.flashcard-jp {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 56px; font-weight: 500; line-height: 1.2; color: var(--ink);
+  margin-bottom: 12px; word-break: keep-all;
+}
+.flashcard-reading {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 22px; color: var(--vocab); margin-bottom: 16px;
+}
+.flashcard-en {
+  font-size: 22px; color: var(--ink-soft); line-height: 1.5;
+  font-family: 'Shippori Mincho', serif;
+}
+.flashcard-cat {
+  font-family: 'IBM Plex Mono', monospace; font-size: 9px;
+  letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted);
+  margin-top: 18px;
+}
+.flashcard-hint {
+  font-family: 'IBM Plex Mono', monospace; font-size: 10px;
+  letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted);
+  margin-top: 28px; opacity: 0.7;
+}
+
+/* Flashcard actions */
+.flashcard-actions {
+  display: grid; grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 8px; width: 100%; max-width: 600px; margin-top: 18px;
+}
+.fc-btn {
+  padding: 14px; background: var(--paper-soft);
+  border: 1px solid var(--rule); cursor: pointer;
+  font-family: 'IBM Plex Mono', monospace; font-size: 10px;
+  letter-spacing: 1px; text-transform: uppercase; color: var(--muted);
+  transition: all 0.2s;
+}
+.fc-btn:hover { background: var(--paper-deep); color: var(--ink); }
+.fc-btn.fc-known { color: var(--done); border-color: var(--done); }
+.fc-btn.fc-known:hover { background: var(--done-bg); }
+.fc-btn.fc-unknown { color: var(--accent); border-color: var(--accent-soft); }
+.fc-btn.fc-unknown:hover { background: rgba(184, 92, 92, 0.1); }
+
+.fc-progress {
+  font-family: 'IBM Plex Mono', monospace; font-size: 10px;
+  letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted);
+  margin-top: 14px;
+}
+
+/* Quiz view */
+.quiz-view {
+  display: flex; flex-direction: column; align-items: center;
+  padding: 20px 0;
+}
+.quiz-card {
+  width: 100%; max-width: 600px;
+  background: var(--paper-soft); border: 1px solid var(--rule);
+  padding: 40px; text-align: center;
+}
+.quiz-prompt-label {
+  font-family: 'IBM Plex Mono', monospace; font-size: 10px;
+  letter-spacing: 2px; text-transform: uppercase; color: var(--muted);
+  margin-bottom: 16px;
+}
+.quiz-prompt {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 42px; font-weight: 500; color: var(--ink); margin-bottom: 32px;
+  line-height: 1.3;
+}
+.quiz-prompt.en {
+  font-family: 'Shippori Mincho', serif; font-size: 28px;
+}
+.quiz-options {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 10px; margin-top: 12px;
+}
+.quiz-option {
+  padding: 18px; background: var(--paper);
+  border: 1px solid var(--rule); cursor: pointer;
+  font-size: 16px; transition: all 0.2s; text-align: left;
+  font-family: 'Shippori Mincho', serif; line-height: 1.4;
+  color: var(--ink);
+}
+.quiz-option .opt-jp {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 18px; display: block;
+}
+.quiz-option .opt-reading {
+  font-size: 12px; color: var(--vocab); display: block; margin-top: 2px;
+}
+.quiz-option:hover { border-color: var(--vocab); background: var(--paper-deep); }
+.quiz-option.correct { background: var(--done-bg); border-color: var(--done); color: var(--done); }
+.quiz-option.wrong { background: rgba(184, 92, 92, 0.15); border-color: var(--accent); color: var(--accent); }
+.quiz-option.disabled { pointer-events: none; }
+.quiz-feedback {
+  font-family: 'Shippori Mincho', serif; font-size: 14px;
+  margin-top: 24px; min-height: 20px;
+}
+.quiz-feedback.correct { color: var(--done); }
+.quiz-feedback.wrong { color: var(--accent); }
+.quiz-next {
+  margin-top: 18px; padding: 12px 24px;
+  background: var(--ink); color: var(--paper); border: none;
+  font-family: 'IBM Plex Mono', monospace; font-size: 11px;
+  letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer;
+}
+.quiz-next:hover { background: var(--accent); }
+.quiz-stats {
+  font-family: 'IBM Plex Mono', monospace; font-size: 10px;
+  letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted);
+  margin-top: 16px;
+}
+
+/* Hidden */
+.hidden { display: none !important; }
+
+/* Footer */
+footer {
+  margin-top: 60px; padding-top: 24px;
+  border-top: 1px solid var(--rule);
+  font-family: 'IBM Plex Mono', monospace; font-size: 10px;
+  color: var(--muted); letter-spacing: 0.5px;
+  text-align: center; line-height: 1.8;
+}
+footer .reset-btn {
+  display: inline-block; margin-top: 12px;
+  padding: 6px 14px; background: transparent;
+  border: 1px solid var(--rule); color: var(--muted);
+  font-family: 'IBM Plex Mono', monospace; font-size: 10px;
+  letter-spacing: 1px; text-transform: uppercase;
+  cursor: pointer; transition: all 0.2s;
+}
+footer .reset-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+@media (max-width: 800px) {
+  body { padding: 30px 18px; }
+  .masthead { grid-template-columns: 1fr; gap: 16px; }
+  .masthead-meta { text-align: left; }
+  .modes { grid-template-columns: 1fr; }
+  .stats { grid-template-columns: 1fr 1fr; gap: 16px; }
+  .vocab-list { grid-template-columns: 1fr; }
+  .flashcard-jp { font-size: 40px; }
+  .quiz-prompt { font-size: 32px; }
+  .quiz-options { grid-template-columns: 1fr; }
+  .flashcard-actions { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header class="masthead">
+    <div class="masthead-mark">語</div>
+    <div class="masthead-title">
+      <h1>Vocabulary · N5</h1>
+      <div class="sub">671 words · Tanos canonical list · Browse · Flashcard · Quiz</div>
+    </div>
+    <div class="masthead-meta">
+      Click any word to mark known<br>
+      Progress saved locally<br>
+      Filter by category
+    </div>
+  </header>
+
+  <div class="modes">
+    <div class="mode-btn active" data-mode="list">
+      <span class="mode-name">Browse</span>
+      Read & mark known
+    </div>
+    <div class="mode-btn" data-mode="flashcard">
+      <span class="mode-name">Flashcard</span>
+      JP → EN drill
+    </div>
+    <div class="mode-btn" data-mode="quiz">
+      <span class="mode-name">Quiz</span>
+      Multiple choice
+    </div>
+  </div>
+
+  <div class="filters" id="filters"></div>
+
+  <div class="stats">
+    <div class="stat-item"><div class="stat-num" id="statTotal">0</div><div class="stat-label">In view</div></div>
+    <div class="stat-item known"><div class="stat-num" id="statKnown">0</div><div class="stat-label">Known</div></div>
+    <div class="stat-item"><div class="stat-num" id="statRemain">0</div><div class="stat-label">To learn</div></div>
+    <div class="stat-item"><div class="stat-num" id="statPct">0%</div><div class="stat-label">Progress</div></div>
+  </div>
+
+  <div id="listView" class="vocab-list"></div>
+  <div id="flashcardView" class="flashcard-view hidden"></div>
+  <div id="quizView" class="quiz-view hidden"></div>
+
+  <footer>
+    <div>Source: Tanos N5 vocabulary list (canonical reverse-engineered)</div>
+    <div>Click words to mark known · Progress saved in your browser</div>
+    <button class="reset-btn" onclick="resetProgress()">Reset all progress</button>
+  </footer>
+</div>
+
+<script>
+const VOCAB = [{"k": "一", "h": "いち", "e": "one", "c": "numbers"}, {"k": "二", "h": "に", "e": "two", "c": "numbers"}, {"k": "三", "h": "さん", "e": "three", "c": "numbers"}, {"k": "四", "h": "し / よん", "e": "four", "c": "numbers"}, {"k": "五", "h": "ご", "e": "five", "c": "numbers"}, {"k": "六", "h": "ろく", "e": "six", "c": "numbers"}, {"k": "七", "h": "しち / なな", "e": "seven", "c": "numbers"}, {"k": "八", "h": "はち", "e": "eight", "c": "numbers"}, {"k": "九", "h": "きゅう / く", "e": "nine", "c": "numbers"}, {"k": "十", "h": "じゅう / とお", "e": "ten", "c": "numbers"}, {"k": "百", "h": "ひゃく", "e": "hundred", "c": "numbers"}, {"k": "千", "h": "せん", "e": "thousand", "c": "numbers"}, {"k": "万", "h": "まん", "e": "ten thousand", "c": "numbers"}, {"k": "零", "h": "れい", "e": "zero", "c": "numbers"}, {"k": "", "h": "ゼロ", "e": "zero", "c": "numbers"}, {"k": "一つ", "h": "ひとつ", "e": "one (item)", "c": "numbers"}, {"k": "二つ", "h": "ふたつ", "e": "two (items)", "c": "numbers"}, {"k": "三つ", "h": "みっつ", "e": "three (items)", "c": "numbers"}, {"k": "四つ", "h": "よっつ", "e": "four (items)", "c": "numbers"}, {"k": "五つ", "h": "いつつ", "e": "five (items)", "c": "numbers"}, {"k": "六つ", "h": "むっつ", "e": "six (items)", "c": "numbers"}, {"k": "七つ", "h": "ななつ", "e": "seven (items)", "c": "numbers"}, {"k": "八つ", "h": "やっつ", "e": "eight (items)", "c": "numbers"}, {"k": "九つ", "h": "ここのつ", "e": "nine (items)", "c": "numbers"}, {"k": "一人", "h": "ひとり", "e": "one person", "c": "numbers"}, {"k": "二人", "h": "ふたり", "e": "two people", "c": "numbers"}, {"k": "いくつ", "h": "いくつ", "e": "how many? / how old?", "c": "numbers"}, {"k": "いくら", "h": "いくら", "e": "how much?", "c": "numbers"}, {"k": "いちばん", "h": "いちばん", "e": "best, first", "c": "numbers"}, {"k": "半", "h": "はん", "e": "half", "c": "numbers"}, {"k": "半分", "h": "はんぶん", "e": "half", "c": "numbers"}, {"k": "全部", "h": "ぜんぶ", "e": "all, entirely", "c": "numbers"}, {"k": "二十歳", "h": "はたち", "e": "20 years old", "c": "numbers"}, {"k": "円", "h": "えん", "e": "yen", "c": "numbers"}, {"k": "お金", "h": "おかね", "e": "money", "c": "numbers"}, {"k": "財布", "h": "さいふ", "e": "wallet", "c": "numbers"}, {"k": "時", "h": "じ", "e": "o'clock (suffix)", "c": "time"}, {"k": "分", "h": "ふん / ぷん", "e": "minute (suffix)", "c": "time"}, {"k": "時間", "h": "じかん", "e": "time, hour", "c": "time"}, {"k": "今", "h": "いま", "e": "now", "c": "time"}, {"k": "今日", "h": "きょう", "e": "today", "c": "time"}, {"k": "明日", "h": "あした", "e": "tomorrow", "c": "time"}, {"k": "昨日", "h": "きのう", "e": "yesterday", "c": "time"}, {"k": "あさって", "h": "あさって", "e": "day after tomorrow", "c": "time"}, {"k": "一昨日", "h": "おととい", "e": "day before yesterday", "c": "time"}, {"k": "一昨年", "h": "おととし", "e": "year before last", "c": "time"}, {"k": "朝", "h": "あさ", "e": "morning", "c": "time"}, {"k": "今朝", "h": "けさ", "e": "this morning", "c": "time"}, {"k": "昼", "h": "ひる", "e": "noon, daytime", "c": "time"}, {"k": "夜", "h": "よる", "e": "night, evening", "c": "time"}, {"k": "晩", "h": "ばん", "e": "evening", "c": "time"}, {"k": "今晩", "h": "こんばん", "e": "this evening", "c": "time"}, {"k": "夕方", "h": "ゆうがた", "e": "evening", "c": "time"}, {"k": "夕飯", "h": "ゆうはん", "e": "dinner", "c": "time"}, {"k": "昨夜", "h": "ゆうべ", "e": "last night", "c": "time"}, {"k": "午前", "h": "ごぜん", "e": "morning, AM", "c": "time"}, {"k": "午後", "h": "ごご", "e": "afternoon, PM", "c": "time"}, {"k": "年", "h": "とし", "e": "year", "c": "time"}, {"k": "今年", "h": "ことし", "e": "this year", "c": "time"}, {"k": "去年", "h": "きょねん", "e": "last year", "c": "time"}, {"k": "来年", "h": "らいねん", "e": "next year", "c": "time"}, {"k": "さ来年", "h": "さらいねん", "e": "year after next", "c": "time"}, {"k": "毎年", "h": "まいねん / まいとし", "e": "every year", "c": "time"}, {"k": "月", "h": "つき", "e": "month, moon", "c": "time"}, {"k": "今月", "h": "こんげつ", "e": "this month", "c": "time"}, {"k": "先月", "h": "せんげつ", "e": "last month", "c": "time"}, {"k": "来月", "h": "らいげつ", "e": "next month", "c": "time"}, {"k": "毎月", "h": "まいげつ / まいつき", "e": "every month", "c": "time"}, {"k": "一月", "h": "ひとつき", "e": "one month", "c": "time"}, {"k": "週", "h": "しゅう", "e": "week", "c": "time"}, {"k": "今週", "h": "こんしゅう", "e": "this week", "c": "time"}, {"k": "先週", "h": "せんしゅう", "e": "last week", "c": "time"}, {"k": "来週", "h": "らいしゅう", "e": "next week", "c": "time"}, {"k": "毎週", "h": "まいしゅう", "e": "every week", "c": "time"}, {"k": "毎日", "h": "まいにち", "e": "every day", "c": "time"}, {"k": "毎朝", "h": "まいあさ", "e": "every morning", "c": "time"}, {"k": "毎晩", "h": "まいばん", "e": "every night", "c": "time"}, {"k": "月曜日", "h": "げつようび", "e": "Monday", "c": "time"}, {"k": "火曜日", "h": "かようび", "e": "Tuesday", "c": "time"}, {"k": "水曜日", "h": "すいようび", "e": "Wednesday", "c": "time"}, {"k": "木曜日", "h": "もくようび", "e": "Thursday", "c": "time"}, {"k": "金曜日", "h": "きんようび", "e": "Friday", "c": "time"}, {"k": "土曜日", "h": "どようび", "e": "Saturday", "c": "time"}, {"k": "日曜日", "h": "にちようび", "e": "Sunday", "c": "time"}, {"k": "一日", "h": "ついたち", "e": "1st of month", "c": "time"}, {"k": "一日", "h": "いちにち", "e": "first of the month / one day", "c": "time"}, {"k": "二日", "h": "ふつか", "e": "2nd / two days", "c": "time"}, {"k": "三日", "h": "みっか", "e": "3rd / three days", "c": "time"}, {"k": "四日", "h": "よっか", "e": "4th / four days", "c": "time"}, {"k": "五日", "h": "いつか", "e": "5th / five days", "c": "time"}, {"k": "六日", "h": "むいか", "e": "6th / six days", "c": "time"}, {"k": "七日", "h": "なのか", "e": "7th / seven days", "c": "time"}, {"k": "八日", "h": "ようか", "e": "8th / eight days", "c": "time"}, {"k": "九日", "h": "ここのか", "e": "9th / nine days", "c": "time"}, {"k": "十日", "h": "とおか", "e": "10th / ten days", "c": "time"}, {"k": "二十日", "h": "はつか", "e": "20th / twenty days", "c": "time"}, {"k": "いつ", "h": "いつ", "e": "when", "c": "time"}, {"k": "先", "h": "さき", "e": "earlier, ahead", "c": "time"}, {"k": "後", "h": "あと", "e": "afterwards", "c": "time"}, {"k": "前", "h": "まえ", "e": "before, in front", "c": "time"}, {"k": "次", "h": "つぎ", "e": "next", "c": "time"}, {"k": "もう", "h": "もう", "e": "already", "c": "time"}, {"k": "もう一度", "h": "もういちど", "e": "once more, again", "c": "time"}, {"k": "また", "h": "また", "e": "again", "c": "time"}, {"k": "まだ", "h": "まだ", "e": "still, yet", "c": "time"}, {"k": "すぐに", "h": "すぐに", "e": "instantly, immediately", "c": "time"}, {"k": "時々", "h": "ときどき", "e": "sometimes", "c": "time"}, {"k": "いつも", "h": "いつも", "e": "always", "c": "time"}, {"k": "だんだん", "h": "だんだん", "e": "gradually", "c": "time"}, {"k": "ちょうど", "h": "ちょうど", "e": "exactly, just", "c": "time"}, {"k": "人", "h": "ひと", "e": "person", "c": "people"}, {"k": "私", "h": "わたし", "e": "I, me", "c": "people"}, {"k": "私", "h": "わたくし", "e": "I (humble)", "c": "people"}, {"k": "あなた", "h": "あなた", "e": "you", "c": "people"}, {"k": "自分", "h": "じぶん", "e": "oneself", "c": "people"}, {"k": "みんな", "h": "みんな", "e": "everyone", "c": "people"}, {"k": "皆さん", "h": "みなさん", "e": "everyone (polite)", "c": "people"}, {"k": "家族", "h": "かぞく", "e": "family", "c": "people"}, {"k": "両親", "h": "りょうしん", "e": "both parents", "c": "people"}, {"k": "父", "h": "ちち", "e": "father (humble)", "c": "people"}, {"k": "お父さん", "h": "おとうさん", "e": "father (polite)", "c": "people"}, {"k": "母", "h": "はは", "e": "mother (humble)", "c": "people"}, {"k": "お母さん", "h": "おかあさん", "e": "mother (polite)", "c": "people"}, {"k": "兄", "h": "あに", "e": "older brother (humble)", "c": "people"}, {"k": "お兄さん", "h": "おにいさん", "e": "older brother (polite)", "c": "people"}, {"k": "姉", "h": "あね", "e": "older sister (humble)", "c": "people"}, {"k": "お姉さん", "h": "おねえさん", "e": "older sister (polite)", "c": "people"}, {"k": "弟", "h": "おとうと", "e": "younger brother", "c": "people"}, {"k": "妹", "h": "いもうと", "e": "younger sister (humble)", "c": "people"}, {"k": "兄弟", "h": "きょうだい", "e": "siblings", "c": "people"}, {"k": "子供", "h": "こども", "e": "child", "c": "people"}, {"k": "男", "h": "おとこ", "e": "man", "c": "people"}, {"k": "女", "h": "おんな", "e": "woman", "c": "people"}, {"k": "男の子", "h": "おとこのこ", "e": "boy", "c": "people"}, {"k": "女の子", "h": "おんなのこ", "e": "girl", "c": "people"}, {"k": "大人", "h": "おとな", "e": "adult", "c": "people"}, {"k": "おじいさん", "h": "おじいさん", "e": "grandfather", "c": "people"}, {"k": "おばあさん", "h": "おばあさん", "e": "grandmother", "c": "people"}, {"k": "おじさん", "h": "おじさん", "e": "uncle, middle-aged man", "c": "people"}, {"k": "おばさん", "h": "おばさん", "e": "aunt, middle-aged woman", "c": "people"}, {"k": "奥さん", "h": "おくさん", "e": "wife (polite)", "c": "people"}, {"k": "友達", "h": "ともだち", "e": "friend", "c": "people"}, {"k": "先生", "h": "せんせい", "e": "teacher, doctor", "c": "people"}, {"k": "学生", "h": "がくせい", "e": "student", "c": "people"}, {"k": "生徒", "h": "せいと", "e": "pupil", "c": "people"}, {"k": "留学生", "h": "りゅうがくせい", "e": "overseas student", "c": "people"}, {"k": "医者", "h": "いしゃ", "e": "medical doctor", "c": "people"}, {"k": "警官", "h": "けいかん", "e": "policeman", "c": "people"}, {"k": "おまわりさん", "h": "おまわりさん", "e": "policeman (friendly)", "c": "people"}, {"k": "外国人", "h": "がいこくじん", "e": "foreigner", "c": "people"}, {"k": "方", "h": "かた", "e": "person (polite); way of doing", "c": "people"}, {"k": "名前", "h": "なまえ", "e": "name", "c": "people"}, {"k": "誰", "h": "だれ", "e": "who", "c": "people"}, {"k": "誰か", "h": "だれか", "e": "somebody", "c": "people"}, {"k": "どなた", "h": "どなた", "e": "who (polite)", "c": "people"}, {"k": "体", "h": "からだ", "e": "body", "c": "body"}, {"k": "頭", "h": "あたま", "e": "head", "c": "body"}, {"k": "顔", "h": "かお", "e": "face", "c": "body"}, {"k": "目", "h": "め", "e": "eye", "c": "body"}, {"k": "耳", "h": "みみ", "e": "ear", "c": "body"}, {"k": "口", "h": "くち", "e": "mouth", "c": "body"}, {"k": "鼻", "h": "はな", "e": "nose", "c": "body"}, {"k": "歯", "h": "は", "e": "tooth", "c": "body"}, {"k": "手", "h": "て", "e": "hand", "c": "body"}, {"k": "足", "h": "あし", "e": "foot, leg", "c": "body"}, {"k": "おなか", "h": "おなか", "e": "stomach", "c": "body"}, {"k": "背", "h": "せ", "e": "height, stature", "c": "body"}, {"k": "声", "h": "こえ", "e": "voice", "c": "body"}, {"k": "家", "h": "いえ", "e": "house, home", "c": "places"}, {"k": "家庭", "h": "かてい", "e": "household", "c": "places"}, {"k": "部屋", "h": "へや", "e": "room", "c": "places"}, {"k": "お風呂", "h": "おふろ", "e": "bath", "c": "places"}, {"k": "ふろ", "h": "ふろ", "e": "bath", "c": "places"}, {"k": "お手洗い", "h": "おてあらい", "e": "bathroom", "c": "places"}, {"k": "トイレ", "h": "トイレ", "e": "toilet", "c": "places"}, {"k": "台所", "h": "だいどころ", "e": "kitchen", "c": "places"}, {"k": "玄関", "h": "げんかん", "e": "entry hall", "c": "places"}, {"k": "廊下", "h": "ろうか", "e": "corridor", "c": "places"}, {"k": "階段", "h": "かいだん", "e": "stairs", "c": "places"}, {"k": "窓", "h": "まど", "e": "window", "c": "places"}, {"k": "戸", "h": "と", "e": "Japanese-style door", "c": "places"}, {"k": "ドア", "h": "ドア", "e": "Western-style door", "c": "places"}, {"k": "入口", "h": "いりぐち", "e": "entrance", "c": "places"}, {"k": "出口", "h": "でぐち", "e": "exit", "c": "places"}, {"k": "庭", "h": "にわ", "e": "garden", "c": "places"}, {"k": "アパート", "h": "アパート", "e": "apartment", "c": "places"}, {"k": "ホテル", "h": "ホテル", "e": "hotel", "c": "places"}, {"k": "学校", "h": "がっこう", "e": "school", "c": "places"}, {"k": "教室", "h": "きょうしつ", "e": "classroom", "c": "places"}, {"k": "大学", "h": "だいがく", "e": "university", "c": "places"}, {"k": "会社", "h": "かいしゃ", "e": "company", "c": "places"}, {"k": "店", "h": "みせ", "e": "shop", "c": "places"}, {"k": "デパート", "h": "デパート", "e": "department store", "c": "places"}, {"k": "八百屋", "h": "やおや", "e": "greengrocer", "c": "places"}, {"k": "レストラン", "h": "レストラン", "e": "restaurant", "c": "places"}, {"k": "食堂", "h": "しょくどう", "e": "dining hall", "c": "places"}, {"k": "喫茶店", "h": "きっさてん", "e": "coffee shop", "c": "places"}, {"k": "銀行", "h": "ぎんこう", "e": "bank", "c": "places"}, {"k": "郵便局", "h": "ゆうびんきょく", "e": "post office", "c": "places"}, {"k": "病院", "h": "びょういん", "e": "hospital", "c": "places"}, {"k": "図書館", "h": "としょかん", "e": "library", "c": "places"}, {"k": "映画館", "h": "えいがかん", "e": "cinema", "c": "places"}, {"k": "公園", "h": "こうえん", "e": "park", "c": "places"}, {"k": "駅", "h": "えき", "e": "station", "c": "places"}, {"k": "交番", "h": "こうばん", "e": "police box", "c": "places"}, {"k": "大使館", "h": "たいしかん", "e": "embassy", "c": "places"}, {"k": "町", "h": "まち", "e": "town, city", "c": "places"}, {"k": "村", "h": "むら", "e": "village", "c": "places"}, {"k": "国", "h": "くに", "e": "country", "c": "places"}, {"k": "外国", "h": "がいこく", "e": "foreign country", "c": "places"}, {"k": "道", "h": "みち", "e": "street, road", "c": "places"}, {"k": "橋", "h": "はし", "e": "bridge", "c": "places"}, {"k": "角", "h": "かど", "e": "corner", "c": "places"}, {"k": "交差点", "h": "こうさてん", "e": "intersection", "c": "places"}, {"k": "地図", "h": "ちず", "e": "map", "c": "places"}, {"k": "所", "h": "ところ", "e": "place", "c": "places"}, {"k": "辺", "h": "へん", "e": "area", "c": "places"}, {"k": "ここ", "h": "ここ", "e": "here", "c": "places"}, {"k": "そこ", "h": "そこ", "e": "there", "c": "places"}, {"k": "あそこ", "h": "あそこ", "e": "over there", "c": "places"}, {"k": "どこ", "h": "どこ", "e": "where", "c": "places"}, {"k": "こちら", "h": "こちら", "e": "this way (polite)", "c": "places"}, {"k": "そちら", "h": "そちら", "e": "that way", "c": "places"}, {"k": "あちら", "h": "あちら", "e": "over there", "c": "places"}, {"k": "どちら", "h": "どちら", "e": "which (of two)", "c": "places"}, {"k": "こっち", "h": "こっち", "e": "this way (casual)", "c": "places"}, {"k": "そっち", "h": "そっち", "e": "that way", "c": "places"}, {"k": "あっち", "h": "あっち", "e": "over there", "c": "places"}, {"k": "どっち", "h": "どっち", "e": "which", "c": "places"}, {"k": "上", "h": "うえ", "e": "above, up", "c": "places"}, {"k": "下", "h": "した", "e": "below, under", "c": "places"}, {"k": "中", "h": "なか", "e": "inside, middle", "c": "places"}, {"k": "外", "h": "そと", "e": "outside", "c": "places"}, {"k": "前", "h": "まえ", "e": "in front", "c": "places"}, {"k": "後ろ", "h": "うしろ", "e": "behind", "c": "places"}, {"k": "右", "h": "みぎ", "e": "right side", "c": "places"}, {"k": "左", "h": "ひだり", "e": "left side", "c": "places"}, {"k": "東", "h": "ひがし", "e": "east", "c": "places"}, {"k": "西", "h": "にし", "e": "west", "c": "places"}, {"k": "南", "h": "みなみ", "e": "south", "c": "places"}, {"k": "北", "h": "きた", "e": "north", "c": "places"}, {"k": "そば", "h": "そば", "e": "near, beside", "c": "places"}, {"k": "近く", "h": "ちかく", "e": "near, nearby", "c": "places"}, {"k": "隣", "h": "となり", "e": "next door", "c": "places"}, {"k": "横", "h": "よこ", "e": "side, beside", "c": "places"}, {"k": "向こう", "h": "むこう", "e": "over there, beyond", "c": "places"}, {"k": "プール", "h": "プール", "e": "swimming pool", "c": "places"}, {"k": "車", "h": "くるま", "e": "car, vehicle", "c": "transport"}, {"k": "自動車", "h": "じどうしゃ", "e": "automobile", "c": "transport"}, {"k": "自転車", "h": "じてんしゃ", "e": "bicycle", "c": "transport"}, {"k": "電車", "h": "でんしゃ", "e": "electric train", "c": "transport"}, {"k": "地下鉄", "h": "ちかてつ", "e": "subway", "c": "transport"}, {"k": "バス", "h": "バス", "e": "bus", "c": "transport"}, {"k": "タクシー", "h": "タクシー", "e": "taxi", "c": "transport"}, {"k": "飛行機", "h": "ひこうき", "e": "airplane", "c": "transport"}, {"k": "切符", "h": "きっぷ", "e": "ticket", "c": "transport"}, {"k": "旅行", "h": "りょこう", "e": "travel, trip", "c": "transport"}, {"k": "散歩", "h": "さんぽ", "e": "stroll, walk", "c": "transport"}, {"k": "食べ物", "h": "たべもの", "e": "food", "c": "food"}, {"k": "飲み物", "h": "のみもの", "e": "drink", "c": "food"}, {"k": "ご飯", "h": "ごはん", "e": "rice, meal", "c": "food"}, {"k": "朝御飯", "h": "あさごはん", "e": "breakfast", "c": "food"}, {"k": "昼御飯", "h": "ひるごはん", "e": "lunch", "c": "food"}, {"k": "晩御飯", "h": "ばんごはん", "e": "dinner", "c": "food"}, {"k": "お弁当", "h": "おべんとう", "e": "boxed lunch", "c": "food"}, {"k": "肉", "h": "にく", "e": "meat", "c": "food"}, {"k": "牛肉", "h": "ぎゅうにく", "e": "beef", "c": "food"}, {"k": "豚肉", "h": "ぶたにく", "e": "pork", "c": "food"}, {"k": "とり肉", "h": "とりにく", "e": "chicken meat", "c": "food"}, {"k": "魚", "h": "さかな", "e": "fish", "c": "food"}, {"k": "野菜", "h": "やさい", "e": "vegetable", "c": "food"}, {"k": "果物", "h": "くだもの", "e": "fruit", "c": "food"}, {"k": "卵", "h": "たまご", "e": "egg", "c": "food"}, {"k": "パン", "h": "パン", "e": "bread", "c": "food"}, {"k": "バター", "h": "バター", "e": "butter", "c": "food"}, {"k": "お菓子", "h": "おかし", "e": "sweets, candy", "c": "food"}, {"k": "飴", "h": "あめ", "e": "candy", "c": "food"}, {"k": "塩", "h": "しお", "e": "salt", "c": "food"}, {"k": "砂糖", "h": "さとう", "e": "sugar", "c": "food"}, {"k": "しょうゆ", "h": "しょうゆ", "e": "soy sauce", "c": "food"}, {"k": "カレー", "h": "カレー", "e": "curry", "c": "food"}, {"k": "水", "h": "みず", "e": "water", "c": "food"}, {"k": "お茶", "h": "おちゃ", "e": "green tea", "c": "food"}, {"k": "紅茶", "h": "こうちゃ", "e": "black tea", "c": "food"}, {"k": "コーヒー", "h": "コーヒー", "e": "coffee", "c": "food"}, {"k": "牛乳", "h": "ぎゅうにゅう", "e": "milk", "c": "food"}, {"k": "お酒", "h": "おさけ", "e": "alcohol, sake", "c": "food"}, {"k": "料理", "h": "りょうり", "e": "cuisine, cooking", "c": "food"}, {"k": "コップ", "h": "コップ", "e": "glass (cup)", "c": "food"}, {"k": "カップ", "h": "カップ", "e": "cup", "c": "food"}, {"k": "お皿", "h": "おさら", "e": "plate, dish", "c": "food"}, {"k": "ちゃわん", "h": "ちゃわん", "e": "rice bowl", "c": "food"}, {"k": "はし", "h": "はし", "e": "chopsticks", "c": "food"}, {"k": "ナイフ", "h": "ナイフ", "e": "knife", "c": "food"}, {"k": "フォーク", "h": "フォーク", "e": "fork", "c": "food"}, {"k": "スプーン", "h": "スプーン", "e": "spoon", "c": "food"}, {"k": "買い物", "h": "かいもの", "e": "shopping", "c": "food"}, {"k": "天気", "h": "てんき", "e": "weather", "c": "nature"}, {"k": "空", "h": "そら", "e": "sky", "c": "nature"}, {"k": "雨", "h": "あめ", "e": "rain", "c": "nature"}, {"k": "雪", "h": "ゆき", "e": "snow", "c": "nature"}, {"k": "風", "h": "かぜ", "e": "wind", "c": "nature"}, {"k": "曇り", "h": "くもり", "e": "cloudy weather", "c": "nature"}, {"k": "晴れ", "h": "はれ", "e": "clear weather", "c": "nature"}, {"k": "春", "h": "はる", "e": "spring", "c": "nature"}, {"k": "夏", "h": "なつ", "e": "summer", "c": "nature"}, {"k": "秋", "h": "あき", "e": "autumn", "c": "nature"}, {"k": "冬", "h": "ふゆ", "e": "winter", "c": "nature"}, {"k": "夏休み", "h": "なつやすみ", "e": "summer holiday", "c": "nature"}, {"k": "山", "h": "やま", "e": "mountain", "c": "nature"}, {"k": "川", "h": "かわ", "e": "river", "c": "nature"}, {"k": "海", "h": "うみ", "e": "sea", "c": "nature"}, {"k": "池", "h": "いけ", "e": "pond", "c": "nature"}, {"k": "木", "h": "き", "e": "tree, wood", "c": "nature"}, {"k": "花", "h": "はな", "e": "flower", "c": "nature"}, {"k": "動物", "h": "どうぶつ", "e": "animal", "c": "nature"}, {"k": "犬", "h": "いぬ", "e": "dog", "c": "nature"}, {"k": "猫", "h": "ねこ", "e": "cat", "c": "nature"}, {"k": "鳥", "h": "とり", "e": "bird", "c": "nature"}, {"k": "色", "h": "いろ", "e": "color", "c": "colors"}, {"k": "赤", "h": "あか", "e": "red (noun)", "c": "colors"}, {"k": "赤い", "h": "あかい", "e": "red (adj)", "c": "colors"}, {"k": "青", "h": "あお", "e": "blue (noun)", "c": "colors"}, {"k": "青い", "h": "あおい", "e": "blue (adj)", "c": "colors"}, {"k": "黄色", "h": "きいろ", "e": "yellow (noun)", "c": "colors"}, {"k": "黄色い", "h": "きいろい", "e": "yellow (adj)", "c": "colors"}, {"k": "黒", "h": "くろ", "e": "black (noun)", "c": "colors"}, {"k": "黒い", "h": "くろい", "e": "black (adj)", "c": "colors"}, {"k": "白", "h": "しろ", "e": "white (noun)", "c": "colors"}, {"k": "白い", "h": "しろい", "e": "white (adj)", "c": "colors"}, {"k": "緑", "h": "みどり", "e": "green", "c": "colors"}, {"k": "茶色", "h": "ちゃいろ", "e": "brown", "c": "colors"}, {"k": "大きい", "h": "おおきい", "e": "big", "c": "iadj"}, {"k": "大きな", "h": "おおきな", "e": "big (attributive)", "c": "iadj"}, {"k": "小さい", "h": "ちいさい", "e": "small", "c": "iadj"}, {"k": "小さな", "h": "ちいさな", "e": "small (attributive)", "c": "iadj"}, {"k": "高い", "h": "たかい", "e": "tall, expensive", "c": "iadj"}, {"k": "低い", "h": "ひくい", "e": "low, short", "c": "iadj"}, {"k": "安い", "h": "やすい", "e": "cheap", "c": "iadj"}, {"k": "新しい", "h": "あたらしい", "e": "new", "c": "iadj"}, {"k": "古い", "h": "ふるい", "e": "old (objects)", "c": "iadj"}, {"k": "長い", "h": "ながい", "e": "long", "c": "iadj"}, {"k": "短い", "h": "みじかい", "e": "short", "c": "iadj"}, {"k": "近い", "h": "ちかい", "e": "near", "c": "iadj"}, {"k": "遠い", "h": "とおい", "e": "far", "c": "iadj"}, {"k": "広い", "h": "ひろい", "e": "spacious, wide", "c": "iadj"}, {"k": "狭い", "h": "せまい", "e": "narrow", "c": "iadj"}, {"k": "早い", "h": "はやい", "e": "early", "c": "iadj"}, {"k": "速い", "h": "はやい", "e": "quick, fast", "c": "iadj"}, {"k": "遅い", "h": "おそい", "e": "late, slow", "c": "iadj"}, {"k": "多い", "h": "おおい", "e": "many, plentiful", "c": "iadj"}, {"k": "少ない", "h": "すくない", "e": "few, scarce", "c": "iadj"}, {"k": "熱い", "h": "あつい", "e": "hot (to touch)", "c": "iadj"}, {"k": "暑い", "h": "あつい", "e": "hot (weather)", "c": "iadj"}, {"k": "寒い", "h": "さむい", "e": "cold (weather)", "c": "iadj"}, {"k": "冷たい", "h": "つめたい", "e": "cold (to touch)", "c": "iadj"}, {"k": "暖かい", "h": "あたたかい", "e": "warm", "c": "iadj"}, {"k": "涼しい", "h": "すずしい", "e": "cool, refreshing", "c": "iadj"}, {"k": "おいしい", "h": "おいしい", "e": "delicious", "c": "iadj"}, {"k": "まずい", "h": "まずい", "e": "unpleasant (taste)", "c": "iadj"}, {"k": "甘い", "h": "あまい", "e": "sweet", "c": "iadj"}, {"k": "辛い", "h": "からい", "e": "spicy", "c": "iadj"}, {"k": "おもしろい", "h": "おもしろい", "e": "interesting", "c": "iadj"}, {"k": "つまらない", "h": "つまらない", "e": "boring", "c": "iadj"}, {"k": "楽しい", "h": "たのしい", "e": "enjoyable", "c": "iadj"}, {"k": "いい", "h": "いい", "e": "good", "c": "iadj"}, {"k": "よい", "h": "よい", "e": "good (formal)", "c": "iadj"}, {"k": "悪い", "h": "わるい", "e": "bad", "c": "iadj"}, {"k": "難しい", "h": "むずかしい", "e": "difficult", "c": "iadj"}, {"k": "易しい", "h": "やさしい", "e": "easy", "c": "iadj"}, {"k": "強い", "h": "つよい", "e": "strong", "c": "iadj"}, {"k": "弱い", "h": "よわい", "e": "weak", "c": "iadj"}, {"k": "重い", "h": "おもい", "e": "heavy", "c": "iadj"}, {"k": "軽い", "h": "かるい", "e": "light (weight)", "c": "iadj"}, {"k": "太い", "h": "ふとい", "e": "fat, thick", "c": "iadj"}, {"k": "細い", "h": "ほそい", "e": "thin, slim", "c": "iadj"}, {"k": "厚い", "h": "あつい", "e": "thick, kind", "c": "iadj"}, {"k": "薄い", "h": "うすい", "e": "thin, weak", "c": "iadj"}, {"k": "明い", "h": "あかるい", "e": "bright", "c": "iadj"}, {"k": "暗い", "h": "くらい", "e": "dark, gloomy", "c": "iadj"}, {"k": "若い", "h": "わかい", "e": "young", "c": "iadj"}, {"k": "忙しい", "h": "いそがしい", "e": "busy", "c": "iadj"}, {"k": "汚い", "h": "きたない", "e": "dirty", "c": "iadj"}, {"k": "可愛い", "h": "かわいい", "e": "cute", "c": "iadj"}, {"k": "痛い", "h": "いたい", "e": "painful", "c": "iadj"}, {"k": "危ない", "h": "あぶない", "e": "dangerous", "c": "iadj"}, {"k": "丸い", "h": "まるい", "e": "round", "c": "iadj"}, {"k": "温い", "h": "ぬるい", "e": "lukewarm", "c": "iadj"}, {"k": "欲しい", "h": "ほしい", "e": "want", "c": "iadj"}, {"k": "煩い", "h": "うるさい", "e": "noisy", "c": "iadj"}, {"k": "好き", "h": "すき", "e": "likeable", "c": "naadj"}, {"k": "大好き", "h": "だいすき", "e": "very likeable", "c": "naadj"}, {"k": "嫌い", "h": "きらい", "e": "hateful, disliked", "c": "naadj"}, {"k": "嫌", "h": "いや", "e": "unpleasant", "c": "naadj"}, {"k": "元気", "h": "げんき", "e": "healthy, lively", "c": "naadj"}, {"k": "静か", "h": "しずか", "e": "quiet", "c": "naadj"}, {"k": "賑やか", "h": "にぎやか", "e": "bustling, lively", "c": "naadj"}, {"k": "きれい", "h": "きれい", "e": "pretty, clean", "c": "naadj"}, {"k": "有名", "h": "ゆうめい", "e": "famous", "c": "naadj"}, {"k": "便利", "h": "べんり", "e": "convenient", "c": "naadj"}, {"k": "上手", "h": "じょうず", "e": "skillful", "c": "naadj"}, {"k": "下手", "h": "へた", "e": "unskillful", "c": "naadj"}, {"k": "丈夫", "h": "じょうぶ", "e": "strong, durable", "c": "naadj"}, {"k": "大丈夫", "h": "だいじょうぶ", "e": "all right, OK", "c": "naadj"}, {"k": "大切", "h": "たいせつ", "e": "important", "c": "naadj"}, {"k": "いろいろ", "h": "いろいろ", "e": "various", "c": "naadj"}, {"k": "同じ", "h": "おなじ", "e": "same", "c": "naadj"}, {"k": "結構", "h": "けっこう", "e": "splendid, enough", "c": "naadj"}, {"k": "りっぱ", "h": "りっぱ", "e": "splendid", "c": "naadj"}, {"k": "暇", "h": "ひま", "e": "free time", "c": "naadj"}, {"k": "ほんとう", "h": "ほんとう", "e": "true, real", "c": "naadj"}, {"k": "こんな", "h": "こんな", "e": "such (this kind)", "c": "naadj"}, {"k": "会う", "h": "あう", "e": "to meet", "c": "verbs"}, {"k": "開く", "h": "あく", "e": "to open (intrans.)", "c": "verbs"}, {"k": "開ける", "h": "あける", "e": "to open (trans.)", "c": "verbs"}, {"k": "上げる", "h": "あげる", "e": "to give", "c": "verbs"}, {"k": "あびる", "h": "あびる", "e": "to bathe, shower", "c": "verbs"}, {"k": "遊ぶ", "h": "あそぶ", "e": "to play", "c": "verbs"}, {"k": "洗う", "h": "あらう", "e": "to wash", "c": "verbs"}, {"k": "ある", "h": "ある", "e": "to exist (objects)", "c": "verbs"}, {"k": "歩く", "h": "あるく", "e": "to walk", "c": "verbs"}, {"k": "言う", "h": "いう", "e": "to say", "c": "verbs"}, {"k": "行く", "h": "いく / ゆく", "e": "to go", "c": "verbs"}, {"k": "居る", "h": "いる", "e": "to exist (people/animals)", "c": "verbs"}, {"k": "要る", "h": "いる", "e": "to need", "c": "verbs"}, {"k": "入れる", "h": "いれる", "e": "to put in", "c": "verbs"}, {"k": "歌う", "h": "うたう", "e": "to sing", "c": "verbs"}, {"k": "生まれる", "h": "うまれる", "e": "to be born", "c": "verbs"}, {"k": "売る", "h": "うる", "e": "to sell", "c": "verbs"}, {"k": "起きる", "h": "おきる", "e": "to get up", "c": "verbs"}, {"k": "置く", "h": "おく", "e": "to put, to place", "c": "verbs"}, {"k": "教える", "h": "おしえる", "e": "to teach, to tell", "c": "verbs"}, {"k": "押す", "h": "おす", "e": "to push", "c": "verbs"}, {"k": "覚える", "h": "おぼえる", "e": "to remember", "c": "verbs"}, {"k": "泳ぐ", "h": "およぐ", "e": "to swim", "c": "verbs"}, {"k": "降りる", "h": "おりる", "e": "to get off, descend", "c": "verbs"}, {"k": "終る", "h": "おわる", "e": "to finish", "c": "verbs"}, {"k": "買う", "h": "かう", "e": "to buy", "c": "verbs"}, {"k": "返す", "h": "かえす", "e": "to return something", "c": "verbs"}, {"k": "帰る", "h": "かえる", "e": "to go back, return", "c": "verbs"}, {"k": "かかる", "h": "かかる", "e": "to take (time/money)", "c": "verbs"}, {"k": "書く", "h": "かく", "e": "to write", "c": "verbs"}, {"k": "かける", "h": "かける", "e": "to call by phone", "c": "verbs"}, {"k": "貸す", "h": "かす", "e": "to lend", "c": "verbs"}, {"k": "借りる", "h": "かりる", "e": "to borrow", "c": "verbs"}, {"k": "消える", "h": "きえる", "e": "to disappear", "c": "verbs"}, {"k": "聞く", "h": "きく", "e": "to listen, ask", "c": "verbs"}, {"k": "切る", "h": "きる", "e": "to cut", "c": "verbs"}, {"k": "着る", "h": "きる", "e": "to wear (top)", "c": "verbs"}, {"k": "来る", "h": "くる", "e": "to come", "c": "verbs"}, {"k": "曇る", "h": "くもる", "e": "to become cloudy", "c": "verbs"}, {"k": "消す", "h": "けす", "e": "to erase, turn off", "c": "verbs"}, {"k": "結婚する", "h": "けっこんする", "e": "to marry", "c": "verbs"}, {"k": "答える", "h": "こたえる", "e": "to answer", "c": "verbs"}, {"k": "コピーする", "h": "コピーする", "e": "to copy", "c": "verbs"}, {"k": "困る", "h": "こまる", "e": "to be worried", "c": "verbs"}, {"k": "咲く", "h": "さく", "e": "to bloom", "c": "verbs"}, {"k": "差す", "h": "さす", "e": "to raise an umbrella", "c": "verbs"}, {"k": "散歩する", "h": "さんぽする", "e": "to stroll", "c": "verbs"}, {"k": "死ぬ", "h": "しぬ", "e": "to die", "c": "verbs"}, {"k": "閉まる", "h": "しまる", "e": "to close (intrans.)", "c": "verbs"}, {"k": "閉める", "h": "しめる", "e": "to close (trans.)", "c": "verbs"}, {"k": "締める", "h": "しめる", "e": "to tie, fasten", "c": "verbs"}, {"k": "知る", "h": "しる", "e": "to know", "c": "verbs"}, {"k": "吸う", "h": "すう", "e": "to smoke, suck", "c": "verbs"}, {"k": "住む", "h": "すむ", "e": "to live (reside)", "c": "verbs"}, {"k": "する", "h": "する", "e": "to do", "c": "verbs"}, {"k": "座る", "h": "すわる", "e": "to sit", "c": "verbs"}, {"k": "掃除する", "h": "そうじする", "e": "to clean", "c": "verbs"}, {"k": "出す", "h": "だす", "e": "to take out, send", "c": "verbs"}, {"k": "立つ", "h": "たつ", "e": "to stand", "c": "verbs"}, {"k": "頼む", "h": "たのむ", "e": "to ask, request", "c": "verbs"}, {"k": "食べる", "h": "たべる", "e": "to eat", "c": "verbs"}, {"k": "違う", "h": "ちがう", "e": "to differ", "c": "verbs"}, {"k": "使う", "h": "つかう", "e": "to use", "c": "verbs"}, {"k": "疲れる", "h": "つかれる", "e": "to get tired", "c": "verbs"}, {"k": "着く", "h": "つく", "e": "to arrive", "c": "verbs"}, {"k": "作る", "h": "つくる", "e": "to make", "c": "verbs"}, {"k": "つける", "h": "つける", "e": "to turn on", "c": "verbs"}, {"k": "勤める", "h": "つとめる", "e": "to work for", "c": "verbs"}, {"k": "出かける", "h": "でかける", "e": "to go out", "c": "verbs"}, {"k": "できる", "h": "できる", "e": "to be able to", "c": "verbs"}, {"k": "出る", "h": "でる", "e": "to leave, appear", "c": "verbs"}, {"k": "飛ぶ", "h": "とぶ", "e": "to fly", "c": "verbs"}, {"k": "止まる", "h": "とまる", "e": "to stop", "c": "verbs"}, {"k": "取る", "h": "とる", "e": "to take", "c": "verbs"}, {"k": "撮る", "h": "とる", "e": "to take a photo", "c": "verbs"}, {"k": "鳴く", "h": "なく", "e": "(animal noise)", "c": "verbs"}, {"k": "無くす", "h": "なくす", "e": "to lose something", "c": "verbs"}, {"k": "習う", "h": "ならう", "e": "to learn", "c": "verbs"}, {"k": "並ぶ", "h": "ならぶ", "e": "to line up", "c": "verbs"}, {"k": "並べる", "h": "ならべる", "e": "to set up in a line", "c": "verbs"}, {"k": "なる", "h": "なる", "e": "to become", "c": "verbs"}, {"k": "脱ぐ", "h": "ぬぐ", "e": "to take off (clothes)", "c": "verbs"}, {"k": "寝る", "h": "ねる", "e": "to sleep, go to bed", "c": "verbs"}, {"k": "登る", "h": "のぼる", "e": "to climb", "c": "verbs"}, {"k": "飲む", "h": "のむ", "e": "to drink", "c": "verbs"}, {"k": "乗る", "h": "のる", "e": "to ride, get on", "c": "verbs"}, {"k": "入る", "h": "はいる", "e": "to enter", "c": "verbs"}, {"k": "はく", "h": "はく", "e": "to put on (pants)", "c": "verbs"}, {"k": "始まる", "h": "はじまる", "e": "to begin (intrans.)", "c": "verbs"}, {"k": "走る", "h": "はしる", "e": "to run", "c": "verbs"}, {"k": "働く", "h": "はたらく", "e": "to work", "c": "verbs"}, {"k": "話す", "h": "はなす", "e": "to speak", "c": "verbs"}, {"k": "貼る", "h": "はる", "e": "to stick, paste", "c": "verbs"}, {"k": "晴れる", "h": "はれる", "e": "to be sunny", "c": "verbs"}, {"k": "引く", "h": "ひく", "e": "to pull", "c": "verbs"}, {"k": "弾く", "h": "ひく", "e": "to play (instrument)", "c": "verbs"}, {"k": "吹く", "h": "ふく", "e": "to blow", "c": "verbs"}, {"k": "降る", "h": "ふる", "e": "to fall (rain/snow)", "c": "verbs"}, {"k": "勉強する", "h": "べんきょうする", "e": "to study", "c": "verbs"}, {"k": "曲る", "h": "まがる", "e": "to turn, bend", "c": "verbs"}, {"k": "待つ", "h": "まつ", "e": "to wait", "c": "verbs"}, {"k": "磨く", "h": "みがく", "e": "to polish, brush", "c": "verbs"}, {"k": "見せる", "h": "みせる", "e": "to show", "c": "verbs"}, {"k": "見る", "h": "みる", "e": "to see, watch", "c": "verbs"}, {"k": "持つ", "h": "もつ", "e": "to hold, have", "c": "verbs"}, {"k": "休む", "h": "やすむ", "e": "to rest", "c": "verbs"}, {"k": "やる", "h": "やる", "e": "to do (casual)", "c": "verbs"}, {"k": "呼ぶ", "h": "よぶ", "e": "to call out, invite", "c": "verbs"}, {"k": "読む", "h": "よむ", "e": "to read", "c": "verbs"}, {"k": "分かる", "h": "わかる", "e": "to understand", "c": "verbs"}, {"k": "忘れる", "h": "わすれる", "e": "to forget", "c": "verbs"}, {"k": "渡す", "h": "わたす", "e": "to hand over", "c": "verbs"}, {"k": "渡る", "h": "わたる", "e": "to cross over", "c": "verbs"}, {"k": "練習する", "h": "れんしゅうする", "e": "to practice", "c": "verbs"}, {"k": "机", "h": "つくえ", "e": "desk", "c": "objects"}, {"k": "いす", "h": "いす", "e": "chair", "c": "objects"}, {"k": "テーブル", "h": "テーブル", "e": "table", "c": "objects"}, {"k": "ベッド", "h": "ベッド", "e": "bed", "c": "objects"}, {"k": "本棚", "h": "ほんだな", "e": "bookshelves", "c": "objects"}, {"k": "本", "h": "ほん", "e": "book", "c": "objects"}, {"k": "辞書", "h": "じしょ", "e": "dictionary", "c": "objects"}, {"k": "字引", "h": "じびき", "e": "dictionary", "c": "objects"}, {"k": "新聞", "h": "しんぶん", "e": "newspaper", "c": "objects"}, {"k": "雑誌", "h": "ざっし", "e": "magazine", "c": "objects"}, {"k": "ノート", "h": "ノート", "e": "notebook", "c": "objects"}, {"k": "紙", "h": "かみ", "e": "paper", "c": "objects"}, {"k": "ペン", "h": "ペン", "e": "pen", "c": "objects"}, {"k": "ボールペン", "h": "ボールペン", "e": "ball-point pen", "c": "objects"}, {"k": "万年筆", "h": "まんねんひつ", "e": "fountain pen", "c": "objects"}, {"k": "鉛筆", "h": "えんぴつ", "e": "pencil", "c": "objects"}, {"k": "テレビ", "h": "テレビ", "e": "television", "c": "objects"}, {"k": "ラジオ", "h": "ラジオ", "e": "radio", "c": "objects"}, {"k": "ラジカセ", "h": "ラジカセ", "e": "radio cassette player", "c": "objects"}, {"k": "テープ", "h": "テープ", "e": "tape", "c": "objects"}, {"k": "テープレコーダー", "h": "テープレコーダー", "e": "tape recorder", "c": "objects"}, {"k": "レコード", "h": "レコード", "e": "record", "c": "objects"}, {"k": "カメラ", "h": "カメラ", "e": "camera", "c": "objects"}, {"k": "フィルム", "h": "フィルム", "e": "film roll", "c": "objects"}, {"k": "写真", "h": "しゃしん", "e": "photograph", "c": "objects"}, {"k": "時計", "h": "とけい", "e": "clock, watch", "c": "objects"}, {"k": "電話", "h": "でんわ", "e": "telephone", "c": "objects"}, {"k": "電気", "h": "でんき", "e": "electricity, light", "c": "objects"}, {"k": "ストーブ", "h": "ストーブ", "e": "heater", "c": "objects"}, {"k": "冷蔵庫", "h": "れいぞうこ", "e": "refrigerator", "c": "objects"}, {"k": "エレベーター", "h": "エレベーター", "e": "elevator", "c": "objects"}, {"k": "シャワー", "h": "シャワー", "e": "shower", "c": "objects"}, {"k": "せっけん", "h": "せっけん", "e": "soap", "c": "objects"}, {"k": "かばん", "h": "かばん", "e": "bag, briefcase", "c": "objects"}, {"k": "ポケット", "h": "ポケット", "e": "pocket", "c": "objects"}, {"k": "箱", "h": "はこ", "e": "box", "c": "objects"}, {"k": "かぎ", "h": "かぎ", "e": "key", "c": "objects"}, {"k": "傘", "h": "かさ", "e": "umbrella", "c": "objects"}, {"k": "眼鏡", "h": "めがね", "e": "glasses", "c": "objects"}, {"k": "帽子", "h": "ぼうし", "e": "hat", "c": "objects"}, {"k": "ボタン", "h": "ボタン", "e": "button", "c": "objects"}, {"k": "マッチ", "h": "マッチ", "e": "match", "c": "objects"}, {"k": "たばこ", "h": "たばこ", "e": "tobacco, cigarettes", "c": "objects"}, {"k": "灰皿", "h": "はいざら", "e": "ashtray", "c": "objects"}, {"k": "花瓶", "h": "かびん", "e": "vase", "c": "objects"}, {"k": "絵", "h": "え", "e": "picture", "c": "objects"}, {"k": "地図", "h": "ちず", "e": "map", "c": "objects"}, {"k": "カレンダー", "h": "カレンダー", "e": "calendar", "c": "objects"}, {"k": "葉書", "h": "はがき", "e": "postcard", "c": "objects"}, {"k": "封筒", "h": "ふうとう", "e": "envelope", "c": "objects"}, {"k": "切手", "h": "きって", "e": "stamp", "c": "objects"}, {"k": "ポスト", "h": "ポスト", "e": "post box", "c": "objects"}, {"k": "手紙", "h": "てがみ", "e": "letter", "c": "objects"}, {"k": "荷物", "h": "にもつ", "e": "luggage, baggage", "c": "objects"}, {"k": "お土産", "h": "おみやげ", "e": "souvenir", "c": "objects"}, {"k": "服", "h": "ふく", "e": "clothes", "c": "clothing"}, {"k": "洋服", "h": "ようふく", "e": "Western-style clothes", "c": "clothing"}, {"k": "シャツ", "h": "シャツ", "e": "shirt", "c": "clothing"}, {"k": "ワイシャツ", "h": "ワイシャツ", "e": "business shirt", "c": "clothing"}, {"k": "セーター", "h": "セーター", "e": "sweater", "c": "clothing"}, {"k": "コート", "h": "コート", "e": "coat", "c": "clothing"}, {"k": "上着", "h": "うわぎ", "e": "jacket", "c": "clothing"}, {"k": "背広", "h": "せびろ", "e": "business suit", "c": "clothing"}, {"k": "ズボン", "h": "ズボン", "e": "trousers", "c": "clothing"}, {"k": "スカート", "h": "スカート", "e": "skirt", "c": "clothing"}, {"k": "ネクタイ", "h": "ネクタイ", "e": "necktie", "c": "clothing"}, {"k": "靴", "h": "くつ", "e": "shoes", "c": "clothing"}, {"k": "靴下", "h": "くつした", "e": "socks", "c": "clothing"}, {"k": "スリッパ", "h": "スリッパ", "e": "slippers", "c": "clothing"}, {"k": "ハンカチ", "h": "ハンカチ", "e": "handkerchief", "c": "clothing"}, {"k": "授業", "h": "じゅぎょう", "e": "class, lesson", "c": "study"}, {"k": "宿題", "h": "しゅくだい", "e": "homework", "c": "study"}, {"k": "質問", "h": "しつもん", "e": "question", "c": "study"}, {"k": "問題", "h": "もんだい", "e": "problem", "c": "study"}, {"k": "テスト", "h": "テスト", "e": "test", "c": "study"}, {"k": "作文", "h": "さくぶん", "e": "composition, writing", "c": "study"}, {"k": "漢字", "h": "かんじ", "e": "Chinese character", "c": "study"}, {"k": "言葉", "h": "ことば", "e": "word, language", "c": "study"}, {"k": "意味", "h": "いみ", "e": "meaning", "c": "study"}, {"k": "文章", "h": "ぶんしょう", "e": "sentence, text", "c": "study"}, {"k": "ページ", "h": "ページ", "e": "page", "c": "study"}, {"k": "英語", "h": "えいご", "e": "English language", "c": "study"}, {"k": "日本語", "h": "にほんご", "e": "Japanese language", "c": "study"}, {"k": "仕事", "h": "しごと", "e": "job, work", "c": "study"}, {"k": "クラス", "h": "クラス", "e": "class", "c": "study"}, {"k": "ニュース", "h": "ニュース", "e": "news", "c": "study"}, {"k": "音楽", "h": "おんがく", "e": "music", "c": "study"}, {"k": "歌", "h": "うた", "e": "song", "c": "study"}, {"k": "ギター", "h": "ギター", "e": "guitar", "c": "study"}, {"k": "映画", "h": "えいが", "e": "movie", "c": "study"}, {"k": "パーティー", "h": "パーティー", "e": "party", "c": "study"}, {"k": "スポーツ", "h": "スポーツ", "e": "sport", "c": "study"}, {"k": "休み", "h": "やすみ", "e": "rest, holiday", "c": "study"}, {"k": "誕生日", "h": "たんじょうび", "e": "birthday", "c": "study"}, {"k": "病気", "h": "びょうき", "e": "illness", "c": "health"}, {"k": "風邪", "h": "かぜ", "e": "a cold (illness)", "c": "health"}, {"k": "薬", "h": "くすり", "e": "medicine", "c": "health"}, {"k": "メートル", "h": "メートル", "e": "meter", "c": "units"}, {"k": "キロ", "h": "キロ", "e": "kilogram / kilometer", "c": "units"}, {"k": "グラム", "h": "グラム", "e": "gram", "c": "units"}, {"k": "よく", "h": "よく", "e": "well, often", "c": "adverbs"}, {"k": "たいへん", "h": "たいへん", "e": "very", "c": "adverbs"}, {"k": "とても", "h": "とても", "e": "very", "c": "adverbs"}, {"k": "たくさん", "h": "たくさん", "e": "many, a lot", "c": "adverbs"}, {"k": "少し", "h": "すこし", "e": "a little", "c": "adverbs"}, {"k": "あまり", "h": "あまり", "e": "not very (with neg.)", "c": "adverbs"}, {"k": "たぶん", "h": "たぶん", "e": "probably", "c": "adverbs"}, {"k": "ちょっと", "h": "ちょっと", "e": "a little, somewhat", "c": "adverbs"}, {"k": "ゆっくりと", "h": "ゆっくりと", "e": "slowly", "c": "adverbs"}, {"k": "もっと", "h": "もっと", "e": "more", "c": "adverbs"}, {"k": "大勢", "h": "おおぜい", "e": "many people", "c": "adverbs"}, {"k": "初めて", "h": "はじめて", "e": "for the first time", "c": "adverbs"}, {"k": "初め", "h": "はじめ", "e": "beginning", "c": "adverbs"}, {"k": "まっすぐ", "h": "まっすぐ", "e": "straight ahead", "c": "adverbs"}, {"k": "一緒", "h": "いっしょ", "e": "together", "c": "adverbs"}, {"k": "どう", "h": "どう", "e": "how", "c": "adverbs"}, {"k": "どうして", "h": "どうして", "e": "why, for what reason", "c": "adverbs"}, {"k": "なぜ", "h": "なぜ", "e": "why", "c": "adverbs"}, {"k": "どうぞ", "h": "どうぞ", "e": "please (offering)", "c": "adverbs"}, {"k": "どうも", "h": "どうも", "e": "thanks", "c": "adverbs"}, {"k": "ください", "h": "ください", "e": "please give me", "c": "adverbs"}, {"k": "はい", "h": "はい", "e": "yes", "c": "adverbs"}, {"k": "ええ", "h": "ええ", "e": "yes (casual)", "c": "adverbs"}, {"k": "いいえ", "h": "いいえ", "e": "no", "c": "adverbs"}, {"k": "ほか", "h": "ほか", "e": "other, the rest", "c": "adverbs"}, {"k": "そして", "h": "そして", "e": "and (sentences)", "c": "connectors"}, {"k": "それから", "h": "それから", "e": "after that, then", "c": "connectors"}, {"k": "しかし", "h": "しかし", "e": "however", "c": "connectors"}, {"k": "でも", "h": "でも", "e": "but", "c": "connectors"}, {"k": "じゃ", "h": "じゃ", "e": "well then... (casual)", "c": "connectors"}, {"k": "じゃあ", "h": "じゃあ", "e": "well then...", "c": "connectors"}, {"k": "では", "h": "では", "e": "with that... (formal)", "c": "connectors"}, {"k": "それでは", "h": "それでは", "e": "in that situation", "c": "connectors"}, {"k": "さあ", "h": "さあ", "e": "well... (hesitation)", "c": "connectors"}, {"k": "など", "h": "など", "e": "et cetera", "c": "connectors"}, {"k": "あの", "h": "あの", "e": "um... (filler)", "c": "connectors"}, {"k": "これ", "h": "これ", "e": "this", "c": "demo"}, {"k": "それ", "h": "それ", "e": "that", "c": "demo"}, {"k": "あれ", "h": "あれ", "e": "that over there", "c": "demo"}, {"k": "どれ", "h": "どれ", "e": "which (3+)", "c": "demo"}, {"k": "この", "h": "この", "e": "this (+ noun)", "c": "demo"}, {"k": "その", "h": "その", "e": "that (+ noun)", "c": "demo"}, {"k": "あの", "h": "あの", "e": "that over there (+ noun)", "c": "demo"}, {"k": "どの", "h": "どの", "e": "which (+ noun)", "c": "demo"}, {"k": "何", "h": "なに / なん", "e": "what", "c": "demo"}];
+const CATS = {"numbers": {"name": "Numbers & Counting", "jp": "数字"}, "time": {"name": "Time & Calendar", "jp": "時・暦"}, "people": {"name": "People & Family", "jp": "人・家族"}, "body": {"name": "Body", "jp": "体"}, "places": {"name": "Places & Direction", "jp": "場所・方向"}, "transport": {"name": "Transportation", "jp": "交通"}, "food": {"name": "Food & Drink", "jp": "食べ物・飲み物"}, "nature": {"name": "Nature & Weather", "jp": "自然・天気"}, "colors": {"name": "Colors", "jp": "色"}, "iadj": {"name": "い-Adjectives", "jp": "い形容詞"}, "naadj": {"name": "な-Adjectives", "jp": "な形容詞"}, "verbs": {"name": "Verbs", "jp": "動詞"}, "objects": {"name": "Objects & House", "jp": "物・家"}, "clothing": {"name": "Clothing", "jp": "服"}, "study": {"name": "Study & Activities", "jp": "勉強・活動"}, "health": {"name": "Health", "jp": "健康"}, "units": {"name": "Units", "jp": "単位"}, "adverbs": {"name": "Adverbs & Functions", "jp": "副詞"}, "connectors": {"name": "Connectors", "jp": "接続詞"}, "demo": {"name": "Demonstratives", "jp": "指示語"}};
+const STORAGE_KEY = "n5_vocab_known";
+
+let known = (() => {
+  try { return new Set(JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]")); }
+  catch { return new Set(); }
+})();
+function saveKnown() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify([...known]));
+}
+function vocabKey(v) { return (v.k || v.h) + "|" + v.h; }
+
+let activeFilters = new Set(); // empty = all
+let currentMode = "list";
+
+// ========== Filters ==========
+function renderFilters() {
+  const filters = document.getElementById("filters");
+  const counts = {};
+  VOCAB.forEach(v => { counts[v.c] = (counts[v.c] || 0) + 1; });
+  filters.innerHTML = '<div class="cat-pill ' + (activeFilters.size === 0 ? 'active' : '') + '" data-cat="">All <span class="cat-count">' + VOCAB.length + '</span></div>' +
+    Object.keys(CATS).map(catId => {
+      const isActive = activeFilters.has(catId);
+      return '<div class="cat-pill ' + (isActive ? 'active' : '') + '" data-cat="' + catId + '">' +
+        CATS[catId].name + ' <span class="cat-count">' + (counts[catId] || 0) + '</span></div>';
+    }).join("");
+  filters.querySelectorAll(".cat-pill").forEach(pill => {
+    pill.addEventListener("click", () => {
+      const cat = pill.dataset.cat;
+      if (cat === "") {
+        activeFilters.clear();
+      } else {
+        if (activeFilters.has(cat)) activeFilters.delete(cat);
+        else activeFilters.add(cat);
+      }
+      renderFilters();
+      renderCurrentView();
+      updateStats();
+    });
+  });
+}
+
+// ========== Active vocab ==========
+function getFilteredVocab() {
+  if (activeFilters.size === 0) return VOCAB;
+  return VOCAB.filter(v => activeFilters.has(v.c));
+}
+
+// ========== Stats ==========
+function updateStats() {
+  const filtered = getFilteredVocab();
+  const knownInView = filtered.filter(v => known.has(vocabKey(v))).length;
+  document.getElementById("statTotal").textContent = filtered.length;
+  document.getElementById("statKnown").textContent = knownInView;
+  document.getElementById("statRemain").textContent = filtered.length - knownInView;
+  const pct = filtered.length === 0 ? 0 : Math.round(100 * knownInView / filtered.length);
+  document.getElementById("statPct").textContent = pct + "%";
+}
+
+// ========== List view ==========
+function renderListView() {
+  const view = document.getElementById("listView");
+  const filtered = getFilteredVocab();
+  view.innerHTML = filtered.map(v => {
+    const key = vocabKey(v);
+    const isKnown = known.has(key);
+    const display = v.k || v.h;
+    const reading = v.k ? v.h : "";
+    return '<div class="vocab-card ' + (isKnown ? 'known' : '') + '" data-key="' + key + '">' +
+      '<div class="vocab-check">✓</div>' +
+      (isKnown ? '' : '<span class="vocab-cat-tag">' + CATS[v.c].name + '</span>') +
+      '<div class="vocab-jp">' + display + (reading ? '<span class="reading">' + reading + '</span>' : '') + '</div>' +
+      '<div class="vocab-en">' + v.e + '</div>' +
+    '</div>';
+  }).join("");
+  view.querySelectorAll(".vocab-card").forEach(card => {
+    card.addEventListener("click", () => {
+      const k = card.dataset.key;
+      if (known.has(k)) known.delete(k);
+      else known.add(k);
+      saveKnown();
+      card.classList.toggle("known");
+      const tag = card.querySelector(".vocab-cat-tag");
+      if (tag) tag.style.display = known.has(k) ? "none" : "";
+      else if (!known.has(k)) {
+        // Re-render to bring back tag
+        renderListView();
+      }
+      updateStats();
+    });
+  });
+}
+
+// ========== Flashcard view ==========
+let fcIndex = 0;
+let fcOrder = [];
+let fcFlipped = false;
+
+function shuffleArray(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function startFlashcards() {
+  const filtered = getFilteredVocab();
+  // Default: only unknown words first; if all known, all
+  let pool = filtered.filter(v => !known.has(vocabKey(v)));
+  if (pool.length === 0) pool = filtered;
+  fcOrder = shuffleArray(pool);
+  fcIndex = 0;
+  fcFlipped = false;
+  renderFlashcard();
+}
+
+function renderFlashcard() {
+  const view = document.getElementById("flashcardView");
+  if (fcOrder.length === 0) {
+    view.innerHTML = '<div class="flashcard"><div class="flashcard-jp">—</div><div class="flashcard-en">No cards in current filter</div></div>';
+    return;
+  }
+  if (fcIndex >= fcOrder.length) {
+    view.innerHTML = '<div class="flashcard"><div class="flashcard-jp">🎉</div><div class="flashcard-en">Round complete!<br><br>' + fcOrder.length + ' cards reviewed.</div></div>' +
+      '<div class="flashcard-actions" style="grid-template-columns: 1fr;"><button class="fc-btn" onclick="startFlashcards()">Start new round</button></div>';
+    return;
+  }
+  const v = fcOrder[fcIndex];
+  const display = v.k || v.h;
+  const reading = v.k ? v.h : "";
+  view.innerHTML = '<div class="flashcard ' + (fcFlipped ? 'flipped' : '') + '" id="flashcardEl">' +
+    (fcFlipped ?
+      '<div class="flashcard-back">' +
+        '<div class="flashcard-jp">' + display + '</div>' +
+        (reading ? '<div class="flashcard-reading">' + reading + '</div>' : '') +
+        '<div class="flashcard-en">' + v.e + '</div>' +
+        '<div class="flashcard-cat">' + CATS[v.c].name + '</div>' +
+      '</div>'
+    :
+      '<div class="flashcard-front">' +
+        '<div class="flashcard-jp">' + display + '</div>' +
+        '<div class="flashcard-hint">Tap card to reveal</div>' +
+      '</div>'
+    ) + '</div>' +
+    '<div class="flashcard-actions">' +
+      '<button class="fc-btn fc-unknown" onclick="fcRate(false)">Don\'t know</button>' +
+      '<button class="fc-btn" onclick="fcSkip()">Skip</button>' +
+      '<button class="fc-btn fc-known" onclick="fcRate(true)">Know it</button>' +
+      '<button class="fc-btn" onclick="fcReveal()">' + (fcFlipped ? 'Hide' : 'Reveal') + '</button>' +
+    '</div>' +
+    '<div class="fc-progress">Card ' + (fcIndex + 1) + ' of ' + fcOrder.length + '</div>';
+  document.getElementById("flashcardEl").addEventListener("click", () => fcReveal());
+}
+
+function fcReveal() {
+  fcFlipped = !fcFlipped;
+  renderFlashcard();
+}
+
+function fcRate(isKnown) {
+  const v = fcOrder[fcIndex];
+  const k = vocabKey(v);
+  if (isKnown) known.add(k);
+  else known.delete(k);
+  saveKnown();
+  fcFlipped = false;
+  fcIndex++;
+  updateStats();
+  renderFlashcard();
+}
+
+function fcSkip() {
+  fcFlipped = false;
+  fcIndex++;
+  renderFlashcard();
+}
+
+// ========== Quiz view ==========
+let quizState = null;
+
+function startQuiz() {
+  const filtered = getFilteredVocab();
+  if (filtered.length < 4) {
+    document.getElementById("quizView").innerHTML =
+      '<div class="quiz-card"><div class="quiz-prompt">Need at least 4 words in filter</div></div>';
+    return;
+  }
+  // Pool: prefer unknown words
+  let pool = filtered.filter(v => !known.has(vocabKey(v)));
+  if (pool.length < 4) pool = filtered;
+  quizState = {
+    pool,
+    filtered,
+    index: 0,
+    score: 0,
+    total: 0,
+    direction: Math.random() < 0.5 ? "jp_to_en" : "en_to_jp",
+  };
+  nextQuizQuestion();
+}
+
+function nextQuizQuestion() {
+  const pool = quizState.pool;
+  const v = pool[Math.floor(Math.random() * pool.length)];
+  // 3 distractors
+  const distractors = [];
+  const usedKeys = new Set([vocabKey(v)]);
+  while (distractors.length < 3) {
+    const candidate = quizState.filtered[Math.floor(Math.random() * quizState.filtered.length)];
+    const ck = vocabKey(candidate);
+    if (!usedKeys.has(ck)) {
+      distractors.push(candidate);
+      usedKeys.add(ck);
+    }
+    if (usedKeys.size >= quizState.filtered.length) break;
+  }
+  const options = shuffleArray([v, ...distractors]);
+  quizState.current = { v, options, answered: false };
+  // Flip direction occasionally
+  if (Math.random() < 0.5) quizState.direction = "jp_to_en";
+  else quizState.direction = "en_to_jp";
+  renderQuiz();
+}
+
+function renderQuiz() {
+  const { v, options, answered } = quizState.current;
+  const view = document.getElementById("quizView");
+  const dir = quizState.direction;
+  const display = v.k || v.h;
+
+  let promptHTML;
+  if (dir === "jp_to_en") {
+    promptHTML = '<div class="quiz-prompt-label">What does this mean?</div>' +
+      '<div class="quiz-prompt">' + display + '</div>';
+  } else {
+    promptHTML = '<div class="quiz-prompt-label">Which one means:</div>' +
+      '<div class="quiz-prompt en">"' + v.e + '"</div>';
+  }
+
+  const optsHTML = options.map((o, i) => {
+    const od = o.k || o.h;
+    const or = o.k ? o.h : "";
+    let inner;
+    if (dir === "jp_to_en") {
+      inner = o.e;
+    } else {
+      inner = '<span class="opt-jp">' + od + '</span>' + (or ? '<span class="opt-reading">' + or + '</span>' : '');
+    }
+    return '<div class="quiz-option" data-idx="' + i + '">' + inner + '</div>';
+  }).join("");
+
+  view.innerHTML = '<div class="quiz-card">' +
+    promptHTML +
+    '<div class="quiz-options">' + optsHTML + '</div>' +
+    '<div class="quiz-feedback" id="quizFeedback"></div>' +
+    (answered ? '<button class="quiz-next" onclick="nextQuizQuestion()">Next →</button>' : '') +
+    '<div class="quiz-stats">Score: ' + quizState.score + ' / ' + quizState.total + '</div>' +
+  '</div>';
+  if (!answered) {
+    view.querySelectorAll(".quiz-option").forEach(opt => {
+      opt.addEventListener("click", () => {
+        const idx = parseInt(opt.dataset.idx);
+        const correct = options[idx] === v;
+        quizState.current.answered = true;
+        quizState.total++;
+        if (correct) {
+          quizState.score++;
+          // Auto-add to known on correct answer
+          known.add(vocabKey(v));
+          saveKnown();
+        } else {
+          // Auto-remove on wrong (in case it was previously marked)
+          known.delete(vocabKey(v));
+          saveKnown();
+        }
+        // Mark options
+        view.querySelectorAll(".quiz-option").forEach((o, i) => {
+          o.classList.add("disabled");
+          if (options[i] === v) o.classList.add("correct");
+          else if (i === idx) o.classList.add("wrong");
+        });
+        const fb = document.getElementById("quizFeedback");
+        if (correct) {
+          fb.className = "quiz-feedback correct";
+          fb.textContent = "正解！";
+        } else {
+          fb.className = "quiz-feedback wrong";
+          const cd = v.k || v.h;
+          const cr = v.k ? v.h : "";
+          fb.innerHTML = "Correct answer: <strong>" + cd + (cr ? " (" + cr + ")" : "") + " — " + v.e + "</strong>";
+        }
+        // Re-render with next button
+        const card = view.querySelector(".quiz-card");
+        if (!card.querySelector(".quiz-next")) {
+          const btn = document.createElement("button");
+          btn.className = "quiz-next";
+          btn.textContent = "Next →";
+          btn.onclick = nextQuizQuestion;
+          card.insertBefore(btn, view.querySelector(".quiz-stats"));
+        }
+        updateStats();
+      });
+    });
+  }
+}
+
+// ========== Mode switching ==========
+function setMode(mode) {
+  currentMode = mode;
+  document.querySelectorAll(".mode-btn").forEach(b => {
+    b.classList.toggle("active", b.dataset.mode === mode);
+  });
+  document.getElementById("listView").classList.toggle("hidden", mode !== "list");
+  document.getElementById("flashcardView").classList.toggle("hidden", mode !== "flashcard");
+  document.getElementById("quizView").classList.toggle("hidden", mode !== "quiz");
+  renderCurrentView();
+}
+
+function renderCurrentView() {
+  if (currentMode === "list") renderListView();
+  else if (currentMode === "flashcard") startFlashcards();
+  else if (currentMode === "quiz") startQuiz();
+}
+
+document.querySelectorAll(".mode-btn").forEach(btn => {
+  btn.addEventListener("click", () => setMode(btn.dataset.mode));
+});
+
+function resetProgress() {
+  if (confirm("Reset all vocabulary progress? This cannot be undone.")) {
+    known = new Set();
+    saveKnown();
+    renderCurrentView();
+    updateStats();
+  }
+}
+
+// Init
+renderFilters();
+renderListView();
+updateStats();
+</script>
+</body>
+</html>

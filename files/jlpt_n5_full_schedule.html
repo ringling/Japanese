@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JLPT N5 — Weekly Study Schedule (Kanji · Grammar · Vocab)</title>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;700&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1a1a;
+  --ink-soft: #3a3a3a;
+  --paper: #f4efe6;
+  --paper-soft: #ebe4d6;
+  --paper-deep: #e2d9c4;
+  --rule: #c9bfa9;
+  --accent: #8b1a1a;
+  --accent-soft: #b85c5c;
+  --muted: #6b6357;
+  --gold: #b8893d;
+  --done: #5a7a3a;
+  --done-bg: #d8e0c4;
+  --rest: #9c9080;
+
+  /* track colors */
+  --kanji: #8b1a1a;
+  --kanji-bg: #ead6d6;
+  --grammar: #3a5a7a;
+  --grammar-bg: #d4dce4;
+  --vocab: #b8893d;
+  --vocab-bg: #ede1c4;
+  --review: #5a7a3a;
+  --review-bg: #d8e0c4;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 300;
+  line-height: 1.6;
+  padding: 50px 32px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ====== Masthead ====== */
+.masthead {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: end;
+  gap: 30px;
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 20px;
+  margin-bottom: 40px;
+}
+
+.masthead-mark {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 90px;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 0.85;
+  letter-spacing: -4px;
+}
+
+.masthead-title h1 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 34px;
+  font-weight: 500;
+  letter-spacing: -1px;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.masthead-title .sub {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.masthead-meta {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 1.5px;
+  text-align: right;
+  text-transform: uppercase;
+  line-height: 1.8;
+}
+
+/* ====== Track legend ====== */
+.tracks {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-bottom: 30px;
+}
+
+.track-item {
+  padding: 16px 18px;
+  border-left: 3px solid;
+  background: var(--paper-soft);
+}
+
+.track-item.kanji { border-color: var(--kanji); }
+.track-item.grammar { border-color: var(--grammar); }
+.track-item.vocab { border-color: var(--vocab); }
+.track-item.review { border-color: var(--review); }
+
+.track-item .track-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.track-item.kanji .track-label { color: var(--kanji); }
+.track-item.grammar .track-label { color: var(--grammar); }
+.track-item.vocab .track-label { color: var(--vocab); }
+.track-item.review .track-label { color: var(--review); }
+
+.track-item .track-name {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.track-item .track-time {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* ====== Method panel ====== */
+.method {
+  background: var(--paper-soft);
+  border-left: 3px solid var(--accent);
+  padding: 22px 26px;
+  margin-bottom: 40px;
+}
+
+.method h3 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.method p {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+  margin-bottom: 6px;
+}
+
+.method strong {
+  font-weight: 500;
+  color: var(--ink);
+}
+
+/* ====== Week navigation ====== */
+.week-nav {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.week-pill {
+  flex: 1;
+  min-width: 100px;
+  padding: 10px 14px;
+  background: var(--paper-soft);
+  border: 1px solid var(--rule);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--muted);
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.2s;
+  user-select: none;
+}
+
+.week-pill:hover {
+  background: var(--paper-deep);
+  color: var(--ink);
+}
+
+.week-pill.complete {
+  background: var(--done-bg);
+  color: var(--done);
+  border-color: var(--done);
+}
+
+.week-pill .pill-num {
+  font-weight: 500;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 2px;
+}
+
+.week-pill.complete .pill-num { color: var(--done); }
+
+/* ====== Week section ====== */
+.week-section {
+  margin-bottom: 50px;
+}
+
+.week-head {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: baseline;
+  gap: 20px;
+  padding-bottom: 14px;
+  margin-bottom: 22px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.week-num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: 2px;
+  font-weight: 500;
+}
+
+.week-head h2 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.week-head .jp {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 14px;
+  color: var(--muted);
+  margin-left: 8px;
+}
+
+.week-head .meta {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-align: right;
+}
+
+/* ====== Week summary banner ====== */
+.week-summary {
+  background: var(--paper-soft);
+  padding: 14px 20px;
+  margin-bottom: 16px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  border: 1px solid var(--rule);
+}
+
+.summary-col h4 {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.summary-col.kanji h4 { color: var(--kanji); }
+.summary-col.grammar h4 { color: var(--grammar); }
+.summary-col.vocab h4 { color: var(--vocab); }
+
+.summary-col p {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+/* ====== Days grid ====== */
+.days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+}
+
+.day {
+  background: var(--paper-soft);
+  border: 1px solid var(--rule);
+  padding: 12px 11px;
+  min-height: 240px;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.day:hover:not(.rest) {
+  border-color: var(--accent-soft);
+}
+
+.day.done {
+  background: var(--done-bg);
+  border-color: var(--done);
+}
+
+.day.rest {
+  background: transparent;
+  border: 1px dashed var(--rule);
+  cursor: default;
+}
+
+.day-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.day-name {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--accent);
+}
+
+.day.rest .day-name {
+  color: var(--rest);
+}
+
+.day.done .day-name {
+  color: var(--done);
+}
+
+.day-time {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+}
+
+.day-tasks {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.task-block {
+  border-left: 3px solid;
+  padding-left: 8px;
+}
+
+.task-block.kanji { border-color: var(--kanji); }
+.task-block.grammar { border-color: var(--grammar); }
+.task-block.vocab { border-color: var(--vocab); }
+.task-block.review { border-color: var(--review); }
+
+.task-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 8px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+  font-weight: 500;
+}
+
+.task-block.kanji .task-label { color: var(--kanji); }
+.task-block.grammar .task-label { color: var(--grammar); }
+.task-block.vocab .task-label { color: var(--vocab); }
+.task-block.review .task-label { color: var(--review); }
+
+.task-content {
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+.day.rest .task-content {
+  color: var(--rest);
+  font-style: italic;
+}
+
+.day .check {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 14px;
+  height: 14px;
+  border: 1px solid var(--rule);
+  background: var(--paper);
+  font-size: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: transparent;
+}
+
+.day.done .check {
+  background: var(--done);
+  border-color: var(--done);
+  color: var(--paper);
+}
+
+.day.rest .check { display: none; }
+
+/* ====== Footer ====== */
+footer {
+  margin-top: 60px;
+  padding-top: 24px;
+  border-top: 1px solid var(--rule);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+  text-align: center;
+  line-height: 1.8;
+}
+
+footer .reset-btn {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 6px 14px;
+  background: transparent;
+  border: 1px solid var(--rule);
+  color: var(--muted);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+footer .reset-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  body { padding: 30px 18px; }
+  .masthead { grid-template-columns: 1fr; gap: 16px; }
+  .masthead-meta { text-align: left; }
+  .tracks { grid-template-columns: 1fr 1fr; }
+  .week-pill { flex-basis: calc(50% - 3px); min-width: 0; }
+  .days { grid-template-columns: 1fr; }
+  .day { min-height: auto; }
+  .week-head { grid-template-columns: 1fr; gap: 6px; }
+  .week-head .meta { text-align: left; }
+  .week-summary { grid-template-columns: 1fr; }
+}
+
+@media print {
+  body { background: white; padding: 20px; }
+  .week-pill, .day .check, footer .reset-btn { display: none; }
+  .day { break-inside: avoid; }
+  .week-section { page-break-after: always; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Masthead -->
+  <header class="masthead">
+    <div class="masthead-mark">学</div>
+    <div class="masthead-title">
+      <h1>Weekly Study Schedule</h1>
+      <div class="sub">8 weeks · Kanji + Grammar + Vocabulary integrated</div>
+    </div>
+    <div class="masthead-meta">
+      Total: ~3-4 hrs/week<br>
+      Marugoto continues separately<br>
+      Three tracks, one rhythm
+    </div>
+  </header>
+
+  <!-- Tracks legend -->
+  <div class="tracks">
+    <div class="track-item kanji">
+      <div class="track-label">Track 1</div>
+      <div class="track-name">Kanji</div>
+      <div class="track-time">Mon · Wed · Fri (~90 min/wk)</div>
+    </div>
+    <div class="track-item grammar">
+      <div class="track-label">Track 2</div>
+      <div class="track-name">Grammar</div>
+      <div class="track-time">Tue (~30 min/wk)</div>
+    </div>
+    <div class="track-item vocab">
+      <div class="track-label">Track 3</div>
+      <div class="track-name">Vocabulary</div>
+      <div class="track-time">Wed + Fri short bursts (~30 min/wk)</div>
+    </div>
+    <div class="track-item review">
+      <div class="track-label">Track 4</div>
+      <div class="track-name">Cumulative review</div>
+      <div class="track-time">Sat (~30 min/wk)</div>
+    </div>
+  </div>
+
+  <!-- Method -->
+  <div class="method">
+    <h3>How the three tracks fit together</h3>
+    <p><strong>Kanji</strong> drives the weekly theme. Whatever kanji you're learning that week, the vocabulary and grammar track follow the same theme — so when Week 2 introduces time/calendar kanji, you're also drilling time-related vocab and the grammar patterns for telling time.</p>
+    <p><strong>Grammar Tuesday</strong> targets the gap-check items first (〜たい, 〜ができます, 〜になる, counters), then moves into N4 patterns alongside Marugoto. Most N5 grammar is already solid — you're maintaining and filling gaps, not starting from scratch.</p>
+    <p><strong>Vocabulary</strong> is interleaved into kanji days as 5-10 min add-ons, then consolidated on Saturday. ~50 new words/week = ~400 over 8 weeks, which closes the N5 vocab gap.</p>
+  </div>
+
+  <!-- Week nav -->
+  <div class="week-nav" id="weekNav"></div>
+
+  <!-- Weeks -->
+  <div id="weeks"></div>
+
+  <footer>
+    <div>Click any task block to mark complete · Theme alignment between kanji + grammar + vocab is intentional · Sat = cumulative review</div>
+    <button class="reset-btn" onclick="resetProgress()">Reset all progress</button>
+  </footer>
+</div>
+
+<script>
+// =============================================================
+// 8 weeks of integrated daily schedule
+// =============================================================
+
+const weeks = [
+  {
+    title: "Numbers",
+    titleJp: "数字",
+    summary: {
+      kanji: "13 number kanji: 一 二 三 四 五 六 七 八 九 十 百 千 万",
+      grammar: "Counter sound changes (gap item) + irregular hundred readings",
+      vocab: "Numbers, money, age expressions, basic counters"
+    },
+    monNew: "一 二 三 四 五 六 七",
+    wedNew: "八 九 十 百 千 万",
+    grammarFocus: "Counters: 〜つ, 〜本, 〜枚, 〜匹, 〜回, 〜階, 〜台",
+    grammarTasks: ["Drill the general counter ひとつ→とお", "Drill 〜本 with sound changes (いっぽん, さんぼん, ろっぽん)", "Write 5 sentences using counters"],
+    vocabSet: "Numbers + money: 円, 値段, 高い, 安い, いくら, ぜんぶで, おつり, レシート",
+    vocabFri: "Age + counting: ～歳, 何歳, 大人, 子供, ふたり, 三人",
+    satReview: "Random kanji recall (week 1) + write 10 prices (e.g. 千円, 二万円) aloud"
+  },
+  {
+    title: "Time & Calendar",
+    titleJp: "時・暦",
+    summary: {
+      kanji: "13 time kanji: 日 月 火 水 木 金 土 曜 年 時 分 半 今",
+      grammar: "Time expressions, 〜から〜まで, 〜のとき",
+      vocab: "Days, months, time of day, time adverbs"
+    },
+    monNew: "日 月 火 水 木 金 土",
+    wedNew: "曜 年 時 分 半 今",
+    grammarFocus: "Time particles + time-of-day expressions",
+    grammarTasks: ["〜時から〜時まで (from X o'clock to Y o'clock)", "毎日, 毎週, 毎月, 毎年", "Practice: 何時ですか / 何曜日ですか"],
+    vocabSet: "Time of day: 朝, 昼, 夕方, 夜, 午前, 午後, 今日, 明日, 昨日, 今, 後で",
+    vocabFri: "Time adverbs: もう, まだ, すぐ, ゆっくり, よく, 時々, いつも, ぜんぜん",
+    satReview: "Time review: state your daily schedule from morning to night using new vocab + week 1 kanji"
+  },
+  {
+    title: "People & Family",
+    titleJp: "人・家族",
+    summary: {
+      kanji: "13 people/body kanji: 人 男 女 子 父 母 友 先 生 名 目 耳 口",
+      grammar: "〜たい (gap item) + giving/receiving basics",
+      vocab: "Family terms, body parts, people descriptors"
+    },
+    monNew: "人 男 女 子 父 母 友",
+    wedNew: "先 生 名 目 耳 口",
+    grammarFocus: "〜たい — 'want to do'",
+    grammarTasks: ["Drill 〜たい conjugation: 食べたい, 行きたい, 会いたい", "Negative: 〜たくない", "Past: 〜たかった"],
+    vocabSet: "Family (uchi/soto): 私, 父, 母, 兄, 姉, 弟, 妹, 家族, お父さん, お母さん, お兄さん, お姉さん",
+    vocabFri: "Body parts: 目, 耳, 口, 鼻, 手, 足, 頭, 顔, 髪",
+    satReview: "Describe your family in 3-5 sentences using new vocab + 〜たい"
+  },
+  {
+    title: "Nature & Elements",
+    titleJp: "自然",
+    summary: {
+      kanji: "13 nature kanji: 山 川 花 天 空 雨 電 気 魚 犬 白 音 力",
+      grammar: "〜ている in detail (gap item) — habitual vs current vs state",
+      vocab: "Weather, animals, colors, basic adjectives"
+    },
+    monNew: "山 川 花 天 空 雨 電",
+    wedNew: "気 魚 犬 白 音 力",
+    grammarFocus: "〜ている — three uses",
+    grammarTasks: ["Habitual: 毎日コーヒーを飲んでいます", "Current action: 今食べています", "State: 結婚しています, 知っています", "Write 2 sentences for each use"],
+    vocabSet: "Weather: 天気, 晴れ, 曇り, 雨, 雪, 風, 暑い, 寒い, 涼しい, 暖かい",
+    vocabFri: "Colors: 赤い, 青い, 黒い, 白い, 黄色い, 緑, 茶色 + animals: 犬, 猫, 鳥, 魚",
+    satReview: "MIDPOINT REVIEW · Random sample of 30 kanji from weeks 1-4 + recap all gap-grammar items"
+  },
+  {
+    title: "Places & Direction",
+    titleJp: "場所・方向",
+    summary: {
+      kanji: "17 place kanji: 国 外 中 町 学 校 店 社 駅 道 上 下 前 後 左 右 東",
+      grammar: "〜になる / 〜にする (gap item) + location particles",
+      vocab: "Places, transportation, position words"
+    },
+    monNew: "国 外 中 町 学 校 店 社 駅",
+    wedNew: "道 上 下 前 後 左 右 東",
+    grammarFocus: "〜になる / 〜にする",
+    grammarTasks: ["〜になる (becomes naturally): 学生になる, 暑くなる", "〜にする (decide on): コーヒーにします", "Both forms with na-adj, i-adj, nouns"],
+    vocabSet: "Places: 家, 学校, 会社, 病院, 銀行, 郵便局, 図書館, 公園, 映画館, デパート, スーパー",
+    vocabFri: "Transport: 電車, バス, 車, 自転車, 飛行機, 船, タクシー, 地下鉄",
+    satReview: "Mock test mini-warmup: try 10 N5-format multiple choice questions (use any free online source)"
+  },
+  {
+    title: "More Direction & Travel",
+    titleJp: "方向・移動",
+    summary: {
+      kanji: "13 travel kanji: 西 南 北 店 社 駅 道 車 本 語 英 円 何",
+      grammar: "〜ができます (gap item) + means of transport で",
+      vocab: "Countries, languages, travel expressions"
+    },
+    monNew: "西 南 北 店 社 駅 道",
+    wedNew: "車 本 語 英 円 何",
+    grammarFocus: "〜ができます — 'can do'",
+    grammarTasks: ["日本語ができます (I can speak Japanese)", "Compare with potential form: 話せます", "〜ことができます: 漢字を書くことができます"],
+    vocabSet: "Countries + languages: 日本, アメリカ, イギリス, 中国, 韓国, ドイツ, フランス + 〜語",
+    vocabFri: "Travel verbs: 行く, 来る, 帰る, 出る, 入る, 着く, 出発する, 到着する",
+    satReview: "Self-introduction practice: name, country, language, what you can/can't do — using all new vocab"
+  },
+  {
+    title: "Verbs of Motion & Senses",
+    titleJp: "動作の漢字",
+    summary: {
+      kanji: "13 verb kanji: 行 来 入 出 見 聞 話 読 書 食 飲 買 立",
+      grammar: "Polite request forms refresh + 〜たり〜たりする review",
+      vocab: "High-frequency verbs and their objects"
+    },
+    monNew: "行 来 入 出 見 聞 話",
+    wedNew: "読 書 食 飲 買 立",
+    grammarFocus: "Request forms: 〜てください, 〜ないでください, 〜てもいいですか",
+    grammarTasks: ["〜てください (please do)", "〜ないでください (please don't)", "〜てもいいですか (may I?)", "〜てはいけません (must not — review)"],
+    vocabSet: "Verb-object pairs: テレビを見る, 音楽を聞く, 本を読む, 手紙を書く, 電話をかける",
+    vocabFri: "More verbs: 起きる, 寝る, 働く, 休む, 待つ, 帰る, 着く, 始まる, 終わる",
+    satReview: "Write a short paragraph about a typical day using as many verb kanji + new verbs as possible"
+  },
+  {
+    title: "Adjectives & Daily Life",
+    titleJp: "形容詞・日常",
+    summary: {
+      kanji: "13 final kanji: 大 小 高 安 新 古 長 少 毎 休 会 間 週",
+      grammar: "Adjective conjugation drill + comparison patterns",
+      vocab: "Common adjectives, daily routine vocabulary"
+    },
+    monNew: "大 小 高 安 新 古 長",
+    wedNew: "少 毎 休 会 間 週",
+    grammarFocus: "Adjective forms refresh + comparison",
+    grammarTasks: ["い-adj + な-adj: full conjugation drill (positive/negative/past/te-form)", "〜より〜のほうが (more than)", "〜のなかで〜が一番 (most among)"],
+    vocabSet: "Adjectives: 大きい, 小さい, 高い, 安い, 新しい, 古い, 長い, 短い, 早い, 遅い, 忙しい, 暇な",
+    vocabFri: "Daily life: 起きる, ご飯を食べる, 仕事に行く, 帰る, 休む, 寝る + 朝ごはん, 昼ごはん, 晩ごはん",
+    satReview: "🎉 FULL REVIEW: All 104 kanji + comparison sentences + write your day-in-the-life paragraph"
+  }
+];
+
+// =============================================================
+// Render
+// =============================================================
+const STORAGE_KEY = "n5_full_schedule_done";
+
+function loadDone() {
+  try { return new Set(JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]")); }
+  catch { return new Set(); }
+}
+
+function saveDone(set) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify([...set]));
+}
+
+let done = loadDone();
+
+function dayId(weekIdx, day) {
+  return `w${weekIdx}d${day}`;
+}
+
+function renderWeekNav() {
+  const nav = document.getElementById("weekNav");
+  nav.innerHTML = weeks.map((w, i) => {
+    const completedDays = ['mon','tue','wed','thu','fri','sat'].filter(d => done.has(dayId(i, d))).length;
+    const isComplete = completedDays === 6;
+    return `<div class="week-pill ${isComplete ? 'complete' : ''}" onclick="document.getElementById('week${i}').scrollIntoView({behavior:'smooth'})">
+      <span class="pill-num">Week ${i+1}</span>
+      ${completedDays}/6 days
+    </div>`;
+  }).join("");
+}
+
+function makeDay(weekIdx, dayName, dayShort, blocks, time, isRest = false) {
+  if (isRest) {
+    return `<div class="day rest">
+      <div class="day-header">
+        <span class="day-name">${dayName}</span>
+        <span class="day-time">—</span>
+      </div>
+      <div class="day-tasks">
+        <div class="task-content">Rest day · step away from study</div>
+      </div>
+    </div>`;
+  }
+  const id = dayId(weekIdx, dayShort);
+  const isDone = done.has(id);
+  return `<div class="day ${isDone ? 'done' : ''}" onclick="toggleDay('${id}')">
+    <div class="check">✓</div>
+    <div class="day-header">
+      <span class="day-name">${dayName}</span>
+      <span class="day-time">~${time} min</span>
+    </div>
+    <div class="day-tasks">
+      ${blocks.map(b => `
+        <div class="task-block ${b.type}">
+          <div class="task-label">${b.label}</div>
+          <div class="task-content">${b.content}</div>
+        </div>
+      `).join("")}
+    </div>
+  </div>`;
+}
+
+function renderWeeks() {
+  const container = document.getElementById("weeks");
+  container.innerHTML = weeks.map((w, wi) => {
+    const monDay = makeDay(wi, "Mon", "mon", [
+      { type: "kanji", label: "Kanji · introduce", content: `New: ${w.monNew}<br>Shape + meaning + mnemonic. No reading drills yet.` }
+    ], 30);
+
+    const tueDay = makeDay(wi, "Tue", "tue", [
+      { type: "grammar", label: "Grammar · focus", content: w.grammarFocus },
+      { type: "grammar", label: "Tasks", content: w.grammarTasks.join("<br>") }
+    ], 30);
+
+    const wedDay = makeDay(wi, "Wed", "wed", [
+      { type: "kanji", label: "Kanji · introduce + reinforce", content: `New: ${w.wedNew}<br>Re-read Mon's. Write each 3× by hand.` },
+      { type: "vocab", label: "Vocab · new set", content: w.vocabSet }
+    ], 40);
+
+    const thuDay = makeDay(wi, "Thu", "thu", [
+      { type: "review", label: "Marugoto / flex", content: "Continue your current Marugoto unit. Or rest if needed." }
+    ], 30);
+
+    const friDay = makeDay(wi, "Fri", "fri", [
+      { type: "kanji", label: "Kanji · self-quiz", content: "Cover meanings → readings → kanji. Mix in last week." },
+      { type: "vocab", label: "Vocab · supplemental", content: w.vocabFri }
+    ], 40);
+
+    const satDay = makeDay(wi, "Sat", "sat", [
+      { type: "review", label: "Cumulative review", content: w.satReview }
+    ], 30);
+
+    const sunDay = makeDay(wi, "Sun", "sun", [], 0, true);
+
+    return `<section class="week-section" id="week${wi}">
+      <div class="week-head">
+        <span class="week-num">WEEK ${String(wi+1).padStart(2,'0')}</span>
+        <h2>${w.title} <span class="jp">${w.titleJp}</span></h2>
+        <span class="meta">~3-4 hrs total this week</span>
+      </div>
+      <div class="week-summary">
+        <div class="summary-col kanji">
+          <h4>Kanji track</h4>
+          <p>${w.summary.kanji}</p>
+        </div>
+        <div class="summary-col grammar">
+          <h4>Grammar track</h4>
+          <p>${w.summary.grammar}</p>
+        </div>
+        <div class="summary-col vocab">
+          <h4>Vocab track</h4>
+          <p>${w.summary.vocab}</p>
+        </div>
+      </div>
+      <div class="days">
+        ${monDay}${tueDay}${wedDay}${thuDay}${friDay}${satDay}${sunDay}
+      </div>
+    </section>`;
+  }).join("");
+}
+
+function toggleDay(id) {
+  if (done.has(id)) done.delete(id);
+  else done.add(id);
+  saveDone(done);
+  document.querySelectorAll(`[onclick*="${id}"]`).forEach(el => el.classList.toggle("done"));
+  renderWeekNav();
+}
+
+function resetProgress() {
+  if (confirm("Reset all progress?")) {
+    done = new Set();
+    saveDone(done);
+    renderWeekNav();
+    renderWeeks();
+  }
+}
+
+renderWeekNav();
+renderWeeks();
+</script>
+</body>
+</html>

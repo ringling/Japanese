@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wednesday · Week 1 · Numbers Kanji 8-13 + Vocab</title>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;700&family=Noto+Serif+JP:wght@400;500;700&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1a1a;
+  --ink-soft: #3a3a3a;
+  --paper: #f4efe6;
+  --paper-soft: #ebe4d6;
+  --paper-deep: #e2d9c4;
+  --rule: #c9bfa9;
+  --rule-soft: #d8cfb9;
+  --accent: #8b1a1a;
+  --accent-soft: #b85c5c;
+  --muted: #6b6357;
+  --gold: #b8893d;
+  --vocab: #b8893d;
+  --vocab-bg: #ede1c4;
+  --done: #5a7a3a;
+  --done-bg: #d8e0c4;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 300;
+  line-height: 1.7;
+  padding: 50px 32px;
+  background-image:
+    radial-gradient(circle at 15% 25%, rgba(139, 26, 26, 0.03) 0%, transparent 40%),
+    radial-gradient(circle at 85% 75%, rgba(184, 137, 61, 0.04) 0%, transparent 50%);
+}
+
+.container {
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+/* ====== Masthead ====== */
+.masthead {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: end;
+  gap: 30px;
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 20px;
+  margin-bottom: 40px;
+}
+
+.masthead-mark {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 80px;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 0.85;
+  letter-spacing: -4px;
+}
+
+.masthead-title h1 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 32px;
+  font-weight: 500;
+  letter-spacing: -1px;
+  line-height: 1.1;
+  margin-bottom: 6px;
+}
+
+.masthead-title .sub {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.masthead-meta {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 1.5px;
+  text-align: right;
+  text-transform: uppercase;
+  line-height: 1.8;
+}
+
+/* ====== Intro ====== */
+.session-intro {
+  background: var(--paper-soft);
+  border-left: 3px solid var(--accent);
+  padding: 26px 32px;
+  margin-bottom: 50px;
+}
+
+.session-intro h3 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.session-intro p {
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 10px;
+  color: var(--ink-soft);
+}
+
+.session-intro p:last-child { margin-bottom: 0; }
+
+.session-intro strong {
+  font-weight: 500;
+  color: var(--ink);
+}
+
+/* ====== Section ====== */
+section {
+  margin-bottom: 60px;
+}
+
+.section-head {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: baseline;
+  gap: 20px;
+  padding-bottom: 14px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.section-num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 2px;
+  font-weight: 500;
+  color: var(--accent);
+}
+
+.section-num.vocab { color: var(--vocab); }
+
+.section-head h2 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 26px;
+  font-weight: 500;
+}
+
+.section-head .duration {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* ====== Part lead text ====== */
+.part-lead {
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 22px;
+  color: var(--ink-soft);
+}
+
+.part-lead strong {
+  font-weight: 500;
+  color: var(--ink);
+}
+
+/* ====== Handwriting practice block ====== */
+.handwriting-block {
+  background: var(--paper-soft);
+  border-left: 3px solid var(--accent);
+  padding: 22px 26px;
+  margin-bottom: 26px;
+}
+
+.handwriting-block h3 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.handwriting-block p {
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 12px;
+  color: var(--ink-soft);
+}
+
+.handwriting-block .instruction {
+  background: var(--paper);
+  border: 1px dashed var(--rule);
+  padding: 14px 18px;
+  font-size: 13px;
+  color: var(--muted);
+  margin: 10px 0;
+}
+
+.handwriting-block .instruction strong {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.kanji-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 16px 0;
+  align-items: center;
+}
+
+.kanji-tile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 32px;
+  color: var(--accent);
+}
+
+.stroke-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.stroke-card {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  padding: 10px 14px;
+  font-size: 12px;
+}
+
+.stroke-card .k {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 22px;
+  color: var(--accent);
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+.stroke-card .info {
+  display: inline-block;
+  vertical-align: middle;
+  color: var(--muted);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.5px;
+}
+
+/* ====== Kanji card detail (same style as Monday) ====== */
+.kanji-detail {
+  background: var(--paper-soft);
+  border: 1px solid var(--rule);
+  margin-bottom: 22px;
+  overflow: hidden;
+}
+
+.kanji-header {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  align-items: stretch;
+}
+
+.kanji-glyph-box {
+  background: var(--paper-deep);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  border-right: 1px solid var(--rule);
+}
+
+.kanji-glyph {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 90px;
+  font-weight: 500;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.kanji-meta {
+  padding: 22px 28px;
+}
+
+.kanji-num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.kanji-meaning {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.kanji-readings {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  font-size: 13px;
+}
+
+.reading {
+  font-family: 'IBM Plex Mono', monospace;
+  letter-spacing: 0.5px;
+}
+
+.reading .label {
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-right: 4px;
+  font-weight: 500;
+}
+
+.reading.on .label { color: var(--accent); }
+.reading.kun .label { color: var(--gold); }
+
+.reading .val {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 16px;
+  color: var(--ink);
+}
+
+.kanji-body {
+  padding: 24px 28px;
+  border-top: 1px solid var(--rule);
+}
+
+.kanji-body h4 {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 8px;
+  margin-top: 18px;
+}
+
+.kanji-body h4:first-child { margin-top: 0; }
+
+.kanji-body p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+  margin-bottom: 4px;
+}
+
+.kanji-body em {
+  font-style: italic;
+  color: var(--muted);
+}
+
+.examples-list {
+  list-style: none;
+  margin-top: 4px;
+}
+
+.examples-list li {
+  padding: 6px 0;
+  border-bottom: 1px dashed var(--rule);
+  font-size: 14px;
+}
+
+.examples-list li:last-child { border-bottom: none; }
+
+.examples-list .jp {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 16px;
+  color: var(--ink);
+  margin-right: 8px;
+}
+
+.examples-list ruby rt {
+  font-size: 9px;
+  color: var(--accent);
+}
+
+.examples-list .en {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.stroke-note {
+  background: var(--paper);
+  border: 1px dashed var(--rule);
+  padding: 12px 16px;
+  font-size: 13px;
+  color: var(--ink-soft);
+  font-style: italic;
+  margin-top: 8px;
+}
+
+.stroke-note strong {
+  font-style: normal;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+/* ====== Vocab section ====== */
+.vocab-block {
+  background: var(--vocab-bg);
+  border-left: 3px solid var(--vocab);
+  padding: 24px 28px;
+  margin-bottom: 26px;
+}
+
+.vocab-block h3 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 14px;
+}
+
+.vocab-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+}
+
+.vocab-table th {
+  background: var(--paper-soft);
+  padding: 10px 14px;
+  text-align: left;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 500;
+  border-bottom: 1px solid var(--rule);
+}
+
+.vocab-table td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--rule-soft);
+  font-size: 13px;
+  vertical-align: middle;
+}
+
+.vocab-table tr:last-child td {
+  border-bottom: none;
+}
+
+.vocab-table .jp {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 17px;
+  color: var(--ink);
+}
+
+.vocab-table .reading {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 13px;
+  color: var(--vocab);
+}
+
+.vocab-table .en {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.vocab-table tr.high td { background: var(--paper-deep); }
+
+.vocab-callout {
+  background: var(--paper);
+  border: 1px dashed var(--rule);
+  padding: 14px 18px;
+  margin-top: 14px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+.vocab-callout strong { color: var(--vocab); font-weight: 500; }
+
+/* ====== Drill block ====== */
+.drill-block {
+  background: var(--paper-soft);
+  border-left: 3px solid var(--gold);
+  padding: 22px 26px;
+  margin-bottom: 22px;
+}
+
+.drill-block h3 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.drill-block p {
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 10px;
+  color: var(--ink-soft);
+}
+
+.drill-block ol, .drill-block ul {
+  margin-left: 22px;
+  font-size: 14px;
+  line-height: 2;
+  color: var(--ink-soft);
+}
+
+.drill-block .jp {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 16px;
+}
+
+.drill-block .answer {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  padding: 8px 14px;
+  margin-top: 12px;
+  font-size: 12px;
+  color: var(--muted);
+  cursor: pointer;
+  font-family: 'IBM Plex Mono', monospace;
+  letter-spacing: 0.5px;
+  user-select: none;
+}
+
+.drill-block .answer.shown {
+  background: var(--done-bg);
+  color: var(--done);
+  border-color: var(--done);
+}
+
+.drill-block .answer::before {
+  content: "▸ Tap to reveal answer";
+}
+
+.drill-block .answer.shown::before {
+  content: "✓ ";
+}
+
+.drill-block .hidden-answer { display: none; }
+.drill-block .answer.shown .hidden-answer { display: inline; }
+
+/* ====== Closing ====== */
+.closing {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 28px 32px;
+  margin-top: 50px;
+}
+
+.closing h3 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 14px;
+  color: var(--paper);
+}
+
+.closing p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--paper-soft);
+  margin-bottom: 8px;
+}
+
+.closing strong {
+  color: var(--paper);
+  font-weight: 500;
+}
+
+.closing-actions {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--accent-soft);
+}
+
+.closing-actions p:first-child {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: var(--accent-soft);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+footer {
+  margin-top: 50px;
+  padding-top: 20px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+  text-align: center;
+  line-height: 1.8;
+}
+
+@media (max-width: 700px) {
+  body { padding: 30px 18px; }
+  .masthead { grid-template-columns: 1fr; gap: 16px; }
+  .masthead-meta { text-align: left; }
+  .kanji-header { grid-template-columns: 1fr; }
+  .kanji-glyph-box { padding: 20px; border-right: none; border-bottom: 1px solid var(--rule); }
+  .kanji-glyph { font-size: 70px; }
+  .section-head { grid-template-columns: 1fr; gap: 4px; }
+  .vocab-table th, .vocab-table td { padding: 8px 10px; font-size: 12px; }
+  .vocab-table .jp { font-size: 14px; }
+}
+
+@media print {
+  body { background: white; padding: 20px; }
+  .closing-actions, footer { break-before: avoid; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Masthead -->
+  <header class="masthead">
+    <div class="masthead-mark">水</div>
+    <div class="masthead-title">
+      <h1>Wednesday · Week 1</h1>
+      <div class="sub">Numbers Kanji 8–13 · Handwriting · Numbers/Money Vocab</div>
+    </div>
+    <div class="masthead-meta">
+      ~40 minutes<br>
+      Reinforce + introduce<br>
+      Kanji + vocabulary
+    </div>
+  </header>
+
+  <!-- Intro -->
+  <div class="session-intro">
+    <h3>Today's session</h3>
+    <p>Wednesday is the heaviest single day in the weekly cycle — you do <strong>three things</strong>: reinforce Monday's seven kanji through handwriting, meet the remaining six numbers (八 九 十 百 千 万), and add the first vocabulary set on numbers and money.</p>
+    <p>The rhythm: Monday's kanji had 48 hours to settle in your memory. Today you write them by hand to lock in the visual + motor pathway, then add the new ones while that fresh memory consolidates Monday's. <strong>Writing matters here</strong> — recognition and production use slightly different pathways, and stroke order awareness only develops through actually moving your pen.</p>
+    <p>The vocabulary section is small (~12 words today) and tightly themed to the kanji — numbers, prices, and money expressions. Many you'll already know from Marugoto restaurant scenes.</p>
+  </div>
+
+  <!-- PART 1: HANDWRITING -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">PART 01</span>
+      <h2>Reinforce — write Monday's seven by hand</h2>
+      <span class="duration">~10 min</span>
+    </div>
+
+    <p class="part-lead">You'll need <strong>paper and a pen</strong>. Don't skip this — it's the most important kanji-strengthening activity of the week. Recognition (reading) and production (writing) live in different parts of the brain. The JLPT only tests recognition, but writing trains your brain to <em>see</em> the kanji more accurately, which makes recognition faster and more reliable.</p>
+
+    <div class="handwriting-block">
+      <h3>Practice routine</h3>
+      <p>For each of these seven kanji from Monday, write the kanji <strong>three times</strong> by hand, paying attention to stroke order. Say the meaning aloud as you write the third one.</p>
+
+      <div class="kanji-row">
+        <div class="kanji-tile">一</div>
+        <div class="kanji-tile">二</div>
+        <div class="kanji-tile">三</div>
+        <div class="kanji-tile">四</div>
+        <div class="kanji-tile">五</div>
+        <div class="kanji-tile">六</div>
+        <div class="kanji-tile">七</div>
+      </div>
+
+      <div class="instruction">
+        <strong>Stroke order rule of thumb:</strong> Most kanji are written <em>top to bottom, left to right</em>. Horizontal strokes typically come before vertical. Boxes are drawn as left side first → top → bottom → right side closes the box.
+      </div>
+
+      <p>Stroke counts to keep in mind:</p>
+      <div class="stroke-info">
+        <div class="stroke-card"><span class="k">一</span><span class="info">1 stroke · L→R</span></div>
+        <div class="stroke-card"><span class="k">二</span><span class="info">2 strokes · top first</span></div>
+        <div class="stroke-card"><span class="k">三</span><span class="info">3 strokes · top to bottom</span></div>
+        <div class="stroke-card"><span class="k">四</span><span class="info">5 strokes</span></div>
+        <div class="stroke-card"><span class="k">五</span><span class="info">4 strokes</span></div>
+        <div class="stroke-card"><span class="k">六</span><span class="info">4 strokes</span></div>
+        <div class="stroke-card"><span class="k">七</span><span class="info">2 strokes · cross then hook</span></div>
+      </div>
+
+      <div class="instruction" style="margin-top: 16px;">
+        <strong>If you don't remember stroke order for a specific kanji,</strong> write it however feels natural — perfect stroke order is a luxury for N5. The motor act of writing is the goal, not perfect calligraphy.
+      </div>
+    </div>
+
+    <p class="part-lead">When you've finished writing, look at your paper. <strong>Are any of them surprising?</strong> Sometimes the act of writing reveals which kanji you weren't quite sure about. Note those — they're the ones to refresh on Friday's quiz day.</p>
+  </section>
+
+  <!-- PART 2: NEW KANJI -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">PART 02</span>
+      <h2>New kanji — 八 九 十 百 千 万</h2>
+      <span class="duration">~12 min</span>
+    </div>
+
+    <p class="part-lead">Six new kanji today, completing the numbers set. After today, you'll know all 13 of Week 1's kanji. The first three (八 九 十) finish the single digits; the last three (百 千 万) introduce the orders of magnitude — hundred, thousand, ten thousand. <strong>Note that 万 is unusual</strong> — Japanese counts in groups of 10,000, not 1,000 like English, so once you know it, all big numbers become accessible.</p>
+
+    <!-- 八 -->
+    <div class="kanji-detail">
+      <div class="kanji-header">
+        <div class="kanji-glyph-box"><div class="kanji-glyph">八</div></div>
+        <div class="kanji-meta">
+          <div class="kanji-num">Number 8 of 104</div>
+          <div class="kanji-meaning">eight</div>
+          <div class="kanji-readings">
+            <div class="reading on"><span class="label">音</span><span class="val">ハチ</span></div>
+            <div class="reading kun"><span class="label">訓</span><span class="val">やっ(つ) / よう</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="kanji-body">
+        <h4>Mnemonic</h4>
+        <p>Two strokes splitting open downward — like the number 8 cut in half, or open scissor blades. <em>Splitting = eight, the number that opens up many possibilities.</em></p>
+
+        <h4>Stroke count</h4>
+        <p>2 strokes (left stroke first, then right)</p>
+
+        <h4>Example words</h4>
+        <ul class="examples-list">
+          <li><span class="jp"><ruby>八<rt>はち</rt></ruby></span><span class="en">— eight</span></li>
+          <li><span class="jp"><ruby>八<rt>やっ</rt></ruby>つ</span><span class="en">— eight (items)</span></li>
+          <li><span class="jp"><ruby>八<rt>はち</rt></ruby><ruby>月<rt>がつ</rt></ruby></span><span class="en">— August</span></li>
+          <li><span class="jp"><ruby>八<rt>よう</rt></ruby><ruby>日<rt>か</rt></ruby></span><span class="en">— 8th of month / eight days (irregular!)</span></li>
+        </ul>
+
+        <div class="stroke-note">
+          <strong>Cultural note:</strong> 八 is considered a <em>lucky</em> number in Japan because the kanji shape widens at the bottom, suggesting prosperity that grows over time (suehirogari, 末広がり). The opposite of unlucky 四.
+        </div>
+      </div>
+    </div>
+
+    <!-- 九 -->
+    <div class="kanji-detail">
+      <div class="kanji-header">
+        <div class="kanji-glyph-box"><div class="kanji-glyph">九</div></div>
+        <div class="kanji-meta">
+          <div class="kanji-num">Number 9 of 104</div>
+          <div class="kanji-meaning">nine</div>
+          <div class="kanji-readings">
+            <div class="reading on"><span class="label">音</span><span class="val">キュウ / ク</span></div>
+            <div class="reading kun"><span class="label">訓</span><span class="val">ここの(つ)</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="kanji-body">
+        <h4>Mnemonic</h4>
+        <p>A flag bent over, almost ready to fall — nine is one short of ten, almost complete. Or imagine a stick figure throwing its arm forward.</p>
+
+        <h4>Stroke count</h4>
+        <p>2 strokes</p>
+
+        <h4>Example words</h4>
+        <ul class="examples-list">
+          <li><span class="jp"><ruby>九<rt>きゅう</rt></ruby></span><span class="en">— nine</span></li>
+          <li><span class="jp"><ruby>九<rt>ここの</rt></ruby>つ</span><span class="en">— nine (items)</span></li>
+          <li><span class="jp"><ruby>九<rt>く</rt></ruby><ruby>時<rt>じ</rt></ruby></span><span class="en">— 9 o'clock (note: く, not きゅう!)</span></li>
+          <li><span class="jp"><ruby>九<rt>く</rt></ruby><ruby>月<rt>がつ</rt></ruby></span><span class="en">— September (く!)</span></li>
+        </ul>
+
+        <div class="stroke-note">
+          <strong>Reading split:</strong> Like 七, 九 has two on'yomi readings — <em>キュウ</em> for general counting, and <em>ク</em> specifically for time (九時) and months (九月). The reading <em>ク</em> overlaps with 苦 (suffering, く), so 九 sometimes carries a faint unlucky association — but far less than 四.
+        </div>
+      </div>
+    </div>
+
+    <!-- 十 -->
+    <div class="kanji-detail">
+      <div class="kanji-header">
+        <div class="kanji-glyph-box"><div class="kanji-glyph">十</div></div>
+        <div class="kanji-meta">
+          <div class="kanji-num">Number 10 of 104</div>
+          <div class="kanji-meaning">ten</div>
+          <div class="kanji-readings">
+            <div class="reading on"><span class="label">音</span><span class="val">ジュウ / ジッ</span></div>
+            <div class="reading kun"><span class="label">訓</span><span class="val">とお / と</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="kanji-body">
+        <h4>Mnemonic</h4>
+        <p>A plus sign — <em>ten is complete, the foundation of the decimal system.</em> The horizontal stroke crosses the vertical, suggesting balance and completeness.</p>
+
+        <h4>Stroke count</h4>
+        <p>2 strokes (horizontal first, then vertical down through it)</p>
+
+        <h4>Example words</h4>
+        <ul class="examples-list">
+          <li><span class="jp"><ruby>十<rt>じゅう</rt></ruby></span><span class="en">— ten</span></li>
+          <li><span class="jp"><ruby>十<rt>とお</rt></ruby></span><span class="en">— ten (items, no つ)</span></li>
+          <li><span class="jp"><ruby>十<rt>じゅう</rt></ruby><ruby>円<rt>えん</rt></ruby></span><span class="en">— 10 yen</span></li>
+          <li><span class="jp"><ruby>十<rt>とお</rt></ruby><ruby>日<rt>か</rt></ruby></span><span class="en">— 10th of month / ten days</span></li>
+        </ul>
+
+        <div class="stroke-note">
+          <strong>Don't confuse with:</strong> 千 (せん, thousand) — they look very similar! 十 has a clean cross; 千 has a slanted top stroke that hooks over the cross. Watch this distinction carefully on test day.
+        </div>
+      </div>
+    </div>
+
+    <!-- 百 -->
+    <div class="kanji-detail">
+      <div class="kanji-header">
+        <div class="kanji-glyph-box"><div class="kanji-glyph">百</div></div>
+        <div class="kanji-meta">
+          <div class="kanji-num">Number 11 of 104</div>
+          <div class="kanji-meaning">hundred</div>
+          <div class="kanji-readings">
+            <div class="reading on"><span class="label">音</span><span class="val">ヒャク</span></div>
+            <div class="reading kun"><span class="label">訓</span><span class="val">—</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="kanji-body">
+        <h4>Mnemonic</h4>
+        <p>One (一) stacked on top of white (白) — <em>a hundred white things, a vast white field.</em> The 一 at the top represents "one" of these large units of 100.</p>
+
+        <h4>Stroke count</h4>
+        <p>6 strokes</p>
+
+        <h4>Example words</h4>
+        <ul class="examples-list">
+          <li><span class="jp"><ruby>百<rt>ひゃく</rt></ruby></span><span class="en">— hundred</span></li>
+          <li><span class="jp"><ruby>百<rt>ひゃく</rt></ruby><ruby>円<rt>えん</rt></ruby></span><span class="en">— 100 yen</span></li>
+          <li><span class="jp"><ruby>三<rt>さん</rt></ruby><ruby>百<rt>びゃく</rt></ruby></span><span class="en">— 300 (note: <em>びゃく</em>, not <em>ひゃく</em>!)</span></li>
+          <li><span class="jp"><ruby>八<rt>はっ</rt></ruby><ruby>百<rt>ぴゃく</rt></ruby><ruby>屋<rt>や</rt></ruby></span><span class="en">— greengrocer (lit. "800 store")</span></li>
+        </ul>
+
+        <div class="stroke-note">
+          <strong>From Tuesday's drill:</strong> remember the irregular hundreds — 300 さんびゃく · 600 ろっぴゃく · 800 はっぴゃく. The kanji 百 stays the same, but the reading shifts. This is one of your gap items — drill it.
+        </div>
+      </div>
+    </div>
+
+    <!-- 千 -->
+    <div class="kanji-detail">
+      <div class="kanji-header">
+        <div class="kanji-glyph-box"><div class="kanji-glyph">千</div></div>
+        <div class="kanji-meta">
+          <div class="kanji-num">Number 12 of 104</div>
+          <div class="kanji-meaning">thousand</div>
+          <div class="kanji-readings">
+            <div class="reading on"><span class="label">音</span><span class="val">セン</span></div>
+            <div class="reading kun"><span class="label">訓</span><span class="val">ち</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="kanji-body">
+        <h4>Mnemonic</h4>
+        <p>Like 十 (ten) but with a slanted hook on top — <em>much more than ten, even bigger than a hundred.</em> The slash at the top suggests crossing into a higher order of magnitude.</p>
+
+        <h4>Stroke count</h4>
+        <p>3 strokes (slanted top stroke first, then horizontal, then vertical)</p>
+
+        <h4>Example words</h4>
+        <ul class="examples-list">
+          <li><span class="jp"><ruby>千<rt>せん</rt></ruby></span><span class="en">— thousand</span></li>
+          <li><span class="jp"><ruby>千<rt>せん</rt></ruby><ruby>円<rt>えん</rt></ruby></span><span class="en">— 1000 yen</span></li>
+          <li><span class="jp"><ruby>三<rt>さん</rt></ruby><ruby>千<rt>ぜん</rt></ruby></span><span class="en">— 3,000 (note: <em>ぜん</em>!)</span></li>
+          <li><span class="jp"><ruby>八<rt>はっ</rt></ruby><ruby>千<rt>せん</rt></ruby></span><span class="en">— 8,000 (doubled っ)</span></li>
+        </ul>
+
+        <div class="stroke-note">
+          <strong>Like with 百</strong>, the thousands have a few irregular readings — 3,000 = さんぜん and 8,000 = はっせん. Less common on the test than the hundreds, but worth knowing.
+        </div>
+      </div>
+    </div>
+
+    <!-- 万 -->
+    <div class="kanji-detail">
+      <div class="kanji-header">
+        <div class="kanji-glyph-box"><div class="kanji-glyph">万</div></div>
+        <div class="kanji-meta">
+          <div class="kanji-num">Number 13 of 104</div>
+          <div class="kanji-meaning">ten thousand</div>
+          <div class="kanji-readings">
+            <div class="reading on"><span class="label">音</span><span class="val">マン / バン</span></div>
+            <div class="reading kun"><span class="label">訓</span><span class="val">—</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="kanji-body">
+        <h4>Mnemonic</h4>
+        <p>A flag waving over a vast quantity — <em>ten thousand, "myriad."</em> Originally pictographic of a swarm of bees or scorpion, suggesting innumerable.</p>
+
+        <h4>Stroke count</h4>
+        <p>3 strokes</p>
+
+        <h4>Example words</h4>
+        <ul class="examples-list">
+          <li><span class="jp"><ruby>一<rt>いち</rt></ruby><ruby>万<rt>まん</rt></ruby></span><span class="en">— 10,000 (always with いち!)</span></li>
+          <li><span class="jp"><ruby>一<rt>いち</rt></ruby><ruby>万<rt>まん</rt></ruby><ruby>円<rt>えん</rt></ruby></span><span class="en">— 10,000 yen</span></li>
+          <li><span class="jp"><ruby>百<rt>ひゃく</rt></ruby><ruby>万<rt>まん</rt></ruby></span><span class="en">— 1,000,000 (one million)</span></li>
+          <li><span class="jp"><ruby>万<rt>ばん</rt></ruby><ruby>年<rt>ねん</rt></ruby><ruby>筆<rt>ひつ</rt></ruby></span><span class="en">— fountain pen</span></li>
+        </ul>
+
+        <div class="stroke-note">
+          <strong>Critical rule:</strong> 万 is always preceded by a number, even for "ten thousand" — say <em>いちまん</em>, never just <em>まん</em>. Compare with 百 (which can stand alone as ひゃく) and 千 (which can stand alone as せん). 万 is special. Also note: Japanese counts in 10,000 groups, so 100,000 is <em>じゅうまん</em> ("ten ten-thousands") and 1,000,000 is <em>ひゃくまん</em>.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PART 3: VOCABULARY -->
+  <section>
+    <div class="section-head">
+      <span class="section-num vocab">PART 03</span>
+      <h2>Vocabulary — Numbers &amp; Money</h2>
+      <span class="duration">~10 min</span>
+    </div>
+
+    <p class="part-lead">Today's first vocabulary set. The words are tightly themed to the numbers kanji you've just learned, so each word reinforces a kanji and vice versa. <strong>Many will be familiar from Marugoto</strong> — speed-read through them and mark known what you already know in the Vocabulary Flashcards tool. Focus mental effort on the unfamiliar ones.</p>
+
+    <div class="vocab-block">
+      <h3>Money &amp; price expressions</h3>
+      <table class="vocab-table">
+        <thead>
+          <tr><th>Word</th><th>Reading</th><th>English</th></tr>
+        </thead>
+        <tbody>
+          <tr class="high"><td class="jp">円</td><td class="reading">えん</td><td class="en">yen (currency)</td></tr>
+          <tr class="high"><td class="jp">お金</td><td class="reading">おかね</td><td class="en">money</td></tr>
+          <tr><td class="jp">値段</td><td class="reading">ねだん</td><td class="en">price</td></tr>
+          <tr class="high"><td class="jp">高い</td><td class="reading">たかい</td><td class="en">expensive (also: tall)</td></tr>
+          <tr class="high"><td class="jp">安い</td><td class="reading">やすい</td><td class="en">cheap</td></tr>
+          <tr class="high"><td class="jp">いくら</td><td class="reading">いくら</td><td class="en">how much?</td></tr>
+          <tr><td class="jp">全部で</td><td class="reading">ぜんぶで</td><td class="en">in total, all together</td></tr>
+          <tr><td class="jp">財布</td><td class="reading">さいふ</td><td class="en">wallet</td></tr>
+        </tbody>
+      </table>
+      <div class="vocab-callout">
+        <strong>High-frequency words</strong> are highlighted — these appear constantly in Marugoto restaurant scenes and on JLPT N5. <em>いくらですか？</em> ("how much is it?") is one of the most useful Japanese sentences you can know.
+      </div>
+    </div>
+
+    <div class="vocab-block">
+      <h3>Counting people &amp; age</h3>
+      <table class="vocab-table">
+        <thead>
+          <tr><th>Word</th><th>Reading</th><th>English</th></tr>
+        </thead>
+        <tbody>
+          <tr class="high"><td class="jp">一人</td><td class="reading">ひとり</td><td class="en">one person / alone</td></tr>
+          <tr class="high"><td class="jp">二人</td><td class="reading">ふたり</td><td class="en">two people</td></tr>
+          <tr><td class="jp">大人</td><td class="reading">おとな</td><td class="en">adult</td></tr>
+          <tr><td class="jp">子供</td><td class="reading">こども</td><td class="en">child</td></tr>
+          <tr class="high"><td class="jp">いくつ</td><td class="reading">いくつ</td><td class="en">how many? / how old?</td></tr>
+          <tr><td class="jp">二十歳</td><td class="reading">はたち</td><td class="en">20 years old (irregular reading!)</td></tr>
+        </tbody>
+      </table>
+      <div class="vocab-callout">
+        <strong>Note the irregularity:</strong> ひとり and ふたり (one/two people) are irregular — drilled on Tuesday already. And <em>はたち</em> (20 years old) is a special reading for the coming-of-age milestone — won't sound like its kanji.
+      </div>
+    </div>
+  </section>
+
+  <!-- DRILL -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">DRILL</span>
+      <h2>Quick check</h2>
+      <span class="duration">~5 min</span>
+    </div>
+
+    <div class="drill-block">
+      <h3>Drill 1 · Read the new kanji aloud</h3>
+      <p>Plain numbers, no compounds yet.</p>
+      <ol>
+        <li>八</li>
+        <li>十</li>
+        <li>九</li>
+        <li>千</li>
+        <li>百</li>
+        <li>万</li>
+      </ol>
+      <div class="answer" onclick="this.classList.toggle('shown')">
+        <span class="hidden-answer">はち · じゅう · きゅう · せん · ひゃく · まん (but: 一万 = いちまん!)</span>
+      </div>
+    </div>
+
+    <div class="drill-block">
+      <h3>Drill 2 · Read these prices aloud</h3>
+      <p>Combining today's kanji with the irregular readings from Tuesday.</p>
+      <ol>
+        <li><span class="jp">百円</span></li>
+        <li><span class="jp">三百円</span></li>
+        <li><span class="jp">八百円</span></li>
+        <li><span class="jp">千円</span></li>
+        <li><span class="jp">三千円</span></li>
+        <li><span class="jp">一万円</span></li>
+        <li><span class="jp">十万円</span></li>
+      </ol>
+      <div class="answer" onclick="this.classList.toggle('shown')">
+        <span class="hidden-answer">ひゃくえん · さんびゃくえん · はっぴゃくえん · せんえん · さんぜんえん · いちまんえん · じゅうまんえん</span>
+      </div>
+    </div>
+
+    <div class="drill-block">
+      <h3>Drill 3 · Money mini-dialogue</h3>
+      <p>Read each line aloud, then translate. Use today's vocab.</p>
+      <ol>
+        <li><span class="jp">これはいくらですか。</span></li>
+        <li><span class="jp">三百円です。</span></li>
+        <li><span class="jp">高いですね。</span></li>
+        <li><span class="jp">全部でいくらですか。</span></li>
+        <li><span class="jp">千五百円です。</span></li>
+      </ol>
+      <div class="answer" onclick="this.classList.toggle('shown')">
+        <span class="hidden-answer">"How much is this?" / "It's 300 yen." / "That's expensive, isn't it." / "How much is it all together?" / "It's 1,500 yen."</span>
+      </div>
+    </div>
+
+    <div class="drill-block">
+      <h3>Drill 4 · The kanji you might confuse</h3>
+      <p>Look at each pair carefully. What's the difference?</p>
+      <ol>
+        <li>十 vs 千</li>
+        <li>八 vs 入 (you'll meet 入 in Week 7)</li>
+        <li>百 vs 白 (the bottom of 百 IS 白 — meaning "white")</li>
+      </ol>
+      <div class="answer" onclick="this.classList.toggle('shown')">
+        <span class="hidden-answer">十 (じゅう, ten) has a clean cross. 千 (せん, thousand) has a slanted hook on top. · 八 (eight) splits open at the bottom; 入 (enter) is similar but the right stroke goes UNDER the left at the top. · 百 = 一 + 白 (one + white) = hundred. The components themselves are meaningful.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Closing -->
+  <div class="closing">
+    <h3>Halfway through Week 1.</h3>
+    <p>You've now met all 13 numbers kanji, written Monday's seven by hand, and added your first vocabulary set. <strong>The hardest day of the week is done.</strong> Friday is the lighter quiz day — recognition rather than introduction.</p>
+    <p>If anything from today felt shaky, that's information, not failure. Note which ones, and Friday's quiz will surface them automatically. The Mon→Wed→Fri rhythm is designed so each day builds on the last with enough rest between to consolidate.</p>
+    <p><strong>Optional bonus:</strong> open the Vocabulary Flashcards tool, filter to "Numbers & Counting," and quickly mark known what you already know. This sets up Friday's review.</p>
+
+    <div class="closing-actions">
+      <p>Friday's plan</p>
+      <p style="font-family: 'IBM Plex Sans', sans-serif; font-size: 13px; letter-spacing: normal; color: var(--paper-soft); text-transform: none;">Self-quiz on all 13 of this week's kanji (random order, meanings only, then readings). Plus a short supplemental vocab set on age and counting people. Lighter session — about 30 minutes total.</p>
+    </div>
+  </div>
+
+  <footer>
+    <div>Week 1 · Wednesday · Numbers Kanji 8–13 + Money/Counting Vocab</div>
+    <div>Companion to the Full Weekly Schedule and Vocabulary Flashcards tool</div>
+  </footer>
+
+</div>
+</body>
+</html>

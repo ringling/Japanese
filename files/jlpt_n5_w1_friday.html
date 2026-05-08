@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Friday · Week 1 · Self-Quiz + Age Vocab</title>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;700&family=Noto+Serif+JP:wght@400;500;700&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1a1a;
+  --ink-soft: #3a3a3a;
+  --paper: #f4efe6;
+  --paper-soft: #ebe4d6;
+  --paper-deep: #e2d9c4;
+  --rule: #c9bfa9;
+  --rule-soft: #d8cfb9;
+  --accent: #8b1a1a;
+  --accent-soft: #b85c5c;
+  --muted: #6b6357;
+  --gold: #b8893d;
+  --vocab: #b8893d;
+  --vocab-bg: #ede1c4;
+  --done: #5a7a3a;
+  --done-bg: #d8e0c4;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 300;
+  line-height: 1.7;
+  padding: 50px 32px;
+  background-image:
+    radial-gradient(circle at 15% 25%, rgba(139, 26, 26, 0.03) 0%, transparent 40%),
+    radial-gradient(circle at 85% 75%, rgba(184, 137, 61, 0.04) 0%, transparent 50%);
+}
+
+.container { max-width: 880px; margin: 0 auto; }
+
+/* ====== Masthead ====== */
+.masthead {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: end;
+  gap: 30px;
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 20px;
+  margin-bottom: 40px;
+}
+
+.masthead-mark {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 80px;
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 0.85;
+  letter-spacing: -4px;
+}
+
+.masthead-title h1 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 32px;
+  font-weight: 500;
+  letter-spacing: -1px;
+  line-height: 1.1;
+  margin-bottom: 6px;
+}
+
+.masthead-title .sub {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.masthead-meta {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 1.5px;
+  text-align: right;
+  text-transform: uppercase;
+  line-height: 1.8;
+}
+
+/* ====== Intro ====== */
+.session-intro {
+  background: var(--paper-soft);
+  border-left: 3px solid var(--gold);
+  padding: 26px 32px;
+  margin-bottom: 50px;
+}
+
+.session-intro h3 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.session-intro p {
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 10px;
+  color: var(--ink-soft);
+}
+
+.session-intro p:last-child { margin-bottom: 0; }
+
+.session-intro strong {
+  font-weight: 500;
+  color: var(--ink);
+}
+
+/* ====== Section ====== */
+section { margin-bottom: 60px; }
+
+.section-head {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: baseline;
+  gap: 20px;
+  padding-bottom: 14px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.section-num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 2px;
+  font-weight: 500;
+  color: var(--accent);
+}
+
+.section-num.gold { color: var(--gold); }
+.section-num.vocab { color: var(--vocab); }
+
+.section-head h2 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 26px;
+  font-weight: 500;
+}
+
+.section-head .duration {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.lead {
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 22px;
+  color: var(--ink-soft);
+}
+
+.lead strong { font-weight: 500; color: var(--ink); }
+.lead em { font-style: italic; color: var(--muted); }
+
+/* ====== Quiz blocks ====== */
+.quiz-pass {
+  background: var(--paper-soft);
+  border-left: 3px solid var(--accent);
+  padding: 24px 28px;
+  margin-bottom: 22px;
+}
+
+.quiz-pass h3 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+
+.quiz-pass .pass-meta {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 14px;
+}
+
+.quiz-pass .instructions {
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin-bottom: 16px;
+  line-height: 1.7;
+}
+
+.quiz-pass .instructions strong {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.kanji-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.k-quiz-card {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  padding: 14px 4px;
+  text-align: center;
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 32px;
+  color: var(--accent);
+  cursor: default;
+}
+
+.answer-strip {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  padding: 10px 14px;
+  font-size: 12px;
+  color: var(--muted);
+  cursor: pointer;
+  font-family: 'IBM Plex Mono', monospace;
+  letter-spacing: 0.5px;
+  user-select: none;
+  margin-top: 6px;
+  line-height: 1.7;
+}
+
+.answer-strip.shown {
+  background: var(--done-bg);
+  color: var(--done);
+  border-color: var(--done);
+}
+
+.answer-strip::before { content: "▸ Tap to reveal answers"; }
+.answer-strip.shown::before { content: "✓ "; }
+
+.answer-strip .hidden-answer { display: none; }
+.answer-strip.shown .hidden-answer { display: inline; }
+
+.answer-strip .jp {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 14px;
+  color: var(--done);
+  margin-right: 4px;
+}
+
+/* Self-rating */
+.self-rating {
+  background: var(--paper);
+  border: 1px dashed var(--rule);
+  padding: 14px 18px;
+  margin-top: 14px;
+  font-size: 13px;
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
+
+.self-rating strong {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+/* ====== Vocab section ====== */
+.vocab-block {
+  background: var(--vocab-bg);
+  border-left: 3px solid var(--vocab);
+  padding: 24px 28px;
+  margin-bottom: 22px;
+}
+
+.vocab-block h3 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 14px;
+}
+
+.vocab-block p {
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 14px;
+  color: var(--ink-soft);
+}
+
+.vocab-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+}
+
+.vocab-table th {
+  background: var(--paper-soft);
+  padding: 10px 14px;
+  text-align: left;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 500;
+  border-bottom: 1px solid var(--rule);
+}
+
+.vocab-table td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--rule-soft);
+  font-size: 13px;
+  vertical-align: middle;
+}
+
+.vocab-table tr:last-child td { border-bottom: none; }
+
+.vocab-table .jp {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 17px;
+  color: var(--ink);
+}
+
+.vocab-table .reading {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 13px;
+  color: var(--vocab);
+}
+
+.vocab-table .en {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.vocab-table tr.high td { background: var(--paper-deep); }
+
+.vocab-callout {
+  background: var(--paper);
+  border: 1px dashed var(--rule);
+  padding: 14px 18px;
+  margin-top: 14px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+.vocab-callout strong { color: var(--vocab); font-weight: 500; }
+
+/* ====== Closing ====== */
+.closing {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 28px 32px;
+  margin-top: 50px;
+}
+
+.closing h3 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 14px;
+  color: var(--paper);
+}
+
+.closing p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--paper-soft);
+  margin-bottom: 8px;
+}
+
+.closing strong { color: var(--paper); font-weight: 500; }
+
+.closing-actions {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--accent-soft);
+}
+
+.closing-actions p:first-child {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: var(--accent-soft);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+footer {
+  margin-top: 50px;
+  padding-top: 20px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+  text-align: center;
+  line-height: 1.8;
+}
+
+@media (max-width: 700px) {
+  body { padding: 30px 18px; }
+  .masthead { grid-template-columns: 1fr; gap: 16px; }
+  .masthead-meta { text-align: left; }
+  .section-head { grid-template-columns: 1fr; gap: 4px; }
+  .vocab-table th, .vocab-table td { padding: 8px 10px; font-size: 12px; }
+  .vocab-table .jp { font-size: 14px; }
+  .kanji-grid { grid-template-columns: repeat(auto-fill, minmax(56px, 1fr)); }
+  .k-quiz-card { font-size: 26px; padding: 10px 4px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Masthead -->
+  <header class="masthead">
+    <div class="masthead-mark">金</div>
+    <div class="masthead-title">
+      <h1>Friday · Week 1</h1>
+      <div class="sub">Self-Quiz · All 13 Numbers + Age & Counting Vocab</div>
+    </div>
+    <div class="masthead-meta">
+      ~40 minutes<br>
+      Active recall · 3 passes<br>
+      Light vocab supplement
+    </div>
+  </header>
+
+  <!-- Intro -->
+  <div class="session-intro">
+    <h3>Today's session</h3>
+    <p>Friday is <strong>quiz day</strong>. The full ~30 minutes of kanji effort goes into <em>active retrieval</em> — testing what you actually remember rather than rereading what you've already seen. Active retrieval is the strongest single learning action: it's worth more than five passive re-readings of the same material.</p>
+    <p>The structure is three passes through all 13 of this week's kanji:</p>
+    <p><strong>Pass 1 — Meanings:</strong> see the kanji, recall what it means.<br>
+    <strong>Pass 2 — Readings:</strong> see the kanji, recall both on'yomi and kun'yomi.<br>
+    <strong>Pass 3 — Production:</strong> see English, recall the kanji.</p>
+    <p>If a kanji feels shaky, that's information — not failure. Note it. Saturday's review will surface it again.</p>
+    <p>After the quiz, a small supplemental vocabulary set on <strong>age and counting people</strong> rounds out the day in ~10 minutes.</p>
+  </div>
+
+  <!-- PASS 1 -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">PASS 01</span>
+      <h2>Meanings — see kanji, say English</h2>
+      <span class="duration">~7 min</span>
+    </div>
+
+    <div class="quiz-pass">
+      <h3>Look at each kanji. Say the meaning aloud. Don't peek.</h3>
+      <div class="pass-meta">All 13 of Week 1 · randomized order</div>
+
+      <div class="instructions">
+        Go through the row at a steady pace — about 3 seconds per kanji. If a meaning doesn't come within 3 seconds, that one's shaky and goes on your "review more" list. <strong>Speed matters here</strong> — fluent recognition is the goal, not slow-motion translation.
+      </div>
+
+      <div class="kanji-grid">
+        <div class="k-quiz-card">六</div>
+        <div class="k-quiz-card">百</div>
+        <div class="k-quiz-card">一</div>
+        <div class="k-quiz-card">九</div>
+        <div class="k-quiz-card">三</div>
+        <div class="k-quiz-card">万</div>
+        <div class="k-quiz-card">七</div>
+        <div class="k-quiz-card">十</div>
+        <div class="k-quiz-card">五</div>
+        <div class="k-quiz-card">二</div>
+        <div class="k-quiz-card">八</div>
+        <div class="k-quiz-card">千</div>
+        <div class="k-quiz-card">四</div>
+      </div>
+
+      <div class="answer-strip" onclick="this.classList.toggle('shown')">
+        <span class="hidden-answer">六 six · 百 hundred · 一 one · 九 nine · 三 three · 万 ten thousand · 七 seven · 十 ten · 五 five · 二 two · 八 eight · 千 thousand · 四 four</span>
+      </div>
+
+      <div class="self-rating">
+        <strong>Self-rate:</strong> How many came within 3 seconds? <em>13/13 = ready · 10-12 = solid · 7-9 = re-read those · &lt;7 = revisit Week 1's Mon &amp; Wed guides</em>
+      </div>
+    </div>
+  </section>
+
+  <!-- PASS 2 -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">PASS 02</span>
+      <h2>Readings — see kanji, recall both readings</h2>
+      <span class="duration">~10 min</span>
+    </div>
+
+    <p class="lead">This pass is harder. For each kanji, you need to recall the <strong>on'yomi</strong> (音, in katakana convention) and the <strong>kun'yomi</strong> (訓, in hiragana). Some kanji have multiple of each — get the <em>most common</em> one and you've passed.</p>
+
+    <div class="quiz-pass">
+      <h3>For each kanji: state both readings aloud.</h3>
+      <div class="pass-meta">If you blank on the kun'yomi but get the on'yomi, that's a half-pass — fine for now.</div>
+
+      <div class="instructions">
+        Go group-by-group rather than all at once. Five at a time, check the answers, then move on. Forcing recall <em>before</em> seeing the answer is what builds memory.
+      </div>
+
+      <h4 style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin: 16px 0 8px;">Group 1 — Single digits 1-5</h4>
+      <div class="kanji-grid">
+        <div class="k-quiz-card">一</div>
+        <div class="k-quiz-card">二</div>
+        <div class="k-quiz-card">三</div>
+        <div class="k-quiz-card">四</div>
+        <div class="k-quiz-card">五</div>
+      </div>
+      <div class="answer-strip" onclick="this.classList.toggle('shown')">
+        <span class="hidden-answer">一 イチ · ひと(つ) | 二 ニ · ふた(つ) | 三 サン · みっ(つ) | 四 シ / よん · よっ(つ) | 五 ゴ · いつ(つ)</span>
+      </div>
+
+      <h4 style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin: 20px 0 8px;">Group 2 — Single digits 6-9 + 10</h4>
+      <div class="kanji-grid">
+        <div class="k-quiz-card">六</div>
+        <div class="k-quiz-card">七</div>
+        <div class="k-quiz-card">八</div>
+        <div class="k-quiz-card">九</div>
+        <div class="k-quiz-card">十</div>
+      </div>
+      <div class="answer-strip" onclick="this.classList.toggle('shown')">
+        <span class="hidden-answer">六 ロク · むっ(つ) | 七 シチ · なな | 八 ハチ · やっ(つ) | 九 キュウ / ク · ここの(つ) | 十 ジュウ · とお</span>
+      </div>
+
+      <h4 style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin: 20px 0 8px;">Group 3 — Big numbers</h4>
+      <div class="kanji-grid">
+        <div class="k-quiz-card">百</div>
+        <div class="k-quiz-card">千</div>
+        <div class="k-quiz-card">万</div>
+      </div>
+      <div class="answer-strip" onclick="this.classList.toggle('shown')">
+        <span class="hidden-answer">百 ヒャク · — (no common kun'yomi) | 千 セン · ち | 万 マン · — (no common kun'yomi)</span>
+      </div>
+
+      <div class="self-rating">
+        <strong>Note:</strong> 百 and 万 lack common kun'yomi readings — so for those, just the on'yomi (ヒャク, マン) is enough. This is normal for Sino-Japanese number words.
+      </div>
+    </div>
+  </section>
+
+  <!-- PASS 3 -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">PASS 03</span>
+      <h2>Production — see English, write the kanji</h2>
+      <span class="duration">~8 min</span>
+    </div>
+
+    <p class="lead">The hardest pass. Recognition (passive) is far easier than production (active). The JLPT only tests recognition, but practicing production sharpens your recognition by forcing you to notice the visual differences between similar kanji (十 vs 千, for example).</p>
+
+    <div class="quiz-pass">
+      <h3>Take a piece of paper. For each English word, write the kanji.</h3>
+      <div class="pass-meta">Pen and paper required. No typing.</div>
+
+      <div class="instructions">
+        Don't just visualize — actually write. The motor act is what locks the kanji shape into long-term memory. Write each kanji once, even the easy ones (一, 二, 三 are fine but write them anyway).
+      </div>
+
+      <ol style="margin-left: 22px; font-size: 14px; line-height: 2.2; color: var(--ink-soft);">
+        <li>seven</li>
+        <li>thousand</li>
+        <li>two</li>
+        <li>nine</li>
+        <li>hundred</li>
+        <li>five</li>
+        <li>ten thousand</li>
+        <li>one</li>
+        <li>eight</li>
+        <li>four</li>
+        <li>ten</li>
+        <li>six</li>
+        <li>three</li>
+      </ol>
+
+      <div class="answer-strip" onclick="this.classList.toggle('shown')">
+        <span class="hidden-answer">七 · 千 · 二 · 九 · 百 · 五 · 万 · 一 · 八 · 四 · 十 · 六 · 三</span>
+      </div>
+
+      <div class="self-rating">
+        <strong>Look at your paper:</strong> any that came out wrong, hesitantly, or that you had to think about? Those are tomorrow's review priorities. Common confusions: 十 vs 千 (slanted hook on 千), 八 vs 入 (right-stroke order differs), 四 vs 西 (西 is Week 6 — don't worry yet).
+      </div>
+    </div>
+  </section>
+
+  <!-- VOCAB SUPPLEMENT -->
+  <section>
+    <div class="section-head">
+      <span class="section-num vocab">PART 04</span>
+      <h2>Vocabulary supplement — Age &amp; Counting people</h2>
+      <span class="duration">~10 min</span>
+    </div>
+
+    <p class="lead">A small additional set today, building on Wednesday's numbers/money vocabulary. These words use the people-counting irregularities you've been drilling all week (ひとり, ふたり, etc.), so it's coherent reinforcement rather than new ground.</p>
+
+    <div class="vocab-block">
+      <h3>Counting people</h3>
+      <p>The first two are irregular — ひとり and ふたり use native readings, not the on'yomi. From three onwards, the pattern becomes regular (〜にん).</p>
+
+      <table class="vocab-table">
+        <thead>
+          <tr><th>Word</th><th>Reading</th><th>English</th></tr>
+        </thead>
+        <tbody>
+          <tr class="high"><td class="jp">一人</td><td class="reading">ひとり</td><td class="en">one person / alone (irregular)</td></tr>
+          <tr class="high"><td class="jp">二人</td><td class="reading">ふたり</td><td class="en">two people (irregular)</td></tr>
+          <tr><td class="jp">三人</td><td class="reading">さんにん</td><td class="en">three people</td></tr>
+          <tr><td class="jp">四人</td><td class="reading">よにん</td><td class="en">four people (note: <em>よ</em>, not <em>よん</em>)</td></tr>
+          <tr><td class="jp">何人</td><td class="reading">なんにん</td><td class="en">how many people?</td></tr>
+        </tbody>
+      </table>
+
+      <div class="vocab-callout">
+        <strong>Marugoto link:</strong> you've used these in restaurant scenes — <em>3人です</em> ("three people") on entry to a restaurant. The form is familiar; today is just locking it in for testing.
+      </div>
+    </div>
+
+    <div class="vocab-block">
+      <h3>Age expressions</h3>
+      <p>Asking and stating age uses the counter 〜歳 (さい). Most readings are regular except 20 — that's a special cultural milestone with its own irregular reading.</p>
+
+      <table class="vocab-table">
+        <thead>
+          <tr><th>Word</th><th>Reading</th><th>English</th></tr>
+        </thead>
+        <tbody>
+          <tr class="high"><td class="jp">〜歳</td><td class="reading">〜さい</td><td class="en">~ years old (counter)</td></tr>
+          <tr class="high"><td class="jp">何歳</td><td class="reading">なんさい</td><td class="en">how old? (polite enough for most contexts)</td></tr>
+          <tr><td class="jp">おいくつ</td><td class="reading">おいくつ</td><td class="en">how old? (more polite)</td></tr>
+          <tr><td class="jp">二十歳</td><td class="reading">はたち</td><td class="en">20 years old (special reading!)</td></tr>
+          <tr><td class="jp">大人</td><td class="reading">おとな</td><td class="en">adult</td></tr>
+          <tr><td class="jp">子供</td><td class="reading">こども</td><td class="en">child</td></tr>
+        </tbody>
+      </table>
+
+      <div class="vocab-callout">
+        <strong>Cultural note:</strong> 二十歳 (はたち) is the traditional age of adulthood in Japan. While the legal age has shifted to 18 for some purposes, the kanji 二十歳 with its special reading is still used for Coming-of-Age Day (成人の日) — a national holiday for those turning 20. The irregular reading marks the cultural significance.
+      </div>
+    </div>
+
+    <div class="vocab-block">
+      <h3>Quick application — read these aloud</h3>
+      <p>Combining today's vocab with the kanji you just quizzed.</p>
+
+      <ol style="margin-left: 22px; font-size: 16px; line-height: 2.2; color: var(--ink-soft); font-family: 'Noto Serif JP', serif;">
+        <li>三人で行きます。</li>
+        <li>何歳ですか。</li>
+        <li>二十歳です。</li>
+        <li>子供は二人います。</li>
+        <li>大人は一人、子供は三人です。</li>
+      </ol>
+
+      <div class="answer-strip" onclick="this.classList.toggle('shown')">
+        <span class="hidden-answer">"We'll go as three people / together with three" · "How old are you?" · "I'm 20 years old (はたち)" · "I have two children" · "One adult and three children"</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Closing -->
+  <div class="closing">
+    <h3>Week 1's learning is in the books.</h3>
+    <p>You've now covered all 13 numbers kanji, the related counters and irregular readings, and the basic vocabulary around money, age, and counting people. <strong>Whatever stuck through the Friday quiz is yours.</strong> What didn't stick perfectly will get one more pass on Saturday.</p>
+    <p>Don't try to "fix" anything tonight. The 24-hour gap between Friday and Saturday is part of the design — your brain consolidates what was tested today even while you do something else.</p>
+
+    <div class="closing-actions">
+      <p>Saturday's plan</p>
+      <p style="font-family: 'IBM Plex Sans', sans-serif; font-size: 13px; letter-spacing: normal; color: var(--paper-soft); text-transform: none;">Cumulative review — random recall on all 13 kanji + a price-reading exercise that brings together kanji, counters, and the irregular readings you've drilled. ~30 minutes. Last session of Week 1.</p>
+    </div>
+  </div>
+
+  <footer>
+    <div>Week 1 · Friday · Self-Quiz + Age &amp; Counting Vocab</div>
+    <div>Companion to the Full Weekly Schedule and Kanji Tracker</div>
+  </footer>
+
+</div>
+</body>
+</html>

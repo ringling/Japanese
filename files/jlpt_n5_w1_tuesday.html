@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tuesday · Week 1 · Counters & Number Readings</title>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;700&family=Noto+Serif+JP:wght@400;500;700&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1a1a;
+  --ink-soft: #3a3a3a;
+  --paper: #f4efe6;
+  --paper-soft: #ebe4d6;
+  --paper-deep: #e2d9c4;
+  --rule: #c9bfa9;
+  --accent: #8b1a1a;
+  --accent-soft: #b85c5c;
+  --muted: #6b6357;
+  --gold: #b8893d;
+  --grammar: #3a5a7a;
+  --grammar-bg: #d4dce4;
+  --warning: #b8893d;
+  --warning-bg: #ede1c4;
+  --done: #5a7a3a;
+  --done-bg: #d8e0c4;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 300;
+  line-height: 1.7;
+  padding: 50px 32px;
+  background-image:
+    radial-gradient(circle at 15% 25%, rgba(58, 90, 122, 0.04) 0%, transparent 40%),
+    radial-gradient(circle at 85% 75%, rgba(184, 137, 61, 0.04) 0%, transparent 50%);
+}
+
+.container {
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+/* ====== Masthead ====== */
+.masthead {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: end;
+  gap: 30px;
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 20px;
+  margin-bottom: 40px;
+}
+
+.masthead-mark {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 80px;
+  font-weight: 700;
+  color: var(--grammar);
+  line-height: 0.85;
+  letter-spacing: -4px;
+}
+
+.masthead-title h1 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 32px;
+  font-weight: 500;
+  letter-spacing: -1px;
+  line-height: 1.1;
+  margin-bottom: 6px;
+}
+
+.masthead-title .sub {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.masthead-meta {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 1.5px;
+  text-align: right;
+  text-transform: uppercase;
+  line-height: 1.8;
+}
+
+/* ====== Intro ====== */
+.session-intro {
+  background: var(--paper-soft);
+  border-left: 3px solid var(--grammar);
+  padding: 26px 32px;
+  margin-bottom: 50px;
+}
+
+.session-intro h3 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.session-intro p {
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 10px;
+  color: var(--ink-soft);
+}
+
+.session-intro p:last-child { margin-bottom: 0; }
+
+.session-intro strong {
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.session-intro em {
+  color: var(--grammar);
+  font-style: normal;
+  font-weight: 500;
+}
+
+/* ====== Section ====== */
+section {
+  margin-bottom: 60px;
+}
+
+.section-head {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: baseline;
+  gap: 20px;
+  padding-bottom: 14px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.section-num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--grammar);
+  letter-spacing: 2px;
+  font-weight: 500;
+}
+
+.section-head h2 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 26px;
+  font-weight: 500;
+}
+
+.section-head .duration {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.lead {
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 18px;
+  color: var(--ink-soft);
+}
+
+.lead strong { font-weight: 500; color: var(--ink); }
+
+/* ====== Tables ====== */
+.table-wrap {
+  background: var(--paper-soft);
+  border: 1px solid var(--rule);
+  margin-bottom: 22px;
+  overflow: hidden;
+}
+
+.table-title {
+  background: var(--paper-deep);
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--rule);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--grammar);
+  font-weight: 500;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table th {
+  background: var(--paper-soft);
+  padding: 10px 14px;
+  text-align: left;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 500;
+  border-bottom: 1px solid var(--rule);
+}
+
+table td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--rule-soft, #d8cfb9);
+  font-size: 13px;
+  vertical-align: middle;
+}
+
+table tr:last-child td {
+  border-bottom: none;
+}
+
+table .jp {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 16px;
+  color: var(--ink);
+}
+
+table .reading {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 14px;
+  color: var(--grammar);
+}
+
+table .num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+table .en {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+table tr.irregular td {
+  background: var(--warning-bg);
+}
+
+table tr.irregular .reading {
+  color: var(--warning);
+  font-weight: 500;
+}
+
+/* ====== Warning callout ====== */
+.callout {
+  background: var(--warning-bg);
+  border-left: 3px solid var(--warning);
+  padding: 16px 22px;
+  margin: 22px 0;
+}
+
+.callout-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--warning);
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+
+.callout-body {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+}
+
+.callout-body strong { font-weight: 500; color: var(--ink); }
+
+/* ====== Pattern box ====== */
+.pattern-box {
+  background: var(--grammar-bg);
+  border: 1px solid var(--grammar);
+  padding: 20px 26px;
+  margin: 22px 0;
+  text-align: center;
+}
+
+.pattern-formula {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--grammar);
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+}
+
+.pattern-gloss {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ====== Drill block ====== */
+.drill-block {
+  background: var(--paper-soft);
+  border-left: 3px solid var(--gold);
+  padding: 22px 26px;
+  margin-bottom: 22px;
+}
+
+.drill-block h3 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.drill-block p {
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 10px;
+  color: var(--ink-soft);
+}
+
+.drill-block ol, .drill-block ul {
+  margin-left: 22px;
+  font-size: 14px;
+  line-height: 2;
+  color: var(--ink-soft);
+}
+
+.drill-block .jp {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 16px;
+}
+
+.drill-block .answer {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  padding: 8px 14px;
+  margin-top: 12px;
+  font-size: 12px;
+  color: var(--muted);
+  cursor: pointer;
+  font-family: 'IBM Plex Mono', monospace;
+  letter-spacing: 0.5px;
+  user-select: none;
+}
+
+.drill-block .answer.shown {
+  background: var(--done-bg);
+  color: var(--done);
+  border-color: var(--done);
+}
+
+.drill-block .answer::before {
+  content: "▸ Tap to reveal answer";
+}
+
+.drill-block .answer.shown::before {
+  content: "✓ ";
+}
+
+.drill-block .hidden-answer { display: none; }
+.drill-block .answer.shown .hidden-answer { display: inline; }
+
+/* ====== Closing ====== */
+.closing {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 28px 32px;
+  margin-top: 50px;
+}
+
+.closing h3 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 14px;
+  color: var(--paper);
+}
+
+.closing p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--paper-soft);
+  margin-bottom: 8px;
+}
+
+.closing strong {
+  color: var(--paper);
+  font-weight: 500;
+}
+
+.closing-actions {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--accent-soft);
+}
+
+.closing-actions p:first-child {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: var(--accent-soft);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+footer {
+  margin-top: 50px;
+  padding-top: 20px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+  text-align: center;
+  line-height: 1.8;
+}
+
+@media (max-width: 700px) {
+  body { padding: 30px 18px; }
+  .masthead { grid-template-columns: 1fr; gap: 16px; }
+  .masthead-meta { text-align: left; }
+  .section-head { grid-template-columns: 1fr; gap: 4px; }
+  table .num { display: block; font-size: 11px; }
+  table th, table td { padding: 8px 10px; font-size: 12px; }
+  table .jp { font-size: 14px; }
+  table .reading { font-size: 13px; }
+}
+
+@media print {
+  body { background: white; padding: 20px; }
+  .closing-actions, footer { break-before: avoid; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Masthead -->
+  <header class="masthead">
+    <div class="masthead-mark">火</div>
+    <div class="masthead-title">
+      <h1>Tuesday · Week 1</h1>
+      <div class="sub">Grammar Focus · Counters & Number Readings</div>
+    </div>
+    <div class="masthead-meta">
+      ~30 minutes<br>
+      Two real gaps<br>
+      Closed today
+    </div>
+  </header>
+
+  <!-- Intro -->
+  <div class="session-intro">
+    <h3>Today's session</h3>
+    <p>Tuesday is grammar day. Today's focus is <em>counters and number readings</em> — both flagged as actual gaps in your diagnostic, and both essentially <strong>guaranteed test items</strong> on the JLPT N5.</p>
+    <p>Counters are the small suffixes Japanese attaches to numbers depending on what you're counting (one apple vs one cat vs one piece of paper vs one floor of a building all use different counters). The catch is that the readings change unpredictably — 一本 isn't <em>いちほん</em>, it's <em>いっぽん</em>. Same with the hundreds: 三百 isn't <em>さんひゃく</em>, it's <em>さんびゃく</em>.</p>
+    <p>This is pure memorization territory — there's no reasoning your way through it. Today you build the table, drill it, and lock it in.</p>
+  </div>
+
+  <!-- Section 1: Native counter -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">PART 01</span>
+      <h2>The general counter ～つ</h2>
+      <span class="duration">~5 min</span>
+    </div>
+
+    <p class="lead">The native Japanese counter for general items 1–10. Use this when you don't know the proper counter, or when counting "items" in a generic way (apples, ideas, suggestions, courses on a menu). It's the safest fallback.</p>
+
+    <div class="pattern-box">
+      <div class="pattern-formula">[Native number] + つ</div>
+      <div class="pattern-gloss">general counter for 1 to 10</div>
+    </div>
+
+    <div class="table-wrap">
+      <div class="table-title">General counter ～つ</div>
+      <table>
+        <thead>
+          <tr><th style="width:60px">#</th><th>Kanji</th><th>Reading</th><th>Notes</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="num">1</td><td class="jp">一つ</td><td class="reading">ひとつ</td><td class="en">one</td></tr>
+          <tr><td class="num">2</td><td class="jp">二つ</td><td class="reading">ふたつ</td><td class="en">two</td></tr>
+          <tr><td class="num">3</td><td class="jp">三つ</td><td class="reading">みっつ</td><td class="en">three (small っ)</td></tr>
+          <tr><td class="num">4</td><td class="jp">四つ</td><td class="reading">よっつ</td><td class="en">four (small っ)</td></tr>
+          <tr><td class="num">5</td><td class="jp">五つ</td><td class="reading">いつつ</td><td class="en">five</td></tr>
+          <tr><td class="num">6</td><td class="jp">六つ</td><td class="reading">むっつ</td><td class="en">six (small っ)</td></tr>
+          <tr><td class="num">7</td><td class="jp">七つ</td><td class="reading">ななつ</td><td class="en">seven</td></tr>
+          <tr><td class="num">8</td><td class="jp">八つ</td><td class="reading">やっつ</td><td class="en">eight (small っ)</td></tr>
+          <tr><td class="num">9</td><td class="jp">九つ</td><td class="reading">ここのつ</td><td class="en">nine (longest!)</td></tr>
+          <tr><td class="num">10</td><td class="jp">十</td><td class="reading">とお</td><td class="en">ten (no つ here)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">Pattern</div>
+      <div class="callout-body">Notice how 3, 4, 6, 8 all have a small <strong>っ</strong> before つ. This is doubling — the natural compression of two consonants meeting. <strong>10 is the odd one</strong> — it drops the つ entirely and reads <em>とお</em>.</div>
+    </div>
+
+    <p class="lead">You've seen this in your Marugoto sessions already — <em>ひとつずつ おねがいします</em> ("one of each, please") used the ～つ counter. The form is familiar; today you're just locking it in for testing.</p>
+  </section>
+
+  <!-- Section 2: People counter -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">PART 02</span>
+      <h2>Counter for people: ～人 (にん)</h2>
+      <span class="duration">~3 min</span>
+    </div>
+
+    <p class="lead">For counting people. Mostly regular, but the first two are irregular — they use the native readings, not the on'yomi.</p>
+
+    <div class="table-wrap">
+      <div class="table-title">People counter ～人</div>
+      <table>
+        <thead>
+          <tr><th style="width:60px">#</th><th>Kanji</th><th>Reading</th><th>Notes</th></tr>
+        </thead>
+        <tbody>
+          <tr class="irregular"><td class="num">1</td><td class="jp">一人</td><td class="reading">ひとり</td><td class="en">one person · IRREGULAR</td></tr>
+          <tr class="irregular"><td class="num">2</td><td class="jp">二人</td><td class="reading">ふたり</td><td class="en">two people · IRREGULAR</td></tr>
+          <tr><td class="num">3</td><td class="jp">三人</td><td class="reading">さんにん</td><td class="en">three people</td></tr>
+          <tr><td class="num">4</td><td class="jp">四人</td><td class="reading">よにん</td><td class="en">four people (note: <em>よ</em>, not <em>よん</em>)</td></tr>
+          <tr><td class="num">5</td><td class="jp">五人</td><td class="reading">ごにん</td><td class="en">five people</td></tr>
+          <tr><td class="num">6</td><td class="jp">六人</td><td class="reading">ろくにん</td><td class="en">six people</td></tr>
+          <tr><td class="num">7</td><td class="jp">七人</td><td class="reading">しちにん / ななにん</td><td class="en">seven people (both used)</td></tr>
+          <tr><td class="num">8</td><td class="jp">八人</td><td class="reading">はちにん</td><td class="en">eight people</td></tr>
+          <tr><td class="num">9</td><td class="jp">九人</td><td class="reading">きゅうにん</td><td class="en">nine people</td></tr>
+          <tr><td class="num">10</td><td class="jp">十人</td><td class="reading">じゅうにん</td><td class="en">ten people</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">Memory hooks</div>
+      <div class="callout-body"><strong>ひとり / ふたり</strong> — these two are everywhere in everyday Japanese ("alone", "as a couple"). You've already seen them in Marugoto restaurant scenes (<em>3人です</em> "three people"). The irregularity is small but constant.</div>
+    </div>
+  </section>
+
+  <!-- Section 3: Long objects -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">PART 03</span>
+      <h2>Counter for long objects: ～本 (ほん)</h2>
+      <span class="duration">~5 min</span>
+    </div>
+
+    <p class="lead">Used for cylindrical/long things: pens, bottles, umbrellas, trees, train tracks, phone calls (yes, those count), banana, fingers. <strong>This is where sound changes get aggressive.</strong></p>
+
+    <div class="pattern-box">
+      <div class="pattern-formula">いっぽん · さんぼん · ろっぽん · はっぽん · じゅっぽん</div>
+      <div class="pattern-gloss">the rule: ほん becomes either ぽん (after っ) or ぼん (after ん)</div>
+    </div>
+
+    <div class="table-wrap">
+      <div class="table-title">Long-object counter ～本</div>
+      <table>
+        <thead>
+          <tr><th style="width:60px">#</th><th>Kanji</th><th>Reading</th><th>Notes</th></tr>
+        </thead>
+        <tbody>
+          <tr class="irregular"><td class="num">1</td><td class="jp">一本</td><td class="reading">いっぽん</td><td class="en">→ <strong>っぽ</strong></td></tr>
+          <tr><td class="num">2</td><td class="jp">二本</td><td class="reading">にほん</td><td class="en">regular</td></tr>
+          <tr class="irregular"><td class="num">3</td><td class="jp">三本</td><td class="reading">さんぼん</td><td class="en">→ <strong>んぼ</strong></td></tr>
+          <tr><td class="num">4</td><td class="jp">四本</td><td class="reading">よんほん</td><td class="en">regular (note <em>よん</em>)</td></tr>
+          <tr><td class="num">5</td><td class="jp">五本</td><td class="reading">ごほん</td><td class="en">regular</td></tr>
+          <tr class="irregular"><td class="num">6</td><td class="jp">六本</td><td class="reading">ろっぽん</td><td class="en">→ <strong>っぽ</strong></td></tr>
+          <tr><td class="num">7</td><td class="jp">七本</td><td class="reading">ななほん</td><td class="en">regular (なな, not しち)</td></tr>
+          <tr class="irregular"><td class="num">8</td><td class="jp">八本</td><td class="reading">はっぽん</td><td class="en">→ <strong>っぽ</strong></td></tr>
+          <tr><td class="num">9</td><td class="jp">九本</td><td class="reading">きゅうほん</td><td class="en">regular</td></tr>
+          <tr class="irregular"><td class="num">10</td><td class="jp">十本</td><td class="reading">じゅっぽん</td><td class="en">→ <strong>っぽ</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">The rule</div>
+      <div class="callout-body">The same pattern (<strong>1, 6, 8, 10 → っぽ</strong> · <strong>3 → んぼ</strong>) applies to many other counters that start with the <strong>h-row</strong> sounds (は・ひ・ふ・へ・ほ). It's the single most important sound-change rule to memorize. Once you know it for ～本, you basically know it for ～匹, ～杯, ～分, ～ぴき, etc.</div>
+    </div>
+  </section>
+
+  <!-- Section 4: Other quick counters -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">PART 04</span>
+      <h2>Quick reference: other key counters</h2>
+      <span class="duration">~6 min</span>
+    </div>
+
+    <p class="lead">You don't need to memorize the full table for every counter today — just get familiar with the most common ones and recognize when sound changes happen.</p>
+
+    <div class="table-wrap">
+      <div class="table-title">Counter ～枚 (まい) — flat objects (paper, tickets, plates, shirts)</div>
+      <table>
+        <thead><tr><th style="width:60px">#</th><th>Kanji</th><th>Reading</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td class="num">1</td><td class="jp">一枚</td><td class="reading">いちまい</td><td class="en">regular</td></tr>
+          <tr><td class="num">2</td><td class="jp">二枚</td><td class="reading">にまい</td><td class="en">regular</td></tr>
+          <tr><td class="num">3</td><td class="jp">三枚</td><td class="reading">さんまい</td><td class="en">regular</td></tr>
+          <tr><td class="num">10</td><td class="jp">十枚</td><td class="reading">じゅうまい</td><td class="en">regular — no sound change!</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="lead" style="margin-top: 14px; margin-bottom: 18px;"><strong>～枚 has no sound changes.</strong> If a counter starts with <em>m</em>, <em>n</em>, <em>r</em>, <em>w</em>, or <em>y</em>, you're usually safe — sound changes mostly hit the <em>h-row</em> and a few others.</p>
+
+    <div class="table-wrap">
+      <div class="table-title">Counter ～匹 (ひき) — small animals (cats, dogs, fish, insects)</div>
+      <table>
+        <thead><tr><th style="width:60px">#</th><th>Kanji</th><th>Reading</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr class="irregular"><td class="num">1</td><td class="jp">一匹</td><td class="reading">いっぴき</td><td class="en">→ <strong>っぴ</strong></td></tr>
+          <tr><td class="num">2</td><td class="jp">二匹</td><td class="reading">にひき</td><td class="en">regular</td></tr>
+          <tr class="irregular"><td class="num">3</td><td class="jp">三匹</td><td class="reading">さんびき</td><td class="en">→ <strong>んび</strong></td></tr>
+          <tr class="irregular"><td class="num">6</td><td class="jp">六匹</td><td class="reading">ろっぴき</td><td class="en">→ <strong>っぴ</strong></td></tr>
+          <tr class="irregular"><td class="num">10</td><td class="jp">十匹</td><td class="reading">じゅっぴき</td><td class="en">→ <strong>っぴ</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="lead" style="margin-top: 14px; margin-bottom: 18px;"><strong>Same rule as ～本</strong> — 1, 6, 8, 10 doubles to っぴ; 3 voices to んび. Hぃ → びorぴ.</p>
+
+    <div class="table-wrap">
+      <div class="table-title">Counter ～回 (かい) — number of times</div>
+      <table>
+        <thead><tr><th style="width:60px">#</th><th>Kanji</th><th>Reading</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td class="num">1</td><td class="jp">一回</td><td class="reading">いっかい</td><td class="en">→ doubles っか</td></tr>
+          <tr><td class="num">2</td><td class="jp">二回</td><td class="reading">にかい</td><td class="en">regular</td></tr>
+          <tr><td class="num">3</td><td class="jp">三回</td><td class="reading">さんかい</td><td class="en">regular (no voicing!)</td></tr>
+          <tr><td class="num">6</td><td class="jp">六回</td><td class="reading">ろっかい</td><td class="en">→ doubles っか</td></tr>
+          <tr><td class="num">10</td><td class="jp">十回</td><td class="reading">じゅっかい</td><td class="en">→ doubles っか</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">Useful overlap</div>
+      <div class="callout-body"><strong>～階 (kai, "floor")</strong> follows the exact same pattern as ～回 (kai, "times"). If you can say "second floor", you can say "two times" — same sounds. The kanji differ but the pronunciation rules are identical.</div>
+    </div>
+  </section>
+
+  <!-- Section 5: Hundred readings -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">PART 05</span>
+      <h2>The irregular hundreds (百)</h2>
+      <span class="duration">~5 min</span>
+    </div>
+
+    <p class="lead">This is the second confirmed gap from your diagnostic. The hundreds (百, ひゃく) follow predictable patterns <em>except</em> at 300, 600, and 800 — where the sounds shift in ways you simply have to memorize.</p>
+
+    <div class="table-wrap">
+      <div class="table-title">Hundreds 100–900</div>
+      <table>
+        <thead>
+          <tr><th style="width:60px">Number</th><th>Kanji</th><th>Reading</th><th>Notes</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="num">100</td><td class="jp">百</td><td class="reading">ひゃく</td><td class="en">regular</td></tr>
+          <tr><td class="num">200</td><td class="jp">二百</td><td class="reading">にひゃく</td><td class="en">regular</td></tr>
+          <tr class="irregular"><td class="num">300</td><td class="jp">三百</td><td class="reading">さんびゃく</td><td class="en">→ <strong>びゃ</strong> (voiced)</td></tr>
+          <tr><td class="num">400</td><td class="jp">四百</td><td class="reading">よんひゃく</td><td class="en">regular (note <em>よん</em>)</td></tr>
+          <tr><td class="num">500</td><td class="jp">五百</td><td class="reading">ごひゃく</td><td class="en">regular</td></tr>
+          <tr class="irregular"><td class="num">600</td><td class="jp">六百</td><td class="reading">ろっぴゃく</td><td class="en">→ <strong>っぴゃ</strong> (doubled + p)</td></tr>
+          <tr><td class="num">700</td><td class="jp">七百</td><td class="reading">ななひゃく</td><td class="en">regular (なな)</td></tr>
+          <tr class="irregular"><td class="num">800</td><td class="jp">八百</td><td class="reading">はっぴゃく</td><td class="en">→ <strong>っぴゃ</strong> (doubled + p)</td></tr>
+          <tr><td class="num">900</td><td class="jp">九百</td><td class="reading">きゅうひゃく</td><td class="en">regular</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">Three to memorize, that's it</div>
+      <div class="callout-body">Only <strong>300, 600, 800</strong> are irregular. Memorize: <em>さんびゃく · ろっぴゃく · はっぴゃく</em>. Everything else is just the digit + ひゃく.</div>
+    </div>
+
+    <p class="lead">The thousands (千 = せん) have similar irregularities at 3000 and 8000 — but those are smaller test items for N5. Focus today on getting the hundreds locked in.</p>
+
+    <div class="table-wrap">
+      <div class="table-title">Thousands — for reference</div>
+      <table>
+        <thead><tr><th style="width:60px">Number</th><th>Kanji</th><th>Reading</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td class="num">1,000</td><td class="jp">千</td><td class="reading">せん</td><td class="en">regular</td></tr>
+          <tr><td class="num">2,000</td><td class="jp">二千</td><td class="reading">にせん</td><td class="en">regular</td></tr>
+          <tr class="irregular"><td class="num">3,000</td><td class="jp">三千</td><td class="reading">さんぜん</td><td class="en">→ <strong>ぜん</strong> (voiced)</td></tr>
+          <tr class="irregular"><td class="num">8,000</td><td class="jp">八千</td><td class="reading">はっせん</td><td class="en">→ <strong>っせん</strong> (doubled)</td></tr>
+          <tr><td class="num">10,000</td><td class="jp">一万</td><td class="reading">いちまん</td><td class="en">always include <em>いち</em></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">Don't say just <em>まん</em></div>
+      <div class="callout-body">10,000 is always <strong>いちまん</strong>, never just <em>まん</em>. Unlike 100 (ひゃく) and 1,000 (せん) which can stand alone, 万 always needs a number in front of it.</div>
+    </div>
+  </section>
+
+  <!-- DRILLS -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">DRILL</span>
+      <h2>Active practice</h2>
+      <span class="duration">~6 min</span>
+    </div>
+
+    <p class="lead">These drills are designed to be done out loud. Reading silently doesn't drill the irregular sound changes — your mouth needs to practice <em>ろっぴゃく</em> to lock it in.</p>
+
+    <div class="drill-block">
+      <h3>Drill 1 · Read these prices aloud</h3>
+      <p>Imagine you're at a Japanese restaurant or shop. Read each price aloud in Japanese.</p>
+      <ol>
+        <li><span class="jp">三百円</span></li>
+        <li><span class="jp">六百円</span></li>
+        <li><span class="jp">八百円</span></li>
+        <li><span class="jp">千円</span></li>
+        <li><span class="jp">三千円</span></li>
+        <li><span class="jp">一万円</span></li>
+        <li><span class="jp">二千五百円</span></li>
+      </ol>
+      <div class="answer" onclick="this.classList.toggle('shown')">
+        <span class="hidden-answer">さんびゃくえん · ろっぴゃくえん · はっぴゃくえん · せんえん · さんぜんえん · いちまんえん · にせんごひゃくえん</span>
+      </div>
+    </div>
+
+    <div class="drill-block">
+      <h3>Drill 2 · Counter selection</h3>
+      <p>Which counter would you use? Match the item with the right counter.</p>
+      <ol>
+        <li>Three pencils (long object) → <span class="jp">三＿</span></li>
+        <li>Two cats (small animal) → <span class="jp">二＿</span></li>
+        <li>Five sheets of paper (flat) → <span class="jp">五＿</span></li>
+        <li>Six people → <span class="jp">六＿</span></li>
+        <li>One time / once → <span class="jp">一＿</span></li>
+        <li>Three apples (general items) → <span class="jp">三＿</span></li>
+      </ol>
+      <div class="answer" onclick="this.classList.toggle('shown')">
+        <span class="hidden-answer">さんぼん (本) · にひき (匹) · ごまい (枚) · ろくにん (人) · いっかい (回) · みっつ (つ)</span>
+      </div>
+    </div>
+
+    <div class="drill-block">
+      <h3>Drill 3 · The trickiest readings</h3>
+      <p>These are the ones most likely to appear on the JLPT. Read each one aloud, then check.</p>
+      <ol>
+        <li><span class="jp">一本</span></li>
+        <li><span class="jp">三本</span></li>
+        <li><span class="jp">六本</span></li>
+        <li><span class="jp">十本</span></li>
+        <li><span class="jp">一匹</span></li>
+        <li><span class="jp">三匹</span></li>
+        <li><span class="jp">三百</span></li>
+        <li><span class="jp">六百</span></li>
+        <li><span class="jp">八百</span></li>
+      </ol>
+      <div class="answer" onclick="this.classList.toggle('shown')">
+        <span class="hidden-answer">いっぽん · さんぼん · ろっぽん · じゅっぽん · いっぴき · さんびき · さんびゃく · ろっぴゃく · はっぴゃく</span>
+      </div>
+    </div>
+
+    <div class="drill-block">
+      <h3>Drill 4 · Build a sentence</h3>
+      <p>Use the patterns you know. Build each sentence aloud, no peeking.</p>
+      <ul>
+        <li>"There are three people." (use いる + 三人)</li>
+        <li>"I bought two pens." (use 買いました + 二本 + ペンを)</li>
+        <li>"The cake is 600 yen." (use ケーキは + です + 六百円)</li>
+        <li>"Please give me one (of those)." (use 一つ + ください)</li>
+      </ul>
+      <div class="answer" onclick="this.classList.toggle('shown')">
+        <span class="hidden-answer">三人います · ペンを二本買いました · ケーキは六百円です · 一つください</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Closing -->
+  <div class="closing">
+    <h3>Two real gaps, closed.</h3>
+    <p>You started this session with two confirmed weak points: <strong>counter sound changes</strong> and <strong>irregular hundred-readings</strong>. By drilling them aloud today, you've moved them from "things I'd lose points on" to "things I can recognize and produce."</p>
+    <p>These are not patterns you "understand once and remember forever" — they fade if you don't revisit them. <strong>Slip a quick mental quiz into your week:</strong> when you see prices on Danish receipts or product tags, mentally read them in Japanese. 35 kr = さんじゅうごクローネ. It's free practice.</p>
+
+    <div class="closing-actions">
+      <p>Wednesday's plan</p>
+      <p style="font-family: 'IBM Plex Sans', sans-serif; font-size: 13px; letter-spacing: normal; color: var(--paper-soft); text-transform: none;">Back to kanji — introduce 八 九 十 百 千 万 (the second half of Week 1's numbers), reinforce Monday's seven by writing them by hand, and bring in the new vocabulary set: numbers, money, and price expressions.</p>
+    </div>
+  </div>
+
+  <footer>
+    <div>Week 1 · Tuesday · Counters & Number Readings</div>
+    <div>Companion to the Full Weekly Schedule and Grammar Gap Check</div>
+  </footer>
+
+</div>
+</body>
+</html>

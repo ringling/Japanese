@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JLPT N5 → N4 · Weekly Pacing Tracker</title>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;700&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1a1a;
+  --ink-soft: #3a3a3a;
+  --paper: #f4efe6;
+  --paper-soft: #ebe4d6;
+  --paper-deep: #e2d9c4;
+  --rule: #c9bfa9;
+  --accent: #8b1a1a;
+  --accent-soft: #b85c5c;
+  --muted: #6b6357;
+  --gold: #b8893d;
+  --done: #5a7a3a;
+  --done-bg: #d8e0c4;
+
+  /* phase colors */
+  --p1: #8b1a1a; /* foundation */
+  --p2: #b8893d; /* sharpening */
+  --p3: #5a7a3a; /* bridge */
+  --p4: #3a5a7a; /* n4 sharpening */
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 300;
+  line-height: 1.6;
+  padding: 50px 32px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ====== Masthead ====== */
+.masthead {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: end;
+  gap: 30px;
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 20px;
+  margin-bottom: 40px;
+}
+
+.masthead-mark {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 90px;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 0.85;
+  letter-spacing: -4px;
+}
+
+.masthead-title h1 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 36px;
+  font-weight: 500;
+  letter-spacing: -1px;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.masthead-title .sub {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.masthead-meta {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 1.5px;
+  text-align: right;
+  text-transform: uppercase;
+  line-height: 1.8;
+}
+
+/* ====== Current week banner ====== */
+.now-banner {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 22px 28px;
+  margin-bottom: 30px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 30px;
+}
+
+.now-banner .label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--accent-soft);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.now-banner .week-id {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.now-banner .week-task {
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--paper);
+}
+
+.now-banner .week-task strong {
+  font-weight: 500;
+  color: var(--paper-soft);
+}
+
+.now-banner .week-meta {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-align: right;
+  text-transform: uppercase;
+  color: var(--accent-soft);
+  line-height: 1.8;
+}
+
+/* ====== Phase legend ====== */
+.legend {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-bottom: 50px;
+}
+
+.legend-item {
+  padding: 14px 18px;
+  border-left: 3px solid;
+  background: var(--paper-soft);
+}
+
+.legend-item .phase {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.legend-item .name {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.legend-item .span {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.legend-item.p1 { border-color: var(--p1); }
+.legend-item.p1 .phase { color: var(--p1); }
+.legend-item.p2 { border-color: var(--p2); }
+.legend-item.p2 .phase { color: var(--p2); }
+.legend-item.p3 { border-color: var(--p3); }
+.legend-item.p3 .phase { color: var(--p3); }
+.legend-item.p4 { border-color: var(--p4); }
+.legend-item.p4 .phase { color: var(--p4); }
+
+/* ====== Phase block ====== */
+.phase-block {
+  margin-bottom: 50px;
+}
+
+.phase-head {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: baseline;
+  gap: 20px;
+  padding-bottom: 14px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.phase-head .phase-num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 2px;
+  font-weight: 500;
+}
+
+.phase-head h2 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.phase-head .phase-meta {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.phase-block.p1 .phase-num { color: var(--p1); }
+.phase-block.p2 .phase-num { color: var(--p2); }
+.phase-block.p3 .phase-num { color: var(--p3); }
+.phase-block.p4 .phase-num { color: var(--p4); }
+
+/* ====== Weeks ====== */
+.weeks {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
+}
+
+.week-card {
+  background: var(--paper-soft);
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--rule);
+  padding: 16px 18px;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.week-card:hover {
+  background: var(--paper);
+  border-color: var(--accent-soft);
+}
+
+.week-card.done {
+  background: var(--done-bg);
+  border-color: var(--done);
+  border-left-color: var(--done);
+}
+
+.week-card.current {
+  background: var(--paper);
+  border-left-width: 5px;
+  box-shadow: 0 2px 0 var(--ink);
+}
+
+.phase-block.p1 .week-card:not(.done) { border-left-color: var(--p1); }
+.phase-block.p2 .week-card:not(.done) { border-left-color: var(--p2); }
+.phase-block.p3 .week-card:not(.done) { border-left-color: var(--p3); }
+.phase-block.p4 .week-card:not(.done) { border-left-color: var(--p4); }
+
+.week-card .week-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 8px;
+}
+
+.week-card .week-num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+.phase-block.p1 .week-num { color: var(--p1); }
+.phase-block.p2 .week-num { color: var(--p2); }
+.phase-block.p3 .week-num { color: var(--p3); }
+.phase-block.p4 .week-num { color: var(--p4); }
+
+.week-card.done .week-num { color: var(--done); }
+
+.week-card .week-date {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+}
+
+.week-card .week-title {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: var(--ink);
+}
+
+.week-card.done .week-title {
+  color: var(--done);
+}
+
+.week-card ul {
+  list-style: none;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+.week-card li {
+  padding-left: 14px;
+  position: relative;
+  margin-bottom: 4px;
+}
+
+.week-card li::before {
+  content: "·";
+  position: absolute;
+  left: 4px;
+  color: var(--muted);
+}
+
+.week-card.done li {
+  color: var(--done);
+}
+
+.week-card .check {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  width: 16px;
+  height: 16px;
+  border: 1px solid var(--rule);
+  background: var(--paper);
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: transparent;
+}
+
+.week-card.done .check {
+  background: var(--done);
+  border-color: var(--done);
+  color: var(--paper);
+}
+
+.week-card.milestone {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+  border-left-color: var(--paper-soft);
+}
+
+.week-card.milestone .week-title {
+  color: var(--paper);
+}
+
+.week-card.milestone .week-num {
+  color: var(--paper-soft);
+}
+
+.week-card.milestone .week-date {
+  color: var(--paper-deep);
+}
+
+.week-card.milestone li {
+  color: var(--paper-soft);
+}
+
+/* ====== Footer ====== */
+footer {
+  margin-top: 60px;
+  padding-top: 24px;
+  border-top: 1px solid var(--rule);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+  text-align: center;
+  line-height: 1.8;
+}
+
+footer .reset-btn {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 6px 14px;
+  background: transparent;
+  border: 1px solid var(--rule);
+  color: var(--muted);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+footer .reset-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ====== Responsive ====== */
+@media (max-width: 800px) {
+  body { padding: 30px 18px; }
+  .masthead { grid-template-columns: 1fr; gap: 16px; }
+  .masthead-meta { text-align: left; }
+  .now-banner { grid-template-columns: 1fr; gap: 14px; }
+  .now-banner .week-meta { text-align: left; }
+  .legend { grid-template-columns: 1fr 1fr; }
+  .weeks { grid-template-columns: 1fr; }
+  .phase-head { grid-template-columns: 1fr; gap: 6px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Masthead -->
+  <header class="masthead">
+    <div class="masthead-mark">週</div>
+    <div class="masthead-title">
+      <h1>Weekly Pacing Tracker</h1>
+      <div class="sub">N5 December 2026 · N4 July 2027</div>
+    </div>
+    <div class="masthead-meta">
+      Now → N5 test (~31 weeks)<br>
+      → N4 test (~62 weeks)<br>
+      3–5 hrs/week · Marugoto continues
+    </div>
+  </header>
+
+  <!-- Current week -->
+  <div class="now-banner" id="nowBanner"></div>
+
+  <!-- Legend -->
+  <div class="legend">
+    <div class="legend-item p1">
+      <div class="phase">Phase 1</div>
+      <div class="name">Foundation</div>
+      <div class="span">May–Aug 2026 · 17 weeks</div>
+    </div>
+    <div class="legend-item p2">
+      <div class="phase">Phase 2</div>
+      <div class="name">N5 Sharpening</div>
+      <div class="span">Sep–Nov 2026 · 14 weeks</div>
+    </div>
+    <div class="legend-item p3">
+      <div class="phase">Phase 3</div>
+      <div class="name">Bridge to N4</div>
+      <div class="span">Dec 2026–Feb 2027 · 13 weeks</div>
+    </div>
+    <div class="legend-item p4">
+      <div class="phase">Phase 4</div>
+      <div class="name">N4 Sharpening</div>
+      <div class="span">Mar–Jun 2027 · 18 weeks</div>
+    </div>
+  </div>
+
+  <!-- Phases -->
+  <div id="phases"></div>
+
+  <footer>
+    <div>Click a week to mark complete · Progress saved locally · Marugoto study continues throughout, alongside these task focuses</div>
+    <button class="reset-btn" onclick="resetProgress()">Reset all progress</button>
+  </footer>
+</div>
+
+<script>
+// =============================================================
+// Pacing data: 4 phases, ~62 weeks total
+// Week numbering counts from week 1 = current week (May 6, 2026)
+// =============================================================
+
+const startDate = new Date(2026, 4, 6); // May 6, 2026
+
+function dateRange(weekNum) {
+  const start = new Date(startDate);
+  start.setDate(start.getDate() + (weekNum - 1) * 7);
+  const end = new Date(start);
+  end.setDate(end.getDate() + 6);
+  const fmt = d => d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short' });
+  return `${fmt(start)} – ${fmt(end)}`;
+}
+
+const phases = [
+  {
+    id: "p1",
+    name: "Foundation",
+    title: "Phase 1 · Foundation",
+    span: "May–Aug 2026 · Weeks 1–17",
+    description: "Build the kanji base, identify weak grammar items, no test pressure",
+    weeks: [
+      { n: 1, title: "Week 1 · Numbers (数字)",
+        tasks: ["Mon: 一二三四五六七 (kanji)", "Tue: Counters & hundred-readings (grammar)", "Wed: 八九十百千万 + numbers/money vocab", "Fri: kanji quiz + age/people vocab", "Sat: review — read prices aloud"] },
+      { n: 2, title: "Week 2 · Time & Calendar (時・暦)",
+        tasks: ["Mon: 日月火水木金土", "Tue: Time particles, 〜から〜まで", "Wed: 曜年時分半今 + days/months vocab", "Fri: kanji quiz + time adverbs", "Sat: state your daily schedule"] },
+      { n: 3, title: "Week 3 · People & Family (人・家族)",
+        tasks: ["Mon: 人男女子父母友", "Tue: 〜たい — desire (gap item)", "Wed: 先生名目耳口 + family vocab", "Fri: kanji quiz + body parts", "Sat: describe family with 〜たい"] },
+      { n: 4, title: "Week 4 · Nature (自然)",
+        tasks: ["Mon: 山川花天空雨電", "Tue: 〜ている — three uses (gap item)", "Wed: 気魚犬白音力 + weather vocab", "Fri: kanji quiz + colors/animals", "Sat: MIDPOINT — sample 30 kanji from weeks 1–4"] },
+      { n: 5, title: "Week 5 · Places & Direction (場所・方向)",
+        tasks: ["Mon: 国外中町学校店社駅", "Tue: 〜になる / 〜にする (gap item)", "Wed: 道上下前後左右東 + place vocab", "Fri: kanji quiz + transport vocab", "Sat: try 10 N5-format MCQs"] },
+      { n: 6, title: "Week 6 · Travel (方向・移動)",
+        tasks: ["Mon: 西南北店社駅道", "Tue: 〜ができます (gap item)", "Wed: 車本語英円何 + countries/languages", "Fri: kanji quiz + travel verbs", "Sat: self-introduction practice"] },
+      { n: 7, title: "Week 7 · Action Verbs (動作の漢字)",
+        tasks: ["Mon: 行来入出見聞話", "Tue: Request forms 〜てください etc.", "Wed: 読書食飲買立 + verb-object pairs", "Fri: kanji quiz + more verbs", "Sat: write a typical-day paragraph"] },
+      { n: 8, title: "Week 8 · Adjectives & Daily Life (形容詞・日常)",
+        tasks: ["Mon: 大小高安新古長", "Tue: Adjective drill + comparison patterns", "Wed: 少毎休会間週 + adjectives", "Fri: kanji quiz + daily routine vocab", "🎉 Sat: FULL 104-kanji recall + day-in-the-life"] },
+      { n: 9, title: "Week 9 · Full kanji review",
+        milestone: true,
+        tasks: ["Self-quiz: all 104 kanji, meanings only", "Identify the 20 hardest", "Marugoto: continue"] },
+      { n: 10, title: "Week 10 · Counters consolidation",
+        tasks: ["Re-drill 〜本, 〜匹, 〜枚 sound changes", "Add 〜杯, 〜冊, 〜台 (less common)", "Marugoto: continue"] },
+      { n: 11, title: "Week 11 · Kanji review: readings",
+        tasks: ["Drill the 20 hardest from week 9", "Practice both on'yomi and kun'yomi in context", "Marugoto: continue"] },
+      { n: 12, title: "Week 12 · Vocabulary push",
+        tasks: ["Scan N5 vocab list — flag any remaining unknowns", "Drill weak items in both directions", "Marugoto: continue"] },
+      { n: 13, title: "Week 13 · Particle review",
+        tasks: ["は vs が — JLPT-format multiple choice", "に vs で for location", "Marugoto: continue"] },
+      { n: 14, title: "Week 14 · Reading speed warmup",
+        tasks: ["Time yourself on short N5 reading passages", "Aim for 45 sec per short paragraph", "Marugoto: continue"] },
+      { n: 15, title: "Week 15 · Kanji writing review",
+        tasks: ["Hand-write all 104 kanji, ranked by difficulty", "Restudy any with broken stroke order", "Marugoto: continue"] },
+      { n: 16, title: "Week 16 · Listening warmup",
+        tasks: ["NHK Easy News + Marugoto audio daily", "10 min/day minimum", "Marugoto: continue"] },
+      { n: 17, title: "Week 17 · Phase 1 closing review",
+        milestone: true,
+        tasks: ["Random kanji recall test, target 90%+", "Self-assess all 'gap' items from gap-check tool", "Light week — rest before Phase 2"] }
+    ]
+  },
+  {
+    id: "p2",
+    name: "N5 Sharpening",
+    title: "Phase 2 · N5 Sharpening",
+    span: "Sep–Nov 2026 · Weeks 18–31",
+    description: "Move into JLPT-format practice, mock tests, weak-spot drilling. Test in early Dec.",
+    weeks: [
+      { n: 18, title: "Week 18 · First N5 mock — Vocab section",
+        tasks: ["Take a vocabulary section from past papers", "Score yourself, mark wrong items", "Marugoto: continue"] },
+      { n: 19, title: "Week 19 · First N5 mock — Grammar section",
+        tasks: ["Grammar section from past papers", "Review wrong answers fully", "Marugoto: continue"] },
+      { n: 20, title: "Week 20 · First N5 mock — Reading",
+        tasks: ["Reading passages under timed conditions", "Note any unknown vocab/kanji", "Marugoto: continue"] },
+      { n: 21, title: "Week 21 · First N5 mock — Listening",
+        tasks: ["Listening section, no replays", "Identify weak listening patterns", "Marugoto: continue"] },
+      { n: 22, title: "Week 22 · Mock results review",
+        milestone: true,
+        tasks: ["Review all 4 sections — what's solid?", "Make targeted study list", "Marugoto: continue"] },
+      { n: 23, title: "Week 23 · Vocabulary push",
+        tasks: ["Drill weakest 50 N5 vocab words", "Test yourself in both directions", "Marugoto: continue"] },
+      { n: 24, title: "Week 24 · Grammar weak-spot drill",
+        tasks: ["Focus on the 'review' patterns from gap-check", "Test format multiple choice", "Marugoto: continue"] },
+      { n: 25, title: "Week 25 · Reading speed practice",
+        tasks: ["Time yourself on short passages", "Aim for 60 seconds per short reading", "Marugoto: continue"] },
+      { n: 26, title: "Week 26 · Listening immersion",
+        tasks: ["NHK Easy News or Marugoto audio daily", "10 min/day minimum", "Marugoto: continue"] },
+      { n: 27, title: "Week 27 · Second full mock test",
+        milestone: true,
+        tasks: ["Full N5 mock under exam conditions", "Compare to first mock", "Note remaining weak spots"] },
+      { n: 28, title: "Week 28 · Final weak-spot push",
+        tasks: ["Address whatever the 2nd mock revealed", "Drill counters once more", "Marugoto: continue"] },
+      { n: 29, title: "Week 29 · Polish & confirm",
+        tasks: ["Random kanji quiz — target 95%+", "Random vocab quiz", "Marugoto: continue"] },
+      { n: 30, title: "Week 30 · Test prep week",
+        tasks: ["Confirm test location, time, materials needed", "Light review only — no new content", "Sleep well, eat well"] },
+      { n: 31, title: "Week 31 · 🎯 N5 EXAM",
+        milestone: true,
+        tasks: ["Take the N5 exam (early December)", "Celebrate 🍶", "Take 1 week completely off study"] }
+    ]
+  },
+  {
+    id: "p3",
+    name: "Bridge to N4",
+    title: "Phase 3 · Bridge to N4",
+    span: "Dec 2026–Feb 2027 · Weeks 32–44",
+    description: "Post-test recovery, then absorb N4 kanji and grammar gradually. Marugoto B1 territory.",
+    weeks: [
+      { n: 32, title: "Week 32 · Recovery week",
+        tasks: ["No formal study", "Optional: light Japanese media (anime, music)", "Reset"] },
+      { n: 33, title: "Week 33 · N4 syllabus overview",
+        tasks: ["Read N4 kanji + grammar lists", "Identify what Marugoto has already covered", "Plan ~70 new kanji"] },
+      { n: 34, title: "Week 34 · N4 kanji batch 1 (10)",
+        tasks: ["Pick the 10 most useful new N4 kanji", "Marugoto: continue (now likely B1 territory)"] },
+      { n: 35, title: "Week 35 · N4 kanji batch 2 (10)",
+        tasks: ["Next 10 kanji + review batch 1", "Marugoto: continue"] },
+      { n: 36, title: "Week 36 · N4 kanji batch 3 (10)",
+        tasks: ["Next 10 kanji + spaced review", "Marugoto: continue"] },
+      { n: 37, title: "Week 37 · Plain forms drilling",
+        tasks: ["N4 introduces plain/casual speech extensively", "Verb conjugation: dictionary, ない, た", "Marugoto: continue"] },
+      { n: 38, title: "Week 38 · N4 kanji batch 4 (10)",
+        tasks: ["Next 10 kanji + spaced review", "Marugoto: continue"] },
+      { n: 39, title: "Week 39 · 〜と思います / 〜と言いました",
+        tasks: ["Quoting and opinion patterns (N4 staple)", "Marugoto: continue"] },
+      { n: 40, title: "Week 40 · N4 kanji batch 5 (10)",
+        tasks: ["Next 10 kanji + spaced review", "Marugoto: continue"] },
+      { n: 41, title: "Week 41 · 〜ことができる / 〜ことがある",
+        tasks: ["Potential and experience patterns", "Marugoto: continue"] },
+      { n: 42, title: "Week 42 · N4 kanji batch 6 (10)",
+        tasks: ["Next 10 kanji + spaced review", "Marugoto: continue"] },
+      { n: 43, title: "Week 43 · Conditionals introduction",
+        tasks: ["〜たら, 〜ば — N4 conditional forms", "Marugoto: continue"] },
+      { n: 44, title: "Week 44 · Phase 3 mid-checkpoint",
+        milestone: true,
+        tasks: ["Self-quiz: 60+ N4 kanji recognition", "Marugoto progress check", "Light week before Phase 4"] }
+    ]
+  },
+  {
+    id: "p4",
+    name: "N4 Sharpening",
+    title: "Phase 4 · N4 Sharpening",
+    span: "Mar–Jun 2027 · Weeks 45–62",
+    description: "JLPT N4 mock tests, vocabulary push, listening at faster speed. Test in July.",
+    weeks: [
+      { n: 45, title: "Week 45 · N4 kanji batch 7 (10)",
+        tasks: ["Next 10 kanji + full review of all N4 kanji so far", "Marugoto: continue"] },
+      { n: 46, title: "Week 46 · First N4 mock — Vocab",
+        tasks: ["Take vocab section, score honestly", "Note all unknown words", "Marugoto: continue"] },
+      { n: 47, title: "Week 47 · First N4 mock — Grammar",
+        tasks: ["Grammar section, review wrong answers", "Marugoto: continue"] },
+      { n: 48, title: "Week 48 · First N4 mock — Reading",
+        tasks: ["Longer passages — practice not panicking at length", "Marugoto: continue"] },
+      { n: 49, title: "Week 49 · First N4 mock — Listening",
+        tasks: ["Faster speech, longer dialogues", "Marugoto: continue"] },
+      { n: 50, title: "Week 50 · Mock review + N4 kanji batch 8",
+        milestone: true,
+        tasks: ["Synthesize mock results", "Final 10 N4 kanji introduced", "Marugoto: continue"] },
+      { n: 51, title: "Week 51 · Vocabulary push",
+        tasks: ["N4 needs ~700 new words — drill the 100 weakest", "Marugoto: continue"] },
+      { n: 52, title: "Week 52 · Reading endurance",
+        tasks: ["Read 1 longer passage daily, time yourself", "Marugoto: continue"] },
+      { n: 53, title: "Week 53 · Listening at speed",
+        tasks: ["NHK Easy News + harder podcasts", "Marugoto: continue"] },
+      { n: 54, title: "Week 54 · Grammar review pass 1",
+        tasks: ["Re-cover all N4 grammar from scratch", "Marugoto: continue"] },
+      { n: 55, title: "Week 55 · Grammar review pass 2 — patterns under attack",
+        tasks: ["Take 2-3 grammar quizzes", "Drill any pattern below 80%", "Marugoto: continue"] },
+      { n: 56, title: "Week 56 · Second N4 mock test",
+        milestone: true,
+        tasks: ["Full mock under exam conditions", "Compare with first N4 mock", "Marugoto: continue"] },
+      { n: 57, title: "Week 57 · Second mock review",
+        tasks: ["Identify final weak spots", "Make targeted study list", "Marugoto: continue"] },
+      { n: 58, title: "Week 58 · Final vocab consolidation",
+        tasks: ["Top-50 weakest words drilled cold", "Marugoto: continue"] },
+      { n: 59, title: "Week 59 · Final kanji consolidation",
+        tasks: ["All 170 N4 kanji recall test", "Restudy anything below 90%"] },
+      { n: 60, title: "Week 60 · Third / final mock test",
+        milestone: true,
+        tasks: ["Final mock under exam conditions", "Confidence check"] },
+      { n: 61, title: "Week 61 · Polish week",
+        tasks: ["Light review only", "Re-do any wrong answers from past mocks", "No new content"] },
+      { n: 62, title: "Week 62 · 🎯 N4 EXAM",
+        milestone: true,
+        tasks: ["Take the N4 exam (July 2027)", "Celebrate properly 🎉", "Plan: rest, then N3 if you want to continue"] }
+    ]
+  }
+];
+
+// =============================================================
+// Render
+// =============================================================
+const STORAGE_KEY = "n5_n4_pacing_done";
+
+function loadDone() {
+  try { return new Set(JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]")); }
+  catch { return new Set(); }
+}
+
+function saveDone(set) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify([...set]));
+}
+
+let done = loadDone();
+
+function getCurrentWeek() {
+  const now = new Date();
+  const diffMs = now - startDate;
+  const diffWeeks = Math.floor(diffMs / (7 * 24 * 60 * 60 * 1000)) + 1;
+  return Math.max(1, Math.min(62, diffWeeks));
+}
+
+function findWeek(n) {
+  for (const phase of phases) {
+    const w = phase.weeks.find(w => w.n === n);
+    if (w) return { phase, week: w };
+  }
+  return null;
+}
+
+function renderNowBanner() {
+  const cur = getCurrentWeek();
+  const found = findWeek(cur);
+  const banner = document.getElementById("nowBanner");
+  if (!found) {
+    banner.innerHTML = `<div><div class="label">Status</div><div class="week-id">Plan complete</div></div>`;
+    return;
+  }
+  const { phase, week } = found;
+  banner.innerHTML = `
+    <div>
+      <div class="label">This Week · ${phase.name}</div>
+      <div class="week-id">Week ${week.n} of 62</div>
+    </div>
+    <div class="week-task">
+      <strong>${week.title}</strong><br>
+      ${week.tasks.map(t => `· ${t}`).join("<br>")}
+    </div>
+    <div class="week-meta">
+      ${dateRange(week.n)}<br>
+      ${week.n <= 31 ? `${31 - week.n} weeks until N5` : `${62 - week.n} weeks until N4`}
+    </div>
+  `;
+}
+
+function renderPhases() {
+  const container = document.getElementById("phases");
+  const cur = getCurrentWeek();
+  container.innerHTML = phases.map(phase => `
+    <section class="phase-block ${phase.id}">
+      <div class="phase-head">
+        <span class="phase-num">${phase.title.toUpperCase()}</span>
+        <h2>${phase.description}</h2>
+        <span class="phase-meta">${phase.span}</span>
+      </div>
+      <div class="weeks">
+        ${phase.weeks.map(w => `
+          <div class="week-card ${done.has(w.n) ? 'done' : ''} ${w.n === cur ? 'current' : ''} ${w.milestone ? 'milestone' : ''}"
+               data-week="${w.n}" onclick="toggleDone(${w.n})">
+            <div class="check">✓</div>
+            <div class="week-header">
+              <span class="week-num">W${String(w.n).padStart(2,'0')}</span>
+              <span class="week-date">${dateRange(w.n)}</span>
+            </div>
+            <div class="week-title">${w.title}</div>
+            <ul>${w.tasks.map(t => `<li>${t}</li>`).join("")}</ul>
+          </div>
+        `).join("")}
+      </div>
+    </section>
+  `).join("");
+}
+
+function toggleDone(n) {
+  if (done.has(n)) done.delete(n);
+  else done.add(n);
+  saveDone(done);
+  document.querySelectorAll(`[data-week="${n}"]`).forEach(el => el.classList.toggle("done"));
+}
+
+function resetProgress() {
+  if (confirm("Reset all weekly progress?")) {
+    done = new Set();
+    saveDone(done);
+    renderPhases();
+  }
+}
+
+renderNowBanner();
+renderPhases();
+</script>
+</body>
+</html>

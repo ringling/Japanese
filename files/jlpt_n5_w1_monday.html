@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Monday · Week 1 · Numbers Kanji 1-7</title>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;700&family=Noto+Serif+JP:wght@400;500;700&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1a1a;
+  --ink-soft: #3a3a3a;
+  --paper: #f4efe6;
+  --paper-soft: #ebe4d6;
+  --paper-deep: #e2d9c4;
+  --rule: #c9bfa9;
+  --rule-soft: #d8cfb9;
+  --accent: #8b1a1a;
+  --accent-soft: #b85c5c;
+  --muted: #6b6357;
+  --gold: #b8893d;
+  --done: #5a7a3a;
+  --done-bg: #d8e0c4;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 300;
+  line-height: 1.7;
+  padding: 50px 32px;
+  background-image:
+    radial-gradient(circle at 15% 25%, rgba(139, 26, 26, 0.03) 0%, transparent 40%),
+    radial-gradient(circle at 85% 75%, rgba(184, 137, 61, 0.04) 0%, transparent 50%);
+}
+
+.container {
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+/* ====== Masthead ====== */
+.masthead {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: end;
+  gap: 30px;
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 20px;
+  margin-bottom: 40px;
+}
+
+.masthead-mark {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 80px;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 0.85;
+  letter-spacing: -4px;
+}
+
+.masthead-title h1 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 32px;
+  font-weight: 500;
+  letter-spacing: -1px;
+  line-height: 1.1;
+  margin-bottom: 6px;
+}
+
+.masthead-title .sub {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.masthead-meta {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 1.5px;
+  text-align: right;
+  text-transform: uppercase;
+  line-height: 1.8;
+}
+
+/* ====== Session intro ====== */
+.session-intro {
+  background: var(--paper-soft);
+  border-left: 3px solid var(--accent);
+  padding: 26px 32px;
+  margin-bottom: 50px;
+}
+
+.session-intro h3 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.session-intro p {
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 10px;
+  color: var(--ink-soft);
+}
+
+.session-intro p:last-child { margin-bottom: 0; }
+
+.session-intro strong {
+  font-weight: 500;
+  color: var(--ink);
+}
+
+/* ====== Section ====== */
+section {
+  margin-bottom: 60px;
+}
+
+.section-head {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: baseline;
+  gap: 20px;
+  padding-bottom: 14px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.section-num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: 2px;
+  font-weight: 500;
+}
+
+.section-head h2 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 26px;
+  font-weight: 500;
+}
+
+.section-head .duration {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* ====== Kanji card detail ====== */
+.kanji-detail {
+  background: var(--paper-soft);
+  border: 1px solid var(--rule);
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+
+.kanji-header {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  align-items: stretch;
+}
+
+.kanji-glyph-box {
+  background: var(--paper-deep);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  border-right: 1px solid var(--rule);
+}
+
+.kanji-glyph {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 90px;
+  font-weight: 500;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.kanji-meta {
+  padding: 22px 28px;
+}
+
+.kanji-num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.kanji-meaning {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.kanji-readings {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  font-size: 13px;
+}
+
+.reading {
+  font-family: 'IBM Plex Mono', monospace;
+  letter-spacing: 0.5px;
+}
+
+.reading .label {
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-right: 4px;
+  font-weight: 500;
+}
+
+.reading.on .label { color: var(--accent); }
+.reading.kun .label { color: var(--gold); }
+
+.reading .val {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 16px;
+  color: var(--ink);
+}
+
+.kanji-body {
+  padding: 24px 28px;
+  border-top: 1px solid var(--rule);
+}
+
+.kanji-body h4 {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 8px;
+  margin-top: 18px;
+}
+
+.kanji-body h4:first-child { margin-top: 0; }
+
+.kanji-body p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+  margin-bottom: 4px;
+}
+
+.kanji-body em {
+  font-style: italic;
+  color: var(--muted);
+}
+
+.examples-list {
+  list-style: none;
+  margin-top: 4px;
+}
+
+.examples-list li {
+  padding: 6px 0;
+  border-bottom: 1px dashed var(--rule);
+  font-size: 14px;
+}
+
+.examples-list li:last-child { border-bottom: none; }
+
+.examples-list .jp {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 16px;
+  color: var(--ink);
+  margin-right: 8px;
+}
+
+.examples-list ruby rt {
+  font-size: 9px;
+  color: var(--accent);
+}
+
+.examples-list .en {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.stroke-note {
+  background: var(--paper);
+  border: 1px dashed var(--rule);
+  padding: 12px 16px;
+  font-size: 13px;
+  color: var(--ink-soft);
+  font-style: italic;
+  margin-top: 8px;
+}
+
+.stroke-note strong {
+  font-style: normal;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+/* ====== Drill / quiz section ====== */
+.drill-block {
+  background: var(--paper-soft);
+  border-left: 3px solid var(--gold);
+  padding: 22px 26px;
+  margin-bottom: 24px;
+}
+
+.drill-block h3 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.drill-block p {
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 10px;
+  color: var(--ink-soft);
+}
+
+.drill-block ol, .drill-block ul {
+  margin-left: 20px;
+  font-size: 14px;
+  line-height: 1.9;
+  color: var(--ink-soft);
+}
+
+.drill-block ol li, .drill-block ul li {
+  margin-bottom: 4px;
+}
+
+.drill-block .answer {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  padding: 6px 12px;
+  margin-top: 10px;
+  font-size: 13px;
+  color: var(--muted);
+  cursor: pointer;
+  font-family: 'IBM Plex Mono', monospace;
+  letter-spacing: 0.5px;
+}
+
+.drill-block .answer.shown {
+  background: var(--done-bg);
+  color: var(--done);
+  border-color: var(--done);
+}
+
+.drill-block .answer::before {
+  content: "▸ Tap to reveal answer";
+}
+
+.drill-block .answer.shown::before {
+  content: "✓ ";
+}
+
+/* ====== Closing ====== */
+.closing {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 28px 32px;
+  margin-top: 50px;
+}
+
+.closing h3 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 14px;
+  color: var(--paper);
+}
+
+.closing p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--paper-soft);
+  margin-bottom: 8px;
+}
+
+.closing strong {
+  color: var(--paper);
+  font-weight: 500;
+}
+
+.closing-actions {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--accent-soft);
+}
+
+.closing-actions p {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: var(--accent-soft);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+footer {
+  margin-top: 50px;
+  padding-top: 20px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+  text-align: center;
+  line-height: 1.8;
+}
+
+@media (max-width: 700px) {
+  body { padding: 30px 18px; }
+  .masthead { grid-template-columns: 1fr; gap: 16px; }
+  .masthead-meta { text-align: left; }
+  .kanji-header { grid-template-columns: 1fr; }
+  .kanji-glyph-box { padding: 20px; border-right: none; border-bottom: 1px solid var(--rule); }
+  .kanji-glyph { font-size: 70px; }
+  .section-head { grid-template-columns: 1fr; gap: 4px; }
+}
+
+@media print {
+  body { background: white; padding: 20px; }
+  .closing-actions, footer { break-before: avoid; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Masthead -->
+  <header class="masthead">
+    <div class="masthead-mark">月</div>
+    <div class="masthead-title">
+      <h1>Monday · Week 1</h1>
+      <div class="sub">Numbers · Kanji 1–7 · Introduction Session</div>
+    </div>
+    <div class="masthead-meta">
+      ~30 minutes<br>
+      First exposure<br>
+      Shape + meaning + story
+    </div>
+  </header>
+
+  <!-- Intro -->
+  <div class="session-intro">
+    <h3>Today's session</h3>
+    <p>You're meeting <strong>seven kanji for the first time</strong>: 一 二 三 四 五 六 七. The numbers one through seven. Several of these you almost certainly already know — that's intentional. <strong>Week 1 is meant to feel easy.</strong> The point is to build the habit and rhythm of sitting down to study, not to overload day one.</p>
+    <p>For each kanji you'll see: the character itself, its meanings, the on'yomi (音, in katakana, the Chinese-origin reading) and kun'yomi (訓, in hiragana, the native Japanese reading), a memory hook, stroke count, and example words.</p>
+    <p><strong>Today's job is recognition, not reproduction.</strong> Don't try to write them or memorize all the readings. Just look. Read each card slowly. Say the meaning aloud. Say the readings aloud. Move on. Wednesday you'll write them; Friday you'll quiz yourself.</p>
+  </div>
+
+  <!-- Kanji 1 -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">KANJI 01</span>
+      <h2>一 — one</h2>
+      <span class="duration">~3 min</span>
+    </div>
+    <div class="kanji-detail">
+      <div class="kanji-header">
+        <div class="kanji-glyph-box"><div class="kanji-glyph">一</div></div>
+        <div class="kanji-meta">
+          <div class="kanji-num">Number 1 of 104</div>
+          <div class="kanji-meaning">one</div>
+          <div class="kanji-readings">
+            <div class="reading on"><span class="label">音</span><span class="val">イチ・イツ</span></div>
+            <div class="reading kun"><span class="label">訓</span><span class="val">ひと(つ)</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="kanji-body">
+        <h4>Mnemonic</h4>
+        <p>A single horizontal stroke. The simplest possible mark in Japanese. <em>One stroke = one.</em></p>
+
+        <h4>Stroke count</h4>
+        <p>1 stroke (drawn left to right)</p>
+
+        <h4>Example words</h4>
+        <ul class="examples-list">
+          <li><span class="jp"><ruby>一<rt>いち</rt></ruby></span><span class="en">— one (number, abstract)</span></li>
+          <li><span class="jp"><ruby>一<rt>ひと</rt></ruby><ruby>つ<rt></rt></ruby></span><span class="en">— one (item, native counter)</span></li>
+          <li><span class="jp"><ruby>一<rt>ひと</rt></ruby><ruby>人<rt>り</rt></ruby></span><span class="en">— one person / alone</span></li>
+          <li><span class="jp"><ruby>一<rt>いち</rt></ruby><ruby>月<rt>がつ</rt></ruby></span><span class="en">— January</span></li>
+        </ul>
+
+        <div class="stroke-note">
+          <strong>Note:</strong> 一 is read <em>いち</em> in most counting and date contexts (一月 = January, 一時 = 1 o'clock), but <em>ひとつ</em> when counting general items (りんご一つ = one apple). In 一人 it irregularly reads <em>ひとり</em>.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Kanji 2 -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">KANJI 02</span>
+      <h2>二 — two</h2>
+      <span class="duration">~3 min</span>
+    </div>
+    <div class="kanji-detail">
+      <div class="kanji-header">
+        <div class="kanji-glyph-box"><div class="kanji-glyph">二</div></div>
+        <div class="kanji-meta">
+          <div class="kanji-num">Number 2 of 104</div>
+          <div class="kanji-meaning">two</div>
+          <div class="kanji-readings">
+            <div class="reading on"><span class="label">音</span><span class="val">ニ</span></div>
+            <div class="reading kun"><span class="label">訓</span><span class="val">ふた(つ)</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="kanji-body">
+        <h4>Mnemonic</h4>
+        <p>Two horizontal strokes. The lower stroke is slightly longer. <em>Two strokes = two.</em></p>
+
+        <h4>Stroke count</h4>
+        <p>2 strokes (top first, then bottom)</p>
+
+        <h4>Example words</h4>
+        <ul class="examples-list">
+          <li><span class="jp"><ruby>二<rt>に</rt></ruby></span><span class="en">— two (number)</span></li>
+          <li><span class="jp"><ruby>二<rt>ふた</rt></ruby>つ</span><span class="en">— two (items)</span></li>
+          <li><span class="jp"><ruby>二<rt>ふた</rt></ruby><ruby>人<rt>り</rt></ruby></span><span class="en">— two people</span></li>
+          <li><span class="jp"><ruby>二<rt>に</rt></ruby><ruby>月<rt>がつ</rt></ruby></span><span class="en">— February</span></li>
+        </ul>
+
+        <div class="stroke-note">
+          <strong>Watch out:</strong> 二 is easy to confuse with the equals sign (=) when written quickly. Make sure the lower stroke is clearly longer than the upper.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Kanji 3 -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">KANJI 03</span>
+      <h2>三 — three</h2>
+      <span class="duration">~3 min</span>
+    </div>
+    <div class="kanji-detail">
+      <div class="kanji-header">
+        <div class="kanji-glyph-box"><div class="kanji-glyph">三</div></div>
+        <div class="kanji-meta">
+          <div class="kanji-num">Number 3 of 104</div>
+          <div class="kanji-meaning">three</div>
+          <div class="kanji-readings">
+            <div class="reading on"><span class="label">音</span><span class="val">サン</span></div>
+            <div class="reading kun"><span class="label">訓</span><span class="val">みっ(つ) / み(つ)</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="kanji-body">
+        <h4>Mnemonic</h4>
+        <p>Three horizontal strokes — middle stroke shortest, bottom longest. <em>Three strokes = three.</em> The pattern of strokes-to-meaning continues from 一 and 二.</p>
+
+        <h4>Stroke count</h4>
+        <p>3 strokes (top to bottom)</p>
+
+        <h4>Example words</h4>
+        <ul class="examples-list">
+          <li><span class="jp"><ruby>三<rt>さん</rt></ruby></span><span class="en">— three (number)</span></li>
+          <li><span class="jp"><ruby>三<rt>みっ</rt></ruby>つ</span><span class="en">— three (items)</span></li>
+          <li><span class="jp"><ruby>三<rt>さん</rt></ruby><ruby>人<rt>にん</rt></ruby></span><span class="en">— three people</span></li>
+          <li><span class="jp"><ruby>三<rt>さん</rt></ruby><ruby>月<rt>がつ</rt></ruby></span><span class="en">— March</span></li>
+        </ul>
+
+        <div class="stroke-note">
+          <strong>Pattern break:</strong> The strokes-equals-number trick stops working at 4. So 三 is the last "intuitive" number kanji — past this, you need to learn shapes.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Kanji 4 -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">KANJI 04</span>
+      <h2>四 — four</h2>
+      <span class="duration">~3 min</span>
+    </div>
+    <div class="kanji-detail">
+      <div class="kanji-header">
+        <div class="kanji-glyph-box"><div class="kanji-glyph">四</div></div>
+        <div class="kanji-meta">
+          <div class="kanji-num">Number 4 of 104</div>
+          <div class="kanji-meaning">four</div>
+          <div class="kanji-readings">
+            <div class="reading on"><span class="label">音</span><span class="val">シ</span></div>
+            <div class="reading kun"><span class="label">訓</span><span class="val">よん / よっ(つ) / よ</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="kanji-body">
+        <h4>Mnemonic</h4>
+        <p>A box with two legs sticking down inside it — like a small enclosure with four corners. Or: a window with a person standing inside it.</p>
+
+        <h4>Stroke count</h4>
+        <p>5 strokes</p>
+
+        <h4>Example words</h4>
+        <ul class="examples-list">
+          <li><span class="jp"><ruby>四<rt>よん</rt></ruby></span><span class="en">— four (most common reading)</span></li>
+          <li><span class="jp"><ruby>四<rt>よっ</rt></ruby>つ</span><span class="en">— four (items)</span></li>
+          <li><span class="jp"><ruby>四<rt>よ</rt></ruby><ruby>時<rt>じ</rt></ruby></span><span class="en">— 4 o'clock (note: not しじ!)</span></li>
+          <li><span class="jp"><ruby>四<rt>し</rt></ruby><ruby>月<rt>がつ</rt></ruby></span><span class="en">— April</span></li>
+        </ul>
+
+        <div class="stroke-note">
+          <strong>Cultural note:</strong> The on'yomi <em>シ</em> sounds identical to 死 (し, "death"), so Japanese speakers prefer <em>よん</em> in most contexts. The number 4 is considered unlucky — many hospitals skip the 4th floor, and gift sets avoid groupings of 4.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Kanji 5 -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">KANJI 05</span>
+      <h2>五 — five</h2>
+      <span class="duration">~3 min</span>
+    </div>
+    <div class="kanji-detail">
+      <div class="kanji-header">
+        <div class="kanji-glyph-box"><div class="kanji-glyph">五</div></div>
+        <div class="kanji-meta">
+          <div class="kanji-num">Number 5 of 104</div>
+          <div class="kanji-meaning">five</div>
+          <div class="kanji-readings">
+            <div class="reading on"><span class="label">音</span><span class="val">ゴ</span></div>
+            <div class="reading kun"><span class="label">訓</span><span class="val">いつ(つ)</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="kanji-body">
+        <h4>Mnemonic</h4>
+        <p>An hourglass-like shape. Or: a hand frozen mid-count showing five fingers. The kanji originally depicted two crossing lines representing the five elements meeting at a center.</p>
+
+        <h4>Stroke count</h4>
+        <p>4 strokes</p>
+
+        <h4>Example words</h4>
+        <ul class="examples-list">
+          <li><span class="jp"><ruby>五<rt>ご</rt></ruby></span><span class="en">— five (number)</span></li>
+          <li><span class="jp"><ruby>五<rt>いつ</rt></ruby>つ</span><span class="en">— five (items)</span></li>
+          <li><span class="jp"><ruby>五<rt>ご</rt></ruby><ruby>時<rt>じ</rt></ruby></span><span class="en">— 5 o'clock</span></li>
+          <li><span class="jp"><ruby>五<rt>ご</rt></ruby><ruby>月<rt>がつ</rt></ruby></span><span class="en">— May</span></li>
+        </ul>
+
+        <div class="stroke-note">
+          <strong>Memory aid:</strong> 五 only has one common on'yomi (ゴ) and one kun'yomi (いつつ) — it's one of the more straightforward numbers.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Kanji 6 -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">KANJI 06</span>
+      <h2>六 — six</h2>
+      <span class="duration">~3 min</span>
+    </div>
+    <div class="kanji-detail">
+      <div class="kanji-header">
+        <div class="kanji-glyph-box"><div class="kanji-glyph">六</div></div>
+        <div class="kanji-meta">
+          <div class="kanji-num">Number 6 of 104</div>
+          <div class="kanji-meaning">six</div>
+          <div class="kanji-readings">
+            <div class="reading on"><span class="label">音</span><span class="val">ロク</span></div>
+            <div class="reading kun"><span class="label">訓</span><span class="val">むっ(つ) / む(つ)</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="kanji-body">
+        <h4>Mnemonic</h4>
+        <p>A pointy hat sitting on top of two legs. <em>A house with a roof and supports — six elements making up a complete structure.</em></p>
+
+        <h4>Stroke count</h4>
+        <p>4 strokes</p>
+
+        <h4>Example words</h4>
+        <ul class="examples-list">
+          <li><span class="jp"><ruby>六<rt>ろく</rt></ruby></span><span class="en">— six (number)</span></li>
+          <li><span class="jp"><ruby>六<rt>むっ</rt></ruby>つ</span><span class="en">— six (items)</span></li>
+          <li><span class="jp"><ruby>六<rt>ろく</rt></ruby><ruby>時<rt>じ</rt></ruby></span><span class="en">— 6 o'clock</span></li>
+          <li><span class="jp"><ruby>六<rt>ろく</rt></ruby><ruby>月<rt>がつ</rt></ruby></span><span class="en">— June</span></li>
+        </ul>
+
+        <div class="stroke-note">
+          <strong>Sound change preview:</strong> When 六 combines with certain counters, the く drops and doubles the next sound: 六本 = ろっぽん (six long objects). You'll drill these explicitly later in the week.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Kanji 7 -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">KANJI 07</span>
+      <h2>七 — seven</h2>
+      <span class="duration">~3 min</span>
+    </div>
+    <div class="kanji-detail">
+      <div class="kanji-header">
+        <div class="kanji-glyph-box"><div class="kanji-glyph">七</div></div>
+        <div class="kanji-meta">
+          <div class="kanji-num">Number 7 of 104</div>
+          <div class="kanji-meaning">seven</div>
+          <div class="kanji-readings">
+            <div class="reading on"><span class="label">音</span><span class="val">シチ</span></div>
+            <div class="reading kun"><span class="label">訓</span><span class="val">なな / なな(つ)</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="kanji-body">
+        <h4>Mnemonic</h4>
+        <p>Imagine the number 7 mirrored, with a hook at the bottom. Or: a fishing hook curving back on itself.</p>
+
+        <h4>Stroke count</h4>
+        <p>2 strokes</p>
+
+        <h4>Example words</h4>
+        <ul class="examples-list">
+          <li><span class="jp"><ruby>七<rt>なな</rt></ruby> / <ruby>七<rt>しち</rt></ruby></span><span class="en">— seven (both common)</span></li>
+          <li><span class="jp"><ruby>七<rt>なな</rt></ruby>つ</span><span class="en">— seven (items)</span></li>
+          <li><span class="jp"><ruby>七<rt>しち</rt></ruby><ruby>時<rt>じ</rt></ruby></span><span class="en">— 7 o'clock</span></li>
+          <li><span class="jp"><ruby>七<rt>しち</rt></ruby><ruby>月<rt>がつ</rt></ruby></span><span class="en">— July</span></li>
+        </ul>
+
+        <div class="stroke-note">
+          <strong>Reading split:</strong> なな is more common in everyday speech (especially when reading numbers aloud or specifying quantities), while しち is used for time (七時) and months (七月). Like 四, the on'yomi シチ overlaps with another sound (一 = イチ) so people sometimes say なな to avoid confusion.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Drill section -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">DRILL</span>
+      <h2>Quick Recognition Check</h2>
+      <span class="duration">~5 min</span>
+    </div>
+
+    <div class="drill-block">
+      <h3>Drill 1 · Read these aloud</h3>
+      <p>Don't write anything. Just read each one aloud. If you stumble, look back at the card.</p>
+      <ol>
+        <li>三</li>
+        <li>七</li>
+        <li>一</li>
+        <li>五</li>
+        <li>四</li>
+        <li>二</li>
+        <li>六</li>
+      </ol>
+      <div class="answer" onclick="this.classList.toggle('shown')" data-revealed="さん・しち or なな・いち・ご・し or よん・に・ろく">
+        <span class="hidden-answer">さん · しち or なな · いち · ご · し or よん · に · ろく</span>
+      </div>
+    </div>
+
+    <div class="drill-block">
+      <h3>Drill 2 · Match meanings</h3>
+      <p>For each kanji, say the English meaning aloud. No peeking back.</p>
+      <ol>
+        <li>四 → ?</li>
+        <li>一 → ?</li>
+        <li>六 → ?</li>
+        <li>二 → ?</li>
+        <li>七 → ?</li>
+        <li>五 → ?</li>
+        <li>三 → ?</li>
+      </ol>
+      <div class="answer" onclick="this.classList.toggle('shown')">
+        <span class="hidden-answer">four · one · six · two · seven · five · three</span>
+      </div>
+    </div>
+
+    <div class="drill-block">
+      <h3>Drill 3 · Months recognition</h3>
+      <p>Read each month aloud — say both the kanji reading and the English month name.</p>
+      <ol>
+        <li>一月</li>
+        <li>四月</li>
+        <li>七月</li>
+        <li>三月</li>
+        <li>六月</li>
+        <li>五月</li>
+        <li>二月</li>
+      </ol>
+      <div class="answer" onclick="this.classList.toggle('shown')">
+        <span class="hidden-answer">いちがつ Jan · しがつ Apr · しちがつ Jul · さんがつ Mar · ろくがつ Jun · ごがつ May · にがつ Feb</span>
+      </div>
+    </div>
+
+    <div class="drill-block">
+      <h3>Drill 4 · Tricky readings</h3>
+      <p>The tricky cases: which reading do you use?</p>
+      <ol>
+        <li>What time is "4 o'clock"? Write the reading for 四時.</li>
+        <li>What time is "7 o'clock"? Write the reading for 七時.</li>
+        <li>"One person" — what's the reading for 一人?</li>
+        <li>"Two items" — what's the reading for 二つ?</li>
+      </ol>
+      <div class="answer" onclick="this.classList.toggle('shown')">
+        <span class="hidden-answer">よじ (not しじ) · しちじ · ひとり (irregular!) · ふたつ</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Closing -->
+  <div class="closing">
+    <h3>You're done with Monday. Here's what just happened.</h3>
+    <p>You met seven kanji. Most of these you've probably already encountered in Marugoto, but now you've seen them with their full reading set, mnemonics, and example contexts. <strong>Don't try to commit everything to memory tonight.</strong> The 48-hour gap before Wednesday is when your brain actually files this information.</p>
+    <p>If you only remember <strong>one thing</strong> by Wednesday, let it be: the meanings (what number each kanji is). The readings will follow naturally.</p>
+
+    <div class="closing-actions">
+      <p>Wednesday's plan</p>
+      <p style="font-family: 'IBM Plex Sans', sans-serif; font-size: 13px; letter-spacing: normal; color: var(--paper-soft); text-transform: none;">Reinforce these 7, introduce the next 6 (八 九 十 百 千 万), write each by hand 3 times, and start drilling the readings — including the irregular hundred-readings (300, 600, 800).</p>
+    </div>
+  </div>
+
+  <footer>
+    <div>Week 1 · Monday · Numbers Kanji 1–7</div>
+    <div>Companion to the Full Weekly Schedule and Kanji Tracker</div>
+  </footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JLPT N5 — Grammar (Browse · Drill · Quiz)</title>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;700&family=Noto+Serif+JP:wght@400;500;700&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1a1a; --ink-soft: #3a3a3a;
+  --paper: #f4efe6; --paper-soft: #ebe4d6; --paper-deep: #e2d9c4;
+  --rule: #c9bfa9; --rule-soft: #d8cfb9;
+  --accent: #8b1a1a; --accent-soft: #b85c5c;
+  --muted: #6b6357;
+  --gold: #b8893d;
+  --grammar: #3a5a7a;
+  --grammar-bg: #d4dce4;
+  --done: #5a7a3a; --done-bg: #d8e0c4;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--paper); color: var(--ink);
+  font-family: 'IBM Plex Sans', sans-serif; font-weight: 300;
+  line-height: 1.6; padding: 50px 32px;
+  background-image:
+    radial-gradient(circle at 15% 25%, rgba(58, 90, 122, 0.04) 0%, transparent 40%),
+    radial-gradient(circle at 85% 75%, rgba(184, 137, 61, 0.04) 0%, transparent 50%);
+}
+.container { max-width: 1100px; margin: 0 auto; }
+
+.masthead {
+  display: grid; grid-template-columns: auto 1fr auto;
+  align-items: end; gap: 30px;
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 20px; margin-bottom: 36px;
+}
+.masthead-mark {
+  font-family: 'Shippori Mincho', serif; font-size: 80px;
+  font-weight: 700; color: var(--grammar);
+  line-height: 0.85; letter-spacing: -4px;
+}
+.masthead-title h1 {
+  font-family: 'Shippori Mincho', serif; font-size: 32px;
+  font-weight: 500; letter-spacing: -1px; line-height: 1.1; margin-bottom: 6px;
+}
+.masthead-title .sub {
+  font-family: 'IBM Plex Mono', monospace; font-size: 11px;
+  color: var(--muted); letter-spacing: 2px; text-transform: uppercase;
+}
+.masthead-meta {
+  font-family: 'IBM Plex Mono', monospace; font-size: 10px;
+  color: var(--muted); letter-spacing: 1.5px; text-align: right;
+  text-transform: uppercase; line-height: 1.8;
+}
+
+.modes {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 6px; margin-bottom: 24px;
+}
+.mode-btn {
+  padding: 14px 18px; background: var(--paper-soft);
+  border: 1px solid var(--rule); cursor: pointer;
+  font-family: 'IBM Plex Mono', monospace; font-size: 11px;
+  letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted);
+  transition: all 0.2s; text-align: center;
+}
+.mode-btn:hover { background: var(--paper-deep); color: var(--ink); }
+.mode-btn.active { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.mode-btn .mode-name {
+  display: block; font-family: 'Shippori Mincho', serif;
+  font-size: 16px; letter-spacing: 0; text-transform: none;
+  font-weight: 500; margin-bottom: 2px;
+}
+.mode-btn.active .mode-name { color: var(--paper); }
+
+.filters {
+  display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 24px;
+}
+.cat-pill {
+  padding: 8px 14px; background: var(--paper-soft);
+  border: 1px solid var(--rule); font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px; letter-spacing: 1px; text-transform: uppercase;
+  color: var(--muted); cursor: pointer; transition: all 0.2s;
+  user-select: none;
+}
+.cat-pill:hover { background: var(--paper-deep); color: var(--ink); }
+.cat-pill.active { background: var(--grammar); color: var(--paper); border-color: var(--grammar); }
+.cat-pill .cat-count { font-size: 9px; opacity: 0.7; margin-left: 6px; }
+
+.stats {
+  background: var(--paper-soft); border: 1px solid var(--rule);
+  padding: 16px 24px; margin-bottom: 28px;
+  display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 24px;
+  align-items: center;
+}
+.stat-item { text-align: center; }
+.stat-num {
+  font-family: 'Shippori Mincho', serif; font-size: 24px;
+  font-weight: 700; color: var(--grammar); line-height: 1; margin-bottom: 4px;
+}
+.stat-label {
+  font-family: 'IBM Plex Mono', monospace; font-size: 9px;
+  letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted);
+}
+.stat-item.known .stat-num { color: var(--done); }
+
+/* ========== Browse view ========== */
+.grammar-list { display: grid; grid-template-columns: 1fr; gap: 12px; }
+.grammar-card {
+  background: var(--paper-soft); border: 1px solid var(--rule);
+  border-left: 3px solid var(--grammar);
+  padding: 18px 22px; cursor: pointer; transition: all 0.15s;
+  position: relative;
+}
+.grammar-card:hover { background: var(--paper); }
+.grammar-card.known {
+  background: var(--done-bg); border-color: var(--done); border-left-color: var(--done);
+}
+.gc-header {
+  display: grid; grid-template-columns: 1fr auto;
+  align-items: baseline; gap: 16px; margin-bottom: 8px;
+}
+.gc-pattern {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 22px; font-weight: 500; color: var(--ink);
+}
+.gc-pattern .romaji {
+  font-family: 'IBM Plex Mono', monospace; font-size: 12px;
+  color: var(--muted); margin-left: 10px; letter-spacing: 0.3px;
+}
+.gc-cat {
+  font-family: 'IBM Plex Mono', monospace; font-size: 9px;
+  letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted);
+}
+.gc-meaning {
+  font-family: 'Shippori Mincho', serif; font-size: 15px;
+  color: var(--ink-soft); margin-bottom: 10px;
+}
+.gc-structure {
+  font-size: 12px; color: var(--muted);
+  background: var(--paper); padding: 8px 12px;
+  border: 1px solid var(--rule-soft);
+  margin-bottom: 12px; font-family: 'IBM Plex Mono', monospace;
+  letter-spacing: 0.3px; line-height: 1.5;
+}
+.gc-examples { display: flex; flex-direction: column; gap: 8px; }
+.gc-ex {
+  padding: 6px 0; border-top: 1px dashed var(--rule);
+}
+.gc-ex .jp {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 15px; color: var(--ink); margin-bottom: 2px;
+}
+.gc-ex .reading {
+  font-family: 'Noto Serif JP', serif; font-size: 11px;
+  color: var(--grammar); margin-bottom: 2px;
+}
+.gc-ex .en { font-size: 12px; color: var(--muted); font-style: italic; }
+.gc-check {
+  position: absolute; top: 14px; right: 14px;
+  width: 16px; height: 16px; border: 1px solid var(--rule);
+  background: var(--paper); font-size: 10px;
+  display: flex; align-items: center; justify-content: center;
+  color: transparent;
+}
+.grammar-card.known .gc-check {
+  background: var(--done); border-color: var(--done); color: var(--paper);
+}
+
+/* ========== Drill (flashcard) view ========== */
+.drill-view {
+  display: flex; flex-direction: column; align-items: center;
+  padding: 20px 0;
+}
+.drill-card {
+  width: 100%; max-width: 700px; min-height: 400px;
+  background: var(--paper-soft); border: 1px solid var(--rule);
+  padding: 50px 40px; cursor: pointer; transition: all 0.2s;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; user-select: none;
+}
+.drill-card.flipped { background: var(--paper-deep); }
+.drill-pattern {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 44px; font-weight: 500; line-height: 1.2; color: var(--ink);
+  margin-bottom: 12px;
+}
+.drill-romaji {
+  font-family: 'IBM Plex Mono', monospace; font-size: 13px;
+  color: var(--grammar); letter-spacing: 1px; margin-bottom: 20px;
+}
+.drill-meaning {
+  font-size: 22px; font-family: 'Shippori Mincho', serif;
+  color: var(--ink); margin-bottom: 16px;
+}
+.drill-structure {
+  background: var(--paper); padding: 12px 18px;
+  border: 1px solid var(--rule); font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px; color: var(--muted); margin-bottom: 18px;
+  max-width: 100%; word-wrap: break-word;
+}
+.drill-example {
+  margin-top: 16px;
+}
+.drill-example .jp {
+  font-family: 'Noto Serif JP', serif; font-size: 16px;
+  color: var(--ink); margin-bottom: 4px;
+}
+.drill-example .en {
+  font-size: 13px; color: var(--muted); font-style: italic;
+}
+.drill-cat {
+  font-family: 'IBM Plex Mono', monospace; font-size: 9px;
+  letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted);
+  margin-top: 18px;
+}
+.drill-hint {
+  font-family: 'IBM Plex Mono', monospace; font-size: 10px;
+  letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted);
+  margin-top: 28px; opacity: 0.7;
+}
+.drill-actions {
+  display: grid; grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 8px; width: 100%; max-width: 700px; margin-top: 18px;
+}
+.drill-btn {
+  padding: 14px; background: var(--paper-soft);
+  border: 1px solid var(--rule); cursor: pointer;
+  font-family: 'IBM Plex Mono', monospace; font-size: 10px;
+  letter-spacing: 1px; text-transform: uppercase; color: var(--muted);
+  transition: all 0.2s;
+}
+.drill-btn:hover { background: var(--paper-deep); color: var(--ink); }
+.drill-btn.fc-known { color: var(--done); border-color: var(--done); }
+.drill-btn.fc-known:hover { background: var(--done-bg); }
+.drill-btn.fc-unknown { color: var(--accent); border-color: var(--accent-soft); }
+.drill-btn.fc-unknown:hover { background: rgba(184, 92, 92, 0.1); }
+.drill-progress {
+  font-family: 'IBM Plex Mono', monospace; font-size: 10px;
+  letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted);
+  margin-top: 14px;
+}
+
+/* ========== Quiz view ========== */
+.quiz-view {
+  display: flex; flex-direction: column; align-items: center;
+  padding: 20px 0;
+}
+.quiz-card {
+  width: 100%; max-width: 700px;
+  background: var(--paper-soft); border: 1px solid var(--rule);
+  padding: 36px; text-align: center;
+}
+.quiz-mode-label {
+  font-family: 'IBM Plex Mono', monospace; font-size: 10px;
+  letter-spacing: 2px; text-transform: uppercase; color: var(--grammar);
+  margin-bottom: 20px;
+}
+.quiz-prompt {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 22px; color: var(--ink); margin-bottom: 28px; line-height: 1.6;
+  background: var(--paper); padding: 18px 20px; border: 1px solid var(--rule);
+}
+.quiz-prompt .blank {
+  display: inline-block; min-width: 60px; height: 22px;
+  border-bottom: 2px solid var(--accent); margin: 0 4px;
+  vertical-align: bottom;
+}
+.quiz-prompt .ja {
+  font-family: 'Noto Serif JP', serif; font-size: 22px;
+}
+.quiz-prompt .en-translation {
+  display: block; margin-top: 10px; font-size: 13px;
+  color: var(--muted); font-style: italic;
+  font-family: 'Shippori Mincho', serif;
+}
+.quiz-options {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 10px; margin-top: 12px;
+}
+.quiz-option {
+  padding: 16px 18px; background: var(--paper);
+  border: 1px solid var(--rule); cursor: pointer;
+  transition: all 0.2s; text-align: center;
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 18px; color: var(--ink);
+}
+.quiz-option:hover { border-color: var(--grammar); background: var(--paper-deep); }
+.quiz-option.correct { background: var(--done-bg); border-color: var(--done); color: var(--done); }
+.quiz-option.wrong { background: rgba(184, 92, 92, 0.15); border-color: var(--accent); color: var(--accent); }
+.quiz-option.disabled { pointer-events: none; }
+.quiz-feedback {
+  font-family: 'Shippori Mincho', serif; font-size: 14px;
+  margin-top: 24px; min-height: 20px; line-height: 1.5;
+}
+.quiz-feedback.correct { color: var(--done); }
+.quiz-feedback.wrong { color: var(--accent); }
+.quiz-feedback strong {
+  font-weight: 500;
+}
+.quiz-next {
+  margin-top: 18px; padding: 12px 24px;
+  background: var(--ink); color: var(--paper); border: none;
+  font-family: 'IBM Plex Mono', monospace; font-size: 11px;
+  letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer;
+}
+.quiz-next:hover { background: var(--accent); }
+.quiz-stats {
+  font-family: 'IBM Plex Mono', monospace; font-size: 10px;
+  letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted);
+  margin-top: 16px;
+}
+
+.hidden { display: none !important; }
+
+footer {
+  margin-top: 60px; padding-top: 24px;
+  border-top: 1px solid var(--rule);
+  font-family: 'IBM Plex Mono', monospace; font-size: 10px;
+  color: var(--muted); letter-spacing: 0.5px;
+  text-align: center; line-height: 1.8;
+}
+footer .reset-btn {
+  display: inline-block; margin-top: 12px;
+  padding: 6px 14px; background: transparent;
+  border: 1px solid var(--rule); color: var(--muted);
+  font-family: 'IBM Plex Mono', monospace; font-size: 10px;
+  letter-spacing: 1px; text-transform: uppercase;
+  cursor: pointer; transition: all 0.2s;
+}
+footer .reset-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+@media (max-width: 800px) {
+  body { padding: 30px 18px; }
+  .masthead { grid-template-columns: 1fr; gap: 16px; }
+  .masthead-meta { text-align: left; }
+  .modes { grid-template-columns: 1fr; }
+  .stats { grid-template-columns: 1fr 1fr; gap: 16px; }
+  .drill-pattern { font-size: 32px; }
+  .quiz-prompt { font-size: 17px; }
+  .quiz-options { grid-template-columns: 1fr; }
+  .drill-actions { grid-template-columns: 1fr 1fr; }
+  .gc-header { grid-template-columns: 1fr; gap: 4px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header class="masthead">
+    <div class="masthead-mark">文</div>
+    <div class="masthead-title">
+      <h1>Grammar · N5</h1>
+      <div class="sub">82 patterns · JLPT Sensei list · Browse · Drill · Quiz</div>
+    </div>
+    <div class="masthead-meta">
+      Click cards to mark known<br>
+      Quiz drills test format<br>
+      Progress saved locally
+    </div>
+  </header>
+
+  <div class="modes">
+    <div class="mode-btn active" data-mode="browse">
+      <span class="mode-name">Browse</span>
+      Read all patterns
+    </div>
+    <div class="mode-btn" data-mode="drill">
+      <span class="mode-name">Drill</span>
+      Pattern → meaning
+    </div>
+    <div class="mode-btn" data-mode="quiz">
+      <span class="mode-name">Quiz</span>
+      Fill the blank
+    </div>
+  </div>
+
+  <div class="filters" id="filters"></div>
+
+  <div class="stats">
+    <div class="stat-item"><div class="stat-num" id="statTotal">0</div><div class="stat-label">In view</div></div>
+    <div class="stat-item known"><div class="stat-num" id="statKnown">0</div><div class="stat-label">Known</div></div>
+    <div class="stat-item"><div class="stat-num" id="statRemain">0</div><div class="stat-label">To learn</div></div>
+    <div class="stat-item"><div class="stat-num" id="statPct">0%</div><div class="stat-label">Progress</div></div>
+  </div>
+
+  <div id="browseView"></div>
+  <div id="drillView" class="drill-view hidden"></div>
+  <div id="quizView" class="quiz-view hidden"></div>
+
+  <footer>
+    <div>Source: JLPT Sensei N5 grammar list (canonical 80-point list)</div>
+    <div>Click cards to mark known · Progress saved in browser</div>
+    <button class="reset-btn" onclick="resetProgress()">Reset all progress</button>
+  </footer>
+</div>
+
+<script>
+const GRAMMAR = [{"p": "は", "r": "wa", "m": "topic marker", "cat": "particles", "s": "[Topic] は [Comment]", "ex": [["私は学生です。", "わたしはがくせいです。", "I am a student. (As for me, student am.)"], ["これは本です。", "これはほんです。", "This is a book."]]}, {"p": "が", "r": "ga", "m": "subject marker; however; but", "cat": "particles", "s": "[Subject] が [Verb/Adj]", "ex": [["猫がいます。", "ねこがいます。", "There is a cat."], ["彼が来ました。", "かれがきました。", "He came."]]}, {"p": "を", "r": "o / wo", "m": "object marker particle", "cat": "particles", "s": "[Object] を [Verb]", "ex": [["ご飯を食べます。", "ごはんをたべます。", "I eat rice / a meal."], ["本を読みます。", "ほんをよみます。", "I read a book."]]}, {"p": "に", "r": "ni", "m": "destination; in; at; on; to; indirect object", "cat": "particles", "s": "Multiple uses: [Place] に行く / [Time] に / [Person] に", "ex": [["学校に行きます。", "がっこうにいきます。", "I go to school."], ["七時に起きます。", "しちじにおきます。", "I wake up at 7 o'clock."]]}, {"p": "で", "r": "de", "m": "in; at; on; by; with; via (location of action / means)", "cat": "particles", "s": "[Place] で [Action] / [Tool] で [Verb]", "ex": [["学校で勉強します。", "がっこうでべんきょうします。", "I study at school."], ["バスで行きます。", "バスでいきます。", "I go by bus."]]}, {"p": "に / へ", "r": "ni / e", "m": "to (indicates direction / destination)", "cat": "particles", "s": "[Place] へ / に [Motion verb]", "ex": [["東京へ行きます。", "とうきょうへいきます。", "I'm going to Tokyo."], ["家に帰ります。", "いえにかえります。", "I'm going home."]]}, {"p": "の", "r": "no", "m": "possessive particle", "cat": "particles", "s": "[Noun A] の [Noun B] = A's B / B of A", "ex": [["私の本", "わたしのほん", "my book"], ["日本の文化", "にほんのぶんか", "Japan's culture"]]}, {"p": "も", "r": "mo", "m": "too; also; as well", "cat": "particles", "s": "[Noun] も = [Noun] also / too", "ex": [["私もです。", "わたしもです。", "Me too."], ["彼もアメリカ人です。", "かれもアメリカじんです。", "He is also American."]]}, {"p": "と", "r": "to", "m": "and; with; as; connecting particle", "cat": "particles", "s": "[Noun] と [Noun] / [Person] と [Verb]", "ex": [["パンとミルク", "パンとミルク", "bread and milk"], ["友達と行きます。", "ともだちといきます。", "I'll go with my friend."]]}, {"p": "や", "r": "ya", "m": "and; or (non-exhaustive list)", "cat": "particles", "s": "[N1] や [N2] = N1 and N2 (among other things)", "ex": [["りんごやみかんを買いました。", "りんごやみかんをかいました。", "I bought apples and oranges (among other things)."]]}, {"p": "から", "r": "kara", "m": "because; since; from", "cat": "particles", "s": "[Place/Time] から / [Reason] から、[Result]", "ex": [["九時から始まります。", "くじからはじまります。", "It starts at 9 o'clock."], ["寒いから、コートを着ます。", "さむいから、コートをきます。", "Because it's cold, I'll wear a coat."]]}, {"p": "まで", "r": "made", "m": "until; as far as; to (an extent)", "cat": "particles", "s": "[Place/Time] まで", "ex": [["五時まで働きます。", "ごじまではたらきます。", "I work until 5 o'clock."], ["駅まで歩きました。", "えきまであるきました。", "I walked to the station."]]}, {"p": "か", "r": "ka", "m": "question particle", "cat": "particles", "s": "[Sentence] か?", "ex": [["学生ですか。", "がくせいですか。", "Are you a student?"], ["行きますか。", "いきますか。", "Will you go?"]]}, {"p": "か〜か", "r": "ka~ka", "m": "or", "cat": "particles", "s": "[A] か [B] か = A or B", "ex": [["コーヒーかお茶か飲みますか。", "コーヒーかおちゃかのみますか。", "Will you drink coffee or tea?"]]}, {"p": "ね", "r": "ne", "m": "isn't it? right? eh? (seeking agreement)", "cat": "particles", "s": "[Statement] ね", "ex": [["いい天気ですね。", "いいてんきですね。", "Nice weather, isn't it?"]]}, {"p": "よ", "r": "yo", "m": "you know; emphasis (sentence-ending particle)", "cat": "particles", "s": "[Statement] よ", "ex": [["これ、おいしいですよ。", "これ、おいしいですよ。", "This is delicious, you know."]]}, {"p": "なあ", "r": "naa", "m": "sentence-ending: confirmation, admiration", "cat": "particles", "s": "[Statement] なあ", "ex": [["きれいだなあ。", "きれいだなあ。", "How pretty..."]]}, {"p": "だ・です", "r": "da / desu", "m": "to be (am, is, are)", "cat": "copula", "s": "[Noun] です (polite) / [Noun] だ (casual)", "ex": [["私は学生です。", "わたしはがくせいです。", "I am a student."], ["これは本だ。", "これはほんだ。", "This is a book. (casual)"]]}, {"p": "じゃない・ではない", "r": "janai / dewa nai", "m": "to not be (am not, is not, are not)", "cat": "copula", "s": "[Noun] じゃない / じゃありません", "ex": [["学生じゃありません。", "がくせいじゃありません。", "I am not a student."], ["猫ではない。", "ねこではない。", "It's not a cat."]]}, {"p": "だった・でした", "r": "datta / deshita", "m": "was, were (past affirmative)", "cat": "copula", "s": "[Noun] でした (polite) / だった (casual)", "ex": [["昨日は雨でした。", "きのうはあめでした。", "Yesterday was rainy."], ["学生だった。", "がくせいだった。", "I was a student."]]}, {"p": "い-adjectives", "r": "i-adjectives", "m": "i-adjective conjugation", "cat": "adjectives", "s": "い-adj + です (pos), 〜くないです (neg), 〜かったです (past), 〜くなかったです (past neg)", "ex": [["高いです。", "たかいです。", "It's expensive."], ["高くないです。", "たかくないです。", "It's not expensive."], ["高かったです。", "たかかったです。", "It was expensive."]]}, {"p": "な-adjectives", "r": "na-adjectives", "m": "na-adjective conjugation", "cat": "adjectives", "s": "な-adj + です / じゃない / でした / じゃなかった + な + Noun", "ex": [["きれいです。", "きれいです。", "It's pretty."], ["きれいな花", "きれいなはな", "a pretty flower"], ["元気じゃない。", "げんきじゃない。", "I'm not well."]]}, {"p": "があります", "r": "ga arimasu", "m": "there is; have (non-living things)", "cat": "existence", "s": "[Noun] が あります", "ex": [["机の上に本があります。", "つくえのうえにほんがあります。", "There is a book on the desk."], ["時間があります。", "じかんがあります。", "I have time."]]}, {"p": "がいます", "r": "ga imasu", "m": "there is; have (living things)", "cat": "existence", "s": "[Person/Animal] が います", "ex": [["公園に犬がいます。", "こうえんにいぬがいます。", "There is a dog in the park."], ["子供がいます。", "こどもがいます。", "I have a child."]]}, {"p": "がほしい", "r": "ga hoshii", "m": "to want (a thing)", "cat": "desire", "s": "[Noun] が ほしい", "ex": [["新しい車がほしいです。", "あたらしいくるまがほしいです。", "I want a new car."]]}, {"p": "たい", "r": "tai", "m": "want to do something", "cat": "desire", "s": "Verb-stem + たい / たくない / たかった", "ex": [["食べたい。", "たべたい。", "I want to eat."], ["行きたくないです。", "いきたくないです。", "I don't want to go."]]}, {"p": "ましょう", "r": "mashou", "m": "let's ~; shall we ~", "cat": "verb_forms", "s": "Verb-stem + ましょう", "ex": [["行きましょう。", "いきましょう。", "Let's go."], ["食べましょう。", "たべましょう。", "Let's eat."]]}, {"p": "ましょうか", "r": "mashouka", "m": "shall I ~ (offering help)", "cat": "verb_forms", "s": "Verb-stem + ましょうか", "ex": [["手伝いましょうか。", "てつだいましょうか。", "Shall I help you?"]]}, {"p": "ませんか", "r": "masen ka", "m": "would you; do you want to; shall we (invitation)", "cat": "verb_forms", "s": "Verb-stem + ませんか", "ex": [["お茶を飲みませんか。", "おちゃをのみませんか。", "Won't you have some tea?"]]}, {"p": "ている", "r": "te iru", "m": "ongoing action or current state", "cat": "verb_forms", "s": "Verb-て + いる / います", "ex": [["今、食べています。", "いま、たべています。", "I'm eating now."], ["結婚しています。", "けっこんしています。", "I am married. (state)"]]}, {"p": "てある", "r": "te aru", "m": "is/has been done (resulting state)", "cat": "verb_forms", "s": "Verb-て + ある / あります", "ex": [["窓が開けてあります。", "まどがあけてあります。", "The window has been opened (and is still open)."]]}, {"p": "てから", "r": "te kara", "m": "after doing~", "cat": "verb_forms", "s": "Verb-て + から", "ex": [["ご飯を食べてから、出かけます。", "ごはんをたべてから、でかけます。", "After eating, I'll go out."]]}, {"p": "てください", "r": "te kudasai", "m": "please do~", "cat": "verb_forms", "s": "Verb-て + ください", "ex": [["見てください。", "みてください。", "Please look."], ["待ってください。", "まってください。", "Please wait."]]}, {"p": "ないで", "r": "naide", "m": "without doing; do B without doing A", "cat": "verb_forms", "s": "Verb-ない + で", "ex": [["朝ご飯を食べないで、出かけました。", "あさごはんをたべないで、でかけました。", "I went out without eating breakfast."]]}, {"p": "ないでください", "r": "naide kudasai", "m": "please don't do~", "cat": "verb_forms", "s": "Verb-ない + でください", "ex": [["写真を撮らないでください。", "しゃしんをとらないでください。", "Please don't take pictures."]]}, {"p": "てはいけない", "r": "te wa ikenai", "m": "must not; may not; cannot", "cat": "modality", "s": "Verb-て + はいけない / はいけません", "ex": [["ここで写真を撮ってはいけません。", "ここでしゃしんをとってはいけません。", "You must not take photos here."]]}, {"p": "ちゃいけない・じゃいけない", "r": "cha ikenai / ja ikenai", "m": "must not (casual contraction)", "cat": "modality", "s": "Verb-て (with て→ちゃ, で→じゃ) + いけない / だめ", "ex": [["食べちゃダメ。", "たべちゃダメ。", "You can't eat (it)."], ["飲んじゃいけない。", "のんじゃいけない。", "You mustn't drink."]]}, {"p": "てもいいです", "r": "temo ii desu", "m": "is OK to; may I~?", "cat": "modality", "s": "Verb-て + もいいです", "ex": [["入ってもいいですか。", "はいってもいいですか。", "May I come in?"]]}, {"p": "なくてもいい", "r": "naku temo ii", "m": "don't have to", "cat": "modality", "s": "Verb-ない (drop い) + くてもいい", "ex": [["行かなくてもいいです。", "いかなくてもいいです。", "You don't have to go."]]}, {"p": "なくちゃ", "r": "nakucha", "m": "must do; need to (casual)", "cat": "modality", "s": "Verb-ない (drop い) + くちゃ (informal contraction of なくては)", "ex": [["早く行かなくちゃ。", "はやくいかなくちゃ。", "I have to go soon."]]}, {"p": "なくてはいけない", "r": "nakute wa ikenai", "m": "must do; need to do", "cat": "modality", "s": "Verb-ない (drop い) + くてはいけない", "ex": [["勉強しなくてはいけません。", "べんきょうしなくてはいけません。", "I have to study."]]}, {"p": "なくてはならない", "r": "nakute wa naranai", "m": "must do; need to do", "cat": "modality", "s": "Verb-ない (drop い) + くてはならない", "ex": [["行かなくてはならない。", "いかなくてはならない。", "I must go."]]}, {"p": "ほうがいい", "r": "hou ga ii", "m": "had better; should~", "cat": "modality", "s": "Verb-た + ほうがいい (or Verb-ない + ほうがいい)", "ex": [["休んだほうがいいです。", "やすんだほうがいいです。", "You'd better rest."]]}, {"p": "つもり", "r": "tsumori", "m": "plan to ~; intend to ~", "cat": "modality", "s": "Verb (plain) + つもり", "ex": [["明日、行くつもりです。", "あした、いくつもりです。", "I plan to go tomorrow."]]}, {"p": "だろう", "r": "darou", "m": "I think; it seems; probably; right?", "cat": "modality", "s": "[Plain form] + だろう", "ex": [["明日は晴れるだろう。", "あしたははれるだろう。", "It will probably be sunny tomorrow."]]}, {"p": "でしょう", "r": "deshou", "m": "I think; probably; right? (polite)", "cat": "modality", "s": "[Plain form] + でしょう", "ex": [["明日は雨でしょう。", "あしたはあめでしょう。", "It will probably rain tomorrow."]]}, {"p": "前に", "r": "mae ni", "m": "before ~; in front of ~", "cat": "time", "s": "Verb (plain) + 前に / Noun + の + 前に", "ex": [["寝る前に歯を磨きます。", "ねるまえにはをみがきます。", "I brush my teeth before sleeping."]]}, {"p": "とき", "r": "toki", "m": "when; at this time", "cat": "time", "s": "[Plain form] + とき", "ex": [["子供のとき、よく泣きました。", "こどものとき、よくなきました。", "When I was a child, I often cried."]]}, {"p": "まだ", "r": "mada", "m": "still; not yet", "cat": "time", "s": "まだ + [Verb/Adj]", "ex": [["まだ食べています。", "まだたべています。", "I'm still eating."]]}, {"p": "まだ〜ていません", "r": "mada ~te imasen", "m": "have not yet (done)", "cat": "time", "s": "まだ + Verb-て + いません", "ex": [["まだ食べていません。", "まだたべていません。", "I haven't eaten yet."]]}, {"p": "もう", "r": "mou", "m": "already; anymore", "cat": "time", "s": "もう + [Verb past] (already) / もう + [neg] (anymore)", "ex": [["もう食べました。", "もうたべました。", "I have already eaten."], ["もう要りません。", "もういりません。", "I don't need it anymore."]]}, {"p": "いつも", "r": "itsumo", "m": "always; usually; habitually", "cat": "frequency", "s": "いつも + [Verb]", "ex": [["いつもコーヒーを飲みます。", "いつもコーヒーをのみます。", "I always drink coffee."]]}, {"p": "とても", "r": "totemo", "m": "very; awfully", "cat": "intensity", "s": "とても + [Adj/Adv]", "ex": [["とても面白いです。", "とてもおもしろいです。", "It's very interesting."]]}, {"p": "すぎる", "r": "sugiru", "m": "too much", "cat": "intensity", "s": "Verb-stem / Adj-stem + すぎる", "ex": [["食べすぎました。", "たべすぎました。", "I ate too much."], ["高すぎる。", "たかすぎる。", "It's too expensive."]]}, {"p": "より〜ほうが", "r": "yori ~hou ga", "m": "[A] is more than [B]", "cat": "comparison", "s": "[B] より [A] のほうが ~", "ex": [["お茶より、コーヒーのほうが好きです。", "おちゃより、コーヒーのほうがすきです。", "I like coffee more than tea."]]}, {"p": "は〜より...です", "r": "wa ~yori... desu", "m": "[A] is more ~ than [B]", "cat": "comparison", "s": "[A] は [B] より [Adj] です", "ex": [["日本は韓国より大きいです。", "にほんはかんこくよりおおきいです。", "Japan is bigger than Korea."]]}, {"p": "の中で[A]が一番", "r": "no naka de [A] ga ichiban", "m": "out of this group, [A] is the best/most", "cat": "comparison", "s": "[Group] の中で [A] が一番 [Adj]", "ex": [["果物の中でりんごが一番好きです。", "くだもののなかでりんごがいちばんすきです。", "Out of fruits, I like apples best."]]}, {"p": "一番", "r": "ichiban", "m": "the most; the best", "cat": "comparison", "s": "一番 + [Adj]", "ex": [["一番おいしいレストラン", "いちばんおいしいレストラン", "the most delicious restaurant"]]}, {"p": "はどうですか", "r": "wa dou desu ka", "m": "how about; how is", "cat": "questions", "s": "[Noun] はどうですか", "ex": [["お茶はどうですか。", "おちゃはどうですか。", "How about some tea?"]]}, {"p": "どんな", "r": "donna", "m": "what kind of; what sort of", "cat": "questions", "s": "どんな + [Noun]", "ex": [["どんな映画が好きですか。", "どんなえいががすきですか。", "What kind of movies do you like?"]]}, {"p": "どうして", "r": "doushite", "m": "why; for what reason", "cat": "questions", "s": "どうして + [question]", "ex": [["どうして来なかったの？", "どうしてこなかったの？", "Why didn't you come?"]]}, {"p": "どうやって", "r": "douyatte", "m": "how; in what way; by what means", "cat": "questions", "s": "どうやって + [Verb]", "ex": [["どうやって行きますか。", "どうやっていきますか。", "How will you go?"]]}, {"p": "から (reason)", "r": "kara", "m": "because; since", "cat": "connectors", "s": "[Reason] から、[Result]", "ex": [["忙しいから、行けません。", "いそがしいから、いけません。", "Because I'm busy, I can't go."]]}, {"p": "ので", "r": "node", "m": "because of; given that; since (softer than から)", "cat": "connectors", "s": "[Reason — plain form] ので、[Result]", "ex": [["雨が降っているので、行きません。", "あめがふっているので、いきません。", "Because it's raining, I won't go."]]}, {"p": "が (but)", "r": "ga", "m": "but; however (sentence connector)", "cat": "connectors", "s": "[Sentence A] が、[Sentence B]", "ex": [["行きたいですが、時間がありません。", "いきたいですが、じかんがありません。", "I want to go, but I don't have time."]]}, {"p": "けど", "r": "kedo", "m": "but; however; although (casual)", "cat": "connectors", "s": "[Sentence A] けど、[Sentence B]", "ex": [["おいしいけど、高い。", "おいしいけど、たかい。", "It's delicious, but expensive."]]}, {"p": "けれども", "r": "keredo mo", "m": "but; however; although (formal)", "cat": "connectors", "s": "[Sentence A] けれども、[Sentence B]", "ex": [["難しいけれども、頑張ります。", "むずかしいけれども、がんばります。", "It's difficult, but I'll do my best."]]}, {"p": "でも", "r": "demo", "m": "but; however (sentence-initial)", "cat": "connectors", "s": "[Sentence A]。でも、[Sentence B]", "ex": [["行きたいです。でも、お金がありません。", "いきたいです。でも、おかねがありません。", "I want to go. But I have no money."]]}, {"p": "しかし", "r": "shikashi", "m": "however (formal sentence-initial)", "cat": "connectors", "s": "[Sentence A]。しかし、[Sentence B]", "ex": [["勉強しました。しかし、合格しませんでした。", "べんきょうしました。しかし、ごうかくしませんでした。", "I studied. However, I didn't pass."]]}, {"p": "たり〜たり", "r": "tari~tari", "m": "do such things as A and B (representative listing)", "cat": "connectors", "s": "Verb-た (drop た) + たり、Verb-た + たり、する", "ex": [["休みは映画を見たり、本を読んだりします。", "やすみはえいがをみたり、ほんをよんだりします。", "On weekends I do things like watch movies and read books."]]}, {"p": "んです / のです", "r": "ndesu / no desu", "m": "to explain; show emphasis (explanatory)", "cat": "nominal", "s": "[Plain form] + んです (casual) / のです (formal)", "ex": [["頭が痛いんです。", "あたまがいたいんです。", "It's that I have a headache."], ["行かないんです。", "いかないんです。", "It's that I won't go."]]}, {"p": "のが好き", "r": "no ga suki", "m": "to like doing something", "cat": "nominal", "s": "Verb (plain) + のが好き", "ex": [["本を読むのが好きです。", "ほんをよむのがすきです。", "I like reading books."]]}, {"p": "のが上手", "r": "no ga jouzu", "m": "to be good at", "cat": "nominal", "s": "Verb (plain) + のが上手", "ex": [["料理を作るのが上手です。", "りょうりをつくるのがじょうずです。", "I'm good at cooking."]]}, {"p": "のが下手", "r": "no ga heta", "m": "to be bad at doing something", "cat": "nominal", "s": "Verb (plain) + のが下手", "ex": [["歌うのが下手です。", "うたうのがへたです。", "I'm bad at singing."]]}, {"p": "なる", "r": "naru", "m": "to become", "cat": "misc", "s": "Noun + に + なる / い-adj (drop い) + く + なる / な-adj + に + なる", "ex": [["先生になりました。", "せんせいになりました。", "I became a teacher."], ["寒くなりました。", "さむくなりました。", "It got cold."]]}, {"p": "にする", "r": "ni suru", "m": "to decide on", "cat": "misc", "s": "[Noun] にする", "ex": [["コーヒーにします。", "コーヒーにします。", "I'll have (decide on) coffee."]]}, {"p": "にいく", "r": "ni iku", "m": "go to do (purpose)", "cat": "misc", "s": "Verb-stem + にいく / にきます", "ex": [["買い物に行きます。", "かいものにいきます。", "I'm going to shop."]]}, {"p": "たことがある", "r": "ta koto ga aru", "m": "to have done something before (experience)", "cat": "misc", "s": "Verb-た + ことがある", "ex": [["日本に行ったことがあります。", "にほんにいったことがあります。", "I have been to Japan before."]]}, {"p": "方", "r": "kata", "m": "the way of doing; how to do", "cat": "misc", "s": "Verb-stem + 方", "ex": [["作り方を教えてください。", "つくりかたをおしえてください。", "Please teach me how to make it."]]}, {"p": "だけ", "r": "dake", "m": "only; just; as much as", "cat": "misc", "s": "[Noun/Quantity] + だけ", "ex": [["一つだけください。", "ひとつだけください。", "Please give me only one."]]}, {"p": "一緒に", "r": "issho ni", "m": "together", "cat": "misc", "s": "[Person] と一緒に", "ex": [["一緒に行きましょう。", "いっしょにいきましょう。", "Let's go together."], ["友達と一緒に勉強します。", "ともだちといっしょにべんきょうします。", "I study together with my friend."]]}, {"p": "をください", "r": "o kudasai", "m": "please give me~", "cat": "misc", "s": "[Noun] をください", "ex": [["水をください。", "みずをください。", "Please give me water."]]}];
+const CATS = {"particles": {"name": "Particles", "jp": "助詞"}, "copula": {"name": "Copula & Negation", "jp": "コピュラ"}, "adjectives": {"name": "Adjectives", "jp": "形容詞"}, "existence": {"name": "Existence", "jp": "存在"}, "desire": {"name": "Desire (want)", "jp": "願望"}, "verb_forms": {"name": "Verb Forms", "jp": "動詞の形"}, "modality": {"name": "Modality", "jp": "様態"}, "time": {"name": "Time & Sequence", "jp": "時"}, "frequency": {"name": "Frequency", "jp": "頻度"}, "intensity": {"name": "Intensity", "jp": "強度"}, "comparison": {"name": "Comparison", "jp": "比較"}, "questions": {"name": "Question Words", "jp": "疑問詞"}, "connectors": {"name": "Connectors", "jp": "接続"}, "nominal": {"name": "Nominalizers / んです", "jp": "名詞化"}, "misc": {"name": "Misc Patterns", "jp": "その他"}};
+const STORAGE_KEY = "n5_grammar_known";
+
+let known = (() => {
+  try { return new Set(JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]")); }
+  catch { return new Set(); }
+})();
+function saveKnown() { localStorage.setItem(STORAGE_KEY, JSON.stringify([...known])); }
+function gKey(g) { return g.p + "|" + g.r; }
+
+let activeFilters = new Set();
+let currentMode = "browse";
+
+function renderFilters() {
+  const filters = document.getElementById("filters");
+  const counts = {};
+  GRAMMAR.forEach(g => { counts[g.cat] = (counts[g.cat] || 0) + 1; });
+  filters.innerHTML = '<div class="cat-pill ' + (activeFilters.size === 0 ? 'active' : '') + '" data-cat="">All <span class="cat-count">' + GRAMMAR.length + '</span></div>' +
+    Object.keys(CATS).map(catId => {
+      const isActive = activeFilters.has(catId);
+      return '<div class="cat-pill ' + (isActive ? 'active' : '') + '" data-cat="' + catId + '">' +
+        CATS[catId].name + ' <span class="cat-count">' + (counts[catId] || 0) + '</span></div>';
+    }).join("");
+  filters.querySelectorAll(".cat-pill").forEach(pill => {
+    pill.addEventListener("click", () => {
+      const cat = pill.dataset.cat;
+      if (cat === "") activeFilters.clear();
+      else { if (activeFilters.has(cat)) activeFilters.delete(cat); else activeFilters.add(cat); }
+      renderFilters();
+      renderCurrentView();
+      updateStats();
+    });
+  });
+}
+
+function getFiltered() {
+  if (activeFilters.size === 0) return GRAMMAR;
+  return GRAMMAR.filter(g => activeFilters.has(g.cat));
+}
+
+function updateStats() {
+  const f = getFiltered();
+  const knownCount = f.filter(g => known.has(gKey(g))).length;
+  document.getElementById("statTotal").textContent = f.length;
+  document.getElementById("statKnown").textContent = knownCount;
+  document.getElementById("statRemain").textContent = f.length - knownCount;
+  document.getElementById("statPct").textContent = (f.length === 0 ? 0 : Math.round(100 * knownCount / f.length)) + "%";
+}
+
+// ========== BROWSE VIEW ==========
+function renderBrowseView() {
+  const view = document.getElementById("browseView");
+  view.innerHTML = '<div class="grammar-list">' + getFiltered().map(g => {
+    const k = gKey(g);
+    const isKnown = known.has(k);
+    return '<div class="grammar-card ' + (isKnown ? 'known' : '') + '" data-key="' + k + '">' +
+      '<div class="gc-check">✓</div>' +
+      '<div class="gc-header">' +
+        '<div class="gc-pattern">' + g.p + '<span class="romaji">' + g.r + '</span></div>' +
+        '<div class="gc-cat">' + CATS[g.cat].name + '</div>' +
+      '</div>' +
+      '<div class="gc-meaning">' + g.m + '</div>' +
+      '<div class="gc-structure">' + g.s + '</div>' +
+      '<div class="gc-examples">' +
+        g.ex.map(e =>
+          '<div class="gc-ex">' +
+            '<div class="jp">' + e[0] + '</div>' +
+            '<div class="reading">' + e[1] + '</div>' +
+            '<div class="en">' + e[2] + '</div>' +
+          '</div>'
+        ).join('') +
+      '</div>' +
+    '</div>';
+  }).join("") + '</div>';
+  view.querySelectorAll(".grammar-card").forEach(card => {
+    card.addEventListener("click", e => {
+      // Don't trigger when clicking inside examples (selecting text etc)
+      if (window.getSelection().toString()) return;
+      const k = card.dataset.key;
+      if (known.has(k)) known.delete(k); else known.add(k);
+      saveKnown();
+      card.classList.toggle("known");
+      updateStats();
+    });
+  });
+}
+
+// ========== DRILL VIEW ==========
+let dIndex = 0, dOrder = [], dFlipped = false;
+
+function shuffle(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function startDrill() {
+  const filtered = getFiltered();
+  let pool = filtered.filter(g => !known.has(gKey(g)));
+  if (pool.length === 0) pool = filtered;
+  dOrder = shuffle(pool);
+  dIndex = 0;
+  dFlipped = false;
+  renderDrill();
+}
+
+function renderDrill() {
+  const view = document.getElementById("drillView");
+  if (dOrder.length === 0) {
+    view.innerHTML = '<div class="drill-card"><div class="drill-pattern">—</div><div class="drill-meaning">No items in current filter</div></div>';
+    return;
+  }
+  if (dIndex >= dOrder.length) {
+    view.innerHTML = '<div class="drill-card"><div class="drill-pattern">🎉</div><div class="drill-meaning">Round complete!<br><br>' + dOrder.length + ' patterns reviewed.</div></div>' +
+      '<div class="drill-actions" style="grid-template-columns: 1fr;"><button class="drill-btn" onclick="startDrill()">Start new round</button></div>';
+    return;
+  }
+  const g = dOrder[dIndex];
+  const ex = g.ex[0]; // Show first example on flip
+  view.innerHTML = '<div class="drill-card ' + (dFlipped ? 'flipped' : '') + '" id="drillEl">' +
+    (dFlipped ?
+      '<div>' +
+        '<div class="drill-pattern">' + g.p + '</div>' +
+        '<div class="drill-romaji">' + g.r + '</div>' +
+        '<div class="drill-meaning">' + g.m + '</div>' +
+        '<div class="drill-structure">' + g.s + '</div>' +
+        '<div class="drill-example">' +
+          '<div class="jp">' + ex[0] + '</div>' +
+          '<div class="en">' + ex[2] + '</div>' +
+        '</div>' +
+        '<div class="drill-cat">' + CATS[g.cat].name + '</div>' +
+      '</div>'
+    :
+      '<div>' +
+        '<div class="drill-pattern">' + g.p + '</div>' +
+        '<div class="drill-romaji">' + g.r + '</div>' +
+        '<div class="drill-hint">Tap card to reveal meaning</div>' +
+      '</div>'
+    ) + '</div>' +
+    '<div class="drill-actions">' +
+      '<button class="drill-btn fc-unknown" onclick="dRate(false)">Don\'t know</button>' +
+      '<button class="drill-btn" onclick="dSkip()">Skip</button>' +
+      '<button class="drill-btn fc-known" onclick="dRate(true)">Know it</button>' +
+      '<button class="drill-btn" onclick="dReveal()">' + (dFlipped ? 'Hide' : 'Reveal') + '</button>' +
+    '</div>' +
+    '<div class="drill-progress">Card ' + (dIndex + 1) + ' of ' + dOrder.length + '</div>';
+  document.getElementById("drillEl").addEventListener("click", () => dReveal());
+}
+
+function dReveal() { dFlipped = !dFlipped; renderDrill(); }
+function dRate(isKnown) {
+  const g = dOrder[dIndex];
+  if (isKnown) known.add(gKey(g)); else known.delete(gKey(g));
+  saveKnown();
+  dFlipped = false;
+  dIndex++;
+  updateStats();
+  renderDrill();
+}
+function dSkip() { dFlipped = false; dIndex++; renderDrill(); }
+
+// ========== QUIZ VIEW (fill-the-blank format) ==========
+let quizState = null;
+
+function startQuiz() {
+  const filtered = getFiltered();
+  if (filtered.length < 4) {
+    document.getElementById("quizView").innerHTML =
+      '<div class="quiz-card"><div class="quiz-prompt">Need at least 4 patterns in filter</div></div>';
+    return;
+  }
+  let pool = filtered.filter(g => !known.has(gKey(g)));
+  if (pool.length < 4) pool = filtered;
+  quizState = {
+    pool, filtered,
+    score: 0, total: 0
+  };
+  nextQuiz();
+}
+
+// Build a fill-the-blank from a pattern's example
+function buildQuestion(g) {
+  // Pick an example
+  const ex = g.ex[Math.floor(Math.random() * g.ex.length)];
+  const [jp, reading, en] = ex;
+  // Try to blank out the pattern. If pattern has variations like "じゃない・ではない"
+  // use the simple core "じゃない".
+  let target = g.p;
+  if (target.includes("・")) target = target.split("・")[0];
+  if (target.includes(" / ")) target = target.split(" / ")[0];
+  // Strip placeholders like "[A]"
+  target = target.replace(/\[.*?\]/g, "").trim();
+  // Some patterns are abstract ("い-adjectives", "な-adjectives")
+  // For these we'll just show the pattern as the prompt
+  let prompt = "";
+  let needsAbstract = !jp.includes(target) || target.length === 0 || target.includes("adjectives");
+  if (needsAbstract) {
+    // Abstract: show meaning, ask for pattern
+    prompt = '<div class="quiz-mode-label">Which pattern means:</div>' +
+      '<div class="quiz-prompt">"' + g.m + '"</div>';
+  } else {
+    // Concrete: blank the pattern in the example sentence
+    const blanked = jp.replace(target, '<span class="blank"></span>');
+    prompt = '<div class="quiz-mode-label">Fill in the blank:</div>' +
+      '<div class="quiz-prompt"><span class="ja">' + blanked + '</span>' +
+      '<span class="en-translation">' + en + '</span></div>';
+  }
+  return { prompt, target: needsAbstract ? g.p : target, abstract: needsAbstract };
+}
+
+function nextQuiz() {
+  const pool = quizState.pool;
+  const filtered = quizState.filtered;
+  const v = pool[Math.floor(Math.random() * pool.length)];
+  const q = buildQuestion(v);
+
+  // Build distractors: pick 3 other patterns from the same or related category
+  const distractors = [];
+  const used = new Set([gKey(v)]);
+  // Prefer same category for distractors (more challenging)
+  const sameCat = filtered.filter(g => g.cat === v.cat && !used.has(gKey(g)));
+  const shuffledSame = shuffle(sameCat);
+  for (const g of shuffledSame) {
+    if (distractors.length >= 3) break;
+    distractors.push(g);
+    used.add(gKey(g));
+  }
+  // Fill remaining from any category
+  while (distractors.length < 3) {
+    const cand = filtered[Math.floor(Math.random() * filtered.length)];
+    if (!used.has(gKey(cand))) {
+      distractors.push(cand);
+      used.add(gKey(cand));
+    }
+    if (used.size >= filtered.length) break;
+  }
+
+  // Distractor labels: their abbreviated patterns
+  const optionsFull = shuffle([v, ...distractors]);
+  // For each option, show its primary pattern (first variant if separated)
+  const optionLabels = optionsFull.map(g => {
+    let t = g.p;
+    if (t.includes("・")) t = t.split("・")[0];
+    if (t.includes(" / ")) t = t.split(" / ")[0];
+    t = t.replace(/\[.*?\]/g, "").trim();
+    return { full: g, label: t || g.p };
+  });
+
+  quizState.current = {
+    correct: v,
+    options: optionLabels,
+    answered: false,
+    promptHTML: q.prompt
+  };
+  renderQuiz();
+}
+
+function renderQuiz() {
+  const { correct, options, answered, promptHTML } = quizState.current;
+  const view = document.getElementById("quizView");
+  const optsHTML = options.map((o, i) =>
+    '<div class="quiz-option" data-idx="' + i + '">' + o.label + '</div>'
+  ).join("");
+  view.innerHTML = '<div class="quiz-card">' +
+    promptHTML +
+    '<div class="quiz-options">' + optsHTML + '</div>' +
+    '<div class="quiz-feedback" id="quizFeedback"></div>' +
+    (answered ? '<button class="quiz-next" onclick="nextQuiz()">Next →</button>' : '') +
+    '<div class="quiz-stats">Score: ' + quizState.score + ' / ' + quizState.total + '</div>' +
+  '</div>';
+  if (!answered) {
+    view.querySelectorAll(".quiz-option").forEach(opt => {
+      opt.addEventListener("click", () => {
+        const idx = parseInt(opt.dataset.idx);
+        const isCorrect = options[idx].full === correct;
+        quizState.current.answered = true;
+        quizState.total++;
+        if (isCorrect) {
+          quizState.score++;
+          known.add(gKey(correct));
+        } else {
+          known.delete(gKey(correct));
+        }
+        saveKnown();
+        view.querySelectorAll(".quiz-option").forEach((o, i) => {
+          o.classList.add("disabled");
+          if (options[i].full === correct) o.classList.add("correct");
+          else if (i === idx) o.classList.add("wrong");
+        });
+        const fb = document.getElementById("quizFeedback");
+        if (isCorrect) {
+          fb.className = "quiz-feedback correct";
+          fb.innerHTML = "正解！ <strong>" + correct.p + "</strong> — " + correct.m;
+        } else {
+          fb.className = "quiz-feedback wrong";
+          fb.innerHTML = "Correct answer: <strong>" + correct.p + "</strong> (" + correct.r + ") — " + correct.m;
+        }
+        const card = view.querySelector(".quiz-card");
+        if (!card.querySelector(".quiz-next")) {
+          const btn = document.createElement("button");
+          btn.className = "quiz-next";
+          btn.textContent = "Next →";
+          btn.onclick = nextQuiz;
+          card.insertBefore(btn, view.querySelector(".quiz-stats"));
+        }
+        updateStats();
+      });
+    });
+  }
+}
+
+// ========== MODE SWITCHING ==========
+function setMode(mode) {
+  currentMode = mode;
+  document.querySelectorAll(".mode-btn").forEach(b => {
+    b.classList.toggle("active", b.dataset.mode === mode);
+  });
+  document.getElementById("browseView").classList.toggle("hidden", mode !== "browse");
+  document.getElementById("drillView").classList.toggle("hidden", mode !== "drill");
+  document.getElementById("quizView").classList.toggle("hidden", mode !== "quiz");
+  renderCurrentView();
+}
+
+function renderCurrentView() {
+  if (currentMode === "browse") renderBrowseView();
+  else if (currentMode === "drill") startDrill();
+  else if (currentMode === "quiz") startQuiz();
+}
+
+document.querySelectorAll(".mode-btn").forEach(btn => {
+  btn.addEventListener("click", () => setMode(btn.dataset.mode));
+});
+
+function resetProgress() {
+  if (confirm("Reset all grammar progress?")) {
+    known = new Set();
+    saveKnown();
+    renderCurrentView();
+    updateStats();
+  }
+}
+
+// Init
+renderFilters();
+renderBrowseView();
+updateStats();
+</script>
+</body>
+</html>

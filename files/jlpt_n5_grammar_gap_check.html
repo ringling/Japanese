@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JLPT N5 — Grammar Gap Check</title>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;700&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1a1a;
+  --paper: #f4efe6;
+  --paper-soft: #ebe4d6;
+  --paper-deep: #e2d9c4;
+  --rule: #c9bfa9;
+  --accent: #8b1a1a;
+  --muted: #6b6357;
+  --gold: #b8893d;
+
+  /* status colors */
+  --solid: #5a7a3a;
+  --solid-bg: #d8e0c4;
+  --review: #b8893d;
+  --review-bg: #ede1c4;
+  --gap: #8b1a1a;
+  --gap-bg: #ead6d6;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 300;
+  line-height: 1.6;
+  padding: 50px 32px;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* ====== Masthead ====== */
+.masthead {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: end;
+  gap: 30px;
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 20px;
+  margin-bottom: 40px;
+}
+
+.masthead-mark {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 90px;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 0.85;
+  letter-spacing: -4px;
+}
+
+.masthead-title h1 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 36px;
+  font-weight: 500;
+  letter-spacing: -1px;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.masthead-title .sub {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.masthead-meta {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 1.5px;
+  text-align: right;
+  text-transform: uppercase;
+  line-height: 1.8;
+}
+
+/* ====== Summary cards ====== */
+.summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: 40px;
+}
+
+.sum-card {
+  padding: 22px 24px;
+  border: 1px solid var(--rule);
+  background: var(--paper-soft);
+  position: relative;
+}
+
+.sum-card.solid {
+  background: var(--solid-bg);
+  border-color: var(--solid);
+}
+
+.sum-card.review {
+  background: var(--review-bg);
+  border-color: var(--review);
+}
+
+.sum-card.gap {
+  background: var(--gap-bg);
+  border-color: var(--gap);
+}
+
+.sum-num {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 42px;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.sum-card.solid .sum-num { color: var(--solid); }
+.sum-card.review .sum-num { color: var(--review); }
+.sum-card.gap .sum-num { color: var(--gap); }
+
+.sum-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+
+.sum-card.solid .sum-label { color: var(--solid); }
+.sum-card.review .sum-label { color: var(--review); }
+.sum-card.gap .sum-label { color: var(--gap); }
+
+.sum-desc {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.5;
+  margin-top: 6px;
+}
+
+/* ====== Verdict ====== */
+.verdict {
+  background: var(--paper-soft);
+  border-left: 3px solid var(--accent);
+  padding: 22px 28px;
+  margin-bottom: 50px;
+}
+
+.verdict h3 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.verdict p {
+  font-size: 14px;
+  color: var(--ink);
+  line-height: 1.7;
+  margin-bottom: 8px;
+}
+
+.verdict p:last-child { margin-bottom: 0; }
+
+.verdict strong {
+  font-weight: 500;
+  color: var(--accent);
+}
+
+/* ====== Section ====== */
+section {
+  margin-bottom: 50px;
+}
+
+.section-head {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: baseline;
+  gap: 20px;
+  padding-bottom: 12px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.section-num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 2px;
+  font-weight: 500;
+}
+
+section.solid-section .section-num { color: var(--solid); }
+section.review-section .section-num { color: var(--review); }
+section.gap-section .section-num { color: var(--gap); }
+
+.section-head h2 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.section-head .count {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* ====== Grammar items ====== */
+.items {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.item {
+  background: var(--paper-soft);
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--rule);
+  padding: 14px 18px;
+}
+
+section.solid-section .item { border-left-color: var(--solid); }
+section.review-section .item { border-left-color: var(--review); }
+section.gap-section .item { border-left-color: var(--gap); }
+
+.item-pattern {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+
+.item-meaning {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.item-evidence {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.3px;
+  font-style: italic;
+  line-height: 1.5;
+  padding-top: 6px;
+  border-top: 1px dashed var(--rule);
+}
+
+.item-evidence::before {
+  content: "▸ ";
+  opacity: 0.6;
+}
+
+/* ====== Footer / next steps ====== */
+.next-steps {
+  margin-top: 60px;
+  background: var(--paper-soft);
+  padding: 28px 32px;
+  border-top: 2px solid var(--ink);
+  border-bottom: 2px solid var(--ink);
+}
+
+.next-steps h3 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 22px;
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+
+.next-steps ol {
+  list-style: none;
+  counter-reset: step;
+}
+
+.next-steps li {
+  counter-increment: step;
+  position: relative;
+  padding-left: 40px;
+  margin-bottom: 14px;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.next-steps li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 26px;
+  height: 26px;
+  background: var(--accent);
+  color: var(--paper);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+}
+
+footer {
+  margin-top: 50px;
+  padding-top: 20px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+  text-align: center;
+  line-height: 1.8;
+}
+
+@media (max-width: 800px) {
+  body { padding: 30px 18px; }
+  .masthead { grid-template-columns: 1fr; gap: 16px; }
+  .masthead-meta { text-align: left; }
+  .summary { grid-template-columns: 1fr; }
+  .items { grid-template-columns: 1fr; }
+  .section-head { grid-template-columns: 1fr; gap: 6px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Masthead -->
+  <header class="masthead">
+    <div class="masthead-mark">差</div>
+    <div class="masthead-title">
+      <h1>Grammar Gap Check · N5</h1>
+      <div class="sub">Marugoto A2+ vs JLPT N5 grammar list</div>
+    </div>
+    <div class="masthead-meta">
+      Based on past sessions<br>
+      ~80 N5 grammar points<br>
+      Status: diagnostic
+    </div>
+  </header>
+
+  <!-- Summary -->
+  <div class="summary">
+    <div class="sum-card solid">
+      <div class="sum-label">Solid</div>
+      <div class="sum-num">62</div>
+      <div class="sum-desc">Confirmed in past Marugoto sessions — actively used and explained</div>
+    </div>
+    <div class="sum-card review">
+      <div class="sum-label">Review</div>
+      <div class="sum-num">12</div>
+      <div class="sum-desc">Likely covered but may need refresh — touched on indirectly</div>
+    </div>
+    <div class="sum-card gap">
+      <div class="sum-label">Gap</div>
+      <div class="sum-num">6</div>
+      <div class="sum-desc">No clear evidence of coverage — focus your N5 prep here</div>
+    </div>
+  </div>
+
+  <!-- Verdict -->
+  <div class="verdict">
+    <h3>Verdict</h3>
+    <p>Your N5 grammar foundation is <strong>strong — likely 80%+ ready</strong>. Marugoto A2+ has taken you well past most N5 patterns and into N4 territory. Compound verbs, ながら, ので, the consequence pattern with と, ~たり~たりする, the volitional, the prohibition pattern, the nominalizer の and んです — all confirmed in your sessions. These are mostly above N5 level.</p>
+    <p>The real gaps are surprisingly few: a handful of basic counters, the ~たい form for desires, and some particle subtleties. The "review" items are mostly things you've used implicitly but may not have drilled in JLPT format.</p>
+    <p>For N5, your work is mostly <strong>kanji + test format practice</strong>, not grammar acquisition. Save your serious grammar effort for the N4 push next year.</p>
+  </div>
+
+  <!-- SOLID -->
+  <section class="solid-section">
+    <div class="section-head">
+      <span class="section-num">CONFIRMED ✓</span>
+      <h2>Solid — actively used in your study</h2>
+      <span class="count">62 patterns</span>
+    </div>
+    <div class="items">
+
+      <div class="item"><div class="item-pattern">〜です / 〜じゃありません</div><div class="item-meaning">copula, affirmative & negative</div><div class="item-evidence">Used throughout dialogues — restaurant scenes, self-introductions</div></div>
+
+      <div class="item"><div class="item-pattern">〜でした / 〜じゃありませんでした</div><div class="item-meaning">past copula forms</div><div class="item-evidence">e.g. 旅行はどうでしたか</div></div>
+
+      <div class="item"><div class="item-pattern">〜ます / 〜ません</div><div class="item-meaning">verb non-past affirmative & negative</div><div class="item-evidence">Foundation pattern, used constantly</div></div>
+
+      <div class="item"><div class="item-pattern">〜ました / 〜ませんでした</div><div class="item-meaning">past tense verbs</div><div class="item-evidence">e.g. 入れすぎました, のどがかわきました</div></div>
+
+      <div class="item"><div class="item-pattern">〜ましょう / 〜ませんか</div><div class="item-meaning">"let's" / "shall we"</div><div class="item-evidence">かんぱいしてから飲みましょう</div></div>
+
+      <div class="item"><div class="item-pattern">〜は〜です</div><div class="item-meaning">basic A is B structure</div><div class="item-evidence">Drilled extensively early in Marugoto</div></div>
+
+      <div class="item"><div class="item-pattern">〜が あります / います</div><div class="item-meaning">there is (thing / person)</div><div class="item-evidence">Restaurant vocab — テーブルとざしきがございます</div></div>
+
+      <div class="item"><div class="item-pattern">は (topic)</div><div class="item-meaning">topic marker</div><div class="item-evidence">Discussed in 象は鼻が長い example</div></div>
+
+      <div class="item"><div class="item-pattern">が (subject)</div><div class="item-meaning">subject marker</div><div class="item-evidence">Contrast with は worked through explicitly</div></div>
+
+      <div class="item"><div class="item-pattern">を</div><div class="item-meaning">direct object marker</div><div class="item-evidence">茶碗を持つ, 胡椒をかける etc</div></div>
+
+      <div class="item"><div class="item-pattern">に (target / time / location of existence)</div><div class="item-meaning">multi-purpose particle</div><div class="item-evidence">野菜につける, 友達に電話をかける</div></div>
+
+      <div class="item"><div class="item-pattern">で (location of action / means)</div><div class="item-meaning">where action takes place / by means of</div><div class="item-evidence">インターネットで買う — explicit grammar deep-dive done</div></div>
+
+      <div class="item"><div class="item-pattern">へ</div><div class="item-meaning">direction</div><div class="item-evidence">こちらへどうぞ — restaurant entry</div></div>
+
+      <div class="item"><div class="item-pattern">と</div><div class="item-meaning">"and" / "with"</div><div class="item-evidence">テーブルとざしき, 友達と</div></div>
+
+      <div class="item"><div class="item-pattern">の</div><div class="item-meaning">possession / modification</div><div class="item-evidence">野菜のてんぷら, 食事のとき</div></div>
+
+      <div class="item"><div class="item-pattern">も</div><div class="item-meaning">"also"</div><div class="item-evidence">Standard usage in dialogues</div></div>
+
+      <div class="item"><div class="item-pattern">から / まで</div><div class="item-meaning">from / until</div><div class="item-evidence">Used in time/place contexts</div></div>
+
+      <div class="item"><div class="item-pattern">から (reason)</div><div class="item-meaning">because</div><div class="item-evidence">Compared with ので in your studies</div></div>
+
+      <div class="item"><div class="item-pattern">か (question)</div><div class="item-meaning">question particle</div><div class="item-evidence">なんめいさまですか etc</div></div>
+
+      <div class="item"><div class="item-pattern">ね / よ</div><div class="item-meaning">sentence-end particles</div><div class="item-evidence">〜ですね, 〜ですよ in dialogues</div></div>
+
+      <div class="item"><div class="item-pattern">い-adj + です</div><div class="item-meaning">positive predicative</div><div class="item-evidence">高いです, おいしいです</div></div>
+
+      <div class="item"><div class="item-pattern">い-adj → 〜くないです</div><div class="item-meaning">negative</div><div class="item-evidence">あまくない — explicit deep-dive</div></div>
+
+      <div class="item"><div class="item-pattern">い-adj → 〜かったです</div><div class="item-meaning">past</div><div class="item-evidence">Demonstrated in なかった form</div></div>
+
+      <div class="item"><div class="item-pattern">い-adj → 〜くて</div><div class="item-meaning">connecting form</div><div class="item-evidence">あまくなくておいしい — explicit walk-through</div></div>
+
+      <div class="item"><div class="item-pattern">な-adj + です</div><div class="item-meaning">positive predicative</div><div class="item-evidence">きれいです, 元気です</div></div>
+
+      <div class="item"><div class="item-pattern">な-adj + な + N</div><div class="item-meaning">attributive form</div><div class="item-evidence">大好きな食べ物 — full deep-dive in your sessions</div></div>
+
+      <div class="item"><div class="item-pattern">な-adj → 〜で</div><div class="item-meaning">connecting form</div><div class="item-evidence">Covered alongside くて</div></div>
+
+      <div class="item"><div class="item-pattern">〜が好きです / 上手です</div><div class="item-meaning">like / be good at</div><div class="item-evidence">Common Marugoto frame</div></div>
+
+      <div class="item"><div class="item-pattern">これ / それ / あれ / どれ</div><div class="item-meaning">demonstrative pronouns</div><div class="item-evidence">Standard Marugoto coverage</div></div>
+
+      <div class="item"><div class="item-pattern">この / その / あの + N</div><div class="item-meaning">demonstrative + noun</div><div class="item-evidence">この店, その料理 etc</div></div>
+
+      <div class="item"><div class="item-pattern">ここ / そこ / あそこ</div><div class="item-meaning">here / there / over there</div><div class="item-evidence">Restaurant location vocab</div></div>
+
+      <div class="item"><div class="item-pattern">こちら / そちら / あちら</div><div class="item-meaning">polite directions</div><div class="item-evidence">こちらへどうぞ</div></div>
+
+      <div class="item"><div class="item-pattern">何 / だれ / いつ / どこ</div><div class="item-meaning">basic question words</div><div class="item-evidence">Throughout dialogues</div></div>
+
+      <div class="item"><div class="item-pattern">どう / どんな</div><div class="item-meaning">how / what kind</div><div class="item-evidence">どうでしたか, どんな料理</div></div>
+
+      <div class="item"><div class="item-pattern">いくら</div><div class="item-meaning">how much (price)</div><div class="item-evidence">Shopping/restaurant contexts</div></div>
+
+      <div class="item"><div class="item-pattern">なぜ / どうして</div><div class="item-meaning">why</div><div class="item-evidence">どうしてですか — listening exercises</div></div>
+
+      <div class="item"><div class="item-pattern">〜時 / 〜分 / 〜半</div><div class="item-meaning">telling time</div><div class="item-evidence">三時, 六時半 etc</div></div>
+
+      <div class="item"><div class="item-pattern">〜日 / 〜月 / 〜年</div><div class="item-meaning">date counters</div><div class="item-evidence">毎日, 今年 used naturally</div></div>
+
+      <div class="item"><div class="item-pattern">〜人 (people counter)</div><div class="item-meaning">counting people</div><div class="item-evidence">3人です — restaurant entry</div></div>
+
+      <div class="item"><div class="item-pattern">〜て form</div><div class="item-meaning">connector / sequence</div><div class="item-evidence">Multiple deep-dives — 買って, つけて, 持って</div></div>
+
+      <div class="item"><div class="item-pattern">〜てください</div><div class="item-meaning">please do</div><div class="item-evidence">読んでください, listening exercises</div></div>
+
+      <div class="item"><div class="item-pattern">〜ています</div><div class="item-meaning">progressive / habitual state</div><div class="item-evidence">食べています — explicit explanation</div></div>
+
+      <div class="item"><div class="item-pattern">〜ないでください</div><div class="item-meaning">please don't do</div><div class="item-evidence">Compared with V-て / V-ないで</div></div>
+
+      <div class="item"><div class="item-pattern">〜てから</div><div class="item-meaning">after doing</div><div class="item-evidence">かんぱいしてから — explicit walk-through</div></div>
+
+      <div class="item"><div class="item-pattern">〜より〜のほうが</div><div class="item-meaning">comparison: more than</div><div class="item-evidence">Marugoto comparison drills</div></div>
+
+      <div class="item"><div class="item-pattern">〜が (but)</div><div class="item-meaning">contrast conjunction</div><div class="item-evidence">小さいけどおいしい — both forms covered</div></div>
+
+      <div class="item"><div class="item-pattern">そして / それから</div><div class="item-meaning">and / then</div><div class="item-evidence">Sequencing in narratives</div></div>
+
+      <div class="item"><div class="item-pattern">〜くらい / ぐらい</div><div class="item-meaning">approximately</div><div class="item-evidence">Time/quantity contexts</div></div>
+
+      <div class="item"><div class="item-pattern">よく / あまり / ぜんぜん</div><div class="item-meaning">frequency adverbs</div><div class="item-evidence">あまり甘くない — explicit example</div></div>
+
+      <div class="item"><div class="item-pattern">もう / まだ</div><div class="item-meaning">already / not yet</div><div class="item-evidence">Standard Marugoto coverage</div></div>
+
+      <div class="item"><div class="item-pattern">〜が、〜</div><div class="item-meaning">soft contrast</div><div class="item-evidence">Polite restaurant phrasing</div></div>
+
+      <div class="item"><div class="item-pattern">〜ましょうか</div><div class="item-meaning">shall I/we...?</div><div class="item-evidence">Suggestion form, Marugoto dialogues</div></div>
+
+      <div class="item"><div class="item-pattern">〜のとき</div><div class="item-meaning">at the time of</div><div class="item-evidence">食事のとき — Korean dining example</div></div>
+
+      <div class="item"><div class="item-pattern">〜なら</div><div class="item-meaning">if it's [topic]</div><div class="item-evidence">野菜なら、このサラダがいいですよ — explicit deep-dive</div></div>
+
+      <div class="item"><div class="item-pattern">〜ので (reason)</div><div class="item-meaning">because (softer than から)</div><div class="item-evidence">りょうが多いので、〜 — covered explicitly</div></div>
+
+      <div class="item"><div class="item-pattern">〜の (nominalizer)</div><div class="item-meaning">turn verb/adj into noun phrase</div><div class="item-evidence">食べるのは、私が好きなのは — full grammar discovery</div></div>
+
+      <div class="item"><div class="item-pattern">〜のは〜です</div><div class="item-meaning">"what (one) does is..." emphasis</div><div class="item-evidence">Worked through with 4 fill-in exercises</div></div>
+
+      <div class="item"><div class="item-pattern">〜たり〜たりする</div><div class="item-meaning">listing representative actions [N4]</div><div class="item-evidence">Full deep-dive — つけたり、かけたり</div></div>
+
+      <div class="item"><div class="item-pattern">〜ながら</div><div class="item-meaning">while doing [N4]</div><div class="item-evidence">作りながら食べる — explicit grammar page</div></div>
+
+      <div class="item"><div class="item-pattern">〜てはいけません / だめです</div><div class="item-meaning">prohibition [N4]</div><div class="item-evidence">茶碗を持ってはだめ — Marugoto grammar page</div></div>
+
+      <div class="item"><div class="item-pattern">〜ちゃ / じゃだめ</div><div class="item-meaning">casual prohibition [N4]</div><div class="item-evidence">Contractions ては→ちゃ explicit</div></div>
+
+      <div class="item"><div class="item-pattern">〜と (consequence)</div><div class="item-meaning">when X, then Y [N4]</div><div class="item-evidence">Memory mentions — explicit study</div></div>
+
+    </div>
+  </section>
+
+  <!-- REVIEW -->
+  <section class="review-section">
+    <div class="section-head">
+      <span class="section-num">REVIEW ◐</span>
+      <h2>Likely covered — drill in test format</h2>
+      <span class="count">12 patterns</span>
+    </div>
+    <div class="items">
+
+      <div class="item"><div class="item-pattern">〜の中で〜が一番</div><div class="item-meaning">most/best among</div><div class="item-evidence">Superlative — confirmed in past memory but not in recent samples</div></div>
+
+      <div class="item"><div class="item-pattern">〜と〜とどちらが</div><div class="item-meaning">which of two is more...</div><div class="item-evidence">Standard A2 comparison — verify with practice question</div></div>
+
+      <div class="item"><div class="item-pattern">〜つ (general counter)</div><div class="item-meaning">ひとつ・ふたつ・みっつ...</div><div class="item-evidence">Used implicitly (1つ注文しませんか) — drill the full set</div></div>
+
+      <div class="item"><div class="item-pattern">〜本 / 〜枚 / 〜匹</div><div class="item-meaning">long objects / flat / animals</div><div class="item-evidence">Standard Marugoto vocab — JLPT will test specifically</div></div>
+
+      <div class="item"><div class="item-pattern">〜回 / 〜階 / 〜台</div><div class="item-meaning">times / floors / vehicles</div><div class="item-evidence">Reviewed but easy to mix up readings</div></div>
+
+      <div class="item"><div class="item-pattern">〜が ほしい</div><div class="item-meaning">want (a thing)</div><div class="item-evidence">Implied in shopping contexts — verify form</div></div>
+
+      <div class="item"><div class="item-pattern">〜は〜が〜</div><div class="item-meaning">double-subject construction</div><div class="item-evidence">象は鼻が長い example — recognize in test format</div></div>
+
+      <div class="item"><div class="item-pattern">〜どうですか</div><div class="item-meaning">how about / how is...</div><div class="item-evidence">Used naturally — but check formal patterns</div></div>
+
+      <div class="item"><div class="item-pattern">〜まえに</div><div class="item-meaning">before (doing)</div><div class="item-evidence">Counterpart to てから — verify forms</div></div>
+
+      <div class="item"><div class="item-pattern">〜あとで</div><div class="item-meaning">after (doing)</div><div class="item-evidence">Compared with てから in your sessions</div></div>
+
+      <div class="item"><div class="item-pattern">〜方 (way of doing)</div><div class="item-meaning">how to / way of</div><div class="item-evidence">食べ方, 読み方 — covered, drill in JLPT format</div></div>
+
+      <div class="item"><div class="item-pattern">〜すぎる</div><div class="item-meaning">too much (N4 but appears in N5)</div><div class="item-evidence">入れすぎました — used naturally</div></div>
+
+    </div>
+  </section>
+
+  <!-- GAPS -->
+  <section class="gap-section">
+    <div class="section-head">
+      <span class="section-num">GAP ✗</span>
+      <h2>No clear evidence — make sure to drill</h2>
+      <span class="count">6 patterns</span>
+    </div>
+    <div class="items">
+
+      <div class="item"><div class="item-pattern">〜たい (desire)</div><div class="item-meaning">"want to do"</div><div class="item-evidence">Almost certainly known passively, but not seen explicitly drilled in past sessions — easy points on N5</div></div>
+
+      <div class="item"><div class="item-pattern">〜ている (continuous state, narrow sense)</div><div class="item-meaning">currently doing right now</div><div class="item-evidence">You know habitual ている well; verify the moment-of-action sense (e.g. 今食べています)</div></div>
+
+      <div class="item"><div class="item-pattern">〜に なります / します</div><div class="item-meaning">becomes / makes (it) become</div><div class="item-evidence">Standard N5 pattern, no clear evidence in past samples</div></div>
+
+      <div class="item"><div class="item-pattern">〜が できます</div><div class="item-meaning">can do / be able to</div><div class="item-evidence">Common N5 form, may have been touched on but not confirmed</div></div>
+
+      <div class="item"><div class="item-pattern">Counter pronunciation changes</div><div class="item-meaning">いっぽん / さんぼん / ろっぽん etc</div><div class="item-evidence">Sound change rules for counters — pure JLPT memorization territory</div></div>
+
+      <div class="item"><div class="item-pattern">Numbers 100–10,000 readings</div><div class="item-meaning">irregular readings (300 さんびゃく, 600 ろっぴゃく etc)</div><div class="item-evidence">Read-aloud test items — drill specifically before exam</div></div>
+
+    </div>
+  </section>
+
+  <!-- Next steps -->
+  <div class="next-steps">
+    <h3>What this means for your prep</h3>
+    <ol>
+      <li><strong>Don't spend time learning new N5 grammar.</strong> You have it. Spend that time on kanji and test format.</li>
+      <li><strong>Drill counters and irregular number readings explicitly</strong> — these are guaranteed test items and easy to lose points on if you haven't memorized them cold.</li>
+      <li><strong>Take one mock test in early autumn 2026</strong> to confirm format familiarity. The patterns in the "Review" column will reveal themselves as solid or shaky once you see test-format multiple choice.</li>
+      <li><strong>Use the gap items as a checklist</strong> — for each, write 3 example sentences in your notebook. If they come naturally, they're solid; if you stumble, they're real gaps.</li>
+      <li><strong>Save your serious grammar effort for N4 prep next year.</strong> The patterns above marked [N4] are the bridge — you've already started crossing it.</li>
+    </ol>
+  </div>
+
+  <footer>
+    <div>Diagnostic based on Marugoto A2+ sessions through May 2026</div>
+    <div>Refresh this analysis after 2-3 months of additional study</div>
+  </footer>
+
+</div>
+</body>
+</html>

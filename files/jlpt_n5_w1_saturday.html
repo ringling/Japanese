@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Saturday · Week 1 · Cumulative Review</title>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;700&family=Noto+Serif+JP:wght@400;500;700&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1a1a;
+  --ink-soft: #3a3a3a;
+  --paper: #f4efe6;
+  --paper-soft: #ebe4d6;
+  --paper-deep: #e2d9c4;
+  --rule: #c9bfa9;
+  --rule-soft: #d8cfb9;
+  --accent: #8b1a1a;
+  --accent-soft: #b85c5c;
+  --muted: #6b6357;
+  --gold: #b8893d;
+  --review: #5a7a3a;
+  --review-bg: #d8e0c4;
+  --done: #5a7a3a;
+  --done-bg: #d8e0c4;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 300;
+  line-height: 1.7;
+  padding: 50px 32px;
+  background-image:
+    radial-gradient(circle at 15% 25%, rgba(90, 122, 58, 0.04) 0%, transparent 40%),
+    radial-gradient(circle at 85% 75%, rgba(184, 137, 61, 0.04) 0%, transparent 50%);
+}
+
+.container { max-width: 880px; margin: 0 auto; }
+
+/* ====== Masthead ====== */
+.masthead {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: end;
+  gap: 30px;
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 20px;
+  margin-bottom: 40px;
+}
+
+.masthead-mark {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 80px;
+  font-weight: 700;
+  color: var(--review);
+  line-height: 0.85;
+  letter-spacing: -4px;
+}
+
+.masthead-title h1 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 32px;
+  font-weight: 500;
+  letter-spacing: -1px;
+  line-height: 1.1;
+  margin-bottom: 6px;
+}
+
+.masthead-title .sub {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.masthead-meta {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 1.5px;
+  text-align: right;
+  text-transform: uppercase;
+  line-height: 1.8;
+}
+
+/* ====== Intro ====== */
+.session-intro {
+  background: var(--paper-soft);
+  border-left: 3px solid var(--review);
+  padding: 26px 32px;
+  margin-bottom: 50px;
+}
+
+.session-intro h3 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.session-intro p {
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 10px;
+  color: var(--ink-soft);
+}
+
+.session-intro p:last-child { margin-bottom: 0; }
+
+.session-intro strong { font-weight: 500; color: var(--ink); }
+
+/* ====== Section ====== */
+section { margin-bottom: 60px; }
+
+.section-head {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: baseline;
+  gap: 20px;
+  padding-bottom: 14px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.section-num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 2px;
+  font-weight: 500;
+  color: var(--review);
+}
+
+.section-head h2 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 26px;
+  font-weight: 500;
+}
+
+.section-head .duration {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.lead {
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 22px;
+  color: var(--ink-soft);
+}
+
+.lead strong { font-weight: 500; color: var(--ink); }
+.lead em { font-style: italic; color: var(--muted); }
+
+/* ====== Recall block ====== */
+.recall-block {
+  background: var(--paper-soft);
+  border-left: 3px solid var(--review);
+  padding: 24px 28px;
+  margin-bottom: 22px;
+}
+
+.recall-block h3 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+
+.recall-block .pass-meta {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--review);
+  margin-bottom: 14px;
+}
+
+.recall-block .instructions {
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin-bottom: 16px;
+  line-height: 1.7;
+}
+
+.recall-block .instructions strong {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.kanji-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.k-quiz-card {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  padding: 14px 4px;
+  text-align: center;
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 32px;
+  color: var(--review);
+  cursor: default;
+}
+
+/* Price grid */
+.price-list {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  padding: 0;
+  margin-bottom: 14px;
+}
+
+.price-list .price-row {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  align-items: center;
+  padding: 12px 18px;
+  border-bottom: 1px solid var(--rule-soft);
+  gap: 16px;
+}
+
+.price-list .price-row:last-child {
+  border-bottom: none;
+}
+
+.price-list .price-num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+.price-list .price-jp {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 20px;
+  color: var(--ink);
+}
+
+/* Answer strip */
+.answer-strip {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  padding: 10px 14px;
+  font-size: 12px;
+  color: var(--muted);
+  cursor: pointer;
+  font-family: 'IBM Plex Mono', monospace;
+  letter-spacing: 0.5px;
+  user-select: none;
+  margin-top: 6px;
+  line-height: 1.7;
+}
+
+.answer-strip.shown {
+  background: var(--done-bg);
+  color: var(--done);
+  border-color: var(--done);
+}
+
+.answer-strip::before { content: "▸ Tap to reveal answers"; }
+.answer-strip.shown::before { content: "✓ "; }
+
+.answer-strip .hidden-answer { display: none; }
+.answer-strip.shown .hidden-answer { display: inline; }
+
+/* Self-rating */
+.self-rating {
+  background: var(--paper);
+  border: 1px dashed var(--rule);
+  padding: 14px 18px;
+  margin-top: 14px;
+  font-size: 13px;
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
+
+.self-rating strong { color: var(--review); font-weight: 500; }
+
+/* ====== Reflection block ====== */
+.reflection {
+  background: var(--paper-soft);
+  border-top: 2px solid var(--ink);
+  border-bottom: 2px solid var(--ink);
+  padding: 28px 32px;
+  margin-bottom: 22px;
+}
+
+.reflection h3 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 14px;
+}
+
+.reflection p {
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 12px;
+  color: var(--ink-soft);
+}
+
+.reflection p:last-child { margin-bottom: 0; }
+
+.reflection ul {
+  margin-left: 22px;
+  font-size: 14px;
+  line-height: 2;
+  color: var(--ink-soft);
+}
+
+.reflection strong { color: var(--ink); font-weight: 500; }
+
+/* ====== Stats banner ====== */
+.completion {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border: 1px solid var(--rule);
+  background: var(--review-bg);
+  margin-bottom: 30px;
+}
+
+.completion .stat {
+  padding: 18px 16px;
+  border-right: 1px solid var(--rule);
+  text-align: center;
+}
+
+.completion .stat:last-child { border-right: none; }
+
+.completion .stat-num {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--review);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.completion .stat-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ====== Closing ====== */
+.closing {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 28px 32px;
+  margin-top: 50px;
+}
+
+.closing h3 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 22px;
+  font-weight: 500;
+  margin-bottom: 14px;
+  color: var(--paper);
+}
+
+.closing p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--paper-soft);
+  margin-bottom: 8px;
+}
+
+.closing strong { color: var(--paper); font-weight: 500; }
+
+.closing-actions {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--accent-soft);
+}
+
+.closing-actions p:first-child {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: var(--accent-soft);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+footer {
+  margin-top: 50px;
+  padding-top: 20px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+  text-align: center;
+  line-height: 1.8;
+}
+
+@media (max-width: 700px) {
+  body { padding: 30px 18px; }
+  .masthead { grid-template-columns: 1fr; gap: 16px; }
+  .masthead-meta { text-align: left; }
+  .section-head { grid-template-columns: 1fr; gap: 4px; }
+  .completion { grid-template-columns: 1fr 1fr; }
+  .completion .stat:nth-child(2) { border-right: none; }
+  .completion .stat:nth-child(1), .completion .stat:nth-child(2) { border-bottom: 1px solid var(--rule); }
+  .kanji-grid { grid-template-columns: repeat(auto-fill, minmax(56px, 1fr)); }
+  .k-quiz-card { font-size: 26px; padding: 10px 4px; }
+  .price-list .price-row { grid-template-columns: 1fr; gap: 4px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Masthead -->
+  <header class="masthead">
+    <div class="masthead-mark">土</div>
+    <div class="masthead-title">
+      <h1>Saturday · Week 1</h1>
+      <div class="sub">Cumulative Review · Random Kanji + Price-Reading</div>
+    </div>
+    <div class="masthead-meta">
+      ~30 minutes<br>
+      Closing the loop<br>
+      Last session of Week 1
+    </div>
+  </header>
+
+  <!-- Completion banner -->
+  <div class="completion">
+    <div class="stat">
+      <div class="stat-num">13</div>
+      <div class="stat-label">Kanji introduced</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">14</div>
+      <div class="stat-label">Vocab words added</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">7</div>
+      <div class="stat-label">Counters drilled</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">100%</div>
+      <div class="stat-label">Week 1 complete</div>
+    </div>
+  </div>
+
+  <!-- Intro -->
+  <div class="session-intro">
+    <h3>Today's session</h3>
+    <p>Saturday is the <strong>integration day</strong>. The week's pieces — kanji, vocabulary, counters, irregular readings — get pulled together into one cumulative test. The point isn't to relearn anything. It's to confirm what's solid and surface what isn't, before the next 7-day cycle begins.</p>
+    <p>Two activities, both in active-recall format:</p>
+    <p><strong>Part 1 — Random kanji recall.</strong> All 13 kanji, in a different random order from Friday. Tests whether yesterday's recall was real or just short-term recency.<br>
+    <strong>Part 2 — Read 10 prices aloud.</strong> Combines kanji recognition + counter readings + irregular hundred/thousand-readings into the kind of integrated task you'll face on the test (and in any real Japanese context).</p>
+    <p>Then a brief reflection — what's worth carrying into Week 2.</p>
+  </div>
+
+  <!-- PART 1: Random recall -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">PART 01</span>
+      <h2>Random kanji recall</h2>
+      <span class="duration">~10 min</span>
+    </div>
+
+    <p class="lead">Different randomization from Friday's quiz. The goal is to break any order-based memorization — if you learned the kanji in groups (1-7 then 8-13), random order forces genuine recognition rather than sequential recall.</p>
+
+    <div class="recall-block">
+      <h3>Round A · Meaning recall</h3>
+      <div class="pass-meta">See kanji → say meaning aloud</div>
+      <div class="instructions">
+        Same as Friday's Pass 1, but new order. Aim for the same speed: ~3 seconds per kanji.
+      </div>
+      <div class="kanji-grid">
+        <div class="k-quiz-card">千</div>
+        <div class="k-quiz-card">五</div>
+        <div class="k-quiz-card">十</div>
+        <div class="k-quiz-card">二</div>
+        <div class="k-quiz-card">百</div>
+        <div class="k-quiz-card">八</div>
+        <div class="k-quiz-card">三</div>
+        <div class="k-quiz-card">万</div>
+        <div class="k-quiz-card">一</div>
+        <div class="k-quiz-card">七</div>
+        <div class="k-quiz-card">四</div>
+        <div class="k-quiz-card">九</div>
+        <div class="k-quiz-card">六</div>
+      </div>
+      <div class="answer-strip" onclick="this.classList.toggle('shown')">
+        <span class="hidden-answer">千 thousand · 五 five · 十 ten · 二 two · 百 hundred · 八 eight · 三 three · 万 ten thousand · 一 one · 七 seven · 四 four · 九 nine · 六 six</span>
+      </div>
+    </div>
+
+    <div class="recall-block">
+      <h3>Round B · Reverse direction</h3>
+      <div class="pass-meta">See English number → write the kanji on paper</div>
+      <div class="instructions">
+        <strong>Pen and paper required.</strong> Production tests memory more rigorously than recognition. If you can write all 13 from English prompts, your recall is genuine, not pattern-matched.
+      </div>
+      <ol style="margin-left: 22px; font-size: 15px; line-height: 2.2; color: var(--ink-soft);">
+        <li>five</li>
+        <li>ten thousand</li>
+        <li>nine</li>
+        <li>three</li>
+        <li>hundred</li>
+        <li>two</li>
+        <li>seven</li>
+        <li>thousand</li>
+        <li>six</li>
+        <li>one</li>
+        <li>eight</li>
+        <li>ten</li>
+        <li>four</li>
+      </ol>
+      <div class="answer-strip" onclick="this.classList.toggle('shown')">
+        <span class="hidden-answer">五 · 万 · 九 · 三 · 百 · 二 · 七 · 千 · 六 · 一 · 八 · 十 · 四</span>
+      </div>
+
+      <div class="self-rating">
+        <strong>Compare to Friday:</strong> if any kanji that felt solid yesterday came out shaky today, that's real — yesterday was short-term recall, today's a fairer test. Mark those for extra attention in Week 2's review days.
+      </div>
+    </div>
+  </section>
+
+  <!-- PART 2: Price-reading -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">PART 02</span>
+      <h2>Read 10 prices aloud</h2>
+      <span class="duration">~12 min</span>
+    </div>
+
+    <p class="lead">This is the integrated task — combining kanji recognition, counter readings, and the irregular hundred/thousand-readings that you've drilled all week. Treat it as a real-world simulation: you're at a Japanese store, looking at price tags, and you need to read them aloud confidently. <strong>The goal is fluency, not perfection.</strong></p>
+
+    <div class="recall-block">
+      <h3>Round A · Easy and medium prices</h3>
+      <div class="pass-meta">No irregular readings — just standard pronunciation</div>
+      <div class="instructions">
+        Read each price aloud at a steady pace. If you stumble, mark it with a star and come back at the end. Don't peek at the answers until you've gone through all five.
+      </div>
+      <div class="price-list">
+        <div class="price-row"><span class="price-num">01</span><span class="price-jp">百円</span></div>
+        <div class="price-row"><span class="price-num">02</span><span class="price-jp">五百円</span></div>
+        <div class="price-row"><span class="price-num">03</span><span class="price-jp">千円</span></div>
+        <div class="price-row"><span class="price-num">04</span><span class="price-jp">二千円</span></div>
+        <div class="price-row"><span class="price-num">05</span><span class="price-jp">一万円</span></div>
+      </div>
+      <div class="answer-strip" onclick="this.classList.toggle('shown')">
+        <span class="hidden-answer">ひゃくえん · ごひゃくえん · せんえん · にせんえん · いちまんえん</span>
+      </div>
+    </div>
+
+    <div class="recall-block">
+      <h3>Round B · The trickier ones</h3>
+      <div class="pass-meta">Includes the irregular readings you drilled on Tuesday</div>
+      <div class="instructions">
+        These five contain the irregularities: 300, 600, 800 (irregular hundreds) and 3,000, 8,000 (irregular thousands). If you remember the rule from Tuesday — "1, 6, 8 double to っぴゃ; 3 voices to んびゃ" — you'll get them all.
+      </div>
+      <div class="price-list">
+        <div class="price-row"><span class="price-num">06</span><span class="price-jp">三百円</span></div>
+        <div class="price-row"><span class="price-num">07</span><span class="price-jp">六百円</span></div>
+        <div class="price-row"><span class="price-num">08</span><span class="price-jp">八百円</span></div>
+        <div class="price-row"><span class="price-num">09</span><span class="price-jp">三千円</span></div>
+        <div class="price-row"><span class="price-num">10</span><span class="price-jp">二万五千円</span></div>
+      </div>
+      <div class="answer-strip" onclick="this.classList.toggle('shown')">
+        <span class="hidden-answer">さんびゃくえん · ろっぴゃくえん · はっぴゃくえん · さんぜんえん · にまんごせんえん</span>
+      </div>
+
+      <div class="self-rating">
+        <strong>The integration test:</strong> price #10 (二万五千円, "twenty-five thousand yen") combines four things — 二 (に), 万 (まん), 五 (ご), and 千 (せん) into a fluent reading. If you got that one right, you've genuinely integrated the week's content. If you didn't, the building blocks need slightly more drilling.
+      </div>
+    </div>
+  </section>
+
+  <!-- PART 3: Reflection -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">PART 03</span>
+      <h2>Reflection — what to carry forward</h2>
+      <span class="duration">~5 min</span>
+    </div>
+
+    <p class="lead">The most useful thing you can do at the end of any study week is briefly notice what worked, what didn't, and what to adjust. <strong>Not in writing — just mentally,</strong> for 5 minutes, while you finish your tea or whatever.</p>
+
+    <div class="reflection">
+      <h3>Three questions</h3>
+
+      <p><strong>1. Which kanji are still shaky?</strong></p>
+      <p>If any of the 13 kanji didn't come automatically in today's recall test, those are your "carry forward" items. They'll get spaced repetition in Week 2 just by virtue of being part of your existing kanji pool, but it helps to consciously know which they are.</p>
+
+      <p><strong>2. Were the irregular readings sticky?</strong></p>
+      <p>The big test items from this week were the irregular hundreds (さんびゃく, ろっぴゃく, はっぴゃく) and the counter sound changes (いっぽん, さんぼん). If those didn't come fluently in today's price-reading exercise, mark them for revisit during Week 5's mock test warm-up.</p>
+
+      <p><strong>3. Did the Mon/Wed/Fri rhythm feel right?</strong></p>
+      <p>Week 1 was the easiest week of the 8-week kanji intake (numbers, mostly familiar). If 30-40 minutes per session felt too light, you have headroom for harder weeks. If it felt heavy, the rhythm is correctly calibrated and Weeks 2-8 will feel similar — that's by design.</p>
+    </div>
+
+    <div class="reflection">
+      <h3>What you've actually accomplished this week</h3>
+      <ul>
+        <li>Met all 13 numbers kanji (一 二 三 四 五 六 七 八 九 十 百 千 万)</li>
+        <li>Drilled 7 counter types (〜つ, 〜本, 〜匹, 〜枚, 〜回, 〜階, 〜人)</li>
+        <li>Locked in the irregular hundreds (300, 600, 800)</li>
+        <li>Added ~14 numbers/money/age vocabulary words</li>
+        <li>Practiced handwriting on Wednesday</li>
+        <li>Three rounds of self-quiz (Wed kanji-recall + Fri 3 passes + today)</li>
+      </ul>
+      <p>That's a full N5 kanji week's worth of work, in ~3 hours of focused study time. The remaining 7 weeks of the intake follow the same shape — by Week 8, you'll have all 104 kanji, all major counters, and the bulk of N5 vocabulary covered.</p>
+    </div>
+  </section>
+
+  <!-- Closing -->
+  <div class="closing">
+    <h3>Week 1 is done. Sunday is rest.</h3>
+    <p>You finished. <strong>Don't study anything tomorrow</strong> — Sunday is the consolidation day, and forcing more input now actively reduces what sticks. Read a book in any language, take a walk, see friends. Your brain is filing what you learned this week while you do something else.</p>
+    <p>Week 2 starts Monday with Time & Calendar kanji (日 月 火 水 木 金 土...). Days of the week, telling time, dates — extremely high-frequency for the test. Same Mon/Wed/Fri rhythm.</p>
+
+    <div class="closing-actions">
+      <p>Monday Week 2</p>
+      <p style="font-family: 'IBM Plex Sans', sans-serif; font-size: 13px; letter-spacing: normal; color: var(--paper-soft); text-transform: none;">Introduce the seven days of the week kanji (日 月 火 水 木 金 土) — paired with their elemental meanings (sun, moon, fire, water, wood, metal/gold, earth). The pictographic logic is strong — these will mostly stick on first exposure.</p>
+    </div>
+  </div>
+
+  <footer>
+    <div>Week 1 · Saturday · Cumulative Review</div>
+    <div>The full Week 1 set: Mon · Tue · Wed · Fri · Sat — Thursday is Marugoto · Sunday is rest</div>
+  </footer>
+
+</div>
+</body>
+</html>
