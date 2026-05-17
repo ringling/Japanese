@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Monday · Week 2 · Days of the Week Kanji</title>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;700&family=Noto+Serif+JP:wght@400;500;700&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1a1a;
+  --ink-soft: #3a3a3a;
+  --paper: #f4efe6;
+  --paper-soft: #ebe4d6;
+  --paper-deep: #e2d9c4;
+  --rule: #c9bfa9;
+  --rule-soft: #d8cfb9;
+  --accent: #8b1a1a;
+  --accent-soft: #b85c5c;
+  --muted: #6b6357;
+  --gold: #b8893d;
+  --done: #5a7a3a;
+  --done-bg: #d8e0c4;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 300;
+  line-height: 1.7;
+  padding: 50px 32px;
+  background-image:
+    radial-gradient(circle at 15% 25%, rgba(139, 26, 26, 0.03) 0%, transparent 40%),
+    radial-gradient(circle at 85% 75%, rgba(184, 137, 61, 0.04) 0%, transparent 50%);
+}
+
+.container {
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+/* ====== Masthead ====== */
+.masthead {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: end;
+  gap: 30px;
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 20px;
+  margin-bottom: 40px;
+}
+
+.masthead-mark {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 80px;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 0.85;
+  letter-spacing: -4px;
+}
+
+.masthead-title h1 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 32px;
+  font-weight: 500;
+  letter-spacing: -1px;
+  line-height: 1.1;
+  margin-bottom: 6px;
+}
+
+.masthead-title .sub {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.masthead-meta {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 1.5px;
+  text-align: right;
+  text-transform: uppercase;
+  line-height: 1.8;
+}
+
+/* ====== Session intro ====== */
+.session-intro {
+  background: var(--paper-soft);
+  border-left: 3px solid var(--accent);
+  padding: 26px 32px;
+  margin-bottom: 50px;
+}
+
+.session-intro h3 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.session-intro p {
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 10px;
+  color: var(--ink-soft);
+}
+
+.session-intro p:last-child { margin-bottom: 0; }
+
+.session-intro strong {
+  font-weight: 500;
+  color: var(--ink);
+}
+
+/* ====== Section ====== */
+section {
+  margin-bottom: 60px;
+}
+
+.section-head {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: baseline;
+  gap: 20px;
+  padding-bottom: 14px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.section-num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: 2px;
+  font-weight: 500;
+}
+
+.section-head h2 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 26px;
+  font-weight: 500;
+}
+
+.section-head .duration {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* ====== Kanji card detail ====== */
+.kanji-detail {
+  background: var(--paper-soft);
+  border: 1px solid var(--rule);
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+
+.kanji-header {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  align-items: stretch;
+}
+
+.kanji-glyph-box {
+  background: var(--paper-deep);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  border-right: 1px solid var(--rule);
+}
+
+.kanji-glyph {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 90px;
+  font-weight: 500;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.kanji-meta {
+  padding: 22px 28px;
+}
+
+.kanji-num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.kanji-meaning {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.kanji-readings {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  font-size: 13px;
+}
+
+.reading {
+  font-family: 'IBM Plex Mono', monospace;
+  letter-spacing: 0.5px;
+}
+
+.reading .label {
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-right: 4px;
+  font-weight: 500;
+}
+
+.reading.on .label { color: var(--accent); }
+.reading.kun .label { color: var(--gold); }
+
+.reading .val {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 16px;
+  color: var(--ink);
+}
+
+.kanji-body {
+  padding: 24px 28px;
+  border-top: 1px solid var(--rule);
+}
+
+.kanji-body h4 {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 8px;
+  margin-top: 18px;
+}
+
+.kanji-body h4:first-child { margin-top: 0; }
+
+.kanji-body p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+  margin-bottom: 4px;
+}
+
+.kanji-body em {
+  font-style: italic;
+  color: var(--muted);
+}
+
+.examples-list {
+  list-style: none;
+  margin-top: 4px;
+}
+
+.examples-list li {
+  padding: 6px 0;
+  border-bottom: 1px dashed var(--rule);
+  font-size: 14px;
+}
+
+.examples-list li:last-child { border-bottom: none; }
+
+.examples-list .jp {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 16px;
+  color: var(--ink);
+  margin-right: 8px;
+}
+
+.examples-list ruby rt {
+  font-size: 9px;
+  color: var(--accent);
+}
+
+.examples-list .en {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.stroke-note {
+  background: var(--paper);
+  border: 1px dashed var(--rule);
+  padding: 12px 16px;
+  font-size: 13px;
+  color: var(--ink-soft);
+  font-style: italic;
+  margin-top: 8px;
+}
+
+.stroke-note strong {
+  font-style: normal;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+/* ====== Days-of-week table ====== */
+.dow-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 8px;
+  font-size: 14px;
+}
+
+.dow-table th {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 8px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--rule);
+}
+
+.dow-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--rule-soft);
+  vertical-align: middle;
+}
+
+.dow-table tr:last-child td { border-bottom: none; }
+
+.dow-table .kanji-cell {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 22px;
+  color: var(--accent);
+  width: 80px;
+}
+
+.dow-table .day-cell {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 18px;
+  width: 160px;
+}
+
+.dow-table .read-cell {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  color: var(--muted);
+  width: 160px;
+}
+
+.dow-table .en-cell {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* ====== Drill / quiz section ====== */
+.drill-block {
+  background: var(--paper-soft);
+  border-left: 3px solid var(--gold);
+  padding: 22px 26px;
+  margin-bottom: 24px;
+}
+
+.drill-block h3 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.drill-block p {
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 10px;
+  color: var(--ink-soft);
+}
+
+.drill-block ol, .drill-block ul {
+  margin-left: 20px;
+  font-size: 14px;
+  line-height: 1.9;
+  color: var(--ink-soft);
+}
+
+.drill-block ol li, .drill-block ul li {
+  margin-bottom: 4px;
+}
+
+.drill-block .jp-inline {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 17px;
+  color: var(--ink);
+}
+
+.drill-block .answer {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  padding: 6px 12px;
+  margin-top: 10px;
+  font-size: 13px;
+  color: var(--muted);
+  cursor: pointer;
+  font-family: 'IBM Plex Mono', monospace;
+  letter-spacing: 0.5px;
+}
+
+.drill-block .answer.shown {
+  background: var(--done-bg);
+  color: var(--done);
+  border-color: var(--done);
+}
+
+.drill-block .answer::before {
+  content: "▸ Tap to reveal answer";
+}
+
+.drill-block .answer.shown::before {
+  content: "✓ ";
+}
+
+/* ====== Closing ====== */
+.closing {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 28px 32px;
+  margin-top: 50px;
+}
+
+.closing h3 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 14px;
+  color: var(--paper);
+}
+
+.closing p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--paper-soft);
+  margin-bottom: 8px;
+}
+
+.closing strong {
+  color: var(--paper);
+  font-weight: 500;
+}
+
+.closing-actions {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--accent-soft);
+}
+
+.closing-actions p {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: var(--accent-soft);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+/* ====== Nav ====== */
+.page-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--rule);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+.page-nav a {
+  color: var(--accent);
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.page-nav a:hover { text-decoration: underline; }
+
+.page-nav .center { color: var(--muted); }
+
+footer {
+  margin-top: 50px;
+  padding-top: 20px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+  text-align: center;
+  line-height: 1.8;
+}
+
+@media (max-width: 700px) {
+  body { padding: 30px 18px; }
+  .masthead { grid-template-columns: 1fr; gap: 16px; }
+  .masthead-meta { text-align: left; }
+  .kanji-header { grid-template-columns: 1fr; }
+  .kanji-glyph-box { padding: 20px; border-right: none; border-bottom: 1px solid var(--rule); }
+  .kanji-glyph { font-size: 70px; }
+  .section-head { grid-template-columns: 1fr; gap: 4px; }
+  .dow-table .read-cell { display: none; }
+}
+
+@media print {
+  body { background: white; padding: 20px; }
+  .closing-actions, footer { break-before: avoid; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Nav -->
+  <nav class="page-nav">
+    <a href="jlpt_n5_w1_saturday.html">← Week 1 Saturday</a>
+    <a class="center" href="jlpt_n5_full_schedule.html">↑ Full Schedule</a>
+    <a href="jlpt_n5_w2_tuesday.html">Week 2 Tuesday →</a>
+  </nav>
+
+  <!-- Masthead -->
+  <header class="masthead">
+    <div class="masthead-mark">月</div>
+    <div class="masthead-title">
+      <h1>Monday · Week 2</h1>
+      <div class="sub">Time &amp; Calendar · Days of the Week · Kanji 14–20</div>
+    </div>
+    <div class="masthead-meta">
+      ~30 minutes<br>
+      First exposure<br>
+      Shape + meaning + story
+    </div>
+  </header>
+
+  <!-- Intro -->
+  <div class="session-intro">
+    <h3>Today's session</h3>
+    <p>You're meeting <strong>seven kanji that form the days of the week</strong>: 日 月 火 水 木 金 土. These are the seven natural elements — sun, moon, fire, water, wood, gold, earth — each assigned to a day of the week by ancient Chinese cosmology. Once you know these seven, you can read <em>any</em> day of the week in Japanese.</p>
+    <p>You already know 月 from Week 1 (January = 一月, etc.). Here 月 doubles as the word for "moon" and gives Monday its name: <strong>月曜日 = moon day = Monday</strong>. The same logic runs through all seven.</p>
+    <p><strong>Today's job is recognition, not reproduction.</strong> Look at each character, learn the element it represents, and say the day name aloud. Wednesday you'll reinforce these and add the six remaining time kanji (曜 年 時 分 半 今).</p>
+  </div>
+
+  <!-- Kanji 1: 日 -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">KANJI 14</span>
+      <h2>日 — sun / day</h2>
+      <span class="duration">~3 min</span>
+    </div>
+    <div class="kanji-detail">
+      <div class="kanji-header">
+        <div class="kanji-glyph-box"><div class="kanji-glyph">日</div></div>
+        <div class="kanji-meta">
+          <div class="kanji-num">Number 14 of 104</div>
+          <div class="kanji-meaning">sun · day</div>
+          <div class="kanji-readings">
+            <div class="reading on"><span class="label">音</span><span class="val">ニチ・ジツ</span></div>
+            <div class="reading kun"><span class="label">訓</span><span class="val">ひ・か</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="kanji-body">
+        <h4>Mnemonic</h4>
+        <p>The original pictograph of the sun — a circle with a horizontal line through the middle, representing the sun's core or a sun spot. <em>A window looking directly at the sun.</em></p>
+
+        <h4>Stroke count</h4>
+        <p>4 strokes</p>
+
+        <h4>Example words</h4>
+        <ul class="examples-list">
+          <li><span class="jp"><ruby>日曜日<rt>にちようび</rt></ruby></span><span class="en">— Sunday (sun-day)</span></li>
+          <li><span class="jp"><ruby>今日<rt>きょう</rt></ruby></span><span class="en">— today (irregular reading)</span></li>
+          <li><span class="jp"><ruby>毎日<rt>まいにち</rt></ruby></span><span class="en">— every day</span></li>
+          <li><span class="jp"><ruby>何日<rt>なんにち</rt></ruby></span><span class="en">— what day of the month</span></li>
+          <li><span class="jp"><ruby>日本<rt>にほん</rt></ruby></span><span class="en">— Japan (origin-of-the-sun)</span></li>
+        </ul>
+
+        <div class="stroke-note">
+          <strong>Key irregular:</strong> 今日 reads <em>きょう</em> in everyday speech, not こんにち. You'll see こんにち only frozen in こんにちは (good afternoon). Don't say こんにちにち.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Kanji 2: 月 -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">KANJI 15</span>
+      <h2>月 — moon / month</h2>
+      <span class="duration">~3 min</span>
+    </div>
+    <div class="kanji-detail">
+      <div class="kanji-header">
+        <div class="kanji-glyph-box"><div class="kanji-glyph">月</div></div>
+        <div class="kanji-meta">
+          <div class="kanji-num">Number 15 of 104</div>
+          <div class="kanji-meaning">moon · month</div>
+          <div class="kanji-readings">
+            <div class="reading on"><span class="label">音</span><span class="val">ゲツ・ガツ</span></div>
+            <div class="reading kun"><span class="label">訓</span><span class="val">つき</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="kanji-body">
+        <h4>Mnemonic</h4>
+        <p>A crescent moon. The original pictograph showed a crescent with a single dot inside. Now simplified to two short horizontal strokes inside a rounded frame — the moon's craters, perhaps.</p>
+
+        <h4>Stroke count</h4>
+        <p>4 strokes</p>
+
+        <h4>Example words</h4>
+        <ul class="examples-list">
+          <li><span class="jp"><ruby>月曜日<rt>げつようび</rt></ruby></span><span class="en">— Monday (moon-day)</span></li>
+          <li><span class="jp"><ruby>今月<rt>こんげつ</rt></ruby></span><span class="en">— this month</span></li>
+          <li><span class="jp"><ruby>来月<rt>らいげつ</rt></ruby></span><span class="en">— next month</span></li>
+          <li><span class="jp"><ruby>月<rt>つき</rt></ruby></span><span class="en">— the moon</span></li>
+          <li><span class="jp"><ruby>一月<rt>いちがつ</rt></ruby></span><span class="en">— January</span></li>
+        </ul>
+
+        <div class="stroke-note">
+          <strong>Three readings in play:</strong> ゲツ for Monday and time expressions (来月, 今月); ガツ after numbers for month names (一月, 二月…); つき when meaning the physical moon. You already know all the month-name uses from Week 1 — now add the Monday and moon meanings.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Kanji 3: 火 -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">KANJI 16</span>
+      <h2>火 — fire</h2>
+      <span class="duration">~3 min</span>
+    </div>
+    <div class="kanji-detail">
+      <div class="kanji-header">
+        <div class="kanji-glyph-box"><div class="kanji-glyph">火</div></div>
+        <div class="kanji-meta">
+          <div class="kanji-num">Number 16 of 104</div>
+          <div class="kanji-meaning">fire</div>
+          <div class="kanji-readings">
+            <div class="reading on"><span class="label">音</span><span class="val">カ</span></div>
+            <div class="reading kun"><span class="label">訓</span><span class="val">ひ</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="kanji-body">
+        <h4>Mnemonic</h4>
+        <p>Flames leaping upward from a fire. The bottom two strokes are sparks flying outward. <em>A campfire viewed head-on.</em> The original pictograph was even more obviously a flame shape — look at it sideways.</p>
+
+        <h4>Stroke count</h4>
+        <p>4 strokes</p>
+
+        <h4>Example words</h4>
+        <ul class="examples-list">
+          <li><span class="jp"><ruby>火曜日<rt>かようび</rt></ruby></span><span class="en">— Tuesday (fire-day)</span></li>
+          <li><span class="jp"><ruby>火<rt>ひ</rt></ruby></span><span class="en">— fire (as a thing)</span></li>
+          <li><span class="jp"><ruby>花火<rt>はなび</rt></ruby></span><span class="en">— fireworks (flower + fire)</span></li>
+          <li><span class="jp"><ruby>火山<rt>かざん</rt></ruby></span><span class="en">— volcano</span></li>
+        </ul>
+
+        <div class="stroke-note">
+          <strong>Sound change:</strong> 花火 (fireworks) reads はなび — the ひ softens to び when it follows は. This voiced-consonant shift (ひ→び) happens frequently in compound words. Fireworks are literally "flower-fires."
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Kanji 4: 水 -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">KANJI 17</span>
+      <h2>水 — water</h2>
+      <span class="duration">~3 min</span>
+    </div>
+    <div class="kanji-detail">
+      <div class="kanji-header">
+        <div class="kanji-glyph-box"><div class="kanji-glyph">水</div></div>
+        <div class="kanji-meta">
+          <div class="kanji-num">Number 17 of 104</div>
+          <div class="kanji-meaning">water</div>
+          <div class="kanji-readings">
+            <div class="reading on"><span class="label">音</span><span class="val">スイ</span></div>
+            <div class="reading kun"><span class="label">訓</span><span class="val">みず</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="kanji-body">
+        <h4>Mnemonic</h4>
+        <p>A central vertical stroke with three droplets and a flowing stream. <em>A river seen from above with ripples spreading outward.</em> The original pictograph showed a winding waterway with tributary streams branching off each side.</p>
+
+        <h4>Stroke count</h4>
+        <p>4 strokes</p>
+
+        <h4>Example words</h4>
+        <ul class="examples-list">
+          <li><span class="jp"><ruby>水曜日<rt>すいようび</rt></ruby></span><span class="en">— Wednesday (water-day)</span></li>
+          <li><span class="jp"><ruby>水<rt>みず</rt></ruby></span><span class="en">— water</span></li>
+          <li><span class="jp"><ruby>お水<rt>おみず</rt></ruby></span><span class="en">— water (polite, e.g. in a restaurant)</span></li>
+          <li><span class="jp"><ruby>水泳<rt>すいえい</rt></ruby></span><span class="en">— swimming</span></li>
+        </ul>
+
+        <div class="stroke-note">
+          <strong>Radical note:</strong> When 水 appears as a left-side component (氵, three dots), it signals "relating to water" — like 海 (sea), 湖 (lake), 泳 (swim). The three dots are the compressed form of 水. Watch for it everywhere.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Kanji 5: 木 -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">KANJI 18</span>
+      <h2>木 — tree / wood</h2>
+      <span class="duration">~3 min</span>
+    </div>
+    <div class="kanji-detail">
+      <div class="kanji-header">
+        <div class="kanji-glyph-box"><div class="kanji-glyph">木</div></div>
+        <div class="kanji-meta">
+          <div class="kanji-num">Number 18 of 104</div>
+          <div class="kanji-meaning">tree · wood</div>
+          <div class="kanji-readings">
+            <div class="reading on"><span class="label">音</span><span class="val">モク・ボク</span></div>
+            <div class="reading kun"><span class="label">訓</span><span class="val">き・こ</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="kanji-body">
+        <h4>Mnemonic</h4>
+        <p>A tree in cross-section: vertical trunk (center stroke), spreading branches (upper horizontal stroke), and roots (two strokes at the bottom). <em>A cross with roots — a tree.</em> One of the most pictographic kanji still in common use.</p>
+
+        <h4>Stroke count</h4>
+        <p>4 strokes</p>
+
+        <h4>Example words</h4>
+        <ul class="examples-list">
+          <li><span class="jp"><ruby>木曜日<rt>もくようび</rt></ruby></span><span class="en">— Thursday (wood-day)</span></li>
+          <li><span class="jp"><ruby>木<rt>き</rt></ruby></span><span class="en">— tree</span></li>
+          <li><span class="jp"><ruby>木村<rt>きむら</rt></ruby></span><span class="en">— Kimura (very common surname: tree + village)</span></li>
+          <li><span class="jp"><ruby>木造<rt>もくぞう</rt></ruby></span><span class="en">— wooden (structure)</span></li>
+        </ul>
+
+        <div class="stroke-note">
+          <strong>Radical watch:</strong> Like 水→氵, when 木 appears on the left side of a kanji (木へん), it signals "made of wood" or "relating to trees" — 林 (grove), 森 (forest), 机 (desk), 椅子 (chair). You'll recognize it instantly after this week.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Kanji 6: 金 -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">KANJI 19</span>
+      <h2>金 — gold / money</h2>
+      <span class="duration">~3 min</span>
+    </div>
+    <div class="kanji-detail">
+      <div class="kanji-header">
+        <div class="kanji-glyph-box"><div class="kanji-glyph">金</div></div>
+        <div class="kanji-meta">
+          <div class="kanji-num">Number 19 of 104</div>
+          <div class="kanji-meaning">gold · money</div>
+          <div class="kanji-readings">
+            <div class="reading on"><span class="label">音</span><span class="val">キン・コン</span></div>
+            <div class="reading kun"><span class="label">訓</span><span class="val">かね・かな</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="kanji-body">
+        <h4>Mnemonic</h4>
+        <p>This week's most complex shape. Originally: a person (人) buried under a mound (土) with gold nuggets around them — like a buried treasure. Today it looks like a compound shape with a protective roof over it. <em>Valuable things take more strokes to write.</em></p>
+
+        <h4>Stroke count</h4>
+        <p>8 strokes (most strokes of the week)</p>
+
+        <h4>Example words</h4>
+        <ul class="examples-list">
+          <li><span class="jp"><ruby>金曜日<rt>きんようび</rt></ruby></span><span class="en">— Friday (gold-day)</span></li>
+          <li><span class="jp">お<ruby>金<rt>かね</rt></ruby></span><span class="en">— money (everyday word)</span></li>
+          <li><span class="jp"><ruby>金<rt>きん</rt></ruby></span><span class="en">— gold (the metal)</span></li>
+          <li><span class="jp"><ruby>金色<rt>きんいろ</rt></ruby></span><span class="en">— golden (color)</span></li>
+          <li><span class="jp"><ruby>金属<rt>きんぞく</rt></ruby></span><span class="en">— metal (any metal)</span></li>
+        </ul>
+
+        <div class="stroke-note">
+          <strong>Double duty:</strong> 金 is the only kanji this week with two very distinct meanings in daily life — gold (the precious metal) and money in general. お金 (おかね) is how you say "money" in any normal conversation.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Kanji 7: 土 -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">KANJI 20</span>
+      <h2>土 — earth / soil</h2>
+      <span class="duration">~3 min</span>
+    </div>
+    <div class="kanji-detail">
+      <div class="kanji-header">
+        <div class="kanji-glyph-box"><div class="kanji-glyph">土</div></div>
+        <div class="kanji-meta">
+          <div class="kanji-num">Number 20 of 104</div>
+          <div class="kanji-meaning">earth · soil</div>
+          <div class="kanji-readings">
+            <div class="reading on"><span class="label">音</span><span class="val">ド・ト</span></div>
+            <div class="reading kun"><span class="label">訓</span><span class="val">つち</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="kanji-body">
+        <h4>Mnemonic</h4>
+        <p>A cross (+) with a longer horizontal base — like a seedling pushing up through the ground. <em>The bottom stroke is the earth; the cross is the plant sprouting upward.</em> With only 3 strokes, it's the simplest character since 三.</p>
+
+        <h4>Stroke count</h4>
+        <p>3 strokes</p>
+
+        <h4>Example words</h4>
+        <ul class="examples-list">
+          <li><span class="jp"><ruby>土曜日<rt>どようび</rt></ruby></span><span class="en">— Saturday (earth-day)</span></li>
+          <li><span class="jp"><ruby>土<rt>つち</rt></ruby></span><span class="en">— soil / earth (physical)</span></li>
+          <li><span class="jp"><ruby>土地<rt>とち</rt></ruby></span><span class="en">— land / plot</span></li>
+          <li><span class="jp"><ruby>土曜<rt>どよう</rt></ruby></span><span class="en">— Saturday (abbreviated, no 日)</span></li>
+        </ul>
+
+        <div class="stroke-note">
+          <strong>ド vs ト:</strong> ど in 土曜日 (Saturday), と in 土地 (とち, land). Both are on'yomi, just different compounds. つち when talking about actual soil — "the dirt under your feet."
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Days of the week reference -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">REFERENCE</span>
+      <h2>Days of the Week</h2>
+      <span class="duration">Learn this table</span>
+    </div>
+
+    <p style="font-size: 14px; color: var(--ink-soft); margin-bottom: 20px; line-height: 1.7;">All seven days follow the same pattern: <strong>[element] + 曜日 (ようび)</strong>. The kanji 曜 (ようび) means "day of the week" — you'll study it on Wednesday. For now, just recognise the seven elements and their day names.</p>
+
+    <table class="dow-table">
+      <thead>
+        <tr>
+          <th>Element</th>
+          <th>Day name</th>
+          <th>Reading</th>
+          <th>English</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="kanji-cell">月</td>
+          <td class="day-cell">月曜日</td>
+          <td class="read-cell">げつようび</td>
+          <td class="en-cell">Monday</td>
+        </tr>
+        <tr>
+          <td class="kanji-cell">火</td>
+          <td class="day-cell">火曜日</td>
+          <td class="read-cell">かようび</td>
+          <td class="en-cell">Tuesday</td>
+        </tr>
+        <tr>
+          <td class="kanji-cell">水</td>
+          <td class="day-cell">水曜日</td>
+          <td class="read-cell">すいようび</td>
+          <td class="en-cell">Wednesday</td>
+        </tr>
+        <tr>
+          <td class="kanji-cell">木</td>
+          <td class="day-cell">木曜日</td>
+          <td class="read-cell">もくようび</td>
+          <td class="en-cell">Thursday</td>
+        </tr>
+        <tr>
+          <td class="kanji-cell">金</td>
+          <td class="day-cell">金曜日</td>
+          <td class="read-cell">きんようび</td>
+          <td class="en-cell">Friday</td>
+        </tr>
+        <tr>
+          <td class="kanji-cell">土</td>
+          <td class="day-cell">土曜日</td>
+          <td class="read-cell">どようび</td>
+          <td class="en-cell">Saturday</td>
+        </tr>
+        <tr>
+          <td class="kanji-cell">日</td>
+          <td class="day-cell">日曜日</td>
+          <td class="read-cell">にちようび</td>
+          <td class="en-cell">Sunday</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Drill section -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">DRILL</span>
+      <h2>Quick Recognition Check</h2>
+      <span class="duration">~5 min</span>
+    </div>
+
+    <div class="drill-block">
+      <h3>Drill 1 · Read these aloud</h3>
+      <p>Don't write anything. Just read each kanji aloud — say its element meaning. If you stumble, look back at the card.</p>
+      <ol>
+        <li><span class="jp-inline">木</span></li>
+        <li><span class="jp-inline">水</span></li>
+        <li><span class="jp-inline">金</span></li>
+        <li><span class="jp-inline">日</span></li>
+        <li><span class="jp-inline">土</span></li>
+        <li><span class="jp-inline">火</span></li>
+        <li><span class="jp-inline">月</span></li>
+      </ol>
+      <div class="answer" onclick="this.classList.toggle('shown')">
+        <span class="hidden-answer">き/もく (tree/wood) · みず/すい (water) · かね/きん (gold/money) · ひ/にち (sun/day) · つち/ど (earth/soil) · ひ/か (fire) · つき/げつ (moon/month)</span>
+      </div>
+    </div>
+
+    <div class="drill-block">
+      <h3>Drill 2 · Element → day of week</h3>
+      <p>For each kanji, say the full day name aloud (e.g. 木 → 木曜日 → もくようび → Thursday).</p>
+      <ol>
+        <li><span class="jp-inline">火</span> → 何曜日？</li>
+        <li><span class="jp-inline">水</span> → 何曜日？</li>
+        <li><span class="jp-inline">土</span> → 何曜日？</li>
+        <li><span class="jp-inline">日</span> → 何曜日？</li>
+        <li><span class="jp-inline">金</span> → 何曜日？</li>
+      </ol>
+      <div class="answer" onclick="this.classList.toggle('shown')">
+        <span class="hidden-answer">火曜日 かようび Tuesday · 水曜日 すいようび Wednesday · 土曜日 どようび Saturday · 日曜日 にちようび Sunday · 金曜日 きんようび Friday</span>
+      </div>
+    </div>
+
+    <div class="drill-block">
+      <h3>Drill 3 · Read the full day names</h3>
+      <p>Read each day name aloud — kanji reading first, then the English day name.</p>
+      <ol>
+        <li><span class="jp-inline">月曜日</span></li>
+        <li><span class="jp-inline">水曜日</span></li>
+        <li><span class="jp-inline">金曜日</span></li>
+        <li><span class="jp-inline">火曜日</span></li>
+        <li><span class="jp-inline">木曜日</span></li>
+        <li><span class="jp-inline">土曜日</span></li>
+        <li><span class="jp-inline">日曜日</span></li>
+      </ol>
+      <div class="answer" onclick="this.classList.toggle('shown')">
+        <span class="hidden-answer">げつようび Mon · すいようび Wed · きんようび Fri · かようび Tue · もくようび Thu · どようび Sat · にちようび Sun</span>
+      </div>
+    </div>
+
+    <div class="drill-block">
+      <h3>Drill 4 · Date expressions</h3>
+      <p>Read each expression aloud. These combine what you learned in Week 1 with today's kanji.</p>
+      <ol>
+        <li><span class="jp-inline">今日は何曜日ですか。</span></li>
+        <li><span class="jp-inline">３月２０日</span></li>
+        <li><span class="jp-inline">来週の月曜日</span></li>
+        <li><span class="jp-inline">毎週土曜日</span></li>
+        <li><span class="jp-inline">先週の金曜日</span></li>
+      </ol>
+      <div class="answer" onclick="this.classList.toggle('shown')">
+        <span class="hidden-answer">きょうは なんようびですか (What day is today?) · さんがつ はつか (March 20th — 20日 = はつか, irregular!) · らいしゅうの げつようび (next Monday) · まいしゅう どようび (every Saturday) · せんしゅうの きんようび (last Friday)</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Closing -->
+  <div class="closing">
+    <h3>Done. Seven elements, seven days.</h3>
+    <p>These seven kanji unlock every date and schedule you'll encounter in Japanese. They appear in calendars, train timetables, event posters, TV guides — everywhere. <strong>By the end of this week you'll read them without thinking.</strong></p>
+    <p>If only one thing sticks from today, let it be the order: <strong>月 火 水 木 金 土 日</strong> — Moon, Fire, Water, Wood, Gold, Earth, Sun. Say it aloud a few times. It's the Japanese week.</p>
+
+    <div class="closing-actions">
+      <p>Wednesday's plan</p>
+      <p style="font-family: 'IBM Plex Sans', sans-serif; font-size: 13px; letter-spacing: normal; color: var(--paper-soft); text-transform: none;">Reinforce these 7, introduce 曜 年 時 分 半 今, write each by hand, and start drilling time expressions — 何時ですか (what time is it?), ～から～まで (from X to Y), 今何月何日 (what's today's date).</p>
+    </div>
+  </div>
+
+  <footer>
+    <div>Week 2 · Monday · Days of the Week Kanji 14–20</div>
+    <div>Companion to the <a href="jlpt_n5_full_schedule.html" style="color: var(--muted);">Full Weekly Schedule</a> and <a href="jlpt_n5_kanji_tracker.html" style="color: var(--muted);">Kanji Tracker</a></div>
+  </footer>
+
+</div>
+
+<script>
+document.querySelectorAll('.answer').forEach(el => {
+  el.addEventListener('click', function() {
+    this.classList.toggle('shown');
+    const hidden = this.querySelector('.hidden-answer');
+    if (hidden) {
+      if (this.classList.contains('shown')) {
+        this.textContent = '✓ ' + hidden.textContent;
+      } else {
+        this.innerHTML = '<span class="hidden-answer">' + hidden.textContent + '</span>';
+      }
+    }
+  });
+});
+</script>
+</body>
+</html>
