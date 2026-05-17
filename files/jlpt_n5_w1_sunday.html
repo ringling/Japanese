@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sunday · Week 1 · Rest Day</title>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;700&family=Noto+Serif+JP:wght@400;500;700&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1a1a;
+  --ink-soft: #3a3a3a;
+  --paper: #f4efe6;
+  --paper-soft: #ebe4d6;
+  --paper-deep: #e2d9c4;
+  --rule: #c9bfa9;
+  --rule-soft: #d8cfb9;
+  --accent: #8b1a1a;
+  --accent-soft: #b85c5c;
+  --muted: #6b6357;
+  --gold: #b8893d;
+  --gold-soft: #d4a85a;
+  --done: #5a7a3a;
+  --done-bg: #d8e0c4;
+  --rest: #9c9080;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 300;
+  line-height: 1.7;
+  padding: 50px 32px;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(184, 137, 61, 0.04) 0%, transparent 45%),
+    radial-gradient(circle at 80% 70%, rgba(184, 137, 61, 0.03) 0%, transparent 50%);
+}
+
+.container {
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+/* ====== Nav ====== */
+.page-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--rule);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+.page-nav a {
+  color: var(--accent);
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.page-nav a:hover { text-decoration: underline; }
+.page-nav .center { color: var(--muted); }
+
+/* ====== Masthead ====== */
+.masthead {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: end;
+  gap: 30px;
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 20px;
+  margin-bottom: 40px;
+}
+
+.masthead-mark {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 80px;
+  font-weight: 700;
+  color: var(--rest);
+  line-height: 0.85;
+  letter-spacing: -4px;
+}
+
+.masthead-title h1 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 32px;
+  font-weight: 500;
+  letter-spacing: -1px;
+  line-height: 1.1;
+  margin-bottom: 6px;
+}
+
+.masthead-title .sub {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.masthead-meta {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 1.5px;
+  text-align: right;
+  text-transform: uppercase;
+  line-height: 1.8;
+}
+
+/* ====== Session intro ====== */
+.session-intro {
+  background: var(--paper-soft);
+  border-left: 3px solid var(--gold);
+  padding: 26px 32px;
+  margin-bottom: 50px;
+}
+
+.session-intro h3 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.session-intro p {
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 10px;
+  color: var(--ink-soft);
+}
+
+.session-intro p:last-child { margin-bottom: 0; }
+
+.session-intro strong {
+  font-weight: 500;
+  color: var(--ink);
+}
+
+/* ====== Section ====== */
+section {
+  margin-bottom: 60px;
+}
+
+.section-head {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: baseline;
+  gap: 20px;
+  padding-bottom: 14px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.section-num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--gold);
+  letter-spacing: 2px;
+  font-weight: 500;
+}
+
+.section-head h2 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 26px;
+  font-weight: 500;
+}
+
+.section-head .duration {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* ====== Accomplishments card ====== */
+.accomplishments {
+  background: var(--paper-soft);
+  border: 1px solid var(--rule);
+  overflow: hidden;
+}
+
+.accomplishments-header {
+  background: var(--paper-deep);
+  padding: 20px 28px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.accomplishments-header h3 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 22px;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.accomplishments-header .sub {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.accomplishments-body {
+  padding: 24px 28px;
+}
+
+.accomplishments-body ul {
+  list-style: none;
+}
+
+.accomplishments-body li {
+  padding: 10px 0;
+  border-bottom: 1px dashed var(--rule);
+  font-size: 14px;
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+}
+
+.accomplishments-body li:last-child { border-bottom: none; }
+
+.check {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  color: var(--done);
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.accomplishments-body .jp-sample {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 18px;
+  color: var(--accent);
+  letter-spacing: 2px;
+  display: block;
+  margin-top: 6px;
+}
+
+.accomplishments-body .detail {
+  font-size: 13px;
+  color: var(--muted);
+  display: block;
+  margin-top: 2px;
+}
+
+/* ====== In-the-wild block ====== */
+.wild-block {
+  background: var(--paper-soft);
+  border: 1px dashed var(--rule);
+  padding: 26px 32px;
+}
+
+.wild-block h3 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.wild-block p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+  margin-bottom: 8px;
+}
+
+.wild-block p:last-child { margin-bottom: 0; }
+
+.wild-block strong { font-weight: 500; color: var(--ink); }
+
+/* ====== Preview card ====== */
+.preview-card {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 28px 32px;
+}
+
+.preview-card .eyebrow {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold-soft);
+  margin-bottom: 10px;
+}
+
+.preview-card h3 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 22px;
+  font-weight: 500;
+  margin-bottom: 14px;
+  color: var(--paper);
+}
+
+.preview-card .kanji-row {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 36px;
+  letter-spacing: 6px;
+  color: var(--gold-soft);
+  margin-bottom: 16px;
+  display: block;
+}
+
+.preview-card p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--paper-soft);
+  margin-bottom: 10px;
+}
+
+.preview-card p:last-of-type { margin-bottom: 16px; }
+
+.preview-card strong { color: var(--paper); font-weight: 500; }
+
+.preview-link {
+  display: inline-block;
+  margin-top: 6px;
+  padding: 10px 20px;
+  background: var(--accent);
+  color: var(--paper);
+  text-decoration: none;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.preview-link:hover { background: var(--accent-soft); }
+
+footer {
+  margin-top: 50px;
+  padding-top: 20px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+  text-align: center;
+  line-height: 1.8;
+}
+
+footer a { color: var(--muted); }
+
+@media (max-width: 700px) {
+  body { padding: 30px 18px; }
+  .masthead { grid-template-columns: 1fr; gap: 16px; }
+  .masthead-meta { text-align: left; }
+  .section-head { grid-template-columns: 1fr; gap: 4px; }
+  .preview-card .kanji-row { font-size: 28px; letter-spacing: 4px; }
+}
+
+@media print {
+  body { background: white; padding: 20px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Nav -->
+  <nav class="page-nav">
+    <a href="jlpt_n5_w1_saturday.html">← Saturday</a>
+    <a class="center" href="jlpt_n5_full_schedule.html">↑ Full Schedule</a>
+    <a href="jlpt_n5_w2_monday.html">Week 2 Monday →</a>
+  </nav>
+
+  <!-- Masthead -->
+  <header class="masthead">
+    <div class="masthead-mark">日</div>
+    <div class="masthead-title">
+      <h1>Sunday · Week 1</h1>
+      <div class="sub">Rest Day · Consolidation</div>
+    </div>
+    <div class="masthead-meta">
+      — minutes<br>
+      No study<br>
+      Step away
+    </div>
+  </header>
+
+  <!-- Intro -->
+  <div class="session-intro">
+    <h3>Today you do nothing. That is the instruction.</h3>
+    <p>The 48–72 hour gap between Saturday's review and Monday's new material is not wasted time — it is when your brain moves what you practised from short-term working memory into long-term storage. <strong>Forcing more input now actively competes with that process.</strong></p>
+    <p>Rest is not a reward for finishing the week. It is part of the method. The schedule was designed with Sunday off. Trust it.</p>
+    <p>If you feel restless: go outside, read something in any language, notice if any of this week's kanji appear on packaging, a menu, or an app. That passive contact is fine. Drilling is not.</p>
+  </div>
+
+  <!-- Accomplishments -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">WEEK 1</span>
+      <h2>What you covered</h2>
+      <span class="duration">Read, don't drill</span>
+    </div>
+
+    <div class="accomplishments">
+      <div class="accomplishments-header">
+        <h3>Week 1 · Numbers (数字)</h3>
+        <div class="sub">13 kanji · 5 study days · complete</div>
+      </div>
+      <div class="accomplishments-body">
+        <ul>
+          <li>
+            <span class="check">✓</span>
+            <span>
+              <strong>13 kanji introduced and reviewed</strong>
+              <span class="jp-sample">一 二 三 四 五 六 七 八 九 十 百 千 万</span>
+              <span class="detail">Monday (1–7) · Wednesday (8–13) · Friday + Saturday review</span>
+            </span>
+          </li>
+          <li>
+            <span class="check">✓</span>
+            <span>
+              <strong>7 counter types drilled</strong>
+              <span class="detail">～つ (items) · ～人 (people) · ～本 (long objects) · ～枚 (flat) · ～匹 (animals) · ～回 (times) + irregular hundreds</span>
+            </span>
+          </li>
+          <li>
+            <span class="check">✓</span>
+            <span>
+              <strong>Irregular readings locked in</strong>
+              <span class="detail">一人 = ひとり · 二人 = ふたり · 今日 = きょう · 四時 = よじ · 三百 = さんびゃく · 六百 = ろっぴゃく · 八百 = はっぴゃく · 三千 = さんぜん · 八千 = はっせん</span>
+            </span>
+          </li>
+          <li>
+            <span class="check">✓</span>
+            <span>
+              <strong>~14 vocabulary words</strong>
+              <span class="detail">Numbers in context: money, dates, age, counting expressions</span>
+            </span>
+          </li>
+          <li>
+            <span class="check">✓</span>
+            <span>
+              <strong>Handwriting practice</strong>
+              <span class="detail">Each kanji written by hand on Wednesday and Friday</span>
+            </span>
+          </li>
+          <li>
+            <span class="check">✓</span>
+            <span>
+              <strong>3 rounds of self-quiz</strong>
+              <span class="detail">Wednesday reading check · Friday multi-round · Saturday cumulative review</span>
+            </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- In the wild -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">OPTIONAL</span>
+      <h2>Kanji in the wild</h2>
+      <span class="duration">0 min required</span>
+    </div>
+
+    <div class="wild-block">
+      <h3>If you feel like it — a 30-second exercise</h3>
+      <p>Next time you encounter any Japanese text today — a food label, a restaurant menu, a phone app, a film subtitle — glance at it and see if you can spot <strong>any of the 13 kanji from this week</strong>.</p>
+      <p>一 二 三 四 五 六 七 八 九 十 百 千 万 — they appear constantly: prices, quantities, dates, phone numbers, times.</p>
+      <p>You don't need to write anything down or make a lesson of it. Just notice. That passive recognition is the beginning of reading Japanese naturally.</p>
+    </div>
+  </section>
+
+  <!-- Week 2 preview -->
+  <div class="preview-card">
+    <div class="eyebrow">Coming Monday — Week 2</div>
+    <h3>Time &amp; Calendar · 時・暦</h3>
+    <span class="kanji-row">日 月 火 水 木 金 土</span>
+    <p>Seven kanji that form the days of the week. Each represents a natural element: <strong>sun, moon, fire, water, wood, gold, earth</strong> — assigned to the days by ancient Chinese cosmology. Once you know these seven elements, you can read any day of the week in Japanese.</p>
+    <p>The pictographic logic is strong here. 木 looks like a tree. 水 looks like flowing water. 火 looks like flames. These will mostly stick on first exposure — <strong>Week 2 Monday should feel lighter than Week 1 Monday.</strong></p>
+    <a class="preview-link" href="jlpt_n5_w2_monday.html">Start Week 2 Monday →</a>
+  </div>
+
+  <footer>
+    <div>Week 1 · Sunday · Rest Day</div>
+    <div>The full Week 1 set: <a href="jlpt_n5_w1_monday.html">Mon</a> · <a href="jlpt_n5_w1_tuesday.html">Tue</a> · <a href="jlpt_n5_w1_wednesday.html">Wed</a> · <a href="jlpt_n5_w1_friday.html">Fri</a> · <a href="jlpt_n5_w1_saturday.html">Sat</a> · Sun</div>
+  </footer>
+
+</div>
+</body>
+</html>
