@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 1 Recap · Marugoto A2 · いい名前ですね</title>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;700&family=Noto+Serif+JP:wght@400;500;700&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1a1a;
+  --ink-soft: #3a3a3a;
+  --paper: #f4efe6;
+  --paper-soft: #ebe4d6;
+  --paper-deep: #e2d9c4;
+  --rule: #c9bfa9;
+  --rule-soft: #d8cfb9;
+  --accent: #8b1a1a;
+  --accent-soft: #b85c5c;
+  --muted: #6b6357;
+  --gold: #b8893d;
+  --done: #5a7a3a;
+  --done-bg: #d8e0c4;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 300;
+  line-height: 1.7;
+  padding: 50px 32px;
+  background-image:
+    radial-gradient(circle at 15% 25%, rgba(139, 26, 26, 0.03) 0%, transparent 40%),
+    radial-gradient(circle at 85% 75%, rgba(184, 137, 61, 0.04) 0%, transparent 50%);
+}
+
+.container { max-width: 880px; margin: 0 auto; }
+
+/* Nav */
+.page-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--rule);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+.page-nav a { color: var(--accent); text-decoration: none; text-transform: uppercase; }
+.page-nav a:hover { text-decoration: underline; }
+.page-nav .center { color: var(--muted); }
+.page-nav .disabled { color: var(--rule); pointer-events: none; cursor: default; }
+
+/* Masthead */
+.masthead {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: end;
+  gap: 30px;
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 20px;
+  margin-bottom: 40px;
+}
+.masthead-mark {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 80px;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 0.85;
+  letter-spacing: -4px;
+}
+.masthead-title h1 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 32px;
+  font-weight: 500;
+  letter-spacing: -1px;
+  line-height: 1.1;
+  margin-bottom: 6px;
+}
+.masthead-title .sub {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.masthead-meta {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 1.5px;
+  text-align: right;
+  text-transform: uppercase;
+  line-height: 1.8;
+}
+
+/* Session intro */
+.session-intro {
+  background: var(--paper-soft);
+  border-left: 3px solid var(--accent);
+  padding: 26px 32px;
+  margin-bottom: 50px;
+}
+.session-intro h3 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+.session-intro p {
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 10px;
+  color: var(--ink-soft);
+}
+.session-intro p:last-child { margin-bottom: 0; }
+.session-intro strong { font-weight: 500; color: var(--ink); }
+
+/* Section */
+section { margin-bottom: 60px; }
+.section-head {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: baseline;
+  gap: 20px;
+  padding-bottom: 14px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid var(--rule);
+}
+.section-num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: 2px;
+  font-weight: 500;
+}
+.section-head h2 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 26px;
+  font-weight: 500;
+}
+.section-head .tag {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Grammar card */
+.grammar-card {
+  background: var(--paper-soft);
+  border: 1px solid var(--rule);
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+.grammar-head {
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+  background: var(--paper-deep);
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--rule);
+}
+.grammar-pattern-jp {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 22px;
+  color: var(--accent);
+  font-weight: 500;
+}
+.grammar-english {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+}
+.grammar-body { padding: 20px 24px; }
+.grammar-formation {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  color: var(--ink-soft);
+  background: var(--paper);
+  border: 1px dashed var(--rule);
+  padding: 8px 14px;
+  margin-bottom: 12px;
+  letter-spacing: 0.5px;
+}
+.grammar-usage {
+  font-size: 13px;
+  color: var(--muted);
+  font-style: italic;
+  margin-bottom: 14px;
+  line-height: 1.6;
+}
+.grammar-examples {
+  list-style: none;
+}
+.grammar-examples li {
+  padding: 8px 0;
+  border-bottom: 1px dashed var(--rule-soft);
+  font-size: 14px;
+  line-height: 1.6;
+}
+.grammar-examples li:last-child { border-bottom: none; }
+.grammar-examples .jp {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 16px;
+  color: var(--ink);
+  display: block;
+  margin-bottom: 3px;
+}
+.grammar-examples ruby rt { font-size: 9px; color: var(--accent); }
+.grammar-examples .en {
+  color: var(--muted);
+  font-size: 13px;
+  display: block;
+}
+
+/* Conversation highlight */
+.convo-box {
+  background: var(--paper-soft);
+  border: 1px solid var(--rule);
+  overflow: hidden;
+}
+.convo-title {
+  background: var(--paper-deep);
+  padding: 14px 24px;
+  border-bottom: 1px solid var(--rule);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.convo-title span {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 16px;
+  color: var(--ink);
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+  margin-left: 8px;
+}
+.convo-lines { padding: 20px 24px; }
+.convo-line {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 16px;
+  padding: 10px 0;
+  border-bottom: 1px dashed var(--rule-soft);
+  font-size: 14px;
+}
+.convo-line:last-child { border-bottom: none; }
+.convo-speaker {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--accent);
+  padding-top: 3px;
+}
+.convo-jp {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 16px;
+  color: var(--ink);
+  display: block;
+  margin-bottom: 3px;
+}
+.convo-jp ruby rt { font-size: 9px; color: var(--accent); }
+.convo-en { font-size: 13px; color: var(--muted); }
+
+/* Vocabulary table */
+.vocab-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+.vocab-table th {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 8px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--rule);
+  background: var(--paper-deep);
+}
+.vocab-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--rule-soft);
+  vertical-align: middle;
+}
+.vocab-table tr:last-child td { border-bottom: none; }
+.vocab-table .jp-cell {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 18px;
+  color: var(--ink);
+  width: 200px;
+}
+.vocab-table .read-cell {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  color: var(--muted);
+  width: 180px;
+}
+.vocab-table .en-cell { font-size: 13px; color: var(--ink-soft); }
+
+/* Drills */
+.drill-block {
+  background: var(--paper-soft);
+  border-left: 3px solid var(--gold);
+  padding: 22px 26px;
+  margin-bottom: 24px;
+}
+.drill-block h3 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+.drill-block p {
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 10px;
+  color: var(--ink-soft);
+}
+.drill-block ol, .drill-block ul {
+  margin-left: 20px;
+  font-size: 14px;
+  line-height: 1.9;
+  color: var(--ink-soft);
+}
+.drill-block ol li, .drill-block ul li { margin-bottom: 4px; }
+.drill-block .jp-inline {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 17px;
+  color: var(--ink);
+}
+.drill-block .answer {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  padding: 6px 12px;
+  margin-top: 12px;
+  font-size: 13px;
+  color: var(--muted);
+  cursor: pointer;
+  font-family: 'IBM Plex Mono', monospace;
+  letter-spacing: 0.5px;
+  user-select: none;
+}
+.drill-block .answer.shown {
+  background: var(--done-bg);
+  color: var(--done);
+  border-color: var(--done);
+}
+
+footer {
+  margin-top: 50px;
+  padding-top: 20px;
+  border-top: 1px solid var(--rule);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+  text-align: center;
+  line-height: 1.8;
+}
+
+@media (max-width: 700px) {
+  body { padding: 30px 18px; }
+  .masthead { grid-template-columns: 1fr; gap: 16px; }
+  .masthead-meta { text-align: left; }
+  .section-head { grid-template-columns: 1fr; gap: 4px; }
+  .convo-line { grid-template-columns: 1fr; gap: 4px; }
+  .vocab-table .read-cell { display: none; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Nav -->
+  <nav class="page-nav">
+    <span class="disabled">← —</span>
+    <a class="center" href="../../index.html">↑ Course Index</a>
+    <a href="marugoto_a2_l2_recap.html">L2 Recap →</a>
+  </nav>
+
+  <!-- Masthead -->
+  <header class="masthead">
+    <div class="masthead-mark">一</div>
+    <div class="masthead-title">
+      <h1>Lesson 1 · いい名前ですね</h1>
+      <div class="sub">That's a good name · Names, origins &amp; meaning</div>
+    </div>
+    <div class="masthead-meta">
+      Topic 1<br>
+      3 grammar patterns<br>
+      Episode 1
+    </div>
+  </header>
+
+  <!-- Intro -->
+  <div class="session-intro">
+    <h3>About this lesson</h3>
+    <p>Lesson 1 opens Marugoto A2 with a focus on <strong>names and origins</strong>. You learn how to explain what a name means, introduce something unfamiliar by its name, and describe people or things using a modifying clause — "the book I recently read," "the country I've been to."</p>
+    <p>All three patterns centre on the grammar word <strong>という</strong>, which links a name or description to a noun, and on the <strong>plain-form noun modifier</strong>, which turns a full sentence into an adjective. These are among the most useful structures in intermediate Japanese.</p>
+    <p>The episode is set at a first meeting: characters exchange names, ask about meanings, and talk about where they come from.</p>
+  </div>
+
+  <!-- Grammar section -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">Grammar</span>
+      <h2>Three Patterns</h2>
+      <span class="tag">という · plain form + N</span>
+    </div>
+
+    <!-- Pattern 1 -->
+    <div class="grammar-card">
+      <div class="grammar-head">
+        <div class="grammar-pattern-jp">N という いみ</div>
+        <div class="grammar-english">N means … / the meaning of N is …</div>
+      </div>
+      <div class="grammar-body">
+        <div class="grammar-formation">N + という + いみ（です）</div>
+        <div class="grammar-usage">Used when explaining the meaning of a name, word, or expression. という literally links the word to its content; いみ (意味) = "meaning."</div>
+        <ul class="grammar-examples">
+          <li>
+            <span class="jp"><ruby>ゆうこ<rt></rt></ruby>は <ruby>やさしい子<rt>やさしいこ</rt></ruby>という<ruby>意味<rt>いみ</rt></ruby>です。</span>
+            <span class="en">Yuko means "a kind child."</span>
+          </li>
+          <li>
+            <span class="jp">バウムクーヘンは<ruby>木<rt>き</rt></ruby>のケーキという<ruby>意味<rt>いみ</rt></ruby>です。</span>
+            <span class="en">Baumkuchen means "tree cake."</span>
+          </li>
+          <li>
+            <span class="jp">「<ruby>今日<rt>きょう</rt></ruby>は」はどういう<ruby>意味<rt>いみ</rt></ruby>ですか。</span>
+            <span class="en">What does "Konnichi wa" mean?</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Pattern 2 -->
+    <div class="grammar-card">
+      <div class="grammar-head">
+        <div class="grammar-pattern-jp">N₁ という N₂</div>
+        <div class="grammar-english">a/the [N₂] called [N₁]</div>
+      </div>
+      <div class="grammar-body">
+        <div class="grammar-formation">N₁ + という + N₂</div>
+        <div class="grammar-usage">Used when introducing a name that the listener may not know. N₁ is the specific name; N₂ is the category (company, town, person, etc.). という identifies N₁ as the label for N₂.</div>
+        <ul class="grammar-examples">
+          <li>
+            <span class="jp"><ruby>田中<rt>たなか</rt></ruby>さんはJFフーズという<ruby>会社<rt>かいしゃ</rt></ruby>で<ruby>働<rt>はたら</rt></ruby>いています。</span>
+            <span class="en">Tanaka-san works at a company called JF Foods.</span>
+          </li>
+          <li>
+            <span class="jp">わたしは<ruby>神田<rt>かんだ</rt></ruby>という<ruby>町<rt>まち</rt></ruby>に<ruby>住<rt>す</rt></ruby>んでいます。</span>
+            <span class="en">I live in a town called Kanda.</span>
+          </li>
+          <li>
+            <span class="jp">なにわという<ruby>町<rt>まち</rt></ruby>に<ruby>行<rt>い</rt></ruby>ったことがありますか。</span>
+            <span class="en">Have you been to a place called Naniwa?</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Pattern 3 -->
+    <div class="grammar-card">
+      <div class="grammar-head">
+        <div class="grammar-pattern-jp">Plain form + N</div>
+        <div class="grammar-english">the N that [clause] / a N which [clause]</div>
+      </div>
+      <div class="grammar-body">
+        <div class="grammar-formation">V / イA / ナA / N (plain form) + N</div>
+        <div class="grammar-usage">A whole clause in plain form placed before a noun to modify it — the Japanese equivalent of a relative clause ("the book I read," "the person who came"). The verb is always in plain form regardless of the politeness of the rest of the sentence.</div>
+        <ul class="grammar-examples">
+          <li>
+            <span class="jp"><ruby>最近<rt>さいきん</rt></ruby><ruby>読<rt>よ</rt></ruby>んだ<ruby>本<rt>ほん</rt></ruby>は<ruby>村上春樹<rt>むらかみはるき</rt></ruby>という<ruby>作家<rt>さっか</rt></ruby>の<ruby>小説<rt>しょうせつ</rt></ruby>です。</span>
+            <span class="en">A book I recently read is a novel by an author called Murakami Haruki.</span>
+          </li>
+          <li>
+            <span class="jp"><ruby>私<rt>わたし</rt></ruby>が<ruby>今<rt>いま</rt></ruby>ほしいものは<ruby>電子辞書<rt>でんしじしょ</rt></ruby>です。</span>
+            <span class="en">What I want right now is an electronic dictionary.</span>
+          </li>
+          <li>
+            <span class="jp"><ruby>今<rt>いま</rt></ruby>までに<ruby>行<rt>い</rt></ruby>ったことがある<ruby>国<rt>くに</rt></ruby>はどこですか。</span>
+            <span class="en">Which countries have you been to so far?</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Conversation highlight -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">Conversation</span>
+      <h2>Episode 1 Highlight</h2>
+      <span class="tag">Key lines</span>
+    </div>
+    <div class="convo-box">
+      <div class="convo-title">Episode 1 <span>いい名前ですね</span></div>
+      <div class="convo-lines">
+        <div class="convo-line">
+          <div class="convo-speaker">Aya</div>
+          <div>
+            <span class="convo-jp"><ruby>私<rt>わたし</rt></ruby>の<ruby>名前<rt>なまえ</rt></ruby>は<ruby>彩<rt>あや</rt></ruby>です。<ruby>美<rt>うつく</rt></ruby>しいという<ruby>意味<rt>いみ</rt></ruby>なんです。</span>
+            <span class="convo-en">My name is Aya. It means "beautiful."</span>
+          </div>
+        </div>
+        <div class="convo-line">
+          <div class="convo-speaker">Guest</div>
+          <div>
+            <span class="convo-jp">いい<ruby>名前<rt>なまえ</rt></ruby>ですね。<ruby>出身<rt>しゅっしん</rt></ruby>はどちらですか。</span>
+            <span class="convo-en">That's a lovely name. Where are you from?</span>
+          </div>
+        </div>
+        <div class="convo-line">
+          <div class="convo-speaker">Aya</div>
+          <div>
+            <span class="convo-jp"><ruby>神田<rt>かんだ</rt></ruby>という<ruby>町<rt>まち</rt></ruby>に<ruby>住<rt>す</rt></ruby>んでいます。<ruby>東京<rt>とうきょう</rt></ruby>の<ruby>中<rt>なか</rt></ruby>にあります。</span>
+            <span class="convo-en">I live in a town called Kanda. It's in central Tokyo.</span>
+          </div>
+        </div>
+        <div class="convo-line">
+          <div class="convo-speaker">Guest</div>
+          <div>
+            <span class="convo-jp"><ruby>今<rt>いま</rt></ruby>までに<ruby>行<rt>い</rt></ruby>ったことがある<ruby>国<rt>くに</rt></ruby>はどこですか。</span>
+            <span class="convo-en">Which countries have you visited so far?</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Vocabulary table -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">Vocabulary</span>
+      <h2>Key Words — Lesson 1</h2>
+      <span class="tag">12 items</span>
+    </div>
+    <table class="vocab-table">
+      <thead>
+        <tr>
+          <th>Japanese</th>
+          <th>Reading</th>
+          <th>Meaning</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="jp-cell"><ruby>意味<rt>いみ</rt></ruby></td>
+          <td class="read-cell">imi</td>
+          <td class="en-cell">meaning</td>
+        </tr>
+        <tr>
+          <td class="jp-cell"><ruby>名前<rt>なまえ</rt></ruby></td>
+          <td class="read-cell">namae</td>
+          <td class="en-cell">name</td>
+        </tr>
+        <tr>
+          <td class="jp-cell"><ruby>出身<rt>しゅっしん</rt></ruby></td>
+          <td class="read-cell">shusshin</td>
+          <td class="en-cell">hometown / origin</td>
+        </tr>
+        <tr>
+          <td class="jp-cell"><ruby>会社<rt>かいしゃ</rt></ruby></td>
+          <td class="read-cell">kaisha</td>
+          <td class="en-cell">company</td>
+        </tr>
+        <tr>
+          <td class="jp-cell"><ruby>場所<rt>ばしょ</rt></ruby></td>
+          <td class="read-cell">basho</td>
+          <td class="en-cell">place</td>
+        </tr>
+        <tr>
+          <td class="jp-cell"><ruby>住<rt>す</rt></ruby>んでいます</td>
+          <td class="read-cell">sunde imasu</td>
+          <td class="en-cell">lives in</td>
+        </tr>
+        <tr>
+          <td class="jp-cell"><ruby>働<rt>はたら</rt></ruby>いています</td>
+          <td class="read-cell">hataraite imasu</td>
+          <td class="en-cell">works at</td>
+        </tr>
+        <tr>
+          <td class="jp-cell"><ruby>先週<rt>せんしゅう</rt></ruby></td>
+          <td class="read-cell">senshuu</td>
+          <td class="en-cell">last week</td>
+        </tr>
+        <tr>
+          <td class="jp-cell"><ruby>今<rt>いま</rt></ruby>まで</td>
+          <td class="read-cell">ima made</td>
+          <td class="en-cell">until now / so far</td>
+        </tr>
+        <tr>
+          <td class="jp-cell"><ruby>一番目<rt>いちばんめ</rt></ruby></td>
+          <td class="read-cell">ichiban me</td>
+          <td class="en-cell">first (ordinal)</td>
+        </tr>
+        <tr>
+          <td class="jp-cell"><ruby>作家<rt>さっか</rt></ruby></td>
+          <td class="read-cell">sakka</td>
+          <td class="en-cell">author / writer</td>
+        </tr>
+        <tr>
+          <td class="jp-cell"><ruby>小説<rt>しょうせつ</rt></ruby></td>
+          <td class="read-cell">shoosetsu</td>
+          <td class="en-cell">novel</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Drills -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">Drills</span>
+      <h2>Practice</h2>
+      <span class="tag">Tap to reveal</span>
+    </div>
+
+    <div class="drill-block">
+      <h3>Drill 1 · Which pattern?</h3>
+      <p>Identify which of the three patterns is used in each sentence: <strong>Pattern 1</strong> (N というみ), <strong>Pattern 2</strong> (N という N), or <strong>Pattern 3</strong> (plain form + N).</p>
+      <ol>
+        <li><span class="jp-inline">「けんじ」というのはどういう<ruby>意味<rt>いみ</rt></ruby>ですか。</span></li>
+        <li><span class="jp-inline"><ruby>昨日<rt>きのう</rt></ruby><ruby>会<rt>あ</rt></ruby>った<ruby>人<rt>ひと</rt></ruby>はフランス<ruby>人<rt>じん</rt></ruby>です。</span></li>
+        <li><span class="jp-inline">なにわという<ruby>町<rt>まち</rt></ruby>に<ruby>行<rt>い</rt></ruby>ったことがありますか。</span></li>
+      </ol>
+      <div class="answer" data-content="① Pattern 1 (N というみ) — asking what a name means · ② Pattern 3 (plain form + N) — relative clause modifying 人 · ③ Pattern 2 (N という N) — introducing a place by name">▸ Tap to reveal answer</div>
+    </div>
+
+    <div class="drill-block">
+      <h3>Drill 2 · Fill in the blank</h3>
+      <p>Complete each sentence with the correct word or phrase.</p>
+      <ol>
+        <li>「まり」という<ruby>名前<rt>なまえ</rt></ruby>は＿＿＿ですか。</li>
+        <li><ruby>大阪<rt>おおさか</rt></ruby>は<ruby>日本<rt>にほん</rt></ruby>の＿＿＿です。<ruby>関西<rt>かんさい</rt></ruby><ruby>料理<rt>りょうり</rt></ruby>が<ruby>有名<rt>ゆうめい</rt></ruby>な<ruby>場所<rt>ばしょ</rt></ruby>です。</li>
+      </ol>
+      <div class="answer" data-content="① どういう意味 (or なんという意味) · ② 関西にある有名な町 (or similar — any plain-form noun modifier phrase works)">▸ Tap to reveal answer</div>
+    </div>
+  </section>
+
+  <!-- Bottom nav -->
+  <nav class="page-nav">
+    <span class="disabled">← —</span>
+    <a class="center" href="../../index.html">↑ Course Index</a>
+    <a href="marugoto_a2_l2_recap.html">L2 Recap →</a>
+  </nav>
+
+  <footer>
+    <div>まるごと初級２ A2 · Topic 1 · Lesson 1</div>
+  </footer>
+
+</div>
+
+<script>
+document.querySelectorAll('.answer').forEach(function(el) {
+  el.addEventListener('click', function() {
+    this.classList.toggle('shown');
+    if (this.classList.contains('shown')) {
+      this.textContent = '✓ ' + this.dataset.content;
+    } else {
+      this.textContent = '▸ Tap to reveal answer';
+    }
+  });
+});
+</script>
+</body>
+</html>

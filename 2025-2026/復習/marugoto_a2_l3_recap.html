@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 3 Recap · Marugoto A2 · おすすめは何ですか</title>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;700&family=Noto+Serif+JP:wght@400;500;700&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1a1a;
+  --ink-soft: #3a3a3a;
+  --paper: #f4efe6;
+  --paper-soft: #ebe4d6;
+  --paper-deep: #e2d9c4;
+  --rule: #c9bfa9;
+  --rule-soft: #d8cfb9;
+  --accent: #8b1a1a;
+  --accent-soft: #b85c5c;
+  --muted: #6b6357;
+  --gold: #b8893d;
+  --done: #5a7a3a;
+  --done-bg: #d8e0c4;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 300;
+  line-height: 1.7;
+  padding: 50px 32px;
+  background-image:
+    radial-gradient(circle at 15% 25%, rgba(139, 26, 26, 0.03) 0%, transparent 40%),
+    radial-gradient(circle at 85% 75%, rgba(184, 137, 61, 0.04) 0%, transparent 50%);
+}
+
+.container { max-width: 880px; margin: 0 auto; }
+
+/* Nav */
+.page-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--rule);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+.page-nav a { color: var(--accent); text-decoration: none; text-transform: uppercase; }
+.page-nav a:hover { text-decoration: underline; }
+.page-nav .center { color: var(--muted); }
+
+/* Masthead */
+.masthead {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: end;
+  gap: 30px;
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 20px;
+  margin-bottom: 40px;
+}
+.masthead-mark {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 80px;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 0.85;
+  letter-spacing: -4px;
+}
+.masthead-title h1 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 32px;
+  font-weight: 500;
+  letter-spacing: -1px;
+  line-height: 1.1;
+  margin-bottom: 6px;
+}
+.masthead-title .sub {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.masthead-meta {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 1.5px;
+  text-align: right;
+  text-transform: uppercase;
+  line-height: 1.8;
+}
+
+/* Session intro */
+.session-intro {
+  background: var(--paper-soft);
+  border-left: 3px solid var(--accent);
+  padding: 26px 32px;
+  margin-bottom: 50px;
+}
+.session-intro h3 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+.session-intro p {
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 10px;
+  color: var(--ink-soft);
+}
+.session-intro p:last-child { margin-bottom: 0; }
+.session-intro strong { font-weight: 500; color: var(--ink); }
+
+/* Section */
+section { margin-bottom: 60px; }
+.section-head {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: baseline;
+  gap: 20px;
+  padding-bottom: 14px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid var(--rule);
+}
+.section-num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: 2px;
+  font-weight: 500;
+}
+.section-head h2 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 26px;
+  font-weight: 500;
+}
+.section-head .tag {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Grammar card */
+.grammar-card {
+  background: var(--paper-soft);
+  border: 1px solid var(--rule);
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+.grammar-head {
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+  background: var(--paper-deep);
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--rule);
+}
+.grammar-pattern-jp {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 22px;
+  color: var(--accent);
+  font-weight: 500;
+}
+.grammar-english {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+}
+.grammar-body { padding: 20px 24px; }
+.grammar-formation {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  color: var(--ink-soft);
+  background: var(--paper);
+  border: 1px dashed var(--rule);
+  padding: 8px 14px;
+  margin-bottom: 12px;
+  letter-spacing: 0.5px;
+}
+.grammar-usage {
+  font-size: 13px;
+  color: var(--muted);
+  font-style: italic;
+  margin-bottom: 14px;
+  line-height: 1.6;
+}
+.grammar-examples { list-style: none; }
+.grammar-examples li {
+  padding: 8px 0;
+  border-bottom: 1px dashed var(--rule-soft);
+  font-size: 14px;
+  line-height: 1.6;
+}
+.grammar-examples li:last-child { border-bottom: none; }
+.grammar-examples .jp {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 16px;
+  color: var(--ink);
+  display: block;
+  margin-bottom: 3px;
+}
+.grammar-examples ruby rt { font-size: 9px; color: var(--accent); }
+.grammar-examples .en {
+  color: var(--muted);
+  font-size: 13px;
+  display: block;
+}
+.grammar-note {
+  font-size: 12px;
+  color: var(--muted);
+  background: var(--paper);
+  border: 1px solid var(--rule-soft);
+  padding: 8px 14px;
+  margin-top: 12px;
+  font-style: italic;
+}
+
+/* Conversation highlight */
+.convo-box {
+  background: var(--paper-soft);
+  border: 1px solid var(--rule);
+  overflow: hidden;
+}
+.convo-title {
+  background: var(--paper-deep);
+  padding: 14px 24px;
+  border-bottom: 1px solid var(--rule);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.convo-title span {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 16px;
+  color: var(--ink);
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+  margin-left: 8px;
+}
+.convo-lines { padding: 20px 24px; }
+.convo-line {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 16px;
+  padding: 10px 0;
+  border-bottom: 1px dashed var(--rule-soft);
+  font-size: 14px;
+}
+.convo-line:last-child { border-bottom: none; }
+.convo-speaker {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--accent);
+  padding-top: 3px;
+}
+.convo-jp {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 16px;
+  color: var(--ink);
+  display: block;
+  margin-bottom: 3px;
+}
+.convo-jp ruby rt { font-size: 9px; color: var(--accent); }
+.convo-en { font-size: 13px; color: var(--muted); }
+
+/* Vocabulary table */
+.vocab-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+.vocab-table th {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 8px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--rule);
+  background: var(--paper-deep);
+}
+.vocab-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--rule-soft);
+  vertical-align: middle;
+}
+.vocab-table tr:last-child td { border-bottom: none; }
+.vocab-table .jp-cell {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 18px;
+  color: var(--ink);
+  width: 200px;
+}
+.vocab-table .read-cell {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  color: var(--muted);
+  width: 180px;
+}
+.vocab-table .en-cell { font-size: 13px; color: var(--ink-soft); }
+
+/* Drills */
+.drill-block {
+  background: var(--paper-soft);
+  border-left: 3px solid var(--gold);
+  padding: 22px 26px;
+  margin-bottom: 24px;
+}
+.drill-block h3 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+.drill-block p {
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 10px;
+  color: var(--ink-soft);
+}
+.drill-block ol, .drill-block ul {
+  margin-left: 20px;
+  font-size: 14px;
+  line-height: 1.9;
+  color: var(--ink-soft);
+}
+.drill-block ol li, .drill-block ul li { margin-bottom: 4px; }
+.drill-block .jp-inline {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 17px;
+  color: var(--ink);
+}
+.drill-block .answer {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  padding: 6px 12px;
+  margin-top: 12px;
+  font-size: 13px;
+  color: var(--muted);
+  cursor: pointer;
+  font-family: 'IBM Plex Mono', monospace;
+  letter-spacing: 0.5px;
+  user-select: none;
+}
+.drill-block .answer.shown {
+  background: var(--done-bg);
+  color: var(--done);
+  border-color: var(--done);
+}
+
+footer {
+  margin-top: 50px;
+  padding-top: 20px;
+  border-top: 1px solid var(--rule);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+  text-align: center;
+  line-height: 1.8;
+}
+
+@media (max-width: 700px) {
+  body { padding: 30px 18px; }
+  .masthead { grid-template-columns: 1fr; gap: 16px; }
+  .masthead-meta { text-align: left; }
+  .section-head { grid-template-columns: 1fr; gap: 4px; }
+  .convo-line { grid-template-columns: 1fr; gap: 4px; }
+  .vocab-table .read-cell { display: none; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Nav -->
+  <nav class="page-nav">
+    <a href="marugoto_a2_l2_recap.html">← L2 Recap</a>
+    <a class="center" href="../../index.html">↑ Course Index</a>
+    <a href="marugoto_a2_l4_recap.html">L4 Recap →</a>
+  </nav>
+
+  <!-- Masthead -->
+  <header class="masthead">
+    <div class="masthead-mark">三</div>
+    <div class="masthead-title">
+      <h1>Lesson 3 · おすすめは何ですか</h1>
+      <div class="sub">What do you recommend? · Ordering &amp; suggestions</div>
+    </div>
+    <div class="masthead-meta">
+      Topic 2<br>
+      4 grammar patterns<br>
+      Episode 3
+    </div>
+  </header>
+
+  <!-- Intro -->
+  <div class="session-intro">
+    <h3>About this lesson</h3>
+    <p>Lesson 3 moves into <strong>restaurants and food</strong>. You learn how to ask for and give recommendations, explain dietary restrictions, and order specific quantities. The lesson is Topic 2, so the setting shifts from introductions to everyday transactions.</p>
+    <p>Key new structures: <strong>〜ので</strong> for giving soft, polite reasons; <strong>〜のは〜です</strong> for highlighting what you want to say; <strong>〜なら</strong> for picking up the other person's topic and making a suggestion; and <strong>〜ずつ</strong> for "N each" when ordering equal amounts.</p>
+    <p>Rupa is a vegetarian, so she and Abe navigate the menu together — a realistic scenario with lots of ので and なら in action.</p>
+  </div>
+
+  <!-- Grammar section -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">Grammar</span>
+      <h2>Four Patterns</h2>
+      <span class="tag">ので · のは · なら · ずつ</span>
+    </div>
+
+    <!-- Pattern 1 -->
+    <div class="grammar-card">
+      <div class="grammar-head">
+        <div class="grammar-pattern-jp">〜ので、〜</div>
+        <div class="grammar-english">because / since ~ (polite reason)</div>
+      </div>
+      <div class="grammar-body">
+        <div class="grammar-formation">Plain form + ので、S2 · Note: Noun / ナA → なので (not just ので)</div>
+        <div class="grammar-usage">Gives a reason or cause in a soft, objective tone. More polite and less assertive than から. Common when explaining dietary restrictions or preferences to a waiter or host.</div>
+        <ul class="grammar-examples">
+          <li>
+            <span class="jp">この<ruby>店<rt>みせ</rt></ruby>は<ruby>有名<rt>ゆうめい</rt></ruby>なので、お<ruby>客<rt>きゃく</rt></ruby>さんが<ruby>多<rt>おお</rt></ruby>いです。</span>
+            <span class="en">Since this restaurant is famous, it has many customers.</span>
+          </li>
+          <li>
+            <span class="jp"><ruby>私<rt>わたし</rt></ruby>はベジタリアンなので、<ruby>肉<rt>にく</rt></ruby>は<ruby>食<rt>た</rt></ruby>べないんです。</span>
+            <span class="en">Since I'm a vegetarian, I don't eat meat.</span>
+          </li>
+          <li>
+            <span class="jp"><ruby>今日<rt>きょう</rt></ruby>は<ruby>寒<rt>さむ</rt></ruby>いので、あたたかいものが<ruby>飲<rt>の</rt></ruby>みたいです。</span>
+            <span class="en">Since it's cold today, I'd like something warm to drink.</span>
+          </li>
+        </ul>
+        <div class="grammar-note">Compare: 〜から is more direct and casual; 〜ので sounds more considerate and is preferred in polite conversation.</div>
+      </div>
+    </div>
+
+    <!-- Pattern 2 -->
+    <div class="grammar-card">
+      <div class="grammar-head">
+        <div class="grammar-pattern-jp">〜のは、N です</div>
+        <div class="grammar-english">what [I/one] ~ is N (focus / emphasis)</div>
+      </div>
+      <div class="grammar-body">
+        <div class="grammar-formation">V / イA / ナA / N (plain form) + のは、N です</div>
+        <div class="grammar-usage">Nominalizes a clause and emphasizes it as the subject, equivalent to "What [I like / is delicious / etc.] is N." Useful for giving clear, focused recommendations.</div>
+        <ul class="grammar-examples">
+          <li>
+            <span class="jp"><ruby>私<rt>わたし</rt></ruby>が<ruby>好<rt>す</rt></ruby>きなのは、ステーキです。</span>
+            <span class="en">What I like is steak.</span>
+          </li>
+          <li>
+            <span class="jp"><ruby>今<rt>いま</rt></ruby><ruby>一番<rt>いちばん</rt></ruby>おいしいのは、かきです。</span>
+            <span class="en">What's most delicious right now is oysters.</span>
+          </li>
+          <li>
+            <span class="jp"><ruby>私<rt>わたし</rt></ruby>がよく<ruby>食<rt>た</rt></ruby>べるのは、テリヤキチキンです。</span>
+            <span class="en">What I often eat is teriyaki chicken.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Pattern 3 -->
+    <div class="grammar-card">
+      <div class="grammar-head">
+        <div class="grammar-pattern-jp">N₁ なら、N₂ が いいです</div>
+        <div class="grammar-english">If it's N₁ you want, N₂ would be good</div>
+      </div>
+      <div class="grammar-body">
+        <div class="grammar-formation">N₁（topic from listener）+ なら、N₂ が いいです（よ）</div>
+        <div class="grammar-usage">A topic-sensitive conditional: you pick up what the other person just mentioned (N₁) and build a suggestion around it. The feeling is "speaking of N₁, then N₂ is what I'd recommend." Very natural for waiters and helpful friends.</div>
+        <ul class="grammar-examples">
+          <li>
+            <span class="jp"><ruby>野菜<rt>やさい</rt></ruby>なら、きせつのサラダがいいですよ。</span>
+            <span class="en">For vegetables, I'd recommend the seasonal salad.</span>
+          </li>
+          <li>
+            <span class="jp">あたたかいものなら、コーンスープがおすすめです。</span>
+            <span class="en">For something warm, the corn soup is recommended.</span>
+          </li>
+          <li>
+            <span class="jp"><ruby>冷<rt>つめ</rt></ruby>たいものなら、フルーツジュースがおいしいですよ。</span>
+            <span class="en">For cold drinks, the fruit juice is delicious.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Pattern 4 -->
+    <div class="grammar-card">
+      <div class="grammar-head">
+        <div class="grammar-pattern-jp">N（数）ずつ</div>
+        <div class="grammar-english">N each / N at a time</div>
+      </div>
+      <div class="grammar-body">
+        <div class="grammar-formation">Counter + ずつ</div>
+        <div class="grammar-usage">Indicates equal distribution — "two of each," "one at a time." Used when ordering the same quantity of multiple items, or when distributing evenly.</div>
+        <ul class="grammar-examples">
+          <li>
+            <span class="jp">コーヒーとこうちゃ、2つずつください。</span>
+            <span class="en">Two each of coffee and tea, please.</span>
+          </li>
+          <li>
+            <span class="jp">よせなべと<ruby>天<rt>てん</rt></ruby>ぷら、1つずつお<ruby>願<rt>ねが</rt></ruby>いします。</span>
+            <span class="en">One each of hot pot and tempura, please.</span>
+          </li>
+          <li>
+            <span class="jp"><ruby>毎日<rt>まいにち</rt></ruby>すこしずつ<ruby>練習<rt>れんしゅう</rt></ruby>しています。</span>
+            <span class="en">I practise a little every day (a little at a time).</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Conversation highlight -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">Conversation</span>
+      <h2>Episode 3 Highlight</h2>
+      <span class="tag">Key lines</span>
+    </div>
+    <div class="convo-box">
+      <div class="convo-title">Episode 3 <span>おすすめは何ですか</span></div>
+      <div class="convo-lines">
+        <div class="convo-line">
+          <div class="convo-speaker">Rupa</div>
+          <div>
+            <span class="convo-jp"><ruby>私<rt>わたし</rt></ruby>はベジタリアンなので、<ruby>肉<rt>にく</rt></ruby>は<ruby>食<rt>た</rt></ruby>べないんです。</span>
+            <span class="convo-en">Since I'm a vegetarian, I don't eat meat.</span>
+          </div>
+        </div>
+        <div class="convo-line">
+          <div class="convo-speaker">Abe</div>
+          <div>
+            <span class="convo-jp">そうですか。<ruby>野菜<rt>やさい</rt></ruby>なら、とうふステーキがいいですよ。おいしいので、おすすめです。</span>
+            <span class="convo-en">I see. For vegetables, the tofu steak is great. It's delicious, so I recommend it.</span>
+          </div>
+        </div>
+        <div class="convo-line">
+          <div class="convo-speaker">Rupa</div>
+          <div>
+            <span class="convo-jp"><ruby>私<rt>わたし</rt></ruby>が<ruby>好<rt>す</rt></ruby>きなのは、あたたかい<ruby>料理<rt>りょうり</rt></ruby>です。それと、スープも<ruby>飲<rt>の</rt></ruby>みたいです。</span>
+            <span class="convo-en">What I like is warm food. And I'd also like some soup.</span>
+          </div>
+        </div>
+        <div class="convo-line">
+          <div class="convo-speaker">Abe</div>
+          <div>
+            <span class="convo-jp">では、とうふステーキとコーンスープ、1つずつお<ruby>願<rt>ねが</rt></ruby>いします。</span>
+            <span class="convo-en">Then one each of the tofu steak and corn soup, please.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Vocabulary table -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">Vocabulary</span>
+      <h2>Key Words — Lesson 3</h2>
+      <span class="tag">13 items</span>
+    </div>
+    <table class="vocab-table">
+      <thead>
+        <tr>
+          <th>Japanese</th>
+          <th>Reading</th>
+          <th>Meaning</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="jp-cell">おすすめ</td>
+          <td class="read-cell">osusume</td>
+          <td class="en-cell">recommendation</td>
+        </tr>
+        <tr>
+          <td class="jp-cell"><ruby>注文<rt>ちゅうもん</rt></ruby>します</td>
+          <td class="read-cell">chuumon shimasu</td>
+          <td class="en-cell">to order</td>
+        </tr>
+        <tr>
+          <td class="jp-cell"><ruby>決<rt>き</rt></ruby>めます</td>
+          <td class="read-cell">kimemasu</td>
+          <td class="en-cell">to decide</td>
+        </tr>
+        <tr>
+          <td class="jp-cell">メニュー</td>
+          <td class="read-cell">menyuu</td>
+          <td class="en-cell">menu</td>
+        </tr>
+        <tr>
+          <td class="jp-cell"><ruby>和食<rt>わしょく</rt></ruby></td>
+          <td class="read-cell">washoku</td>
+          <td class="en-cell">Japanese food</td>
+        </tr>
+        <tr>
+          <td class="jp-cell"><ruby>洋食<rt>ようしょく</rt></ruby></td>
+          <td class="read-cell">yooshoku</td>
+          <td class="en-cell">Western food</td>
+        </tr>
+        <tr>
+          <td class="jp-cell">ベジタリアン</td>
+          <td class="read-cell">bejitarian</td>
+          <td class="en-cell">vegetarian</td>
+        </tr>
+        <tr>
+          <td class="jp-cell">アレルギー</td>
+          <td class="read-cell">arerugii</td>
+          <td class="en-cell">allergy</td>
+        </tr>
+        <tr>
+          <td class="jp-cell"><ruby>冷<rt>つめ</rt></ruby>たい</td>
+          <td class="read-cell">tsumetai</td>
+          <td class="en-cell">cold (to the touch)</td>
+        </tr>
+        <tr>
+          <td class="jp-cell">あたたかい</td>
+          <td class="read-cell">atatakai</td>
+          <td class="en-cell">warm</td>
+        </tr>
+        <tr>
+          <td class="jp-cell"><ruby>有名<rt>ゆうめい</rt></ruby>な</td>
+          <td class="read-cell">yuumei na</td>
+          <td class="en-cell">famous</td>
+        </tr>
+        <tr>
+          <td class="jp-cell"><ruby>地方<rt>ちほう</rt></ruby></td>
+          <td class="read-cell">chihoo</td>
+          <td class="en-cell">region / local area</td>
+        </tr>
+        <tr>
+          <td class="jp-cell">おいしそう</td>
+          <td class="read-cell">oishisoo</td>
+          <td class="en-cell">looks delicious</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Drills -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">Drills</span>
+      <h2>Practice</h2>
+      <span class="tag">Tap to reveal</span>
+    </div>
+
+    <div class="drill-block">
+      <h3>Drill 1 · Fill in with ので / のは / なら / ずつ</h3>
+      <p>Choose the correct pattern for each blank.</p>
+      <ol>
+        <li><span class="jp-inline"><ruby>肉<rt>にく</rt></ruby>が<ruby>好<rt>す</rt></ruby>きな＿＿＿、ビーフステーキがおすすめです。</span></li>
+        <li><span class="jp-inline"><ruby>私<rt>わたし</rt></ruby>がよく<ruby>食<rt>た</rt></ruby>べる＿＿＿、テリヤキチキンです。</span></li>
+        <li><span class="jp-inline">ビールとジュース、1つ＿＿＿ください。</span></li>
+        <li><span class="jp-inline"><ruby>今日<rt>きょう</rt></ruby>は<ruby>寒<rt>さむ</rt></ruby>い＿＿＿、あたたかいスープを<ruby>飲<rt>の</rt></ruby>みたいです。</span></li>
+      </ol>
+      <div class="answer" data-content="① なら (topic picked up from listener → suggestion) · ② のは (nominalizer — 'what I often eat is...') · ③ ずつ ('one each') · ④ ので (polite reason — 'since it's cold')">▸ Tap to reveal answer</div>
+    </div>
+
+    <div class="drill-block">
+      <h3>Drill 2 · Translate and name the pattern</h3>
+      <p>Translate this sentence into Japanese and identify which pattern you used.</p>
+      <p style="font-style: italic; color: var(--muted);">"As for cold drinks, the fruit juice is delicious."</p>
+      <div class="answer" data-content="冷たいものなら、フルーツジュースがおいしいですよ。 · Pattern: N₁ なら、N₂ がいいです — picking up the listener's topic (cold drinks) and offering a specific suggestion.">▸ Tap to reveal answer</div>
+    </div>
+  </section>
+
+  <!-- Bottom nav -->
+  <nav class="page-nav">
+    <a href="marugoto_a2_l2_recap.html">← L2 Recap</a>
+    <a class="center" href="../../index.html">↑ Course Index</a>
+    <a href="marugoto_a2_l4_recap.html">L4 Recap →</a>
+  </nav>
+
+  <footer>
+    <div>まるごと初級２ A2 · Topic 2 · Lesson 3</div>
+  </footer>
+
+</div>
+
+<script>
+document.querySelectorAll('.answer').forEach(function(el) {
+  el.addEventListener('click', function() {
+    this.classList.toggle('shown');
+    if (this.classList.contains('shown')) {
+      this.textContent = '✓ ' + this.dataset.content;
+    } else {
+      this.textContent = '▸ Tap to reveal answer';
+    }
+  });
+});
+</script>
+</body>
+</html>
