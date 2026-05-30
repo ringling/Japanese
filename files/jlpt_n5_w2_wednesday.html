@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wednesday · Week 2 · Time Kanji 21–26</title>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;700&family=Noto+Serif+JP:wght@400;500;700&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1a1a;
+  --ink-soft: #3a3a3a;
+  --paper: #f4efe6;
+  --paper-soft: #ebe4d6;
+  --paper-deep: #e2d9c4;
+  --rule: #c9bfa9;
+  --rule-soft: #d8cfb9;
+  --accent: #8b1a1a;
+  --accent-soft: #b85c5c;
+  --muted: #6b6357;
+  --gold: #b8893d;
+  --done: #5a7a3a;
+  --done-bg: #d8e0c4;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 300;
+  line-height: 1.7;
+  padding: 50px 32px;
+  background-image:
+    radial-gradient(circle at 15% 25%, rgba(139, 26, 26, 0.03) 0%, transparent 40%),
+    radial-gradient(circle at 85% 75%, rgba(184, 137, 61, 0.04) 0%, transparent 50%);
+}
+
+.container {
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+/* ====== Masthead ====== */
+.masthead {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: end;
+  gap: 30px;
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 20px;
+  margin-bottom: 40px;
+}
+
+.masthead-mark {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 80px;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 0.85;
+  letter-spacing: -4px;
+}
+
+.masthead-title h1 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 32px;
+  font-weight: 500;
+  letter-spacing: -1px;
+  line-height: 1.1;
+  margin-bottom: 6px;
+}
+
+.masthead-title .sub {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.masthead-meta {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 1.5px;
+  text-align: right;
+  text-transform: uppercase;
+  line-height: 1.8;
+}
+
+/* ====== Session intro ====== */
+.session-intro {
+  background: var(--paper-soft);
+  border-left: 3px solid var(--accent);
+  padding: 26px 32px;
+  margin-bottom: 50px;
+}
+
+.session-intro h3 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.session-intro p {
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 10px;
+  color: var(--ink-soft);
+}
+
+.session-intro p:last-child { margin-bottom: 0; }
+.session-intro strong { font-weight: 500; color: var(--ink); }
+
+/* ====== Section ====== */
+section { margin-bottom: 60px; }
+
+.section-head {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: baseline;
+  gap: 20px;
+  padding-bottom: 14px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.section-num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: 2px;
+  font-weight: 500;
+}
+
+.section-head h2 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 26px;
+  font-weight: 500;
+}
+
+.section-head .duration {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* ====== Review grid ====== */
+.review-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.review-card {
+  background: var(--paper-soft);
+  border: 1px solid var(--rule);
+  padding: 14px 10px;
+  text-align: center;
+}
+
+.review-card .glyph {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 36px;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 6px;
+  line-height: 1.1;
+}
+
+.review-card .reading {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 11px;
+  color: var(--muted);
+  display: block;
+  margin-bottom: 2px;
+}
+
+.review-card .meaning {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+  display: block;
+  text-transform: uppercase;
+}
+
+/* ====== Kanji card ====== */
+.kanji-detail {
+  background: var(--paper-soft);
+  border: 1px solid var(--rule);
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+
+.kanji-header {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  align-items: stretch;
+}
+
+.kanji-glyph-box {
+  background: var(--paper-deep);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  border-right: 1px solid var(--rule);
+}
+
+.kanji-glyph {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 90px;
+  font-weight: 500;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.kanji-meta { padding: 22px 28px; }
+
+.kanji-num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.kanji-meaning {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.kanji-readings {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  font-size: 13px;
+}
+
+.reading {
+  font-family: 'IBM Plex Mono', monospace;
+  letter-spacing: 0.5px;
+}
+
+.reading .label {
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-right: 4px;
+  font-weight: 500;
+}
+
+.reading.on .label { color: var(--accent); }
+.reading.kun .label { color: var(--gold); }
+
+.reading .val {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 16px;
+  color: var(--ink);
+}
+
+.kanji-body {
+  padding: 24px 28px;
+  border-top: 1px solid var(--rule);
+}
+
+.kanji-body h4 {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 8px;
+  margin-top: 18px;
+}
+
+.kanji-body h4:first-child { margin-top: 0; }
+
+.kanji-body p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+  margin-bottom: 4px;
+}
+
+.kanji-body em { font-style: italic; color: var(--muted); }
+
+.examples-list {
+  list-style: none;
+  margin-top: 4px;
+}
+
+.examples-list li {
+  padding: 6px 0;
+  border-bottom: 1px dashed var(--rule);
+  font-size: 14px;
+}
+
+.examples-list li:last-child { border-bottom: none; }
+
+.examples-list .jp {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 16px;
+  color: var(--ink);
+  margin-right: 8px;
+}
+
+.examples-list ruby rt {
+  font-size: 9px;
+  color: var(--accent);
+}
+
+.examples-list .en { color: var(--muted); font-size: 13px; }
+
+.stroke-note {
+  background: var(--paper);
+  border: 1px dashed var(--rule);
+  padding: 12px 16px;
+  font-size: 13px;
+  color: var(--ink-soft);
+  font-style: italic;
+  margin-top: 8px;
+}
+
+.stroke-note strong {
+  font-style: normal;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+/* ====== 分 sound change table ====== */
+.fun-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 8px;
+  font-size: 14px;
+}
+
+.fun-table th {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 8px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--rule);
+}
+
+.fun-table td {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--rule-soft);
+  vertical-align: middle;
+}
+
+.fun-table tr:last-child td { border-bottom: none; }
+
+.fun-table .num-cell {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  color: var(--muted);
+  width: 40px;
+}
+
+.fun-table .kanji-cell {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 18px;
+  width: 80px;
+}
+
+.fun-table .read-cell {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 16px;
+  color: var(--accent);
+}
+
+.fun-table .note-cell { font-size: 13px; color: var(--muted); }
+
+.fun-table tr.irregular td { background: var(--paper-deep); }
+.fun-table tr.irregular .read-cell { font-weight: 500; }
+
+/* ====== Time reference table ====== */
+.time-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+.time-table th {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 8px 14px;
+  text-align: left;
+  border-bottom: 1px solid var(--rule);
+}
+
+.time-table td {
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--rule-soft);
+  vertical-align: middle;
+}
+
+.time-table tr:last-child td { border-bottom: none; }
+
+.time-table .jp {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 18px;
+  width: 180px;
+}
+
+.time-table .reading {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 14px;
+  color: var(--muted);
+  width: 200px;
+}
+
+.time-table .en { font-size: 13px; color: var(--muted); }
+
+/* ====== Vocab section ====== */
+.vocab-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.vocab-item {
+  background: var(--paper-soft);
+  border: 1px solid var(--rule);
+  padding: 10px 14px;
+}
+
+.vocab-item .jp {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 18px;
+  color: var(--ink);
+  display: block;
+  margin-bottom: 2px;
+}
+
+.vocab-item .reading {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 2px;
+}
+
+.vocab-item .en {
+  font-size: 12px;
+  color: var(--muted);
+  display: block;
+}
+
+/* ====== Drill block ====== */
+.drill-block {
+  background: var(--paper-soft);
+  border-left: 3px solid var(--gold);
+  padding: 22px 26px;
+  margin-bottom: 24px;
+}
+
+.drill-block h3 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.drill-block p {
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 10px;
+  color: var(--ink-soft);
+}
+
+.drill-block ol, .drill-block ul {
+  margin-left: 20px;
+  font-size: 14px;
+  line-height: 1.9;
+  color: var(--ink-soft);
+}
+
+.drill-block ol li, .drill-block ul li { margin-bottom: 4px; }
+
+.drill-block .jp-inline {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 17px;
+  color: var(--ink);
+}
+
+.drill-block .answer {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  padding: 6px 12px;
+  margin-top: 10px;
+  font-size: 13px;
+  color: var(--muted);
+  cursor: pointer;
+  font-family: 'IBM Plex Mono', monospace;
+  letter-spacing: 0.5px;
+  user-select: none;
+}
+
+.drill-block .answer.shown {
+  background: var(--done-bg);
+  color: var(--done);
+  border-color: var(--done);
+}
+
+.drill-block .answer::before { content: "▸ Tap to reveal answer"; }
+.drill-block .answer.shown::before { content: "✓ "; }
+
+.drill-block .hidden-answer { display: none; }
+.drill-block .answer.shown .hidden-answer { display: inline; }
+
+/* ====== Closing ====== */
+.closing {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 28px 32px;
+  margin-top: 50px;
+}
+
+.closing h3 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 14px;
+  color: var(--paper);
+}
+
+.closing p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--paper-soft);
+  margin-bottom: 8px;
+}
+
+.closing strong { color: var(--paper); font-weight: 500; }
+
+.closing-actions {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--accent-soft);
+}
+
+.closing-actions p:first-child {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: var(--accent-soft);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+/* ====== Nav ====== */
+.page-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--rule);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+.page-nav a {
+  color: var(--accent);
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.page-nav a:hover { text-decoration: underline; }
+.page-nav .center { color: var(--muted); }
+
+footer {
+  margin-top: 50px;
+  padding-top: 20px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+  text-align: center;
+  line-height: 1.8;
+}
+
+@media (max-width: 700px) {
+  body { padding: 30px 18px; }
+  .masthead { grid-template-columns: 1fr; gap: 16px; }
+  .masthead-meta { text-align: left; }
+  .review-grid { grid-template-columns: repeat(4, 1fr); }
+  .kanji-header { grid-template-columns: 1fr; }
+  .kanji-glyph-box { padding: 20px; border-right: none; border-bottom: 1px solid var(--rule); }
+  .kanji-glyph { font-size: 70px; }
+  .section-head { grid-template-columns: 1fr; gap: 4px; }
+  .vocab-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media print {
+  body { background: white; padding: 20px; }
+  .closing-actions, footer { break-before: avoid; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Nav -->
+  <nav class="page-nav">
+    <a href="jlpt_n5_w2_tuesday.html">← Week 2 Tuesday</a>
+    <a class="center" href="jlpt_n5_full_schedule.html">↑ Full Schedule</a>
+    <a href="jlpt_n5_w2_friday.html">Week 2 Friday →</a>
+  </nav>
+
+  <!-- Masthead -->
+  <header class="masthead">
+    <div class="masthead-mark">水</div>
+    <div class="masthead-title">
+      <h1>Wednesday · Week 2</h1>
+      <div class="sub">Kanji 21–26 · 曜 年 時 分 半 今 · Telling Time</div>
+    </div>
+    <div class="masthead-meta">
+      ~45 minutes<br>
+      Six new kanji<br>
+      Write + drill
+    </div>
+  </header>
+
+  <!-- Intro -->
+  <div class="session-intro">
+    <h3>Today's session</h3>
+    <p>Wednesday is the longest session of the week. You start with a quick handwriting pass over Monday's seven day kanji — three minutes, one write of each — then meet the six kanji that complete the calendar system: <strong>曜 年 時 分 半 今</strong>.</p>
+    <p>Together, all thirteen give you full control over Japanese dates, clock times, and schedules. The session pays most attention to <strong>時 and 分</strong> — the building blocks of telling time — and to <strong>分's sound changes</strong>, which follow exactly the same rule as ～本 from Week 1 Tuesday: 1, 6, 8, 10 → っぷ; 3 → んぷ.</p>
+    <p>By the end you should be able to read any time on a clock in Japanese and construct sentences like <em>今日は午後三時半にクラスがあります</em> without hesitation.</p>
+  </div>
+
+  <!-- Review: Write Monday's 7 by hand -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">REVIEW</span>
+      <h2>Write Monday's kanji by hand</h2>
+      <span class="duration">~4 min</span>
+    </div>
+
+    <p style="font-size: 14px; color: var(--ink-soft); margin-bottom: 20px; line-height: 1.7;">Write each of the seven day-of-week kanji once by hand — say the reading aloud as you write. Three minutes is enough. If any feel uncertain, write it twice.</p>
+
+    <div class="review-grid">
+      <div class="review-card">
+        <span class="glyph">日</span>
+        <span class="reading">にち・ひ</span>
+        <span class="meaning">sun · day</span>
+      </div>
+      <div class="review-card">
+        <span class="glyph">月</span>
+        <span class="reading">げつ・つき</span>
+        <span class="meaning">moon · month</span>
+      </div>
+      <div class="review-card">
+        <span class="glyph">火</span>
+        <span class="reading">か・ひ</span>
+        <span class="meaning">fire</span>
+      </div>
+      <div class="review-card">
+        <span class="glyph">水</span>
+        <span class="reading">すい・みず</span>
+        <span class="meaning">water</span>
+      </div>
+      <div class="review-card">
+        <span class="glyph">木</span>
+        <span class="reading">もく・き</span>
+        <span class="meaning">tree · wood</span>
+      </div>
+      <div class="review-card">
+        <span class="glyph">金</span>
+        <span class="reading">きん・かね</span>
+        <span class="meaning">gold · money</span>
+      </div>
+      <div class="review-card">
+        <span class="glyph">土</span>
+        <span class="reading">ど・つち</span>
+        <span class="meaning">earth · soil</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Kanji 21: 曜 -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">KANJI 21</span>
+      <h2>曜 — day of the week</h2>
+      <span class="duration">~4 min</span>
+    </div>
+    <div class="kanji-detail">
+      <div class="kanji-header">
+        <div class="kanji-glyph-box"><div class="kanji-glyph">曜</div></div>
+        <div class="kanji-meta">
+          <div class="kanji-num">Number 21 of 104</div>
+          <div class="kanji-meaning">day of the week</div>
+          <div class="kanji-readings">
+            <div class="reading on"><span class="label">音</span><span class="val">ヨウ</span></div>
+            <div class="reading kun"><span class="label">訓</span><span class="val">(なし)</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="kanji-body">
+        <h4>Structure &amp; mnemonic</h4>
+        <p>The most complex kanji this week at 18 strokes. The left side holds 日 (sun), which marks it as time-related. The right side contains 隹 (a bird radical) and 羽 (wings/feathers) — <em>the sun shining through the wings of a bird cycling through its weekly route.</em> The cycling bird = the cycling days of the week.</p>
+        <p>At N5 level you need to <strong>recognise 曜</strong> instantly, not necessarily reproduce it from memory. It only ever appears in the pattern ～曜日 (day of the week).</p>
+
+        <h4>Stroke count</h4>
+        <p>18 strokes — by far the most this week. Write it slowly once; don't rush it.</p>
+
+        <h4>Example words</h4>
+        <ul class="examples-list">
+          <li><span class="jp"><ruby>曜日<rt>ようび</rt></ruby></span><span class="en">— day of the week (in general)</span></li>
+          <li><span class="jp"><ruby>何曜日<rt>なんようび</rt></ruby></span><span class="en">— what day of the week?</span></li>
+          <li><span class="jp"><ruby>月曜日<rt>げつようび</rt></ruby></span><span class="en">— Monday (moon-day)</span></li>
+          <li><span class="jp"><ruby>火曜日<rt>かようび</rt></ruby></span><span class="en">— Tuesday (fire-day)</span></li>
+        </ul>
+
+        <div class="stroke-note">
+          <strong>Recognition priority:</strong> When you see 曜 on a timetable, poster, or schedule, your brain should fire "day of the week" immediately. That reflex is the goal — faster than reading the furigana.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Kanji 22: 年 -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">KANJI 22</span>
+      <h2>年 — year</h2>
+      <span class="duration">~3 min</span>
+    </div>
+    <div class="kanji-detail">
+      <div class="kanji-header">
+        <div class="kanji-glyph-box"><div class="kanji-glyph">年</div></div>
+        <div class="kanji-meta">
+          <div class="kanji-num">Number 22 of 104</div>
+          <div class="kanji-meaning">year</div>
+          <div class="kanji-readings">
+            <div class="reading on"><span class="label">音</span><span class="val">ネン</span></div>
+            <div class="reading kun"><span class="label">訓</span><span class="val">とし</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="kanji-body">
+        <h4>Mnemonic</h4>
+        <p>The original pictograph showed a person (人) carrying a heavy bundle of grain stalks at harvest time. One harvest = one year. Today the character is simplified, but the <em>bent person struggling under a load</em> is still visible in the upper strokes — the weight of a year passing.</p>
+
+        <h4>Stroke count</h4>
+        <p>6 strokes</p>
+
+        <h4>Example words</h4>
+        <ul class="examples-list">
+          <li><span class="jp"><ruby>今年<rt>ことし</rt></ruby></span><span class="en">— this year (IRREGULAR — not こんねん)</span></li>
+          <li><span class="jp"><ruby>来年<rt>らいねん</rt></ruby></span><span class="en">— next year</span></li>
+          <li><span class="jp"><ruby>去年<rt>きょねん</rt></ruby></span><span class="en">— last year (IRREGULAR — not さくねん)</span></li>
+          <li><span class="jp"><ruby>毎年<rt>まいとし</rt></ruby></span><span class="en">— every year (also まいねん)</span></li>
+          <li><span class="jp"><ruby>何年<rt>なんねん</rt></ruby></span><span class="en">— what year?</span></li>
+          <li><span class="jp">二〇二五<ruby>年<rt>ねん</rt></ruby></span><span class="en">— the year 2025</span></li>
+        </ul>
+
+        <div class="stroke-note">
+          <strong>Two irregular readings:</strong> 今年 = ことし (not こんねん) and 去年 = きょねん (not さくねん). Both are daily words that every Japanese speaker says automatically in their spoken, not on'yomi, forms.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Kanji 23: 時 -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">KANJI 23</span>
+      <h2>時 — time / hour / o'clock</h2>
+      <span class="duration">~4 min</span>
+    </div>
+    <div class="kanji-detail">
+      <div class="kanji-header">
+        <div class="kanji-glyph-box"><div class="kanji-glyph">時</div></div>
+        <div class="kanji-meta">
+          <div class="kanji-num">Number 23 of 104</div>
+          <div class="kanji-meaning">time · hour · o'clock</div>
+          <div class="kanji-readings">
+            <div class="reading on"><span class="label">音</span><span class="val">ジ</span></div>
+            <div class="reading kun"><span class="label">訓</span><span class="val">とき</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="kanji-body">
+        <h4>Mnemonic</h4>
+        <p>日 (sun) on the left + 寺 (temple) on the right. In ancient Japan, <em>the temple bell rang every hour</em> — the monks tracked time by the sun's position and announced it with bells. The character is the bell tower watching the sun. A clock made of sunlight and bronze.</p>
+
+        <h4>Stroke count</h4>
+        <p>10 strokes</p>
+
+        <h4>Example words</h4>
+        <ul class="examples-list">
+          <li><span class="jp"><ruby>何時<rt>なんじ</rt></ruby></span><span class="en">— what time? (o'clock)</span></li>
+          <li><span class="jp">三<ruby>時<rt>じ</rt></ruby></span><span class="en">— 3 o'clock (specific clock point)</span></li>
+          <li><span class="jp"><ruby>時間<rt>じかん</rt></ruby></span><span class="en">— duration / a period of time</span></li>
+          <li><span class="jp">三<ruby>時間<rt>じかん</rt></ruby></span><span class="en">— for 3 hours (duration, not point)</span></li>
+          <li><span class="jp"><ruby>時々<rt>ときどき</rt></ruby></span><span class="en">— sometimes (reduplicated)</span></li>
+          <li><span class="jp">〜の<ruby>時<rt>とき</rt></ruby></span><span class="en">— when ~, at the time of ~</span></li>
+        </ul>
+
+        <div class="stroke-note">
+          <strong>時 vs 時間:</strong> 三時 (さんじ) = "at 3 o'clock" — a specific point. 三時間 (さんじかん) = "for 3 hours" — a duration. These are different words and they take different particles: 三時に (at 3 o'clock) vs 三時間 働きました (I worked for 3 hours — no に).
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Kanji 24: 分 -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">KANJI 24</span>
+      <h2>分 — minute / part / understand</h2>
+      <span class="duration">~6 min</span>
+    </div>
+    <div class="kanji-detail">
+      <div class="kanji-header">
+        <div class="kanji-glyph-box"><div class="kanji-glyph">分</div></div>
+        <div class="kanji-meta">
+          <div class="kanji-num">Number 24 of 104</div>
+          <div class="kanji-meaning">minute · part · understand</div>
+          <div class="kanji-readings">
+            <div class="reading on"><span class="label">音</span><span class="val">フン・ブン・フ</span></div>
+            <div class="reading kun"><span class="label">訓</span><span class="val">わか(る)・わ(ける)</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="kanji-body">
+        <h4>Mnemonic</h4>
+        <p>刀 (knife/blade) cutting through 八 (the "split" shape) — <em>something being divided into parts</em>. A minute divides an hour; a fraction divides a whole; understanding divides confusion from clarity. Same kanji, three layers of meaning.</p>
+
+        <h4>Stroke count</h4>
+        <p>4 strokes</p>
+
+        <h4>Sound changes for ～分 (minutes)</h4>
+        <p style="margin-bottom: 12px;">This is where 分 gets interesting. The same rule as ～本: after 1, 6, 8, 10 the sound doubles to <strong>っぷ</strong>; after 3, it voices to <strong>んぷ</strong>. Drill these until automatic.</p>
+
+        <table class="fun-table">
+          <thead>
+            <tr>
+              <th>#</th><th>Kanji</th><th>Reading</th><th>Pattern</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="irregular"><td class="num-cell">1</td><td class="kanji-cell">一分</td><td class="read-cell">いっぷん</td><td class="note-cell">→ っぷ (same as いっぽん)</td></tr>
+            <tr><td class="num-cell">2</td><td class="kanji-cell">二分</td><td class="read-cell">にふん</td><td class="note-cell">regular</td></tr>
+            <tr class="irregular"><td class="num-cell">3</td><td class="kanji-cell">三分</td><td class="read-cell">さんぷん</td><td class="read-cell"></td><td class="note-cell">→ んぷ</td></tr>
+            <tr><td class="num-cell">4</td><td class="kanji-cell">四分</td><td class="read-cell">よんふん</td><td class="note-cell">regular</td></tr>
+            <tr><td class="num-cell">5</td><td class="kanji-cell">五分</td><td class="read-cell">ごふん</td><td class="note-cell">regular</td></tr>
+            <tr class="irregular"><td class="num-cell">6</td><td class="kanji-cell">六分</td><td class="read-cell">ろっぷん</td><td class="note-cell">→ っぷ</td></tr>
+            <tr><td class="num-cell">7</td><td class="kanji-cell">七分</td><td class="read-cell">ななふん</td><td class="note-cell">regular</td></tr>
+            <tr class="irregular"><td class="num-cell">8</td><td class="kanji-cell">八分</td><td class="read-cell">はっぷん</td><td class="note-cell">→ っぷ</td></tr>
+            <tr><td class="num-cell">9</td><td class="kanji-cell">九分</td><td class="read-cell">きゅうふん</td><td class="note-cell">regular</td></tr>
+            <tr class="irregular"><td class="num-cell">10</td><td class="kanji-cell">十分</td><td class="read-cell">じゅっぷん</td><td class="note-cell">→ っぷ (also じっぷん)</td></tr>
+            <tr><td class="num-cell">15</td><td class="kanji-cell">十五分</td><td class="read-cell">じゅうごふん</td><td class="note-cell">regular after じゅうご</td></tr>
+            <tr><td class="num-cell">30</td><td class="kanji-cell">三十分</td><td class="read-cell">さんじゅっぷん</td><td class="note-cell">→ っぷ (ends in 10-pattern)</td></tr>
+          </tbody>
+        </table>
+
+        <h4>Example words</h4>
+        <ul class="examples-list">
+          <li><span class="jp">三時十五<ruby>分<rt>ふん</rt></ruby></span><span class="en">— 3:15 (three fifteen)</span></li>
+          <li><span class="jp"><ruby>半分<rt>はんぶん</rt></ruby></span><span class="en">— half (a portion) — ぶん reading here</span></li>
+          <li><span class="jp"><ruby>十分<rt>じゅうぶん</rt></ruby></span><span class="en">— enough / sufficient (different reading: じゅうぶん, not じゅっぷん)</span></li>
+          <li><span class="jp"><ruby>分<rt>わ</rt></ruby>かります</span><span class="en">— I understand (kun reading)</span></li>
+        </ul>
+
+        <div class="stroke-note">
+          <strong>十分 ambiguity:</strong> 十分 can read じゅっぷん (ten minutes) or じゅうぶん (enough, sufficient) — context resolves it every time. "This is 十分" in a time context = 10 minutes. "This is 十分" in a sufficiency context = enough. No one ever actually confuses them in practice.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Kanji 25: 半 -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">KANJI 25</span>
+      <h2>半 — half</h2>
+      <span class="duration">~3 min</span>
+    </div>
+    <div class="kanji-detail">
+      <div class="kanji-header">
+        <div class="kanji-glyph-box"><div class="kanji-glyph">半</div></div>
+        <div class="kanji-meta">
+          <div class="kanji-num">Number 25 of 104</div>
+          <div class="kanji-meaning">half</div>
+          <div class="kanji-readings">
+            <div class="reading on"><span class="label">音</span><span class="val">ハン</span></div>
+            <div class="reading kun"><span class="label">訓</span><span class="val">なかば</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="kanji-body">
+        <h4>Mnemonic</h4>
+        <p>The character 十 (ten) being split apart by the two diagonal strokes of 八 (eight, also meaning "split" in etymology) — a number cut cleanly in two. <em>A cross being pulled apart at the arms.</em> 5 strokes, very clean shape.</p>
+
+        <h4>Stroke count</h4>
+        <p>5 strokes</p>
+
+        <h4>Example words</h4>
+        <ul class="examples-list">
+          <li><span class="jp">三時<ruby>半<rt>はん</rt></ruby></span><span class="en">— 3:30 (half past three) — always means exactly :30</span></li>
+          <li><span class="jp"><ruby>半分<rt>はんぶん</rt></ruby></span><span class="en">— half (of something) — a portion, not a time</span></li>
+          <li><span class="jp">一時間<ruby>半<rt>はん</rt></ruby></span><span class="en">— an hour and a half (1.5 hours)</span></li>
+          <li><span class="jp"><ruby>半年<rt>はんとし</rt></ruby></span><span class="en">— half a year, six months</span></li>
+        </ul>
+
+        <div class="stroke-note">
+          <strong>〜時半 only means :30:</strong> If you want to say 3:45, you can't say 三時と四分の三 — you just say 三時四十五分 (さんじよんじゅうごふん). 半 is only used for exact half-hours. Don't overextend it.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Kanji 26: 今 -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">KANJI 26</span>
+      <h2>今 — now / present</h2>
+      <span class="duration">~3 min</span>
+    </div>
+    <div class="kanji-detail">
+      <div class="kanji-header">
+        <div class="kanji-glyph-box"><div class="kanji-glyph">今</div></div>
+        <div class="kanji-meta">
+          <div class="kanji-num">Number 26 of 104</div>
+          <div class="kanji-meaning">now · present</div>
+          <div class="kanji-readings">
+            <div class="reading on"><span class="label">音</span><span class="val">コン・キン</span></div>
+            <div class="reading kun"><span class="label">訓</span><span class="val">いま</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="kanji-body">
+        <h4>Mnemonic</h4>
+        <p>A roof (亠) sheltering something gathered underneath — <em>whatever is happening right now is held here, in this moment, under this roof.</em> The "gathering into one place" form suggests everything converging on the present instant. 4 strokes, one of the most written characters in daily Japanese.</p>
+
+        <h4>Stroke count</h4>
+        <p>4 strokes</p>
+
+        <h4>Example words</h4>
+        <ul class="examples-list">
+          <li><span class="jp"><ruby>今<rt>いま</rt></ruby></span><span class="en">— now, right now</span></li>
+          <li><span class="jp"><ruby>今日<rt>きょう</rt></ruby></span><span class="en">— today (IRREGULAR — not こんにち)</span></li>
+          <li><span class="jp"><ruby>今週<rt>こんしゅう</rt></ruby></span><span class="en">— this week</span></li>
+          <li><span class="jp"><ruby>今月<rt>こんげつ</rt></ruby></span><span class="en">— this month</span></li>
+          <li><span class="jp"><ruby>今年<rt>ことし</rt></ruby></span><span class="en">— this year (IRREGULAR — not こんねん)</span></li>
+          <li><span class="jp"><ruby>今から<rt>いまから</rt></ruby></span><span class="en">— from now on / starting now</span></li>
+        </ul>
+
+        <div class="stroke-note">
+          <strong>Irregular compound readings:</strong> 今日 = きょう (not こんにち — that's only in こんにちは), 今年 = ことし (not こんねん). Both are extremely common in speech. The formal/written forms こんにち and こんねん exist but are rarely used in everyday conversation. Learn きょう and ことし first.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Telling time reference -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">REFERENCE</span>
+      <h2>Telling time in Japanese</h2>
+      <span class="duration">Learn this pattern</span>
+    </div>
+
+    <p style="font-size: 14px; color: var(--ink-soft); margin-bottom: 20px; line-height: 1.7;">Japanese clock time follows the pattern: <strong>[午前/午後] + [〜時] + [〜分]</strong>. AM/PM comes first (opposite of English). Minutes come after the hour, never before.</p>
+
+    <table class="time-table">
+      <thead>
+        <tr><th>Written</th><th>Reading</th><th>English</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="jp">今何時ですか。</td>
+          <td class="reading">いまなんじですか</td>
+          <td class="en">What time is it now?</td>
+        </tr>
+        <tr>
+          <td class="jp">三時です。</td>
+          <td class="reading">さんじです</td>
+          <td class="en">It is 3 o'clock.</td>
+        </tr>
+        <tr>
+          <td class="jp">三時半です。</td>
+          <td class="reading">さんじはんです</td>
+          <td class="en">It is 3:30.</td>
+        </tr>
+        <tr>
+          <td class="jp">三時十五分です。</td>
+          <td class="reading">さんじじゅうごふんです</td>
+          <td class="en">It is 3:15.</td>
+        </tr>
+        <tr>
+          <td class="jp">午後三時四十五分です。</td>
+          <td class="reading">ごごさんじよんじゅうごふんです</td>
+          <td class="en">It is 3:45 PM.</td>
+        </tr>
+        <tr>
+          <td class="jp">午前九時から始まります。</td>
+          <td class="reading">ごぜんくじからはじまります</td>
+          <td class="en">It starts from 9 AM.</td>
+        </tr>
+        <tr>
+          <td class="jp">十二時に昼ごはんを食べます。</td>
+          <td class="reading">じゅうにじにひるごはんをたべます</td>
+          <td class="en">I eat lunch at 12 o'clock.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Vocabulary add-on -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">VOCAB</span>
+      <h2>Time-of-day vocabulary set</h2>
+      <span class="duration">~5 min</span>
+    </div>
+
+    <p style="font-size: 14px; color: var(--ink-soft); margin-bottom: 18px; line-height: 1.7;">This week's vocabulary set — 11 words that work alongside today's kanji. Scan all of them now; the ones you don't recognise, say aloud twice.</p>
+
+    <div class="vocab-grid">
+      <div class="vocab-item">
+        <span class="jp">朝</span>
+        <span class="reading">あさ</span>
+        <span class="en">morning</span>
+      </div>
+      <div class="vocab-item">
+        <span class="jp">昼</span>
+        <span class="reading">ひる</span>
+        <span class="en">noon / daytime</span>
+      </div>
+      <div class="vocab-item">
+        <span class="jp">夕方</span>
+        <span class="reading">ゆうがた</span>
+        <span class="en">late afternoon</span>
+      </div>
+      <div class="vocab-item">
+        <span class="jp">夜</span>
+        <span class="reading">よる</span>
+        <span class="en">evening / night</span>
+      </div>
+      <div class="vocab-item">
+        <span class="jp">午前</span>
+        <span class="reading">ごぜん</span>
+        <span class="en">AM (before noon)</span>
+      </div>
+      <div class="vocab-item">
+        <span class="jp">午後</span>
+        <span class="reading">ごご</span>
+        <span class="en">PM (after noon)</span>
+      </div>
+      <div class="vocab-item">
+        <span class="jp">今日</span>
+        <span class="reading">きょう</span>
+        <span class="en">today</span>
+      </div>
+      <div class="vocab-item">
+        <span class="jp">明日</span>
+        <span class="reading">あした / あす</span>
+        <span class="en">tomorrow</span>
+      </div>
+      <div class="vocab-item">
+        <span class="jp">昨日</span>
+        <span class="reading">きのう</span>
+        <span class="en">yesterday</span>
+      </div>
+      <div class="vocab-item">
+        <span class="jp">今</span>
+        <span class="reading">いま</span>
+        <span class="en">now</span>
+      </div>
+      <div class="vocab-item">
+        <span class="jp">後で</span>
+        <span class="reading">あとで</span>
+        <span class="en">later / afterwards</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Drills -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">DRILL</span>
+      <h2>Active practice</h2>
+      <span class="duration">~10 min</span>
+    </div>
+
+    <div class="drill-block">
+      <h3>Drill 1 · New kanji meanings</h3>
+      <p>Cover the page. For each kanji, say the meaning aloud before peeking.</p>
+      <ol>
+        <li><span class="jp-inline">曜</span></li>
+        <li><span class="jp-inline">年</span></li>
+        <li><span class="jp-inline">時</span></li>
+        <li><span class="jp-inline">分</span></li>
+        <li><span class="jp-inline">半</span></li>
+        <li><span class="jp-inline">今</span></li>
+      </ol>
+      <div class="answer" onclick="this.classList.toggle('shown')">
+        <span class="hidden-answer">曜 = day of week (ようび) · 年 = year (ねん/とし) · 時 = time/hour (じ/とき) · 分 = minute/part (ふん/ぶん) · 半 = half (はん) · 今 = now (いま/こん)</span>
+      </div>
+    </div>
+
+    <div class="drill-block">
+      <h3>Drill 2 · 分 sound changes</h3>
+      <p>Read each minute-expression aloud at normal speed. This is the highest-value drill today — the sound changes appear constantly on the JLPT.</p>
+      <ol>
+        <li><span class="jp-inline">一分</span></li>
+        <li><span class="jp-inline">三分</span></li>
+        <li><span class="jp-inline">六分</span></li>
+        <li><span class="jp-inline">八分</span></li>
+        <li><span class="jp-inline">十分</span> (as minutes)</li>
+        <li><span class="jp-inline">三十分</span></li>
+        <li><span class="jp-inline">二十三分</span></li>
+      </ol>
+      <div class="answer" onclick="this.classList.toggle('shown')">
+        <span class="hidden-answer">いっぷん · さんぷん · ろっぷん · はっぷん · じゅっぷん · さんじゅっぷん · にじゅうさんぷん</span>
+      </div>
+    </div>
+
+    <div class="drill-block">
+      <h3>Drill 3 · Read these clock times aloud</h3>
+      <p>Read each time completely — include 午前/午後 where shown. This is what the N5 listening section sounds like.</p>
+      <ol>
+        <li><span class="jp-inline">七時</span></li>
+        <li><span class="jp-inline">十一時半</span></li>
+        <li><span class="jp-inline">午後二時三十分</span></li>
+        <li><span class="jp-inline">午前九時一分</span></li>
+        <li><span class="jp-inline">六時五十八分</span></li>
+        <li><span class="jp-inline">午後十二時</span></li>
+      </ol>
+      <div class="answer" onclick="this.classList.toggle('shown')">
+        <span class="hidden-answer">しちじ · じゅういちじはん · ごごにじさんじゅっぷん · ごぜんくじいっぷん · ろくじごじゅうはっぷん · ごごじゅうにじ</span>
+      </div>
+    </div>
+
+    <div class="drill-block">
+      <h3>Drill 4 · Full schedule sentences</h3>
+      <p>Translate each sentence aloud — drawing on all of this week's kanji, particles (Tuesday), and vocabulary.</p>
+      <ol>
+        <li>"I have Japanese class on Monday at 6 PM." (月曜日, 午後六時, クラスがあります)</li>
+        <li>"What time is it now?" (今, 何時, ですか)</li>
+        <li>"I study from 8 AM to 10 AM every day." (午前八時から午前十時まで, 毎日, 勉強します)</li>
+        <li>"This year I want to go to Japan." (今年, 日本へ行きたいです)</li>
+        <li>"Yesterday I woke up at 7:30." (昨日, 七時半に, 起きました)</li>
+      </ol>
+      <div class="answer" onclick="this.classList.toggle('shown')">
+        <span class="hidden-answer">月曜日の午後六時に日本語のクラスがあります · 今何時ですか · 毎日午前八時から午前十時まで勉強します · 今年日本へ行きたいです · 昨日七時半に起きました</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Closing -->
+  <div class="closing">
+    <h3>Thirteen kanji. The full calendar in your hands.</h3>
+    <p>With Monday's seven element kanji and today's six time kanji, you now have the complete Japanese date-and-time system. Any clock face, any timetable, any school schedule, any meeting invite — you can read all of it. <strong>That's the payoff from three sessions of focused work.</strong></p>
+    <p>The 分 sound changes are your main takeaway — drill those specifically over the next few days. They appear in every clock-time conversation and in the JLPT listening section with no warning. The distinction between 時 (point in time, takes に) and 時間 (duration, no に) is the second priority.</p>
+
+    <div class="closing-actions">
+      <p>Friday's plan</p>
+      <p style="font-family: 'IBM Plex Sans', sans-serif; font-size: 13px; letter-spacing: normal; color: var(--paper-soft); text-transform: none;">Self-quiz all 13 time/calendar kanji — cover meanings, then readings, then try to write. Introduce this week's Friday vocab set (time adverbs: もう, まだ, すぐ, ゆっくり, よく, 時々, いつも, ぜんぜん). Drill Tuesday's time particles with the new adverbs mixed in.</p>
+    </div>
+  </div>
+
+  <footer>
+    <div>Week 2 · Wednesday · Time Kanji 21–26</div>
+    <div>Companion to the <a href="jlpt_n5_full_schedule.html" style="color: var(--muted);">Full Weekly Schedule</a> and <a href="jlpt_n5_kanji_tracker.html" style="color: var(--muted);">Kanji Tracker</a></div>
+  </footer>
+
+</div>
+
+<script>
+document.querySelectorAll('.answer').forEach(el => {
+  el.addEventListener('click', function() {
+    this.classList.toggle('shown');
+    const hidden = this.querySelector('.hidden-answer');
+    if (hidden) {
+      if (this.classList.contains('shown')) {
+        this.textContent = '✓ ' + hidden.textContent;
+      } else {
+        this.innerHTML = '<span class="hidden-answer">' + hidden.textContent + '</span>';
+      }
+    }
+  });
+});
+</script>
+</body>
+</html>
