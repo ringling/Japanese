@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tuesday · Week 2 · Time Particles &amp; Expressions</title>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;700&family=Noto+Serif+JP:wght@400;500;700&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1a1a;
+  --ink-soft: #3a3a3a;
+  --paper: #f4efe6;
+  --paper-soft: #ebe4d6;
+  --paper-deep: #e2d9c4;
+  --rule: #c9bfa9;
+  --rule-soft: #d8cfb9;
+  --accent: #8b1a1a;
+  --accent-soft: #b85c5c;
+  --muted: #6b6357;
+  --gold: #b8893d;
+  --grammar: #3a5a7a;
+  --grammar-bg: #d4dce4;
+  --warning: #b8893d;
+  --warning-bg: #ede1c4;
+  --done: #5a7a3a;
+  --done-bg: #d8e0c4;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 300;
+  line-height: 1.7;
+  padding: 50px 32px;
+  background-image:
+    radial-gradient(circle at 15% 25%, rgba(58, 90, 122, 0.04) 0%, transparent 40%),
+    radial-gradient(circle at 85% 75%, rgba(184, 137, 61, 0.04) 0%, transparent 50%);
+}
+
+.container {
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+/* ====== Masthead ====== */
+.masthead {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: end;
+  gap: 30px;
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 20px;
+  margin-bottom: 40px;
+}
+
+.masthead-mark {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 80px;
+  font-weight: 700;
+  color: var(--grammar);
+  line-height: 0.85;
+  letter-spacing: -4px;
+}
+
+.masthead-title h1 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 32px;
+  font-weight: 500;
+  letter-spacing: -1px;
+  line-height: 1.1;
+  margin-bottom: 6px;
+}
+
+.masthead-title .sub {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.masthead-meta {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 1.5px;
+  text-align: right;
+  text-transform: uppercase;
+  line-height: 1.8;
+}
+
+/* ====== Intro ====== */
+.session-intro {
+  background: var(--paper-soft);
+  border-left: 3px solid var(--grammar);
+  padding: 26px 32px;
+  margin-bottom: 50px;
+}
+
+.session-intro h3 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.session-intro p {
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 10px;
+  color: var(--ink-soft);
+}
+
+.session-intro p:last-child { margin-bottom: 0; }
+
+.session-intro strong {
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.session-intro em {
+  color: var(--grammar);
+  font-style: normal;
+  font-weight: 500;
+}
+
+/* ====== Section ====== */
+section {
+  margin-bottom: 60px;
+}
+
+.section-head {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: baseline;
+  gap: 20px;
+  padding-bottom: 14px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.section-num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--grammar);
+  letter-spacing: 2px;
+  font-weight: 500;
+}
+
+.section-head h2 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 26px;
+  font-weight: 500;
+}
+
+.section-head .duration {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.lead {
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 18px;
+  color: var(--ink-soft);
+}
+
+.lead strong { font-weight: 500; color: var(--ink); }
+
+/* ====== Pattern box ====== */
+.pattern-box {
+  background: var(--grammar-bg);
+  border: 1px solid var(--grammar);
+  padding: 20px 26px;
+  margin: 22px 0;
+  text-align: center;
+}
+
+.pattern-formula {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--grammar);
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+}
+
+.pattern-gloss {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ====== Tables ====== */
+.table-wrap {
+  background: var(--paper-soft);
+  border: 1px solid var(--rule);
+  margin-bottom: 22px;
+  overflow: hidden;
+}
+
+.table-title {
+  background: var(--paper-deep);
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--rule);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--grammar);
+  font-weight: 500;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table th {
+  background: var(--paper-soft);
+  padding: 10px 14px;
+  text-align: left;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 500;
+  border-bottom: 1px solid var(--rule);
+}
+
+table td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--rule-soft);
+  font-size: 13px;
+  vertical-align: middle;
+}
+
+table tr:last-child td { border-bottom: none; }
+
+table .jp {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 16px;
+  color: var(--ink);
+}
+
+table .reading {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 14px;
+  color: var(--grammar);
+}
+
+table .en {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+table tr.warning td { background: var(--warning-bg); }
+table tr.warning .en { color: var(--warning); font-weight: 500; }
+
+/* ====== Warning / callout ====== */
+.callout {
+  background: var(--warning-bg);
+  border-left: 3px solid var(--warning);
+  padding: 16px 22px;
+  margin: 22px 0;
+}
+
+.callout-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--warning);
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+
+.callout-body {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+}
+
+.callout-body strong { font-weight: 500; color: var(--ink); }
+
+/* ====== Examples list ====== */
+.examples-list {
+  list-style: none;
+  margin-top: 4px;
+  margin-bottom: 18px;
+}
+
+.examples-list li {
+  padding: 8px 0;
+  border-bottom: 1px dashed var(--rule);
+  font-size: 14px;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.examples-list li:last-child { border-bottom: none; }
+
+.examples-list .jp {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 17px;
+  color: var(--ink);
+}
+
+.examples-list .reading {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  color: var(--grammar);
+  letter-spacing: 0.5px;
+}
+
+.examples-list .en {
+  color: var(--muted);
+  font-size: 13px;
+  flex: 1;
+}
+
+/* ====== Drill block ====== */
+.drill-block {
+  background: var(--paper-soft);
+  border-left: 3px solid var(--gold);
+  padding: 22px 26px;
+  margin-bottom: 22px;
+}
+
+.drill-block h3 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.drill-block p {
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 10px;
+  color: var(--ink-soft);
+}
+
+.drill-block ol, .drill-block ul {
+  margin-left: 22px;
+  font-size: 14px;
+  line-height: 2;
+  color: var(--ink-soft);
+}
+
+.drill-block .jp {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 16px;
+}
+
+.drill-block .answer {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  padding: 8px 14px;
+  margin-top: 12px;
+  font-size: 12px;
+  color: var(--muted);
+  cursor: pointer;
+  font-family: 'IBM Plex Mono', monospace;
+  letter-spacing: 0.5px;
+  user-select: none;
+}
+
+.drill-block .answer.shown {
+  background: var(--done-bg);
+  color: var(--done);
+  border-color: var(--done);
+}
+
+.drill-block .answer::before {
+  content: "▸ Tap to reveal answer";
+}
+
+.drill-block .answer.shown::before {
+  content: "✓ ";
+}
+
+.drill-block .hidden-answer { display: none; }
+.drill-block .answer.shown .hidden-answer { display: inline; }
+
+/* ====== Closing ====== */
+.closing {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 28px 32px;
+  margin-top: 50px;
+}
+
+.closing h3 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 14px;
+  color: var(--paper);
+}
+
+.closing p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--paper-soft);
+  margin-bottom: 8px;
+}
+
+.closing strong {
+  color: var(--paper);
+  font-weight: 500;
+}
+
+.closing-actions {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--accent-soft);
+}
+
+.closing-actions p:first-child {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: var(--accent-soft);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+/* ====== Nav ====== */
+.page-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--rule);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+.page-nav a {
+  color: var(--accent);
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.page-nav a:hover { text-decoration: underline; }
+.page-nav .center { color: var(--muted); }
+
+footer {
+  margin-top: 50px;
+  padding-top: 20px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+  text-align: center;
+  line-height: 1.8;
+}
+
+@media (max-width: 700px) {
+  body { padding: 30px 18px; }
+  .masthead { grid-template-columns: 1fr; gap: 16px; }
+  .masthead-meta { text-align: left; }
+  .section-head { grid-template-columns: 1fr; gap: 4px; }
+  table th, table td { padding: 8px 10px; font-size: 12px; }
+  table .jp { font-size: 14px; }
+  table .reading { font-size: 13px; }
+  .examples-list .jp { font-size: 15px; }
+}
+
+@media print {
+  body { background: white; padding: 20px; }
+  .closing-actions, footer { break-before: avoid; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Nav -->
+  <nav class="page-nav">
+    <a href="jlpt_n5_w2_monday.html">← Week 2 Monday</a>
+    <a class="center" href="jlpt_n5_full_schedule.html">↑ Full Schedule</a>
+    <a href="jlpt_n5_w2_wednesday.html">Week 2 Wednesday →</a>
+  </nav>
+
+  <!-- Masthead -->
+  <header class="masthead">
+    <div class="masthead-mark">火</div>
+    <div class="masthead-title">
+      <h1>Tuesday · Week 2</h1>
+      <div class="sub">Grammar Focus · Time Particles &amp; Expressions</div>
+    </div>
+    <div class="masthead-meta">
+      ~30 minutes<br>
+      Three anchor patterns<br>
+      Clocks &amp; calendars
+    </div>
+  </header>
+
+  <!-- Intro -->
+  <div class="session-intro">
+    <h3>Today's session</h3>
+    <p>Monday introduced the seven day-of-the-week kanji. Today you get the grammar to use them in real sentences — <em>time particles</em>. Japanese uses three key time patterns you'll encounter on every N5 paper: <strong>に (at/on), から (from), and まで (until)</strong>. Plus the frequency words 毎日・毎週・毎月・毎年, which appear in natural speech constantly.</p>
+    <p>The trickiest thing about に is knowing when <em>not</em> to use it — relative time words like 今日, 毎日, 明日 never take に. That's the gap that trips people up, and it's exactly what you'll drill today.</p>
+    <p><strong>Everything here is N5 core.</strong> By the end you'll be able to express any daily schedule, timetable, or routine — the building blocks for real conversation about time.</p>
+  </div>
+
+  <!-- Part 01: に -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">PART 01</span>
+      <h2>The time particle に</h2>
+      <span class="duration">~8 min</span>
+    </div>
+
+    <p class="lead">に marks a <strong>specific, fixed point in time</strong>: a clock time, a day of the week, a month, a year. Think of it as pinning an action to an exact spot on a calendar or clock.</p>
+
+    <div class="pattern-box">
+      <div class="pattern-formula">[Specific time] に [action]</div>
+      <div class="pattern-gloss">at / on / in — pinned to a fixed time</div>
+    </div>
+
+    <p class="lead">に works with anything you can point to on a clock or calendar:</p>
+
+    <ul class="examples-list">
+      <li>
+        <span class="jp">七時に起きます。</span>
+        <span class="reading">しちじに おきます</span>
+        <span class="en">I wake up at seven o'clock.</span>
+      </li>
+      <li>
+        <span class="jp">月曜日にクラスがあります。</span>
+        <span class="reading">げつようびに クラスが あります</span>
+        <span class="en">I have class on Monday.</span>
+      </li>
+      <li>
+        <span class="jp">三月に日本語を始めました。</span>
+        <span class="reading">さんがつに にほんごを はじめました</span>
+        <span class="en">I started Japanese in March.</span>
+      </li>
+      <li>
+        <span class="jp">二〇二五年に日本へ行きたいです。</span>
+        <span class="reading">にせんにじゅうごねんに にほんへ いきたいです</span>
+        <span class="en">I want to go to Japan in 2025.</span>
+      </li>
+    </ul>
+
+    <div class="callout">
+      <div class="callout-label">The に trap — relative time words never take に</div>
+      <div class="callout-body">Words like <strong>今日, 明日, 昨日, 今週, 来週, 先週, 毎日, 今</strong> are relative — they shift depending on when you say them, so they can't be "pinned." Drop に completely with these words.
+        <br><br>
+        ✗ <strong>今日に</strong>学校へ行きます — wrong<br>
+        ✓ <strong>今日</strong>学校へ行きます — correct<br><br>
+        ✗ <strong>毎日に</strong>コーヒーを飲みます — wrong<br>
+        ✓ <strong>毎日</strong>コーヒーを飲みます — correct
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <div class="table-title">に or no に? — quick reference</div>
+      <table>
+        <thead>
+          <tr><th>Expression</th><th>に?</th><th>Notes</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="jp">七時</td><td class="reading">✓ に</td><td class="en">specific clock time → に</td></tr>
+          <tr><td class="jp">月曜日</td><td class="reading">✓ に</td><td class="en">specific day of week → に</td></tr>
+          <tr><td class="jp">三月</td><td class="reading">✓ に</td><td class="en">specific month → に</td></tr>
+          <tr><td class="jp">二〇二五年</td><td class="reading">✓ に</td><td class="en">specific year → に</td></tr>
+          <tr class="warning"><td class="jp">今日</td><td class="reading">✗ なし</td><td class="en">relative (today) → no に</td></tr>
+          <tr class="warning"><td class="jp">明日</td><td class="reading">✗ なし</td><td class="en">relative (tomorrow) → no に</td></tr>
+          <tr class="warning"><td class="jp">昨日</td><td class="reading">✗ なし</td><td class="en">relative (yesterday) → no に</td></tr>
+          <tr class="warning"><td class="jp">今週・来週</td><td class="reading">✗ なし</td><td class="en">relative (this/next week) → no に</td></tr>
+          <tr class="warning"><td class="jp">毎日・毎週</td><td class="reading">✗ なし</td><td class="en">frequency words → no に</td></tr>
+          <tr class="warning"><td class="jp">今</td><td class="reading">✗ なし</td><td class="en">relative (now) → no に</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Part 02: から・まで -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">PART 02</span>
+      <h2>から and まで</h2>
+      <span class="duration">~7 min</span>
+    </div>
+
+    <p class="lead"><strong>から</strong> marks the starting point (from, since, after). <strong>まで</strong> marks the end point (until, up to, as far as). They work for time, place, and sequence — and you can use one or both.</p>
+
+    <div class="pattern-box">
+      <div class="pattern-formula">[A] から [B] まで [action]</div>
+      <div class="pattern-gloss">from A to B · starting point → ending point</div>
+    </div>
+
+    <ul class="examples-list">
+      <li>
+        <span class="jp">九時から五時まで働きます。</span>
+        <span class="reading">くじから ごじまで はたらきます</span>
+        <span class="en">I work from 9 to 5.</span>
+      </li>
+      <li>
+        <span class="jp">月曜日から金曜日まで授業があります。</span>
+        <span class="reading">げつようびから きんようびまで じゅぎょうが あります</span>
+        <span class="en">There are classes from Monday to Friday.</span>
+      </li>
+      <li>
+        <span class="jp">今から始めます。</span>
+        <span class="reading">いまから はじめます</span>
+        <span class="en">I'll start from now. / Starting now.</span>
+      </li>
+      <li>
+        <span class="jp">六月まで勉強します。</span>
+        <span class="reading">ろくがつまで べんきょうします</span>
+        <span class="en">I'll study until June.</span>
+      </li>
+      <li>
+        <span class="jp">子供のときから日本語が好きです。</span>
+        <span class="reading">こどものときから にほんごが すきです</span>
+        <span class="en">I've liked Japanese since childhood.</span>
+      </li>
+    </ul>
+
+    <div class="callout">
+      <div class="callout-label">から alone vs まで alone</div>
+      <div class="callout-body">You don't always need both. <strong>から alone</strong> = "starting from" (open-ended); <strong>まで alone</strong> = "up until" (open start). 今から = "from now on" (no specified end). 六月まで = "until June" (started at some unspecified earlier point). Both are natural in everyday speech.</div>
+    </div>
+  </section>
+
+  <!-- Part 03: 毎～ -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">PART 03</span>
+      <h2>毎～ — frequency expressions</h2>
+      <span class="duration">~5 min</span>
+    </div>
+
+    <p class="lead">毎 (まい) means "every" and attaches directly to a time word. These are among the most commonly used time expressions in Japanese — you'll use them every day in basic conversation.</p>
+
+    <div class="table-wrap">
+      <div class="table-title">毎～ frequency words</div>
+      <table>
+        <thead>
+          <tr><th>Kanji</th><th>Reading</th><th>Meaning</th><th>Notes</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="jp">毎日</td><td class="reading">まいにち</td><td class="en">every day</td><td class="en">most common of the set</td></tr>
+          <tr><td class="jp">毎週</td><td class="reading">まいしゅう</td><td class="en">every week</td><td class="en">週 = week (kanji)</td></tr>
+          <tr><td class="jp">毎月</td><td class="reading">まいつき</td><td class="en">every month</td><td class="en">月 here reads つき (kun), not ガツ</td></tr>
+          <tr><td class="jp">毎年</td><td class="reading">まいとし / まいねん</td><td class="en">every year</td><td class="en">both readings used; まいとし slightly more conversational</td></tr>
+          <tr><td class="jp">毎朝</td><td class="reading">まいあさ</td><td class="en">every morning</td><td class="en">朝 = morning</td></tr>
+          <tr><td class="jp">毎晩</td><td class="reading">まいばん</td><td class="en">every evening</td><td class="en">晩 = evening (not on N5, but common)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <ul class="examples-list">
+      <li>
+        <span class="jp">毎日日本語を練習しています。</span>
+        <span class="reading">まいにち にほんごを れんしゅうしています</span>
+        <span class="en">I practice Japanese every day.</span>
+      </li>
+      <li>
+        <span class="jp">毎週月曜日にクラスがあります。</span>
+        <span class="reading">まいしゅう げつようびに クラスが あります</span>
+        <span class="en">I have class every Monday.</span>
+      </li>
+      <li>
+        <span class="jp">毎年桜を見に行きます。</span>
+        <span class="reading">まいとし さくらを みに いきます</span>
+        <span class="en">I go to see the cherry blossoms every year.</span>
+      </li>
+    </ul>
+
+    <div class="callout">
+      <div class="callout-label">毎月 readings — a small trap</div>
+      <div class="callout-body"><strong>毎月</strong> reads まいつき in everyday speech, not まいがつ. This is because 月 takes its kun reading (つき) rather than the on reading (ガツ) when paired with 毎. Same kanji, different context = different reading. Compare: 来月 (らいげつ, next month) vs 毎月 (まいつき, every month). Both are common; both use 月 differently.</div>
+    </div>
+  </section>
+
+  <!-- Part 04: Time-of-day reference -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">PART 04</span>
+      <h2>Time-of-day vocabulary</h2>
+      <span class="duration">~4 min</span>
+    </div>
+
+    <p class="lead">These words let you anchor events to a part of the day. Wednesday's session goes deep on the time kanji (時・分・半); here's just enough to make the drills work today.</p>
+
+    <div class="table-wrap">
+      <div class="table-title">Time-of-day words</div>
+      <table>
+        <thead>
+          <tr><th>Kanji</th><th>Reading</th><th>Meaning</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="jp">朝</td><td class="reading">あさ</td><td class="en">morning (roughly dawn–10am)</td></tr>
+          <tr><td class="jp">昼</td><td class="reading">ひる</td><td class="en">noon / daytime (10am–3pm or so)</td></tr>
+          <tr><td class="jp">夕方</td><td class="reading">ゆうがた</td><td class="en">late afternoon, early evening</td></tr>
+          <tr><td class="jp">夜</td><td class="reading">よる</td><td class="en">evening / night (after dark)</td></tr>
+          <tr><td class="jp">午前</td><td class="reading">ごぜん</td><td class="en">AM (before noon) — formal/official</td></tr>
+          <tr><td class="jp">午後</td><td class="reading">ごご</td><td class="en">PM (after noon) — formal/official</td></tr>
+          <tr><td class="jp">〜時</td><td class="reading">〜じ</td><td class="en">o'clock: 一時 (いちじ) = 1 o'clock</td></tr>
+          <tr><td class="jp">〜分</td><td class="reading">〜ふん / 〜ぷん</td><td class="en">minutes (sound changes — see Wednesday)</td></tr>
+          <tr><td class="jp">半</td><td class="reading">はん</td><td class="en">half past: 三時半 = half past 3</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="lead" style="margin-top: 4px;">Note that 午前・午後 come <em>before</em> the clock time in Japanese — the opposite of Danish/English: <span style="font-family: 'Noto Serif JP', serif; font-size: 16px;">午後三時</span> (ごごさんじ) = 3 PM.</p>
+  </section>
+
+  <!-- Drill section -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">DRILL</span>
+      <h2>Active practice</h2>
+      <span class="duration">~8 min</span>
+    </div>
+
+    <p class="lead">Do these aloud. The に trap especially needs to be practiced out loud so the correct instinct becomes automatic — reading silently doesn't build that.</p>
+
+    <div class="drill-block">
+      <h3>Drill 1 · に or no に?</h3>
+      <p>For each expression, decide: does it take に or not? Say your answer aloud before checking.</p>
+      <ol>
+        <li><span class="jp">月曜日＿クラスがあります。</span></li>
+        <li><span class="jp">今日＿何をしますか。</span></li>
+        <li><span class="jp">三時＿帰ります。</span></li>
+        <li><span class="jp">毎週＿泳ぎます。</span></li>
+        <li><span class="jp">来週＿友達に会います。</span></li>
+        <li><span class="jp">十二月＿コペンハーゲンに来ました。</span></li>
+        <li><span class="jp">昨日＿映画を見ました。</span></li>
+        <li><span class="jp">七時半＿起きます。</span></li>
+      </ol>
+      <div class="answer" onclick="this.classList.toggle('shown')">
+        <span class="hidden-answer">月曜日に ✓ · 今日は (no に) ✗ · 三時に ✓ · 毎週 (no に) ✗ · 来週 (no に) ✗ · 十二月に ✓ · 昨日 (no に) ✗ · 七時半に ✓</span>
+      </div>
+    </div>
+
+    <div class="drill-block">
+      <h3>Drill 2 · から and まで</h3>
+      <p>Build each sentence aloud using から, まで, or から～まで.</p>
+      <ol>
+        <li>"I study from 8 to 10." (八時, 十時, 勉強します)</li>
+        <li>"I work from Monday to Friday." (月曜日, 金曜日, 働きます)</li>
+        <li>"I'll do it until tomorrow." (明日まで, します)</li>
+        <li>"Starting from now, I'll try hard." (今から, 頑張ります)</li>
+        <li>"Class is from 6 PM to 8 PM." (午後六時, 午後八時, 授業があります)</li>
+      </ol>
+      <div class="answer" onclick="this.classList.toggle('shown')">
+        <span class="hidden-answer">八時から十時まで勉強します · 月曜日から金曜日まで働きます · 明日まで(に)します · 今から頑張ります · 午後六時から午後八時まで授業があります</span>
+      </div>
+    </div>
+
+    <div class="drill-block">
+      <h3>Drill 3 · 毎～ sentences</h3>
+      <p>Translate each sentence aloud using the right 毎～ word.</p>
+      <ol>
+        <li>"I drink coffee every morning." (コーヒーを飲みます)</li>
+        <li>"I have Japanese class every week." (日本語のクラスがあります)</li>
+        <li>"I go to Denmark every year." (デンマークへ行きます)</li>
+        <li>"I eat lunch every day." (昼ごはんを食べます)</li>
+      </ol>
+      <div class="answer" onclick="this.classList.toggle('shown')">
+        <span class="hidden-answer">毎朝コーヒーを飲みます · 毎週日本語のクラスがあります · 毎年デンマークへ行きます · 毎日昼ごはんを食べます</span>
+      </div>
+    </div>
+
+    <div class="drill-block">
+      <h3>Drill 4 · Read these schedules aloud</h3>
+      <p>These are complete sentences describing a weekly routine. Read each one aloud at full pace — combining today's particles with Monday's day-of-week kanji.</p>
+      <ol>
+        <li><span class="jp">月曜日から水曜日まで、毎日日本語を勉強します。</span></li>
+        <li><span class="jp">木曜日の午後七時にクラスがあります。</span></li>
+        <li><span class="jp">毎週土曜日に図書館へ行きます。</span></li>
+        <li><span class="jp">今日は何曜日ですか。</span> — then answer with today's day</li>
+        <li><span class="jp">日曜日は朝から晩まで休みます。</span></li>
+      </ol>
+      <div class="answer" onclick="this.classList.toggle('shown')">
+        <span class="hidden-answer">げつようびから すいようびまで、まいにち にほんごを べんきょうします · もくようびの ごごしちじに クラスが あります · まいしゅう どようびに としょかんへ いきます · きょうは なんようびですか · にちようびは あさから ばんまで やすみます</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Closing -->
+  <div class="closing">
+    <h3>Particles locked in. You can schedule anything now.</h3>
+    <p>に, から, まで, and 毎～ are the four pieces that turn a raw time word into a sentence. With these and Monday's seven day kanji, you can describe a full weekly schedule in natural Japanese — which is exactly the kind of sentence that appears in the N5 reading section.</p>
+    <p>The main thing to practice this week: <strong>notice the に trap in the wild</strong>. When you write or speak a Japanese sentence with a time word, ask yourself: is this a fixed point (→ use に) or a relative/frequency word (→ drop に)? That instinct is what the test actually checks.</p>
+
+    <div class="closing-actions">
+      <p>Wednesday's plan</p>
+      <p style="font-family: 'IBM Plex Sans', sans-serif; font-size: 13px; letter-spacing: normal; color: var(--paper-soft); text-transform: none;">Reinforce Monday's seven day kanji by writing each one by hand, then introduce the six remaining time kanji — 曜 年 時 分 半 今. Deep dive into 時 and 分 readings (including the 分 sound changes). Start drilling 何時ですか and 〜時〜分 patterns out loud.</p>
+    </div>
+  </div>
+
+  <footer>
+    <div>Week 2 · Tuesday · Time Particles &amp; Expressions</div>
+    <div>Companion to the <a href="jlpt_n5_full_schedule.html" style="color: var(--muted);">Full Weekly Schedule</a></div>
+  </footer>
+
+</div>
+
+<script>
+document.querySelectorAll('.answer').forEach(el => {
+  el.addEventListener('click', function() {
+    this.classList.toggle('shown');
+    const hidden = this.querySelector('.hidden-answer');
+    if (hidden) {
+      if (this.classList.contains('shown')) {
+        this.textContent = '✓ ' + hidden.textContent;
+      } else {
+        this.innerHTML = '<span class="hidden-answer">' + hidden.textContent + '</span>';
+      }
+    }
+  });
+});
+</script>
+</body>
+</html>
