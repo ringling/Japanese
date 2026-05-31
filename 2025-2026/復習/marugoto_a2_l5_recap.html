@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 5 Recap · Marugoto A2 · 旅行にいこう！</title>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;700&family=Noto+Serif+JP:wght@400;500;700&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1a1a;
+  --ink-soft: #3a3a3a;
+  --paper: #f4efe6;
+  --paper-soft: #ebe4d6;
+  --paper-deep: #e2d9c4;
+  --rule: #c9bfa9;
+  --rule-soft: #d8cfb9;
+  --accent: #8b1a1a;
+  --accent-soft: #b85c5c;
+  --muted: #6b6357;
+  --gold: #b8893d;
+  --done: #5a7a3a;
+  --done-bg: #d8e0c4;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 300;
+  line-height: 1.7;
+  padding: 50px 32px;
+  background-image:
+    radial-gradient(circle at 15% 25%, rgba(139, 26, 26, 0.03) 0%, transparent 40%),
+    radial-gradient(circle at 85% 75%, rgba(184, 137, 61, 0.04) 0%, transparent 50%);
+}
+
+.container { max-width: 880px; margin: 0 auto; }
+
+/* Nav */
+.page-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--rule);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+.page-nav a { color: var(--accent); text-decoration: none; text-transform: uppercase; }
+.page-nav a:hover { text-decoration: underline; }
+.page-nav .center { color: var(--muted); }
+.page-nav .disabled { color: var(--rule); pointer-events: none; cursor: default; }
+
+/* Masthead */
+.masthead {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: end;
+  gap: 30px;
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 20px;
+  margin-bottom: 40px;
+}
+.masthead-mark {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 80px;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 0.85;
+  letter-spacing: -4px;
+}
+.masthead-title h1 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 32px;
+  font-weight: 500;
+  letter-spacing: -1px;
+  line-height: 1.1;
+  margin-bottom: 6px;
+}
+.masthead-title .sub {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.masthead-meta {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 1.5px;
+  text-align: right;
+  text-transform: uppercase;
+  line-height: 1.8;
+}
+
+/* Session intro */
+.session-intro {
+  background: var(--paper-soft);
+  border-left: 3px solid var(--accent);
+  padding: 26px 32px;
+  margin-bottom: 50px;
+}
+.session-intro h3 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+.session-intro p {
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 10px;
+  color: var(--ink-soft);
+}
+.session-intro p:last-child { margin-bottom: 0; }
+.session-intro strong { font-weight: 500; color: var(--ink); }
+
+/* Section */
+section { margin-bottom: 60px; }
+.section-head {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: baseline;
+  gap: 20px;
+  padding-bottom: 14px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid var(--rule);
+}
+.section-num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: 2px;
+  font-weight: 500;
+}
+.section-head h2 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 26px;
+  font-weight: 500;
+}
+.section-head .tag {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Grammar card */
+.grammar-card {
+  background: var(--paper-soft);
+  border: 1px solid var(--rule);
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+.grammar-head {
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+  background: var(--paper-deep);
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--rule);
+}
+.grammar-pattern-jp {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 22px;
+  color: var(--accent);
+  font-weight: 500;
+}
+.grammar-english {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+}
+.grammar-body { padding: 20px 24px; }
+.grammar-formation {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  color: var(--ink-soft);
+  background: var(--paper);
+  border: 1px dashed var(--rule);
+  padding: 8px 14px;
+  margin-bottom: 12px;
+  letter-spacing: 0.5px;
+}
+.grammar-usage {
+  font-size: 13px;
+  color: var(--muted);
+  font-style: italic;
+  margin-bottom: 14px;
+  line-height: 1.6;
+}
+.grammar-examples { list-style: none; }
+.grammar-examples li {
+  padding: 8px 0;
+  border-bottom: 1px dashed var(--rule-soft);
+  font-size: 14px;
+  line-height: 1.6;
+}
+.grammar-examples li:last-child { border-bottom: none; }
+.grammar-examples .jp {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 16px;
+  color: var(--ink);
+  display: block;
+  margin-bottom: 3px;
+}
+.grammar-examples ruby rt { font-size: 9px; color: var(--accent); }
+.grammar-examples .en {
+  color: var(--muted);
+  font-size: 13px;
+  display: block;
+}
+.grammar-note {
+  font-size: 12px;
+  color: var(--muted);
+  background: var(--paper);
+  border: 1px solid var(--rule-soft);
+  padding: 8px 14px;
+  margin-top: 12px;
+  font-style: italic;
+}
+
+/* Timing table */
+.timing-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  margin: 12px 0;
+}
+.timing-table th {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 8px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--rule);
+  background: var(--paper);
+}
+.timing-table td {
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--rule-soft);
+  vertical-align: top;
+}
+.timing-table tr:last-child td { border-bottom: none; }
+.timing-table .form-cell {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 15px;
+  color: var(--accent);
+  width: 160px;
+  font-weight: 500;
+}
+.timing-table .meaning-cell { color: var(--ink-soft); }
+
+/* Conversation highlight */
+.convo-box {
+  background: var(--paper-soft);
+  border: 1px solid var(--rule);
+  overflow: hidden;
+}
+.convo-title {
+  background: var(--paper-deep);
+  padding: 14px 24px;
+  border-bottom: 1px solid var(--rule);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.convo-title span {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 16px;
+  color: var(--ink);
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+  margin-left: 8px;
+}
+.convo-lines { padding: 20px 24px; }
+.convo-line {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 16px;
+  padding: 10px 0;
+  border-bottom: 1px dashed var(--rule-soft);
+  font-size: 14px;
+}
+.convo-line:last-child { border-bottom: none; }
+.convo-speaker {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--accent);
+  padding-top: 3px;
+}
+.convo-jp {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 16px;
+  color: var(--ink);
+  display: block;
+  margin-bottom: 3px;
+}
+.convo-jp ruby rt { font-size: 9px; color: var(--accent); }
+.convo-en { font-size: 13px; color: var(--muted); }
+
+/* Vocabulary table */
+.vocab-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+.vocab-table th {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 8px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--rule);
+  background: var(--paper-deep);
+}
+.vocab-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--rule-soft);
+  vertical-align: middle;
+}
+.vocab-table tr:last-child td { border-bottom: none; }
+.vocab-table .jp-cell {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 18px;
+  color: var(--ink);
+  width: 220px;
+}
+.vocab-table .read-cell {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  color: var(--muted);
+  width: 200px;
+}
+.vocab-table .en-cell { font-size: 13px; color: var(--ink-soft); }
+
+/* Drills */
+.drill-block {
+  background: var(--paper-soft);
+  border-left: 3px solid var(--gold);
+  padding: 22px 26px;
+  margin-bottom: 24px;
+}
+.drill-block h3 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+.drill-block p {
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 10px;
+  color: var(--ink-soft);
+}
+.drill-block ol, .drill-block ul {
+  margin-left: 20px;
+  font-size: 14px;
+  line-height: 1.9;
+  color: var(--ink-soft);
+}
+.drill-block ol li, .drill-block ul li { margin-bottom: 4px; }
+.drill-block .jp-inline {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 17px;
+  color: var(--ink);
+}
+.drill-block .answer {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  padding: 6px 12px;
+  margin-top: 12px;
+  font-size: 13px;
+  color: var(--muted);
+  cursor: pointer;
+  font-family: 'IBM Plex Mono', monospace;
+  letter-spacing: 0.5px;
+  user-select: none;
+}
+.drill-block .answer.shown {
+  background: var(--done-bg);
+  color: var(--done);
+  border-color: var(--done);
+}
+
+footer {
+  margin-top: 50px;
+  padding-top: 20px;
+  border-top: 1px solid var(--rule);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+  text-align: center;
+  line-height: 1.8;
+}
+
+@media (max-width: 700px) {
+  body { padding: 30px 18px; }
+  .masthead { grid-template-columns: 1fr; gap: 16px; }
+  .masthead-meta { text-align: left; }
+  .section-head { grid-template-columns: 1fr; gap: 4px; }
+  .convo-line { grid-template-columns: 1fr; gap: 4px; }
+  .vocab-table .read-cell { display: none; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Nav -->
+  <nav class="page-nav">
+    <a href="marugoto_a2_l4_recap.html">← L4 Recap</a>
+    <a class="center" href="../../index.html">↑ Course Index</a>
+    <span class="disabled">— →</span>
+  </nav>
+
+  <!-- Masthead -->
+  <header class="masthead">
+    <div class="masthead-mark">五</div>
+    <div class="masthead-title">
+      <h1>Lesson 5 · <ruby>旅行<rt>りょこう</rt></ruby>にいこう！</h1>
+      <div class="sub">Let's go on a trip! · Travel advice &amp; timing</div>
+    </div>
+    <div class="masthead-meta">
+      Topic 3<br>
+      2 grammar patterns<br>
+      Episode 5
+    </div>
+  </header>
+
+  <!-- Intro -->
+  <div class="session-intro">
+    <h3>About this lesson</h3>
+    <p>Lesson 5 centres on <strong>giving travel advice</strong> — specifically about Okinawa. リサ asks あきこ for advice on when to visit; あきこ warns against typhoon season and recommends bringing a hat and sunglasses. The lesson naturally introduces two core patterns.</p>
+    <p><strong>V-た/V-ない ほうがいい</strong> is the advice pattern — "you'd better do this / you'd better not do that." It's stronger than ～といいですよ and often softened by adding と思います or ending with よ. You use the plain past form for positive advice and the plain negative form for negative advice.</p>
+    <p><strong>S1（とき）S2</strong> expresses timing — "when I was doing X, Y happened." The key challenge is choosing the right verb form before とき: dictionary form (before or simultaneous), て-form (ongoing), or た-form (after completion). Tense is always carried by S2, never S1.</p>
+  </div>
+
+  <!-- Grammar -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">Grammar</span>
+      <h2>Two Patterns</h2>
+      <span class="tag">ほうがいい · とき</span>
+    </div>
+
+    <!-- Pattern 1 -->
+    <div class="grammar-card">
+      <div class="grammar-head">
+        <div class="grammar-pattern-jp">V-た / V-ない ほうが いいです（よ）</div>
+        <div class="grammar-english">you'd better ~ / you'd better not ~</div>
+      </div>
+      <div class="grammar-body">
+        <div class="grammar-formation">V-た + ほうがいいです（よ）— advice to do · V-ない + ほうがいいです（よ）— advice not to do · + と思います to soften</div>
+        <div class="grammar-usage">Gives advice or a strong suggestion. Stronger than ～といいですよ. V-た form is the plain past (not a tense — it means "doing X is better"). Often ends with よ for emphasis or と思います for politeness. できれば ("if possible") softens it further.</div>
+        <ul class="grammar-examples">
+          <li>
+            <span class="jp">9<ruby>月<rt>がつ</rt></ruby>はできれば<ruby>行<rt>い</rt></ruby>かないほうがいいですよ。たいふうのシーズンですから。</span>
+            <span class="en">If possible, you'd better not go in September. It's typhoon season.</span>
+          </li>
+          <li>
+            <span class="jp">ぼうしや サングラスを<ruby>持<rt>も</rt></ruby>っていったほうがいいですよ。<ruby>暑<rt>あつ</rt></ruby>いですから。</span>
+            <span class="en">You'd better bring a hat and sunglasses. It's hot.</span>
+          </li>
+          <li>
+            <span class="jp">ホテルははやく<ruby>予約<rt>よやく</rt></ruby>したほうがいいと<ruby>思<rt>おも</rt></ruby>います。</span>
+            <span class="en">I think you'd better book the hotel early.</span>
+          </li>
+          <li>
+            <span class="jp">ライブハウスには<ruby>小<rt>ちい</rt></ruby>さい<ruby>子<rt>こ</rt></ruby>どもをつれていかないほうがいいと<ruby>思<rt>おも</rt></ruby>います。</span>
+            <span class="en">I think you'd better not bring small children to a live music club.</span>
+          </li>
+        </ul>
+        <div class="grammar-note">Compare: ～といいですよ (light suggestion, "it would be good if…") vs ほうがいい (stronger recommendation, "it's better to…"). ほうがいい is the pattern for genuine advice.</div>
+      </div>
+    </div>
+
+    <!-- Pattern 2 -->
+    <div class="grammar-card">
+      <div class="grammar-head">
+        <div class="grammar-pattern-jp">S1（V-る／V-ている／V-た）とき、S2</div>
+        <div class="grammar-english">when ~ / at the time of ~</div>
+      </div>
+      <div class="grammar-body">
+        <div class="grammar-formation">[S1 in plain form] + とき、[S2] — tense is expressed by S2 only, never S1</div>
+        <div class="grammar-usage">Sets the time frame for S2. The verb form before とき determines the timing relationship — it is not about tense.</div>
+
+        <table class="timing-table">
+          <thead>
+            <tr><th>Form before とき</th><th>Timing</th><th>Example</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="form-cell">V-る とき</td>
+              <td class="meaning-cell">S2 happens before S1 is done, or they are simultaneous</td>
+              <td><span style="font-family:'Noto Serif JP',serif; font-size:14px;"><ruby>沖縄<rt>おきなわ</rt></ruby>に<ruby>行<rt>い</rt></ruby>くとき、ひこうきで<ruby>行<rt>い</rt></ruby>きます。</span></td>
+            </tr>
+            <tr>
+              <td class="form-cell">V-ている とき</td>
+              <td class="meaning-cell">S2 happens while S1 is in progress</td>
+              <td><span style="font-family:'Noto Serif JP',serif; font-size:14px;">バスに<ruby>乗<rt>の</rt></ruby>っているとき、ガイドさんのせつめいを<ruby>聞<rt>き</rt></ruby>きました。</span></td>
+            </tr>
+            <tr>
+              <td class="form-cell">V-た とき</td>
+              <td class="meaning-cell">S2 happens after S1 is completed</td>
+              <td><span style="font-family:'Noto Serif JP',serif; font-size:14px;">ついたとき、ほっとしました。</span></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <ul class="grammar-examples" style="margin-top: 12px;">
+          <li>
+            <span class="jp"><ruby>帰<rt>かえ</rt></ruby>るときは、<ruby>船<rt>ふね</rt></ruby>に<ruby>乗<rt>の</rt></ruby>りました。</span>
+            <span class="en">When I returned, I took a boat. (V-る: decision made before boarding)</span>
+          </li>
+          <li>
+            <span class="jp"><ruby>船<rt>ふね</rt></ruby>はゆれました。ついたとき、ほっとしました。</span>
+            <span class="en">The ship rocked. When we arrived, I felt relieved. (V-た: arrived → then relief)</span>
+          </li>
+        </ul>
+        <div class="grammar-note">Key rule: S1 uses a plain form before とき regardless of when the overall sentence refers to. The tense of the whole sentence comes from S2. "行くとき、行きました" is correct even though 行く looks present.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Conversation highlight -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">Conversation</span>
+      <h2>Episode 5 Highlight</h2>
+      <span class="tag">Key lines</span>
+    </div>
+    <div class="convo-box">
+      <div class="convo-title">Episode 5 <span><ruby>旅行<rt>りょこう</rt></ruby>にいこう！</span></div>
+      <div class="convo-lines">
+        <div class="convo-line">
+          <div class="convo-speaker">リサ</div>
+          <div>
+            <span class="convo-jp">あきこさん、<ruby>沖縄<rt>おきなわ</rt></ruby>に<ruby>行<rt>い</rt></ruby>ってみたいんですが、5<ruby>月<rt>がつ</rt></ruby>はどうですか。</span>
+            <span class="convo-en">Akiko, I'd like to try going to Okinawa — how is May?</span>
+          </div>
+        </div>
+        <div class="convo-line">
+          <div class="convo-speaker">あきこ</div>
+          <div>
+            <span class="convo-jp">5<ruby>月<rt>がつ</rt></ruby>はできれば<ruby>行<rt>い</rt></ruby>かないほうがいいですよ。つゆですから。</span>
+            <span class="convo-en">If possible, you'd better not go in May. It's rainy season.</span>
+          </div>
+        </div>
+        <div class="convo-line">
+          <div class="convo-speaker">あきこ</div>
+          <div>
+            <span class="convo-jp">7<ruby>月<rt>がつ</rt></ruby>はいいと<ruby>思<rt>おも</rt></ruby>いますよ。でも、ぼうしやサングラスを<ruby>持<rt>も</rt></ruby>っていったほうがいいですよ。<ruby>暑<rt>あつ</rt></ruby>いですから。</span>
+            <span class="convo-en">I think July is good. But you'd better bring a hat and sunglasses. It's hot.</span>
+          </div>
+        </div>
+        <div class="convo-line">
+          <div class="convo-speaker">リサ</div>
+          <div>
+            <span class="convo-jp">ロイさん、<ruby>沖縄<rt>おきなわ</rt></ruby>に<ruby>行<rt>い</rt></ruby>くとき、どうやって<ruby>行<rt>い</rt></ruby>きましたか。</span>
+            <span class="convo-en">Roy, when you went to Okinawa, how did you get there?</span>
+          </div>
+        </div>
+        <div class="convo-line">
+          <div class="convo-speaker">ロイ</div>
+          <div>
+            <span class="convo-jp"><ruby>行<rt>い</rt></ruby>くときは、ひこうきで<ruby>行<rt>い</rt></ruby>きました。<ruby>帰<rt>かえ</rt></ruby>るときは、<ruby>船<rt>ふね</rt></ruby>に<ruby>乗<rt>の</rt></ruby>りました。</span>
+            <span class="convo-en">When going, I went by plane. When returning, I took a boat.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Vocabulary -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">Vocabulary</span>
+      <h2>Key Words — Lesson 5</h2>
+      <span class="tag">12 items</span>
+    </div>
+    <table class="vocab-table">
+      <thead>
+        <tr><th>Japanese</th><th>Reading</th><th>Meaning</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="jp-cell">できれば</td>
+          <td class="read-cell">dekireba</td>
+          <td class="en-cell">if possible</td>
+        </tr>
+        <tr>
+          <td class="jp-cell">たいふう</td>
+          <td class="read-cell">taifuu</td>
+          <td class="en-cell">typhoon</td>
+        </tr>
+        <tr>
+          <td class="jp-cell">シーズン</td>
+          <td class="read-cell">shiizun</td>
+          <td class="en-cell">season</td>
+        </tr>
+        <tr>
+          <td class="jp-cell">ぼうし</td>
+          <td class="read-cell">booshi</td>
+          <td class="en-cell">hat</td>
+        </tr>
+        <tr>
+          <td class="jp-cell">サングラス</td>
+          <td class="read-cell">sangurasu</td>
+          <td class="en-cell">sunglasses</td>
+        </tr>
+        <tr>
+          <td class="jp-cell"><ruby>持<rt>も</rt></ruby>っていきます</td>
+          <td class="read-cell">motte ikimasu</td>
+          <td class="en-cell">to bring / take along</td>
+        </tr>
+        <tr>
+          <td class="jp-cell">ゆれます</td>
+          <td class="read-cell">yuremasu</td>
+          <td class="en-cell">to rock / sway / shake</td>
+        </tr>
+        <tr>
+          <td class="jp-cell">ほっとします</td>
+          <td class="read-cell">hotto shimasu</td>
+          <td class="en-cell">to feel relieved</td>
+        </tr>
+        <tr>
+          <td class="jp-cell">けしき</td>
+          <td class="read-cell">keshiki</td>
+          <td class="en-cell">scenery / view</td>
+        </tr>
+        <tr>
+          <td class="jp-cell">しぜん</td>
+          <td class="read-cell">shizen</td>
+          <td class="en-cell">nature</td>
+        </tr>
+        <tr>
+          <td class="jp-cell">かんこう（します）</td>
+          <td class="read-cell">kankoo (shimasu)</td>
+          <td class="en-cell">sightseeing</td>
+        </tr>
+        <tr>
+          <td class="jp-cell">りょうきん</td>
+          <td class="read-cell">ryookin</td>
+          <td class="en-cell">fee / fare / charge</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Drills -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">Drills</span>
+      <h2>Practice</h2>
+      <span class="tag">Tap to reveal</span>
+    </div>
+
+    <div class="drill-block">
+      <h3>Drill 1 · V-た or V-ない ほうがいい?</h3>
+      <p>For each piece of advice, choose the correct form and name the pattern.</p>
+      <ol>
+        <li>8<ruby>月<rt>がつ</rt></ruby>はかんこうシーズンなので、ひこうきははやく＿＿＿ほうがいいですよ。（<span class="jp-inline">予約します</span>）</li>
+        <li><ruby>沖縄<rt>おきなわ</rt></ruby>は<ruby>電車<rt>でんしゃ</rt></ruby>がないので、<ruby>旅行中<rt>りょこうちゅう</rt></ruby>は<ruby>車<rt>くるま</rt></ruby>を＿＿＿ほうがいいと<ruby>思<rt>おも</rt></ruby>います。（<span class="jp-inline">借ります</span>）</li>
+        <li><ruby>空港<rt>くうこう</rt></ruby>にははやく＿＿＿ほうがいいですよ。チェックインカウンターがこみますから。（<span class="jp-inline">行きます</span>）</li>
+        <li>9<ruby>月<rt>がつ</rt></ruby>はたいふうのシーズンなので、できれば＿＿＿ほうがいいです。（<span class="jp-inline">行きません</span>）</li>
+      </ol>
+      <div class="answer" data-content="① 予約した (V-た — advice to do: book early) · ② 借りた (V-た — rent a car) · ③ 行った (V-た — go early) · ④ 行かない (V-ない — advice not to go)">▸ Tap to reveal answer</div>
+    </div>
+
+    <div class="drill-block">
+      <h3>Drill 2 · Which とき form: V-る, V-ている, or V-た?</h3>
+      <p>Choose the correct verb form before とき in each sentence.</p>
+      <ol>
+        <li><ruby>沖縄<rt>おきなわ</rt></ruby>に（<span class="jp-inline">行く／行った</span>）とき、ひこうきを<ruby>予約<rt>よやく</rt></ruby>しました。</li>
+        <li>バスに（<span class="jp-inline">乗っている／乗った</span>）とき、けしきを<ruby>見<rt>み</rt></ruby>ました。</li>
+        <li><ruby>空港<rt>くうこう</rt></ruby>に（<span class="jp-inline">着く／着いた</span>）とき、ほっとしました。</li>
+        <li><ruby>日本<rt>にほん</rt></ruby>に（<span class="jp-inline">行く／行った</span>）とき、<ruby>何<rt>なに</rt></ruby>を<ruby>持<rt>も</rt></ruby>っていきますか。</li>
+      </ol>
+      <div class="answer" data-content="① 行く (V-る — reserved ticket before getting on the plane; S2 happened before S1 completed) · ② 乗っている (V-ている — looked at scenery while riding; S2 during S1) · ③ 着いた (V-た — relief came after arrival was complete) · ④ 行く (V-る — asking about what to bring before going; S2 happens before S1)">▸ Tap to reveal answer</div>
+    </div>
+  </section>
+
+  <!-- Bottom nav -->
+  <nav class="page-nav">
+    <a href="marugoto_a2_l4_recap.html">← L4 Recap</a>
+    <a class="center" href="../../index.html">↑ Course Index</a>
+    <span class="disabled">— →</span>
+  </nav>
+
+  <footer>
+    <div>まるごと<ruby>初級<rt>しょきゅう</rt></ruby>２ A2 · Topic 3 · Lesson 5</div>
+  </footer>
+
+</div>
+
+<script>
+document.querySelectorAll('.answer').forEach(function(el) {
+  el.addEventListener('click', function() {
+    this.classList.toggle('shown');
+    if (this.classList.contains('shown')) {
+      this.textContent = '✓ ' + this.dataset.content;
+    } else {
+      this.textContent = '▸ Tap to reveal answer';
+    }
+  });
+});
+</script>
+</body>
+</html>
