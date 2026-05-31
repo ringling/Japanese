@@ -571,34 +571,40 @@ footer {
   footer { break-before: avoid; }
 }
 
-/* ====== Audio player ====== */
-.audio-player {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin: 6px 0 14px;
-  padding: 10px 14px;
-  background: var(--paper-deep);
+/* ====== Audio block (multi-row) ====== */
+.audio-block {
+  margin: 6px 0 18px;
   border: 1px solid var(--rule);
+  overflow: hidden;
 }
-.audio-player .track-label {
+.audio-block-label {
+  background: var(--paper-deep);
+  padding: 8px 14px;
   font-family: 'IBM Plex Mono', monospace;
   font-size: 10px;
   letter-spacing: 1.5px;
   text-transform: uppercase;
   color: var(--accent);
-  white-space: nowrap;
   font-weight: 500;
+  border-bottom: 1px solid var(--rule);
 }
-.audio-player audio { flex: 1; height: 32px; }
-.audio-player .dl-link {
+.audio-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 14px;
+  border-bottom: 1px solid var(--rule-soft);
+}
+.audio-row:last-child { border-bottom: none; }
+.audio-row-label {
   font-family: 'IBM Plex Mono', monospace;
   font-size: 10px;
   color: var(--muted);
-  text-decoration: none;
-  white-space: nowrap;
+  width: 80px;
+  flex-shrink: 0;
+  letter-spacing: 0.5px;
 }
-.audio-player .dl-link:hover { color: var(--accent); }
+.audio-row audio { flex: 1; height: 28px; }
 </style>
 </head>
 <body>
@@ -791,10 +797,20 @@ footer {
       <span class="section-num">かいわ</span>
       <h2>Episode 5「<ruby>旅行<rt>りょこう</rt></ruby>にいこう！」</h2>
     </div>
-    <div class="audio-player">
-      <span class="track-label">▶ CHECK! 084</span>
-      <audio controls preload="none"><source src="../audio/track_084.mp3" type="audio/mpeg"></audio>
-      <a class="dl-link" href="https://marugoto.jpf.go.jp/en/download/" target="_blank">download audio</a>
+    <div class="audio-block">
+      <div class="audio-block-label">▶ CHECK! 084</div>
+      <div class="audio-row">
+        <span class="audio-row-label">exercise</span>
+        <audio controls preload="none"><source src="../audio/084_5_2_1.mp3" type="audio/mpeg"></audio>
+      </div>
+      <div class="audio-row">
+        <span class="audio-row-label">かいわ</span>
+        <audio controls preload="none"><source src="../audio/084_5_2_1_kaiwa.mp3" type="audio/mpeg"></audio>
+      </div>
+      <div class="audio-row">
+        <span class="audio-row-label">かいわ (n)</span>
+        <audio controls preload="none"><source src="../audio/084n_5_2_1n_kaiwa.mp3" type="audio/mpeg"></audio>
+      </div>
     </div>
     <div class="dialogue">
       <div class="dialogue-line">
@@ -946,10 +962,16 @@ footer {
     <!-- p.56 りかい 2① -->
     <div class="rikai-page">
       <h3>p.56 — りかい 2① · ただしい ほうを えらびましょう。</h3>
-      <div class="audio-player">
-        <span class="track-label">▶ CHECK! 085</span>
-        <audio controls preload="none"><source src="../audio/track_085.mp3" type="audio/mpeg"></audio>
-        <a class="dl-link" href="https://marugoto.jpf.go.jp/en/download/" target="_blank">download audio</a>
+      <div class="audio-block">
+        <div class="audio-block-label">▶ CHECK! 085</div>
+        <div class="audio-row">
+          <span class="audio-row-label">exercise</span>
+          <audio controls preload="none"><source src="../audio/085_5_2_2(1).mp3" type="audio/mpeg"></audio>
+        </div>
+        <div class="audio-row">
+          <span class="audio-row-label">こたえ</span>
+          <audio controls preload="none"><source src="../audio/track_085_answers.mp3" type="audio/mpeg"></audio>
+        </div>
       </div>
       <p style="font-size:13px; color:var(--muted); margin-bottom:14px;">Context: <ruby>沖縄<rt>おきなわ</rt></ruby>に <ruby>行<rt>い</rt></ruby>ってみたいんですが。</p>
 
@@ -992,10 +1014,16 @@ footer {
     <!-- p.57 りかい 2② -->
     <div class="rikai-page">
       <h3>p.57 — りかい 2② · ただしい かたちを 書きましょう。</h3>
-      <div class="audio-player">
-        <span class="track-label">▶ CHECK! 086</span>
-        <audio controls preload="none"><source src="../audio/track_086.mp3" type="audio/mpeg"></audio>
-        <a class="dl-link" href="https://marugoto.jpf.go.jp/en/download/" target="_blank">download audio</a>
+      <div class="audio-block">
+        <div class="audio-block-label">▶ CHECK! 086</div>
+        <div class="audio-row">
+          <span class="audio-row-label">exercise</span>
+          <audio controls preload="none"><source src="../audio/086_5_2_2(2).mp3" type="audio/mpeg"></audio>
+        </div>
+        <div class="audio-row">
+          <span class="audio-row-label">こたえ</span>
+          <audio controls preload="none"><source src="../audio/track_086_answers.mp3" type="audio/mpeg"></audio>
+        </div>
       </div>
       <p style="font-size:13px; color:var(--muted); margin-bottom:14px;">〈<ruby>沖縄<rt>おきなわ</rt></ruby><ruby>旅行<rt>りょこう</rt></ruby>の アドバイス〉 — Convert the verb in（）to V-た or V-ない form.</p>
 

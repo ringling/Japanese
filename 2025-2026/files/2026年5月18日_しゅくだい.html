@@ -571,34 +571,40 @@ footer {
   footer { break-before: avoid; }
 }
 
-/* ====== Audio player ====== */
-.audio-player {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin: 6px 0 14px;
-  padding: 10px 14px;
-  background: var(--paper-deep);
+/* ====== Audio block (multi-row) ====== */
+.audio-block {
+  margin: 6px 0 18px;
   border: 1px solid var(--rule);
+  overflow: hidden;
 }
-.audio-player .track-label {
+.audio-block-label {
+  background: var(--paper-deep);
+  padding: 8px 14px;
   font-family: 'IBM Plex Mono', monospace;
   font-size: 10px;
   letter-spacing: 1.5px;
   text-transform: uppercase;
   color: var(--accent);
-  white-space: nowrap;
   font-weight: 500;
+  border-bottom: 1px solid var(--rule);
 }
-.audio-player audio { flex: 1; height: 32px; }
-.audio-player .dl-link {
+.audio-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 14px;
+  border-bottom: 1px solid var(--rule-soft);
+}
+.audio-row:last-child { border-bottom: none; }
+.audio-row-label {
   font-family: 'IBM Plex Mono', monospace;
   font-size: 10px;
   color: var(--muted);
-  text-decoration: none;
-  white-space: nowrap;
+  width: 80px;
+  flex-shrink: 0;
+  letter-spacing: 0.5px;
 }
-.audio-player .dl-link:hover { color: var(--accent); }
+.audio-row audio { flex: 1; height: 28px; }
 </style>
 </head>
 <body>
