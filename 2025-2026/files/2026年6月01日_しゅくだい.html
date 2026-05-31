@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>だい5か しゅくだい · 2026年6月1日</title>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;700&family=Noto+Serif+JP:wght@400;500;700&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1a1a;
+  --ink-soft: #3a3a3a;
+  --paper: #f4efe6;
+  --paper-soft: #ebe4d6;
+  --paper-deep: #e2d9c4;
+  --rule: #c9bfa9;
+  --rule-soft: #d8cfb9;
+  --accent: #8b1a1a;
+  --accent-soft: #b85c5c;
+  --muted: #6b6357;
+  --gold: #b8893d;
+  --grammar: #3a5a7a;
+  --grammar-bg: #d4dce4;
+  --done: #5a7a3a;
+  --done-bg: #d8e0c4;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 300;
+  line-height: 1.7;
+  padding: 50px 32px;
+  background-image:
+    radial-gradient(circle at 15% 25%, rgba(139, 26, 26, 0.03) 0%, transparent 40%),
+    radial-gradient(circle at 85% 75%, rgba(184, 137, 61, 0.04) 0%, transparent 50%);
+}
+
+.container { max-width: 880px; margin: 0 auto; }
+
+/* ====== Nav ====== */
+.page-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--rule);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+.page-nav a { color: var(--accent); text-decoration: none; text-transform: uppercase; }
+.page-nav a:hover { text-decoration: underline; }
+.page-nav .center { color: var(--muted); }
+
+/* ====== Masthead ====== */
+.masthead {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: end;
+  gap: 30px;
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 20px;
+  margin-bottom: 40px;
+}
+.masthead-mark {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 80px;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 0.85;
+  letter-spacing: -4px;
+}
+.masthead-title h1 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 32px;
+  font-weight: 500;
+  letter-spacing: -1px;
+  line-height: 1.1;
+  margin-bottom: 6px;
+}
+.masthead-title .sub {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.masthead-meta {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 1.5px;
+  text-align: right;
+  text-transform: uppercase;
+  line-height: 1.8;
+}
+
+/* ====== Section ====== */
+section { margin-bottom: 56px; }
+
+.section-head {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: baseline;
+  gap: 20px;
+  padding-bottom: 14px;
+  margin-bottom: 28px;
+  border-bottom: 1px solid var(--rule);
+}
+.section-num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: 2px;
+  font-weight: 500;
+}
+.section-head h2 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 26px;
+  font-weight: 500;
+}
+
+/* ====== Info grid (前回/次回/しゅくだい) ====== */
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 0;
+}
+.info-card {
+  background: var(--paper-soft);
+  border: 1px solid var(--rule);
+  padding: 18px 20px;
+}
+.info-card-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+.info-card-body {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+}
+.info-card-body strong { font-weight: 500; color: var(--ink); }
+.info-card .checkbox-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 4px 0;
+  font-size: 13px;
+}
+.info-card .checkbox-item input[type="checkbox"] {
+  margin-top: 3px;
+  accent-color: var(--accent);
+  flex-shrink: 0;
+}
+
+/* ====== Resource links ====== */
+.link-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.link-card {
+  background: var(--paper-soft);
+  border: 1px solid var(--rule);
+  padding: 14px 18px;
+}
+.link-card-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+.link-card a {
+  display: block;
+  font-size: 12px;
+  color: var(--grammar);
+  text-decoration: none;
+  word-break: break-all;
+  line-height: 1.5;
+  margin-bottom: 3px;
+}
+.link-card a:hover { text-decoration: underline; }
+.link-card .link-note {
+  font-size: 11px;
+  color: var(--muted);
+  font-style: italic;
+  margin-top: 4px;
+}
+
+/* ====== Grammar ====== */
+.grammar-pattern {
+  margin-bottom: 44px;
+}
+.grammar-pattern h3 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 14px;
+  color: var(--ink);
+}
+.pattern-box {
+  background: var(--grammar-bg);
+  border: 1px solid var(--grammar);
+  padding: 18px 24px;
+  margin: 16px 0 18px;
+  text-align: center;
+}
+.pattern-formula {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--grammar);
+  margin-bottom: 6px;
+  line-height: 1.6;
+}
+.pattern-gloss {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.grammar-meta {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+  margin-bottom: 10px;
+}
+.grammar-meta strong { font-weight: 500; color: var(--ink); }
+.formation-list {
+  list-style: none;
+  margin: 10px 0 18px 0;
+  background: var(--paper-soft);
+  border: 1px solid var(--rule);
+  padding: 14px 18px;
+}
+.formation-list li {
+  font-size: 14px;
+  padding: 4px 0;
+  border-bottom: 1px dashed var(--rule-soft);
+  color: var(--ink-soft);
+}
+.formation-list li:last-child { border-bottom: none; }
+.formation-list .jp {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 16px;
+  color: var(--grammar);
+}
+.examples-block { margin-top: 14px; }
+.examples-block h4 {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+.example-item {
+  padding: 10px 0;
+  border-bottom: 1px dashed var(--rule-soft);
+}
+.example-item:last-child { border-bottom: none; }
+.example-jp {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 17px;
+  line-height: 1.8;
+  color: var(--ink);
+  display: block;
+  margin-bottom: 2px;
+}
+.example-en {
+  font-size: 13px;
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* ====== Callout ====== */
+.callout {
+  background: var(--paper-soft);
+  border-left: 3px solid var(--gold);
+  padding: 14px 20px;
+  margin: 14px 0;
+  font-size: 14px;
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+.callout strong { font-weight: 500; color: var(--ink); }
+
+/* ====== Dialogue (かいわ) ====== */
+.dialogue { }
+.dialogue-line {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px dashed var(--rule-soft);
+  align-items: start;
+}
+.dialogue-line:last-child { border-bottom: none; }
+.speaker {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  padding-top: 4px;
+  font-weight: 500;
+}
+.utterance {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 17px;
+  line-height: 1.8;
+  color: var(--ink);
+}
+
+/* ====== Vocab table ====== */
+.vocab-table-wrap {
+  border: 1px solid var(--rule);
+  overflow: hidden;
+}
+.vocab-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+.vocab-table th {
+  background: var(--paper-deep);
+  padding: 10px 14px;
+  text-align: left;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 500;
+  border-bottom: 1px solid var(--rule);
+}
+.vocab-table td {
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--rule-soft);
+  vertical-align: middle;
+}
+.vocab-table tr:last-child td { border-bottom: none; }
+.vocab-table .jp {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 16px;
+  color: var(--ink);
+  width: 200px;
+}
+.vocab-table .romaji {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  color: var(--muted);
+  width: 220px;
+}
+.vocab-table .en { color: var(--muted); }
+
+/* ====== りかい sections ====== */
+.rikai-page { margin-bottom: 48px; }
+.rikai-page h3 {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--rule-soft);
+}
+.rikai-dialogue {
+  background: var(--paper-soft);
+  border-left: 3px solid var(--accent);
+  padding: 20px 24px;
+  margin-bottom: 20px;
+}
+.rikai-line { margin-bottom: 16px; }
+.rikai-line:last-child { margin-bottom: 0; }
+.rikai-speaker {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--accent);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.rikai-jp {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 17px;
+  line-height: 1.8;
+  color: var(--ink);
+  display: block;
+  margin-bottom: 2px;
+}
+.rikai-en {
+  font-size: 13px;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.grammar-table-wrap {
+  border: 1px solid var(--rule);
+  overflow: hidden;
+  margin: 14px 0;
+}
+.grammar-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.grammar-table th {
+  background: var(--paper-deep);
+  padding: 9px 14px;
+  text-align: left;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 500;
+  border-bottom: 1px solid var(--rule);
+}
+.grammar-table td {
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--rule-soft);
+  vertical-align: top;
+  line-height: 1.6;
+}
+.grammar-table tr:last-child td { border-bottom: none; }
+.grammar-table .pattern-col {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 14px;
+  width: 220px;
+}
+.grammar-table .example-col {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 14px;
+}
+.grammar-table .note-col { color: var(--muted); font-size: 12px; }
+
+.exercise-item {
+  background: var(--paper-soft);
+  border: 1px solid var(--rule);
+  padding: 16px 20px;
+  margin-bottom: 10px;
+}
+.exercise-num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--accent);
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+.exercise-context {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+.exercise-answer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+}
+.answer-arrow {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+}
+.answer-val {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 16px;
+  color: var(--done);
+  font-weight: 500;
+}
+.exercise-en {
+  font-size: 12px;
+  color: var(--muted);
+  font-style: italic;
+  margin-top: 6px;
+}
+
+.pattern-note {
+  background: var(--paper-soft);
+  border-left: 3px solid var(--gold);
+  padding: 14px 20px;
+  margin: 16px 0;
+  font-size: 14px;
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+.pattern-note strong { font-weight: 500; color: var(--ink); }
+
+.summary-table-wrap {
+  border: 1px solid var(--rule);
+  overflow: hidden;
+  margin: 14px 0;
+}
+.summary-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.summary-table th {
+  background: var(--paper-deep);
+  padding: 9px 14px;
+  text-align: left;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  border-bottom: 1px solid var(--rule);
+}
+.summary-table td {
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--rule-soft);
+  font-size: 13px;
+}
+.summary-table tr:last-child td { border-bottom: none; }
+.summary-table .jp {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 15px;
+}
+.summary-table .answer { color: var(--done); font-weight: 500; }
+.summary-table .type {
+  font-family: 'IBM Plex Mono', monospace;
+  color: var(--grammar);
+  font-size: 11px;
+}
+
+footer {
+  margin-top: 60px;
+  padding-top: 20px;
+  border-top: 1px solid var(--rule);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+  text-align: center;
+  line-height: 1.8;
+}
+
+@media (max-width: 700px) {
+  body { padding: 30px 18px; }
+  .masthead { grid-template-columns: 1fr; gap: 16px; }
+  .masthead-meta { text-align: left; }
+  .info-grid { grid-template-columns: 1fr; }
+  .link-grid { grid-template-columns: 1fr; }
+  .dialogue-line { grid-template-columns: 70px 1fr; gap: 10px; }
+  .section-head { gap: 12px; }
+}
+
+@media print {
+  body { background: white; padding: 20px; }
+  footer { break-before: avoid; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Nav -->
+  <nav class="page-nav">
+    <a href="../index.html">← ホーム</a>
+    <span class="center">だい5か · 2026年6月1日</span>
+    <span style="color: var(--rule)">—</span>
+  </nav>
+
+  <!-- Masthead -->
+  <header class="masthead">
+    <div class="masthead-mark">五</div>
+    <div class="masthead-title">
+      <h1>だい5か しゅくだい</h1>
+      <div class="sub">2026年6月1日 · まるごと A2-2 · <ruby>旅行<rt>りょこう</rt></ruby>にいこう！</div>
+    </div>
+    <div class="masthead-meta">
+      L5 かつどう + りかい<br>
+      pp.53–57<br>
+      sec5-1 · sec5-2
+    </div>
+  </header>
+
+  <!-- 前回 / 次回 / しゅくだい -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">INFO</span>
+      <h2><ruby>前回<rt>ぜんかい</rt></ruby> · <ruby>次回<rt>じかい</rt></ruby> · しゅくだい</h2>
+    </div>
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="info-card-label"><ruby>前回<rt>ぜんかい</rt></ruby>のクラス</div>
+        <div class="info-card-body">
+          <strong>5<ruby>月<rt>がつ</rt></ruby>18<ruby>日<rt>にち</rt></ruby>（<ruby>月曜日<rt>げつようび</rt></ruby>）</strong><br>
+          だい5か<br>
+          50–52ページ<br>
+          かつどう（<ruby>白<rt>しろ</rt></ruby>い<ruby>本<rt>ほん</rt></ruby>）
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label"><ruby>次回<rt>じかい</rt></ruby>のクラス</div>
+        <div class="info-card-body">
+          <strong>6<ruby>月<rt>がつ</rt></ruby>1<ruby>日<rt>にち</rt></ruby></strong><br>
+          だい5か<br>
+          53ページ（かつどう / <ruby>白<rt>しろ</rt></ruby>い<ruby>本<rt>ほん</rt></ruby>）<br>
+          54–57ページ（りかい / <ruby>黄色<rt>きいろ</rt></ruby>い<ruby>本<rt>ほん</rt></ruby>）
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">しゅくだい</div>
+        <div class="info-card-body">
+          <label class="checkbox-item">
+            <input type="checkbox">
+            <ruby>日本語<rt>にほんご</rt></ruby>で<ruby>日記<rt>にっき</rt></ruby>か<ruby>話<rt>はなし</rt></ruby>を<ruby>書<rt>か</rt></ruby>いて、<ruby>先生<rt>せんせい</rt></ruby>に<ruby>提出<rt>ていしゅつ</rt></ruby>する
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox">
+            リソースリンクを<ruby>見<rt>み</rt></ruby>る
+          </label>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- リソースリンク -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">LINKS</span>
+      <h2>リソースリンク</h2>
+    </div>
+    <div class="link-grid">
+      <div class="link-card">
+        <div class="link-card-label">かいわ L5</div>
+        <a href="https://a2-2.marugotoweb.jp/en/conversation/episode/5/" target="_blank">marugotoweb.jp — Episode 5</a>
+      </div>
+      <div class="link-card">
+        <div class="link-card-label"><ruby>文法<rt>ぶんぽう</rt></ruby> L5</div>
+        <a href="https://a2-2.marugotoweb.jp/en/grammar/detail/topic3-sec5-1/" target="_blank">sec5-1 · V-た／ない ほうがいい</a>
+        <a href="https://a2-2.marugotoweb.jp/en/grammar/detail/topic3-sec5-2/" target="_blank">sec5-2 · とき</a>
+      </div>
+      <div class="link-card">
+        <div class="link-card-label">たんごリスト L5</div>
+        <a href="https://words.marugotoweb.jp/mylist.php?lv=A2-2&tp%5B%5D=3&ls%5B%5D=5&tx%5B%5D=act&class%5B%5D=Noun&class%5B%5D=Verb1&class%5B%5D=Verb2&class%5B%5D=Verb3&class%5B%5D=i-Adjective&class%5B%5D=na-Adjective&class%5B%5D=Adverb&class%5B%5D=Conjunction&class%5B%5D=Expression&class%5B%5D=others&learn_ex%5B%5D=A1&learn_ex%5B%5D=A2-1&lang=en" target="_blank">Word list — 24語</a>
+        <a href="https://words.marugotoweb.jp/quiz.php?lv=A2-2&tp%5B%5D=3&ls%5B%5D=5&tx%5B%5D=act&class%5B%5D=Noun&class%5B%5D=Verb1&class%5B%5D=Verb2&class%5B%5D=Verb3&class%5B%5D=i-Adjective&class%5B%5D=na-Adjective&class%5B%5D=Adverb&class%5B%5D=Conjunction&class%5B%5D=Expression&class%5B%5D=others&learn_ex%5B%5D=A1&learn_ex%5B%5D=A2-1&lang=en&itemtotal=24" target="_blank">Quiz — 24語</a>
+      </div>
+      <div class="link-card">
+        <div class="link-card-label">Life &amp; Culture / NHK</div>
+        <a href="https://a2-2.marugotoweb.jp/en/life-and-culture/" target="_blank">Life &amp; Culture — Topic 3</a>
+        <a href="https://news.web.nhk/news/easy/" target="_blank">NHK やさしいことばニュース</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 文法 -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">文法</span>
+      <h2><ruby>文法<rt>ぶんぽう</rt></ruby> — だい5か</h2>
+    </div>
+
+    <!-- Grammar 1 -->
+    <div class="grammar-pattern">
+      <h3>1. V-た／V-ない ほうが いいです（よ） <span style="font-size:15px; font-weight:300; color:var(--muted); font-family:'IBM Plex Sans',sans-serif;">— Advice: you'd better…</span></h3>
+      <p class="grammar-meta"><strong>Meaning:</strong> Giving advice or a strong suggestion to do or not do something.</p>
+      <div class="pattern-box">
+        <div class="pattern-formula">V-た + ほうが いいです（よ）<br>V-ない + ほうが いいです（よ）</div>
+        <div class="pattern-gloss">positive advice · negative advice</div>
+      </div>
+      <ul class="formation-list">
+        <li><span class="jp">V-た</span> + ほうがいいです（よ） — you'd better do ~</li>
+        <li><span class="jp">V-ない</span> + ほうがいいです（よ） — you'd better not do ~</li>
+        <li>Often ends with <span class="jp">〜よ</span> or <span class="jp">〜と思います</span> to soften the advice</li>
+        <li><span class="jp">〜といいですよ</span> = lighter suggestion; this pattern = stronger advice</li>
+      </ul>
+      <div class="examples-block">
+        <h4>Examples</h4>
+        <div class="example-item">
+          <span class="example-jp">ぼうしを <ruby>持<rt>も</rt></ruby>っていった ほうが いいと <ruby>思<rt>おも</rt></ruby>います。</span>
+          <span class="example-en">You had better bring a hat with you.</span>
+        </div>
+        <div class="example-item">
+          <span class="example-jp">9<ruby>月<rt>がつ</rt></ruby>は <ruby>行<rt>い</rt></ruby>かない ほうが いいですよ。</span>
+          <span class="example-en">You had better not go in September.</span>
+        </div>
+        <div class="example-item">
+          <span class="example-jp">5<ruby>月<rt>がつ</rt></ruby>は つゆの きせつなので、かさを <ruby>持<rt>も</rt></ruby>っていった ほうが いいですよ。</span>
+          <span class="example-en">You had better bring an umbrella because May is the rainy season.</span>
+        </div>
+        <div class="example-item">
+          <span class="example-jp">A) ホテルは はやく <ruby>予約<rt>よやく</rt></ruby>した ほうが いいですか。</span>
+          <span class="example-en">A) Is it better to make hotel reservations early?</span>
+        </div>
+        <div class="example-item">
+          <span class="example-jp">B) おしょうがつは こみますから、はやく <ruby>予約<rt>よやく</rt></ruby>した ほうが いいと<ruby>思<rt>おも</rt></ruby>います。</span>
+          <span class="example-en">B) Yes, it's crowded at New Year, so I think you'd better book early.</span>
+        </div>
+        <div class="example-item">
+          <span class="example-jp">ライブハウスには <ruby>小<rt>ちい</rt></ruby>さい <ruby>子<rt>こ</rt></ruby>どもを つれていかない ほうが いいと <ruby>思<rt>おも</rt></ruby>います。</span>
+          <span class="example-en">You had better not bring a small child to the live music club.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Grammar 2 -->
+    <div class="grammar-pattern">
+      <h3>2. S1（V-る／V-ている／V-た）とき、S2 <span style="font-size:15px; font-weight:300; color:var(--muted); font-family:'IBM Plex Sans',sans-serif;">— When ~ / At the time of ~</span></h3>
+      <p class="grammar-meta"><strong>Meaning:</strong> Expresses when some event or action occurred. "S1 とき" sets the time frame for the action in S2.</p>
+      <div class="pattern-box">
+        <div class="pattern-formula">S1（V-る／V-ている／V-た）とき、S2</div>
+        <div class="pattern-gloss">tense is always expressed by S2, not S1</div>
+      </div>
+      <ul class="formation-list">
+        <li><span class="jp">V-る とき</span> — S1 and S2 simultaneous, or S2 happens before S1</li>
+        <li><span class="jp">V-ている とき</span> — S2 occurs while S1 is ongoing</li>
+        <li><span class="jp">V-た とき</span> — S2 occurred after S1 was completed</li>
+      </ul>
+      <div class="examples-block">
+        <h4>Examples</h4>
+        <div class="example-item">
+          <span class="example-jp"><ruby>来月<rt>らいげつ</rt></ruby> <ruby>沖縄<rt>おきなわ</rt></ruby>に <ruby>行<rt>い</rt></ruby>く とき、ひこうきで <ruby>行<rt>い</rt></ruby>きます。</span>
+          <span class="example-en">When I go to Okinawa next month, I will go by airplane.</span>
+        </div>
+        <div class="example-item">
+          <span class="example-jp">ダイビングを する とき、どうぐを かりました。</span>
+          <span class="example-en">When I went diving, I borrowed the equipment.</span>
+        </div>
+        <div class="example-item">
+          <span class="example-jp">バスに <ruby>乗<rt>の</rt></ruby>っている とき、ガイドさんの せつめいを <ruby>聞<rt>き</rt></ruby>きました。</span>
+          <span class="example-en">While riding the bus, I listened to the guide's explanation.</span>
+        </div>
+        <div class="example-item">
+          <span class="example-jp">ふねは ゆれました。ついた とき、ほっと しました。</span>
+          <span class="example-en">The ship swayed. When we arrived, I was relieved.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- かいわ -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">かいわ</span>
+      <h2>Episode 5「<ruby>旅行<rt>りょこう</rt></ruby>にいこう！」</h2>
+    </div>
+    <div class="dialogue">
+      <div class="dialogue-line">
+        <span class="speaker">1 · リサ</span>
+        <span class="utterance">ロイさん、<ruby>沖縄<rt>おきなわ</rt></ruby>に <ruby>行<rt>い</rt></ruby>ったこと、ありますか。</span>
+      </div>
+      <div class="dialogue-line">
+        <span class="speaker">2 · ロイ</span>
+        <span class="utterance">はい、ありますよ。</span>
+      </div>
+      <div class="dialogue-line">
+        <span class="speaker">3 · リサ</span>
+        <span class="utterance">どうでしたか。</span>
+      </div>
+      <div class="dialogue-line">
+        <span class="speaker">4 · ロイ</span>
+        <span class="utterance"><ruby>海<rt>うみ</rt></ruby>も きれいだし、<ruby>食<rt>た</rt></ruby>べ<ruby>物<rt>もの</rt></ruby>も おいしいし、いい ところですよ。</span>
+      </div>
+      <div class="dialogue-line">
+        <span class="speaker">5 · リサ</span>
+        <span class="utterance">おかえりなさい。</span>
+      </div>
+      <div class="dialogue-line">
+        <span class="speaker">6 · あきこ</span>
+        <span class="utterance">ただいま。</span>
+      </div>
+      <div class="dialogue-line">
+        <span class="speaker">7 · リサ</span>
+        <span class="utterance">あきこさん、<ruby>沖縄<rt>おきなわ</rt></ruby>に <ruby>行<rt>い</rt></ruby>ってみたいんですが、５<ruby>月<rt>がつ</rt></ruby>は どうですか。</span>
+      </div>
+      <div class="dialogue-line">
+        <span class="speaker">8 · あきこ</span>
+        <span class="utterance">５<ruby>月<rt>がつ</rt></ruby>は できれば <ruby>行<rt>い</rt></ruby>かない ほうが いいですよ。つゆですから。</span>
+      </div>
+      <div class="dialogue-line">
+        <span class="speaker">9 · リサ</span>
+        <span class="utterance">そうですか。７<ruby>月<rt>がつ</rt></ruby>は どうですか。</span>
+      </div>
+      <div class="dialogue-line">
+        <span class="speaker">10 · あきこ</span>
+        <span class="utterance">７<ruby>月<rt>がつ</rt></ruby>は いいと <ruby>思<rt>おも</rt></ruby>いますよ。でも、ぼうしや サングラスを <ruby>持<rt>も</rt></ruby>っていった ほうが いいですよ。<ruby>暑<rt>あつ</rt></ruby>いですから。</span>
+      </div>
+      <div class="dialogue-line">
+        <span class="speaker">11 · リサ</span>
+        <span class="utterance">ロイさん、<ruby>沖縄<rt>おきなわ</rt></ruby>に <ruby>行<rt>い</rt></ruby>く とき、どうやって <ruby>行<rt>い</rt></ruby>きましたか。</span>
+      </div>
+      <div class="dialogue-line">
+        <span class="speaker">12 · ロイ</span>
+        <span class="utterance"><ruby>行<rt>い</rt></ruby>く ときは、ひこうきで <ruby>行<rt>い</rt></ruby>きました。<ruby>帰<rt>かえ</rt></ruby>る ときは、<ruby>船<rt>ふね</rt></ruby>に <ruby>乗<rt>の</rt></ruby>りました。</span>
+      </div>
+      <div class="dialogue-line">
+        <span class="speaker">13 · リサ</span>
+        <span class="utterance">え、<ruby>船<rt>ふね</rt></ruby>？ <ruby>船<rt>ふね</rt></ruby>は、どうでしたか。</span>
+      </div>
+      <div class="dialogue-line">
+        <span class="speaker">14 · ロイ</span>
+        <span class="utterance">ちょっと つかれました。でも、おもしろかったです。</span>
+      </div>
+      <div class="dialogue-line">
+        <span class="speaker">15 · リサ</span>
+        <span class="utterance">そうですか。</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- たんごリスト -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">たんご</span>
+      <h2>たんごリスト — L5 かつどう (24<ruby>語<rt>ご</rt></ruby>)</h2>
+    </div>
+    <div class="vocab-table-wrap">
+      <table class="vocab-table">
+        <thead>
+          <tr><th>日本語</th><th>ローマ字</th><th>意味</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="jp">うつくしい</td><td class="romaji">utsukushii</td><td class="en">beautiful</td></tr>
+          <tr><td class="jp">かんこう（します）</td><td class="romaji">kankoo (shimasu)</td><td class="en">sightseeing (to go sightseeing)</td></tr>
+          <tr><td class="jp">かんこうシーズン</td><td class="romaji">kankoo-shiizun</td><td class="en">tourist season</td></tr>
+          <tr><td class="jp">けしき</td><td class="romaji">keshiki</td><td class="en">view / scenery</td></tr>
+          <tr><td class="jp">こみます</td><td class="romaji">komimasu</td><td class="en">to get crowded</td></tr>
+          <tr><td class="jp">しぜん</td><td class="romaji">shizen</td><td class="en">nature</td></tr>
+          <tr><td class="jp">しま</td><td class="romaji">shima</td><td class="en">island</td></tr>
+          <tr><td class="jp">しんせつ（な）</td><td class="romaji">shinsetsu (na)</td><td class="en">kind</td></tr>
+          <tr><td class="jp">できれば</td><td class="romaji">dekireba</td><td class="en">if possible / if you can</td></tr>
+          <tr><td class="jp">で／それで</td><td class="romaji">de / sorede</td><td class="en">and then / so</td></tr>
+          <tr><td class="jp">どうぐ</td><td class="romaji">doogu</td><td class="en">tool / equipment</td></tr>
+          <tr><td class="jp">はやい</td><td class="romaji">hayai</td><td class="en">early / fast</td></tr>
+          <tr><td class="jp">ほっとします</td><td class="romaji">hotto shimasu</td><td class="en">to feel relieved</td></tr>
+          <tr><td class="jp">ほんとうに／ほんとに</td><td class="romaji">hontooni / hontoni</td><td class="en">really / truly</td></tr>
+          <tr><td class="jp">もっていきます</td><td class="romaji">motte ikimasu</td><td class="en">to bring / to carry</td></tr>
+          <tr><td class="jp">ゆたか（な）</td><td class="romaji">yutaka (na)</td><td class="en">rich / bountiful</td></tr>
+          <tr><td class="jp">ゆれます</td><td class="romaji">yuremasu</td><td class="en">to shake / to sway</td></tr>
+          <tr><td class="jp">りょうきん</td><td class="romaji">ryookin</td><td class="en">fee / fare</td></tr>
+          <tr><td class="jp">サングラス</td><td class="romaji">sangurasu</td><td class="en">sunglasses</td></tr>
+          <tr><td class="jp">シーズン</td><td class="romaji">shiizun</td><td class="en">season</td></tr>
+          <tr><td class="jp">ダイビング</td><td class="romaji">daibingu</td><td class="en">diving</td></tr>
+          <tr><td class="jp">ドライブ（します）</td><td class="romaji">doraibu (shimasu)</td><td class="en">(to take) a drive</td></tr>
+          <tr><td class="jp">レンタル（します）</td><td class="romaji">rentaru (shimasu)</td><td class="en">rental (to rent)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- りかいテキスト -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">りかい</span>
+      <h2>りかい テキスト (pp.54–57)</h2>
+    </div>
+
+    <!-- p.56 りかい 1 -->
+    <div class="rikai-page">
+      <h3>p.56 — りかい 1 · Dialogue</h3>
+      <p style="font-size:13px; color:var(--muted); margin-bottom:14px;">Characters: ホセ (José) · かわい (Kawai-san)</p>
+      <div class="rikai-dialogue">
+        <div class="rikai-line">
+          <div class="rikai-speaker">ホセ</div>
+          <span class="rikai-jp">かわいさん、こんど かぞくで <ruby>沖縄<rt>おきなわ</rt></ruby>に <ruby>行<rt>い</rt></ruby>ってみたいんですが、９<ruby>月<rt>がつ</rt></ruby>は どうですか。</span>
+          <span class="rikai-en">Kawai-san, I'd like to try going to Okinawa with my family sometime — how is September?</span>
+        </div>
+        <div class="rikai-line">
+          <div class="rikai-speaker">かわい</div>
+          <span class="rikai-jp">９<ruby>月<rt>がつ</rt></ruby>は できれば <ruby>行<rt>い</rt></ruby>かない ほうが いいですよ。たいふうの シーズンですから。</span>
+          <span class="rikai-en">For September, if possible you'd better not go. Because it's typhoon season.</span>
+        </div>
+        <div class="rikai-line">
+          <div class="rikai-speaker">ホセ</div>
+          <span class="rikai-jp">そうですか。じゃあ、８<ruby>月<rt>がつ</rt></ruby>は どうですか。</span>
+          <span class="rikai-en">Is that so? Well then, how is August?</span>
+        </div>
+        <div class="rikai-line">
+          <div class="rikai-speaker">かわい</div>
+          <span class="rikai-jp">８<ruby>月<rt>がつ</rt></ruby>は だいじょうぶです。でも、すごく <ruby>暑<rt>あつ</rt></ruby>いですよ。ぼうしや サングラスを <ruby>持<rt>も</rt></ruby>っていった ほうが いいと <ruby>思<rt>おも</rt></ruby>います。</span>
+          <span class="rikai-en">August is fine. But it's very hot. I think you'd better bring a hat and sunglasses.</span>
+        </div>
+      </div>
+
+      <div class="callout">
+        <strong>Grammar patterns in this dialogue:</strong><br>
+        <ruby>行<rt>い</rt></ruby>かない ほうが いいですよ (V-ない — don't go) ·
+        <ruby>持<rt>も</rt></ruby>っていった ほうが いいと <ruby>思<rt>おも</rt></ruby>います (V-た — bring) ·
+        <ruby>行<rt>い</rt></ruby>ってみたいんですが (〜んですが — softening) ·
+        たいふうのシーズンですから (〜から — reason)
+      </div>
+    </div>
+
+    <!-- p.56 りかい 2① -->
+    <div class="rikai-page">
+      <h3>p.56 — りかい 2① · ただしい ほうを えらびましょう。(track 085)</h3>
+      <p style="font-size:13px; color:var(--muted); margin-bottom:14px;">Context: <ruby>沖縄<rt>おきなわ</rt></ruby>に <ruby>行<rt>い</rt></ruby>ってみたいんですが。</p>
+
+      <div class="exercise-item">
+        <div class="exercise-num">❶</div>
+        <div class="exercise-context">８<ruby>月<rt>がつ</rt></ruby>は <ruby>旅行<rt>りょこう</rt></ruby>の シーズンなので、ひこうきは はやく（a <ruby>予約<rt>よやく</rt></ruby>した / b <ruby>予約<rt>よやく</rt></ruby>しない）ほうが いいですよ。</div>
+        <div class="exercise-answer"><span class="answer-arrow">→ こたえ:</span><span class="answer-val">a <ruby>予約<rt>よやく</rt></ruby>した</span></div>
+        <div class="exercise-en">August is travel season → book early (V-た advice)</div>
+      </div>
+
+      <div class="exercise-item">
+        <div class="exercise-num">❷</div>
+        <div class="exercise-context"><ruby>沖縄<rt>おきなわ</rt></ruby>は <ruby>電車<rt>でんしゃ</rt></ruby>が ないので、<ruby>旅行中<rt>りょこうちゅう</rt></ruby>は <ruby>車<rt>くるま</rt></ruby>を（a <ruby>借<rt>か</rt></ruby>りた / b <ruby>借<rt>か</rt></ruby>りない）ほうが いいと <ruby>思<rt>おも</rt></ruby>います。</div>
+        <div class="exercise-answer"><span class="answer-arrow">→ こたえ:</span><span class="answer-val">a <ruby>借<rt>か</rt></ruby>りた</span></div>
+        <div class="exercise-en">No trains → rent a car (V-た advice)</div>
+      </div>
+
+      <div class="exercise-item">
+        <div class="exercise-num">❸</div>
+        <div class="exercise-context">おみやげは <ruby>旅行<rt>りょこう</rt></ruby>の はじめに（a <ruby>買<rt>か</rt></ruby>った / b <ruby>買<rt>か</rt></ruby>わない）ほうが いいですよ。お<ruby>店<rt>みせ</rt></ruby>は たくさん ありますから。</div>
+        <div class="exercise-answer"><span class="answer-arrow">→ こたえ:</span><span class="answer-val">b <ruby>買<rt>か</rt></ruby>わない</span></div>
+        <div class="exercise-en">Many shops throughout → don't rush to buy at the start (V-ない advice)</div>
+      </div>
+
+      <div class="exercise-item">
+        <div class="exercise-num">❹</div>
+        <div class="exercise-context">いい ライブハウスが ありますが、ライブハウスには <ruby>小<rt>ちい</rt></ruby>さい <ruby>子<rt>こ</rt></ruby>どもを（a つれていった / b つれていかない）ほうが いいと <ruby>思<rt>おも</rt></ruby>います。</div>
+        <div class="exercise-answer"><span class="answer-arrow">→ こたえ:</span><span class="answer-val">b つれていかない</span></div>
+        <div class="exercise-en">Live music venues not suitable for small children (V-ない advice)</div>
+      </div>
+
+      <div class="exercise-item">
+        <div class="exercise-num">❺</div>
+        <div class="exercise-context"><ruby>空港<rt>くうこう</rt></ruby>には はやく（a <ruby>行<rt>い</rt></ruby>った / b <ruby>行<rt>い</rt></ruby>かない）ほうが いいですよ。チェックインカウンターが こみますから。</div>
+        <div class="exercise-answer"><span class="answer-arrow">→ こたえ:</span><span class="answer-val">a <ruby>行<rt>い</rt></ruby>った</span></div>
+        <div class="exercise-en">Check-in counters get crowded → go early (V-た advice)</div>
+      </div>
+    </div>
+
+    <!-- p.57 りかい 2② -->
+    <div class="rikai-page">
+      <h3>p.57 — りかい 2② · ただしい かたちを 書きましょう。(track 086)</h3>
+      <p style="font-size:13px; color:var(--muted); margin-bottom:14px;">〈<ruby>沖縄<rt>おきなわ</rt></ruby><ruby>旅行<rt>りょこう</rt></ruby>の アドバイス〉 — Convert the verb in（）to V-た or V-ない form.</p>
+
+      <div class="exercise-item">
+        <div class="exercise-num">❶ 1<ruby>月<rt>がつ</rt></ruby>・2<ruby>月<rt>がつ</rt></ruby> — <ruby>風<rt>かぜ</rt></ruby>が つよくて さむい</div>
+        <div class="exercise-context">コートを（きていきます）ほうが いいです。</div>
+        <div class="exercise-answer"><span class="answer-arrow">→</span><span class="answer-val">きていった</span><span style="font-size:12px; color:var(--muted); margin-left:8px;">V-た</span></div>
+        <div class="exercise-en">Windy and cold in Jan/Feb → you'd better wear a coat.</div>
+      </div>
+
+      <div class="exercise-item">
+        <div class="exercise-num">❷ 5<ruby>月<rt>がつ</rt></ruby> — つゆ、<ruby>雨<rt>あめ</rt></ruby>が よく ふる</div>
+        <div class="exercise-context">かさを（もっていきます）ほうが いいです。ふくは Tシャツで だいじょうぶです。</div>
+        <div class="exercise-answer"><span class="answer-arrow">→</span><span class="answer-val">もっていった</span><span style="font-size:12px; color:var(--muted); margin-left:8px;">V-た</span></div>
+        <div class="exercise-en">May is rainy season → you'd better bring an umbrella.</div>
+      </div>
+
+      <div class="exercise-item">
+        <div class="exercise-num">❸ 7<ruby>月<rt>がつ</rt></ruby>・8<ruby>月<rt>がつ</rt></ruby> — とても <ruby>暑<rt>あつ</rt></ruby>い</div>
+        <div class="exercise-context">ぼうしを（かぶっていきます）ほうが いいです。<ruby>長<rt>なが</rt></ruby>い <ruby>時間<rt>じかん</rt></ruby>、<ruby>外<rt>そと</rt></ruby>を（あるきません）ほうが いいです。</div>
+        <div class="exercise-answer">
+          <span class="answer-arrow">→</span><span class="answer-val">かぶっていった</span><span style="font-size:12px; color:var(--muted); margin-left:8px;">V-た</span>
+          &nbsp;·&nbsp;
+          <span class="answer-val">あるかない</span><span style="font-size:12px; color:var(--muted); margin-left:8px;">V-ない</span>
+        </div>
+        <div class="exercise-en">Very hot → wear a hat; don't walk outside for long periods.</div>
+      </div>
+
+      <div class="exercise-item">
+        <div class="exercise-num">❹ 11<ruby>月<rt>がつ</rt></ruby>ごろ — すずしく なる</div>
+        <div class="exercise-context">サンダルじゃなくて、くつを（はいていきます）ほうが いいです。</div>
+        <div class="exercise-answer"><span class="answer-arrow">→</span><span class="answer-val">はいていった</span><span style="font-size:12px; color:var(--muted); margin-left:8px;">V-た</span></div>
+        <div class="exercise-en">From around November it gets cool → wear shoes, not sandals.</div>
+      </div>
+
+      <div class="exercise-item">
+        <div class="exercise-num">❺ お<ruby>酒<rt>さけ</rt></ruby>は おいしいが つよい</div>
+        <div class="exercise-context">（のみすぎません）ほうが いいです。</div>
+        <div class="exercise-answer"><span class="answer-arrow">→</span><span class="answer-val">のみすぎない</span><span style="font-size:12px; color:var(--muted); margin-left:8px;">V-ない</span></div>
+        <div class="exercise-en">Sake is tasty but strong → better not drink too much.</div>
+      </div>
+
+      <div class="pattern-note">
+        <strong>〜ていった pattern:</strong> きていった・もっていった・かぶっていった・はいていった all use <strong>V-て + いった</strong> (te-form + went) = "went while wearing/carrying/bringing." The V-た form takes the past of いく → いった, not the plain past of the first verb.
+      </div>
+
+      <div class="summary-table-wrap">
+        <table class="summary-table">
+          <thead><tr><th>Base form</th><th>→ Answer</th><th>Type</th></tr></thead>
+          <tbody>
+            <tr><td class="jp">きていきます</td><td class="answer">きていった</td><td class="type">V-た · wear → went wearing</td></tr>
+            <tr><td class="jp">もっていきます</td><td class="answer">もっていった</td><td class="type">V-た · bring → took along</td></tr>
+            <tr><td class="jp">かぶっていきます</td><td class="answer">かぶっていった</td><td class="type">V-た · put on hat → went wearing</td></tr>
+            <tr><td class="jp">あるきません</td><td class="answer">あるかない</td><td class="type">V-ない</td></tr>
+            <tr><td class="jp">はいていきます</td><td class="answer">はいていった</td><td class="type">V-た · wear shoes → went wearing</td></tr>
+            <tr><td class="jp">のみすぎません</td><td class="answer">のみすぎない</td><td class="type">V-ない</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div>だい5か · まるごと<ruby>初級<rt>しょきゅう</rt></ruby>２ A2 · 2026年6月1日</div>
+    <div><a href="../index.html" style="color:var(--muted);">← ホームへ</a></div>
+  </footer>
+
+</div>
+</body>
+</html>
