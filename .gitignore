@@ -14,3 +14,6 @@
 .idea/
 *.swp
 *.swo
+
+# Textbook PDFs (local only — do not commit)
+2025-2026/books/
