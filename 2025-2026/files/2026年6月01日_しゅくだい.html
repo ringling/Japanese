@@ -570,6 +570,35 @@ footer {
   body { background: white; padding: 20px; }
   footer { break-before: avoid; }
 }
+
+/* ====== Audio player ====== */
+.audio-player {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 6px 0 14px;
+  padding: 10px 14px;
+  background: var(--paper-deep);
+  border: 1px solid var(--rule);
+}
+.audio-player .track-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--accent);
+  white-space: nowrap;
+  font-weight: 500;
+}
+.audio-player audio { flex: 1; height: 32px; }
+.audio-player .dl-link {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.audio-player .dl-link:hover { color: var(--accent); }
 </style>
 </head>
 <body>
@@ -662,6 +691,11 @@ footer {
         <div class="link-card-label">Life &amp; Culture / NHK</div>
         <a href="https://a2-2.marugotoweb.jp/en/life-and-culture/" target="_blank">Life &amp; Culture — Topic 3</a>
         <a href="https://news.web.nhk/news/easy/" target="_blank">NHK やさしいことばニュース</a>
+      </div>
+      <div class="link-card">
+        <div class="link-card-label">Audio</div>
+        <a href="https://marugoto.jpf.go.jp/en/download/" target="_blank">Marugoto audio download (login required)</a>
+        <div class="link-note">Place files in 2025-2026/audio/ as track_NNN.mp3</div>
       </div>
     </div>
   </section>
@@ -906,7 +940,12 @@ footer {
 
     <!-- p.56 りかい 2① -->
     <div class="rikai-page">
-      <h3>p.56 — りかい 2① · ただしい ほうを えらびましょう。(track 085)</h3>
+      <h3>p.56 — りかい 2① · ただしい ほうを えらびましょう。</h3>
+      <div class="audio-player">
+        <span class="track-label">▶ CHECK! 085</span>
+        <audio controls preload="none"><source src="../audio/track_085.mp3" type="audio/mpeg"></audio>
+        <a class="dl-link" href="https://marugoto.jpf.go.jp/en/download/" target="_blank">download audio</a>
+      </div>
       <p style="font-size:13px; color:var(--muted); margin-bottom:14px;">Context: <ruby>沖縄<rt>おきなわ</rt></ruby>に <ruby>行<rt>い</rt></ruby>ってみたいんですが。</p>
 
       <div class="exercise-item">
@@ -947,7 +986,12 @@ footer {
 
     <!-- p.57 りかい 2② -->
     <div class="rikai-page">
-      <h3>p.57 — りかい 2② · ただしい かたちを 書きましょう。(track 086)</h3>
+      <h3>p.57 — りかい 2② · ただしい かたちを 書きましょう。</h3>
+      <div class="audio-player">
+        <span class="track-label">▶ CHECK! 086</span>
+        <audio controls preload="none"><source src="../audio/track_086.mp3" type="audio/mpeg"></audio>
+        <a class="dl-link" href="https://marugoto.jpf.go.jp/en/download/" target="_blank">download audio</a>
+      </div>
       <p style="font-size:13px; color:var(--muted); margin-bottom:14px;">〈<ruby>沖縄<rt>おきなわ</rt></ruby><ruby>旅行<rt>りょこう</rt></ruby>の アドバイス〉 — Convert the verb in（）to V-た or V-ない form.</p>
 
       <div class="exercise-item">

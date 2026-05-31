@@ -570,6 +570,35 @@ footer {
   body { background: white; padding: 20px; }
   footer { break-before: avoid; }
 }
+
+/* ====== Audio player ====== */
+.audio-player {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 6px 0 14px;
+  padding: 10px 14px;
+  background: var(--paper-deep);
+  border: 1px solid var(--rule);
+}
+.audio-player .track-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--accent);
+  white-space: nowrap;
+  font-weight: 500;
+}
+.audio-player audio { flex: 1; height: 32px; }
+.audio-player .dl-link {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.audio-player .dl-link:hover { color: var(--accent); }
 </style>
 </head>
 <body>
@@ -665,6 +694,11 @@ footer {
       <div class="link-card">
         <div class="link-card-label">NHK</div>
         <a href="https://news.web.nhk/news/easy/" target="_blank">NHK やさしいことばニュース</a>
+      </div>
+      <div class="link-card">
+        <div class="link-card-label">Audio</div>
+        <a href="https://marugoto.jpf.go.jp/en/download/" target="_blank">Marugoto audio download (login required)</a>
+        <div class="link-note">Place files in 2025-2026/audio/ as track_NNN.mp3</div>
       </div>
     </div>
   </section>
