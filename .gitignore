@@ -17,3 +17,6 @@
 
 # Textbook PDFs (local only — do not commit)
 2025-2026/books/
+
+# Playwright local install (pre-installed, ~300MB — do not commit)
+.playwright/
