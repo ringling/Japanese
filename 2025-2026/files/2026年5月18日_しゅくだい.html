@@ -556,6 +556,19 @@ footer {
   line-height: 1.8;
 }
 
+/* ====== Translation toggle ====== */
+.example-en,
+.rikai-en,
+.exercise-en,
+.dialogue-en { display: none; }
+body.translations-visible .example-en,
+body.translations-visible .rikai-en,
+body.translations-visible .exercise-en,
+body.translations-visible .dialogue-en { display: block; }
+.dialogue-en { font-size: 13px; color: var(--muted); font-style: italic; margin-top: 2px; }
+.toggle-translations { position: fixed; bottom: 24px; right: 24px; z-index: 100; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; background: var(--paper-deep); border: 1px solid var(--rule); color: var(--muted); padding: 8px 14px; cursor: pointer; border-radius: 3px; box-shadow: 0 2px 8px rgba(0,0,0,0.10); }
+.toggle-translations:hover { background: var(--paper-soft); color: var(--accent); border-color: var(--accent-soft); }
+body.translations-visible .toggle-translations { background: var(--done-bg); color: var(--done); border-color: var(--done); }
 @media (max-width: 700px) {
   body { padding: 30px 18px; }
   .masthead { grid-template-columns: 1fr; gap: 16px; }
@@ -1304,5 +1317,6 @@ footer {
   </footer>
 
 </div>
+<button class="toggle-translations" onclick="document.body.classList.toggle('translations-visible');this.textContent=document.body.classList.contains('translations-visible')?'EN ✓':'EN'">EN</button>
 </body>
 </html>
