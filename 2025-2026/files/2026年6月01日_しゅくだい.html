@@ -556,6 +556,39 @@ footer {
   line-height: 1.8;
 }
 
+/* ====== Translation toggle ====== */
+.example-en,
+.rikai-en,
+.exercise-en,
+.dialogue-en { display: none; }
+
+body.translations-visible .example-en,
+body.translations-visible .rikai-en,
+body.translations-visible .exercise-en,
+body.translations-visible .dialogue-en { display: block; }
+
+.dialogue-en {
+  font-size: 13px;
+  color: var(--muted);
+  font-style: italic;
+  margin-top: 2px;
+}
+
+.toggle-translations {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  background: var(--paper-deep);
+  border: 1px solid var(--rule);
+  color: var(--muted);
+  padding: 4px 10px;
+  cursor: pointer;
+  border-radius: 2px;
+}
+.toggle-translations:hover { background: var(--paper-soft); color: var(--accent); border-color: var(--accent-soft); }
+body.translations-visible .toggle-translations { background: var(--done-bg); color: var(--done); border-color: var(--done); }
+
 @media (max-width: 700px) {
   body { padding: 30px 18px; }
   .masthead { grid-template-columns: 1fr; gap: 16px; }
@@ -614,7 +647,7 @@ footer {
   <nav class="page-nav">
     <a href="../index.html">← ホーム</a>
     <span class="center">だい5か · 2026年6月1日</span>
-    <span style="color: var(--rule)">—</span>
+    <button class="toggle-translations" onclick="document.body.classList.toggle('translations-visible');this.textContent=document.body.classList.contains('translations-visible')?'EN ✓':'EN'">EN</button>
   </nav>
 
   <!-- Masthead -->
@@ -800,63 +833,63 @@ footer {
     <div class="dialogue">
       <div class="dialogue-line">
         <span class="speaker">1 · リサ</span>
-        <span class="utterance">ロイさん、<ruby>沖縄<rt>おきなわ</rt></ruby>に <ruby>行<rt>い</rt></ruby>ったこと、ありますか。</span>
+        <div><span class="utterance">ロイさん、<ruby>沖縄<rt>おきなわ</rt></ruby>に <ruby>行<rt>い</rt></ruby>ったこと、ありますか。</span><span class="dialogue-en">Roy, have you ever been to Okinawa?</span></div>
       </div>
       <div class="dialogue-line">
         <span class="speaker">2 · ロイ</span>
-        <span class="utterance">はい、ありますよ。</span>
+        <div><span class="utterance">はい、ありますよ。</span><span class="dialogue-en">Yes, I have!</span></div>
       </div>
       <div class="dialogue-line">
         <span class="speaker">3 · リサ</span>
-        <span class="utterance">どうでしたか。</span>
+        <div><span class="utterance">どうでしたか。</span><span class="dialogue-en">How was it?</span></div>
       </div>
       <div class="dialogue-line">
         <span class="speaker">4 · ロイ</span>
-        <span class="utterance"><ruby>海<rt>うみ</rt></ruby>も きれいだし、<ruby>食<rt>た</rt></ruby>べ<ruby>物<rt>もの</rt></ruby>も おいしいし、いい ところですよ。</span>
+        <div><span class="utterance"><ruby>海<rt>うみ</rt></ruby>も きれいだし、<ruby>食<rt>た</rt></ruby>べ<ruby>物<rt>もの</rt></ruby>も おいしいし、いい ところですよ。</span><span class="dialogue-en">The sea is beautiful and the food is delicious — it's a great place!</span></div>
       </div>
       <div class="dialogue-line">
         <span class="speaker">5 · リサ</span>
-        <span class="utterance">おかえりなさい。</span>
+        <div><span class="utterance">おかえりなさい。</span><span class="dialogue-en">Welcome back.</span></div>
       </div>
       <div class="dialogue-line">
         <span class="speaker">6 · あきこ</span>
-        <span class="utterance">ただいま。</span>
+        <div><span class="utterance">ただいま。</span><span class="dialogue-en">I'm home.</span></div>
       </div>
       <div class="dialogue-line">
         <span class="speaker">7 · リサ</span>
-        <span class="utterance">あきこさん、<ruby>沖縄<rt>おきなわ</rt></ruby>に <ruby>行<rt>い</rt></ruby>ってみたいんですが、５<ruby>月<rt>がつ</rt></ruby>は どうですか。</span>
+        <div><span class="utterance">あきこさん、<ruby>沖縄<rt>おきなわ</rt></ruby>に <ruby>行<rt>い</rt></ruby>ってみたいんですが、５<ruby>月<rt>がつ</rt></ruby>は どうですか。</span><span class="dialogue-en">Akiko, I'd like to try going to Okinawa — how is May?</span></div>
       </div>
       <div class="dialogue-line">
         <span class="speaker">8 · あきこ</span>
-        <span class="utterance">５<ruby>月<rt>がつ</rt></ruby>は できれば <ruby>行<rt>い</rt></ruby>かない ほうが いいですよ。つゆですから。</span>
+        <div><span class="utterance">５<ruby>月<rt>がつ</rt></ruby>は できれば <ruby>行<rt>い</rt></ruby>かない ほうが いいですよ。つゆですから。</span><span class="dialogue-en">If possible, you'd better not go in May. It's rainy season.</span></div>
       </div>
       <div class="dialogue-line">
         <span class="speaker">9 · リサ</span>
-        <span class="utterance">そうですか。７<ruby>月<rt>がつ</rt></ruby>は どうですか。</span>
+        <div><span class="utterance">そうですか。７<ruby>月<rt>がつ</rt></ruby>は どうですか。</span><span class="dialogue-en">Is that so? How is July?</span></div>
       </div>
       <div class="dialogue-line">
         <span class="speaker">10 · あきこ</span>
-        <span class="utterance">７<ruby>月<rt>がつ</rt></ruby>は いいと <ruby>思<rt>おも</rt></ruby>いますよ。でも、ぼうしや サングラスを <ruby>持<rt>も</rt></ruby>っていった ほうが いいですよ。<ruby>暑<rt>あつ</rt></ruby>いですから。</span>
+        <div><span class="utterance">７<ruby>月<rt>がつ</rt></ruby>は いいと <ruby>思<rt>おも</rt></ruby>いますよ。でも、ぼうしや サングラスを <ruby>持<rt>も</rt></ruby>っていった ほうが いいですよ。<ruby>暑<rt>あつ</rt></ruby>いですから。</span><span class="dialogue-en">I think July is good. But you'd better bring a hat and sunglasses. It's hot.</span></div>
       </div>
       <div class="dialogue-line">
         <span class="speaker">11 · リサ</span>
-        <span class="utterance">ロイさん、<ruby>沖縄<rt>おきなわ</rt></ruby>に <ruby>行<rt>い</rt></ruby>く とき、どうやって <ruby>行<rt>い</rt></ruby>きましたか。</span>
+        <div><span class="utterance">ロイさん、<ruby>沖縄<rt>おきなわ</rt></ruby>に <ruby>行<rt>い</rt></ruby>く とき、どうやって <ruby>行<rt>い</rt></ruby>きましたか。</span><span class="dialogue-en">Roy, when you went to Okinawa, how did you get there?</span></div>
       </div>
       <div class="dialogue-line">
         <span class="speaker">12 · ロイ</span>
-        <span class="utterance"><ruby>行<rt>い</rt></ruby>く ときは、ひこうきで <ruby>行<rt>い</rt></ruby>きました。<ruby>帰<rt>かえ</rt></ruby>る ときは、<ruby>船<rt>ふね</rt></ruby>に <ruby>乗<rt>の</rt></ruby>りました。</span>
+        <div><span class="utterance"><ruby>行<rt>い</rt></ruby>く ときは、ひこうきで <ruby>行<rt>い</rt></ruby>きました。<ruby>帰<rt>かえ</rt></ruby>る ときは、<ruby>船<rt>ふね</rt></ruby>に <ruby>乗<rt>の</rt></ruby>りました。</span><span class="dialogue-en">When going, I went by plane. When returning, I took a boat.</span></div>
       </div>
       <div class="dialogue-line">
         <span class="speaker">13 · リサ</span>
-        <span class="utterance">え、<ruby>船<rt>ふね</rt></ruby>？ <ruby>船<rt>ふね</rt></ruby>は、どうでしたか。</span>
+        <div><span class="utterance">え、<ruby>船<rt>ふね</rt></ruby>？ <ruby>船<rt>ふね</rt></ruby>は、どうでしたか。</span><span class="dialogue-en">What, a boat? How was the boat?</span></div>
       </div>
       <div class="dialogue-line">
         <span class="speaker">14 · ロイ</span>
-        <span class="utterance">ちょっと つかれました。でも、おもしろかったです。</span>
+        <div><span class="utterance">ちょっと つかれました。でも、おもしろかったです。</span><span class="dialogue-en">I got a little tired. But it was interesting.</span></div>
       </div>
       <div class="dialogue-line">
         <span class="speaker">15 · リサ</span>
-        <span class="utterance">そうですか。</span>
+        <div><span class="utterance">そうですか。</span><span class="dialogue-en">Is that so?</span></div>
       </div>
     </div>
   </section>
