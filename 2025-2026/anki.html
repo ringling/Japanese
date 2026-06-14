@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>たんごカード — Marugoto A2-2</title>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;700&family=Noto+Serif+JP:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1a1a;
+  --ink-soft: #3a3a3a;
+  --paper: #f4efe6;
+  --paper-soft: #ebe4d6;
+  --paper-deep: #e2d9c4;
+  --rule: #c9bfa9;
+  --rule-soft: #ddd5c3;
+  --accent: #8b1a1a;
+  --accent-soft: #b85c5c;
+  --muted: #6b6357;
+  --gold: #b8893d;
+  --green: #3a7d44;
+  --green-bg: #eef5ef;
+  --red: #8b1a1a;
+  --red-bg: #f9eaea;
+  --amber: #7a5c0a;
+  --amber-bg: #fdf4df;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  min-height: 100vh;
+  padding: 0;
+  user-select: none;
+}
+
+/* ── Screens ── */
+.screen { display: none; min-height: 100vh; flex-direction: column; }
+.screen.active { display: flex; }
+
+/* ── Home Screen ── */
+#home {
+  padding: 40px 24px 60px;
+  max-width: 520px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.home-header {
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 18px;
+  margin-bottom: 32px;
+}
+
+.home-eyebrow {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.home-title {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 28px;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.home-sub {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+.section-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.deck-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 28px; }
+
+.deck-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  background: var(--paper-soft);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: left;
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 15px;
+  transition: background 0.12s, border-color 0.12s;
+}
+.deck-btn:hover { background: var(--paper-deep); border-color: var(--accent-soft); }
+.deck-btn.all-btn { border-color: var(--accent-soft); background: #f9f2ec; }
+.deck-btn.all-btn:hover { background: var(--paper-deep); }
+
+.deck-btn-name { font-family: 'Shippori Mincho', serif; font-size: 16px; }
+.deck-btn-right { display: flex; align-items: center; gap: 10px; }
+.deck-count { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--muted); }
+.deck-due { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--accent); background: var(--red-bg); border: 1px solid var(--accent-soft); padding: 2px 7px; border-radius: 10px; }
+.deck-new { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--green); background: var(--green-bg); padding: 2px 7px; border-radius: 10px; }
+
+.dir-toggle {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+
+.dir-btn {
+  flex: 1;
+  padding: 10px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  background: var(--paper-soft);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  cursor: pointer;
+  color: var(--muted);
+  transition: all 0.12s;
+}
+.dir-btn.active {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+.home-footer { font-size: 12px; color: var(--muted); margin-top: 24px; }
+.home-footer a { color: var(--muted); }
+
+/* ── Study Screen ── */
+#study {
+  flex-direction: column;
+  height: 100vh;
+  max-width: 600px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 16px 20px;
+}
+
+.study-nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 0;
+  flex-shrink: 0;
+}
+
+.nav-back {
+  background: none;
+  border: none;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 4px 0;
+  letter-spacing: 0.05em;
+}
+.nav-back:hover { color: var(--ink); }
+
+.nav-deck {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 14px;
+  color: var(--ink-soft);
+  flex: 1;
+}
+
+.nav-counter {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.progress-bar {
+  height: 3px;
+  background: var(--rule-soft);
+  margin: 0 -16px;
+  flex-shrink: 0;
+}
+.progress-fill {
+  height: 100%;
+  background: var(--accent);
+  transition: width 0.3s;
+  border-radius: 0 2px 2px 0;
+}
+
+/* Card area */
+.card-area {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 0;
+  perspective: 1000px;
+}
+
+.card-wrap {
+  width: 100%;
+  max-width: 440px;
+  height: 280px;
+  cursor: pointer;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.4s;
+}
+.card-wrap.flipped { transform: rotateY(180deg); }
+
+.card-face {
+  position: absolute;
+  inset: 0;
+  border-radius: 8px;
+  border: 1px solid var(--rule);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 28px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.card-front {
+  background: #fff;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+}
+
+.card-back {
+  background: var(--paper-soft);
+  transform: rotateY(180deg);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+}
+
+.card-jp {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 36px;
+  text-align: center;
+  color: var(--ink);
+  line-height: 1.4;
+  margin-bottom: 8px;
+}
+.card-jp ruby rt { visibility: hidden; font-size: 14px; }
+.card-jp.show-ruby ruby rt { visibility: visible; }
+
+.card-hint-btn {
+  background: none;
+  border: 1px solid var(--rule);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  padding: 3px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+  margin-top: 6px;
+}
+.card-hint-btn:hover { color: var(--ink); border-color: var(--rule); }
+.card-hint-btn.hidden { visibility: hidden; }
+
+.card-tap-hint {
+  font-size: 11px;
+  color: var(--rule);
+  font-family: 'IBM Plex Mono', monospace;
+  letter-spacing: 0.05em;
+  margin-top: 10px;
+  position: absolute;
+  bottom: 14px;
+}
+
+.card-en-front {
+  font-size: 22px;
+  text-align: center;
+  color: var(--ink);
+  font-weight: 500;
+}
+
+/* Back of card */
+.back-jp {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 28px;
+  text-align: center;
+  color: var(--ink);
+  line-height: 1.4;
+  margin-bottom: 4px;
+}
+.back-romaji {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 16px;
+  text-align: center;
+}
+.back-divider {
+  width: 48px;
+  height: 1px;
+  background: var(--rule);
+  margin: 0 auto 16px;
+}
+.back-en {
+  font-size: 20px;
+  font-weight: 500;
+  text-align: center;
+  color: var(--accent);
+}
+
+/* Grade buttons */
+.grade-area {
+  display: flex;
+  gap: 10px;
+  padding-bottom: 4px;
+  flex-shrink: 0;
+}
+.grade-area.hidden { visibility: hidden; }
+
+.grade-btn {
+  flex: 1;
+  padding: 14px 8px;
+  border-radius: 5px;
+  border: 1px solid transparent;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.12s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+.grade-btn .grade-icon { font-size: 18px; line-height: 1; }
+.grade-btn .grade-label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.08em; color: inherit; opacity: 0.75; }
+
+.btn-again { background: var(--red-bg); border-color: var(--accent-soft); color: var(--red); }
+.btn-again:hover { background: #f3d5d5; }
+.btn-hard  { background: var(--amber-bg); border-color: #c9a84c; color: var(--amber); }
+.btn-hard:hover { background: #f7e9b8; }
+.btn-good  { background: var(--green-bg); border-color: #7ab584; color: var(--green); }
+.btn-good:hover { background: #d5ead8; }
+
+/* ── Done Screen ── */
+#done {
+  padding: 60px 24px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  max-width: 440px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.done-icon { font-size: 48px; margin-bottom: 16px; }
+.done-title {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 26px;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+.done-sub { font-size: 14px; color: var(--muted); margin-bottom: 32px; }
+
+.done-stats {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  margin-bottom: 36px;
+}
+.stat-box {
+  text-align: center;
+  padding: 16px 20px;
+  background: var(--paper-soft);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  min-width: 80px;
+}
+.stat-num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 1.1;
+}
+.stat-num.green { color: var(--green); }
+.stat-num.amber { color: var(--amber); }
+.stat-num.red   { color: var(--red); }
+.stat-label { font-size: 11px; color: var(--muted); margin-top: 4px; }
+
+.done-btns { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+
+.btn-primary {
+  padding: 13px 24px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.12s;
+}
+.btn-primary:hover { background: #7a1515; }
+.btn-secondary {
+  padding: 13px 24px;
+  background: var(--paper-soft);
+  color: var(--ink-soft);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.12s;
+}
+.btn-secondary:hover { background: var(--paper-deep); }
+</style>
+</head>
+<body>
+
+<!-- ── HOME SCREEN ── -->
+<div id="home" class="screen active">
+  <div class="home-header">
+    <div class="home-eyebrow">Marugoto A2-2 · FOF København</div>
+    <div class="home-title">たんごカード</div>
+    <div class="home-sub">117語 across 4 lesson decks</div>
+  </div>
+
+  <div class="section-label">Direction</div>
+  <div class="dir-toggle" style="margin-top:10px;">
+    <button class="dir-btn active" id="dir-ja-en" onclick="setDir('ja-en')">JA → EN</button>
+    <button class="dir-btn" id="dir-en-ja" onclick="setDir('en-ja')">EN → JA</button>
+  </div>
+
+  <div class="section-label" style="margin-top:8px;">Decks</div>
+  <div class="deck-list" style="margin-top:10px;" id="deck-list"></div>
+
+  <div class="home-footer">
+    Vocabulary from lesson HTML files · progress saved in browser<br>
+    <a href="../index.html" style="margin-top:6px;display:inline-block;">← クラスノート</a>
+  </div>
+</div>
+
+<!-- ── STUDY SCREEN ── -->
+<div id="study" class="screen">
+  <div class="study-nav">
+    <button class="nav-back" onclick="goHome()">← ホーム</button>
+    <span class="nav-deck" id="nav-deck-name"></span>
+    <span class="nav-counter" id="nav-counter"></span>
+  </div>
+  <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+
+  <div class="card-area">
+    <div class="card-wrap" id="card-wrap" onclick="flipCard()">
+      <!-- Front -->
+      <div class="card-face card-front">
+        <div class="card-jp" id="card-front-jp"></div>
+        <div class="card-en-front" id="card-front-en" style="display:none;"></div>
+        <button class="card-hint-btn" id="hint-btn" onclick="event.stopPropagation(); showHint()">ふりがな</button>
+        <span class="card-tap-hint">tap to flip</span>
+      </div>
+      <!-- Back -->
+      <div class="card-face card-back">
+        <div class="back-jp" id="card-back-jp"></div>
+        <div class="back-romaji" id="card-back-romaji"></div>
+        <div class="back-divider"></div>
+        <div class="back-en" id="card-back-en"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grade-area hidden" id="grade-area">
+    <button class="grade-btn btn-again" onclick="grade(0)">
+      <span class="grade-icon">✕</span>
+      <span class="grade-label">again</span>
+    </button>
+    <button class="grade-btn btn-hard" onclick="grade(1)">
+      <span class="grade-icon">△</span>
+      <span class="grade-label">hard · 1d</span>
+    </button>
+    <button class="grade-btn btn-good" onclick="grade(2)">
+      <span class="grade-icon">✓</span>
+      <span class="grade-label">good</span>
+    </button>
+  </div>
+</div>
+
+<!-- ── DONE SCREEN ── -->
+<div id="done" class="screen">
+  <div class="done-icon">完</div>
+  <div class="done-title">セッション完了！</div>
+  <div class="done-sub" id="done-sub"></div>
+  <div class="done-stats">
+    <div class="stat-box">
+      <div class="stat-num green" id="stat-good">0</div>
+      <div class="stat-label">good</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num amber" id="stat-hard">0</div>
+      <div class="stat-label">hard</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num red" id="stat-again">0</div>
+      <div class="stat-label">again</div>
+    </div>
+  </div>
+  <div class="done-btns">
+    <button class="btn-primary" id="done-study-again" onclick="studyAgain()">もう一度</button>
+    <button class="btn-secondary" onclick="goHome()">ホームへ</button>
+  </div>
+</div>
+
+<script>
+// ── Vocab data ──────────────────────────────────────────────────────────────
+const VOCAB = [{"jpHtml":"あせ","jpClean":"あせ","romaji":"ase","en":"sweat","deck":"だい4か"},{"jpHtml":"あの／あのう","jpClean":"あの／あのう","romaji":"ano / anoo","en":"ah… / Excuse me / well…","deck":"だい4か"},{"jpHtml":"いけん","jpClean":"いけん","romaji":"iken","en":"opinion","deck":"だい4か"},{"jpHtml":"うん","jpClean":"うん","romaji":"un","en":"yeah / yup / okay / hmm","deck":"だい4か"},{"jpHtml":"おと","jpClean":"おと","romaji":"oto","en":"sound / noise","deck":"だい4か"},{"jpHtml":"おとを たてます","jpClean":"おとを たてます","romaji":"oto o tatemasu","en":"make noises","deck":"だい4か"},{"jpHtml":"かならず","jpClean":"かならず","romaji":"kanarazu","en":"always / without exception","deck":"だい4か"},{"jpHtml":"かにサラダ","jpClean":"かにサラダ","romaji":"kani-sarada","en":"crab salad","deck":"だい4か"},{"jpHtml":"かゆい","jpClean":"かゆい","romaji":"kayui","en":"itchy","deck":"だい4か"},{"jpHtml":"かわきます","jpClean":"かわきます","romaji":"kawakimasu","en":"to become thirsty / to dry","deck":"だい4か"},{"jpHtml":"かんぱい（します）","jpClean":"かんぱい（します）","romaji":"kanpai (shimasu)","en":"toast / cheers!","deck":"だい4か"},{"jpHtml":"きめます","jpClean":"きめます","romaji":"kimemasu","en":"to decide","deck":"だい4か"},{"jpHtml":"けつあつ","jpClean":"けつあつ","romaji":"ketsuatsu","en":"blood pressure","deck":"だい4か"},{"jpHtml":"こおり","jpClean":"こおり","romaji":"koori","en":"ice","deck":"だい4か"},{"jpHtml":"こくさいけっこん（します）","jpClean":"こくさいけっこん（します）","romaji":"kokusai-kekkon (shimasu)","en":"(to have) an international marriage","deck":"だい4か"},{"jpHtml":"こくさい〜","jpClean":"こくさい〜","romaji":"kokusai~","en":"international〜","deck":"だい4か"},{"jpHtml":"こしょう","jpClean":"こしょう","romaji":"koshoo","en":"pepper","deck":"だい4か"},{"jpHtml":"しょうゆを かけます","jpClean":"しょうゆを かけます","romaji":"shooyu o kakemasu","en":"to pour soy sauce","deck":"だい4か"},{"jpHtml":"ぜんぶ","jpClean":"ぜんぶ","romaji":"zenbu","en":"all / whole","deck":"だい4か"},{"jpHtml":"そのまま","jpClean":"そのまま","romaji":"sonomama","en":"as is / without changing","deck":"だい4か"},{"jpHtml":"たべかた","jpClean":"たべかた","romaji":"tabekata","en":"how to eat","deck":"だい4か"},{"jpHtml":"たれを つけます","jpClean":"たれを つけます","romaji":"tare o tsukemasu","en":"to dip / put sauce on","deck":"だい4か"},{"jpHtml":"とうがらし","jpClean":"とうがらし","romaji":"toogarashi","en":"chili pepper","deck":"だい4か"},{"jpHtml":"とうふステーキ","jpClean":"とうふステーキ","romaji":"toofu-suteeki","en":"tofu steak","deck":"だい4か"},{"jpHtml":"とります","jpClean":"とります","romaji":"torimasu","en":"to take","deck":"だい4か"},{"jpHtml":"なまたまご","jpClean":"なまたまご","romaji":"nama-tamago","en":"raw egg","deck":"だい4か"},{"jpHtml":"ぬります","jpClean":"ぬります","romaji":"nurimasu","en":"to spread","deck":"だい4か"},{"jpHtml":"のこします","jpClean":"のこします","romaji":"nokoshimasu","en":"to leave over","deck":"だい4か"},{"jpHtml":"のせます","jpClean":"のせます","romaji":"nosemasu","en":"to put on top","deck":"だい4か"},{"jpHtml":"のど","jpClean":"のど","romaji":"nodo","en":"throat","deck":"だい4か"},{"jpHtml":"のどが かわきました","jpClean":"のどが かわきました","romaji":"nodo ga kawakimashita","en":"I'm thirsty.","deck":"だい4か"},{"jpHtml":"ははは","jpClean":"ははは","romaji":"hahaha","en":"hahaha (laughter)","deck":"だい4か"},{"jpHtml":"ひだりて","jpClean":"ひだりて","romaji":"hidarite","en":"left hand","deck":"だい4か"},{"jpHtml":"みぎて","jpClean":"みぎて","romaji":"migite","en":"right hand","deck":"だい4か"},{"jpHtml":"やきます","jpClean":"やきます","romaji":"yakimasu","en":"to grill / to toast","deck":"だい4か"},{"jpHtml":"りゅうがく（します）","jpClean":"りゅうがく（します）","romaji":"ryuugaku (shimasu)","en":"to study abroad","deck":"だい4か"},{"jpHtml":"アメリカじん","jpClean":"アメリカじん","romaji":"amerikajin","en":"American (person)","deck":"だい4か"},{"jpHtml":"オムレツ","jpClean":"オムレツ","romaji":"omuretsu","en":"omelette","deck":"だい4か"},{"jpHtml":"オーブントースター","jpClean":"オーブントースター","romaji":"oobun-toosutaa","en":"oven toaster","deck":"だい4か"},{"jpHtml":"デザート","jpClean":"デザート","romaji":"dezaato","en":"dessert","deck":"だい4か"},{"jpHtml":"パスタ","jpClean":"パスタ","romaji":"pasuta","en":"pasta","deck":"だい4か"},{"jpHtml":"マナー","jpClean":"マナー","romaji":"manaa","en":"manners","deck":"だい4か"},{"jpHtml":"マヨトースト","jpClean":"マヨトースト","romaji":"mayo-toosuto","en":"mayonnaise toast","deck":"だい4か"},{"jpHtml":"マヨネーズ","jpClean":"マヨネーズ","romaji":"mayoneezu","en":"mayonnaise","deck":"だい4か"},{"jpHtml":"マヨラー","jpClean":"マヨラー","romaji":"mayoraa","en":"mayonnaise lover","deck":"だい4か"},{"jpHtml":"〜かた","jpClean":"〜かた","romaji":"~kata","en":"how to〜","deck":"だい4か"},{"jpHtml":"〜ちゅう","jpClean":"〜ちゅう","romaji":"~chuu","en":"during〜 / while〜","deck":"だい4か"},{"jpHtml":"うつくしい","jpClean":"うつくしい","romaji":"utsukushii","en":"beautiful","deck":"だい5か かつどう"},{"jpHtml":"かんこう（します）","jpClean":"かんこう（します）","romaji":"kankoo (shimasu)","en":"sightseeing (to go sightseeing)","deck":"だい5か かつどう"},{"jpHtml":"かんこうシーズン","jpClean":"かんこうシーズン","romaji":"kankoo-shiizun","en":"tourist season","deck":"だい5か かつどう"},{"jpHtml":"けしき","jpClean":"けしき","romaji":"keshiki","en":"view / scenery","deck":"だい5か かつどう"},{"jpHtml":"こみます","jpClean":"こみます","romaji":"komimasu","en":"to get crowded","deck":"だい5か かつどう"},{"jpHtml":"しぜん","jpClean":"しぜん","romaji":"shizen","en":"nature","deck":"だい5か かつどう"},{"jpHtml":"しま","jpClean":"しま","romaji":"shima","en":"island","deck":"だい5か かつどう"},{"jpHtml":"しんせつ（な）","jpClean":"しんせつ（な）","romaji":"shinsetsu (na)","en":"kind","deck":"だい5か かつどう"},{"jpHtml":"できれば","jpClean":"できれば","romaji":"dekireba","en":"if possible / if you can","deck":"だい5か かつどう"},{"jpHtml":"で／それで","jpClean":"で／それで","romaji":"de / sorede","en":"and then / so","deck":"だい5か かつどう"},{"jpHtml":"どうぐ","jpClean":"どうぐ","romaji":"doogu","en":"tool / equipment","deck":"だい5か かつどう"},{"jpHtml":"はやい","jpClean":"はやい","romaji":"hayai","en":"early / fast","deck":"だい5か かつどう"},{"jpHtml":"ほっとします","jpClean":"ほっとします","romaji":"hotto shimasu","en":"to feel relieved","deck":"だい5か かつどう"},{"jpHtml":"ほんとうに／ほんとに","jpClean":"ほんとうに／ほんとに","romaji":"hontooni / hontoni","en":"really / truly","deck":"だい5か かつどう"},{"jpHtml":"もっていきます","jpClean":"もっていきます","romaji":"motte ikimasu","en":"to bring / to carry","deck":"だい5か かつどう"},{"jpHtml":"ゆたか（な）","jpClean":"ゆたか（な）","romaji":"yutaka (na)","en":"rich / bountiful","deck":"だい5か かつどう"},{"jpHtml":"ゆれます","jpClean":"ゆれます","romaji":"yuremasu","en":"to shake / to sway","deck":"だい5か かつどう"},{"jpHtml":"りょうきん","jpClean":"りょうきん","romaji":"ryookin","en":"fee / fare","deck":"だい5か かつどう"},{"jpHtml":"サングラス","jpClean":"サングラス","romaji":"sangurasu","en":"sunglasses","deck":"だい5か かつどう"},{"jpHtml":"シーズン","jpClean":"シーズン","romaji":"shiizun","en":"season","deck":"だい5か かつどう"},{"jpHtml":"ダイビング","jpClean":"ダイビング","romaji":"daibingu","en":"diving","deck":"だい5か かつどう"},{"jpHtml":"ドライブ（します）","jpClean":"ドライブ（します）","romaji":"doraibu (shimasu)","en":"(to take) a drive","deck":"だい5か かつどう"},{"jpHtml":"レンタル（します）","jpClean":"レンタル（します）","romaji":"rentaru (shimasu)","en":"rental (to rent)","deck":"だい5か かつどう"},{"jpHtml":"レンタカー","jpClean":"レンタカー","romaji":"rentakaa","en":"rental car","deck":"だい5か かつどう"},{"jpHtml":"おみせ","jpClean":"おみせ","romaji":"omise","en":"store (polite)","deck":"だい5か りかい"},{"jpHtml":"かいがん","jpClean":"かいがん","romaji":"kaigan","en":"coast","deck":"だい5か りかい"},{"jpHtml":"かえします","jpClean":"かえします","romaji":"kaeshimasu","en":"to return","deck":"だい5か りかい"},{"jpHtml":"き","jpClean":"き","romaji":"ki","en":"feeling / mood","deck":"だい5か りかい"},{"jpHtml":"きもち","jpClean":"きもち","romaji":"kimochi","en":"feeling","deck":"だい5か りかい"},{"jpHtml":"さんか（します）","jpClean":"さんか（します）","romaji":"sanka (shimasu)","en":"(to) participate","deck":"だい5か りかい"},{"jpHtml":"つれていきます","jpClean":"つれていきます","romaji":"tsureteikimasu","en":"to take (someone) along","deck":"だい5か りかい"},{"jpHtml":"はじめ","jpClean":"はじめ","romaji":"hajime","en":"beginning","deck":"だい5か りかい"},{"jpHtml":"ふだん","jpClean":"ふだん","romaji":"fudan","en":"usually / normally","deck":"だい5か りかい"},{"jpHtml":"もり","jpClean":"もり","romaji":"mori","en":"forest","deck":"だい5か りかい"},{"jpHtml":"よやく（します）","jpClean":"よやく（します）","romaji":"yoyaku (shimasu)","en":"reservation / booking","deck":"だい5か りかい"},{"jpHtml":"インストラクター","jpClean":"インストラクター","romaji":"insutorakutaa","en":"instructor","deck":"だい5か りかい"},{"jpHtml":"カウンター","jpClean":"カウンター","romaji":"kauntaa","en":"counter","deck":"だい5か りかい"},{"jpHtml":"ガイド／ガイドさん","jpClean":"ガイド／ガイドさん","romaji":"gaido / gaido-san","en":"guide","deck":"だい5か りかい"},{"jpHtml":"サンダル","jpClean":"サンダル","romaji":"sandaru","en":"sandals","deck":"だい5か りかい"},{"jpHtml":"シュノーケリング","jpClean":"シュノーケリング","romaji":"shunookeringu","en":"snorkeling","deck":"だい5か りかい"},{"jpHtml":"ダイビングツアー","jpClean":"ダイビングツアー","romaji":"daibingu-tsuaa","en":"diving tour","deck":"だい5か りかい"},{"jpHtml":"チェックイン","jpClean":"チェックイン","romaji":"chekkuin","en":"check-in","deck":"だい5か りかい"},{"jpHtml":"チェックインカウンター","jpClean":"チェックインカウンター","romaji":"chekkuin-kauntaa","en":"check-in counter","deck":"だい5か りかい"},{"jpHtml":"ツアー","jpClean":"ツアー","romaji":"tsuaa","en":"tour","deck":"だい5か りかい"},{"jpHtml":"ツアーがいしゃ","jpClean":"ツアーがいしゃ","romaji":"tsuaa-gaisha","en":"tour company","deck":"だい5か りかい"},{"jpHtml":"ビーチ","jpClean":"ビーチ","romaji":"biichi","en":"beach","deck":"だい5か りかい"},{"jpHtml":"ライブハウス","jpClean":"ライブハウス","romaji":"raibuhausu","en":"live music venue","deck":"だい5か りかい"},{"jpHtml":"いかが","jpClean":"いかが","romaji":"ikaga","en":"how (formal form of どう)","deck":"だい6か かつどう"},{"jpHtml":"いきもの","jpClean":"いきもの","romaji":"ikimono","en":"living creatures / animals","deck":"だい6か かつどう"},{"jpHtml":"いやあ","jpClean":"いやあ","romaji":"iyaa","en":"not really / nah","deck":"だい6か かつどう"},{"jpHtml":"おきなわガラス","jpClean":"おきなわガラス","romaji":"okinawa-garasu","en":"Okinawan glass","deck":"だい6か かつどう"},{"jpHtml":"おきゃくさま","jpClean":"おきゃくさま","romaji":"okyakusama","en":"customer / guest (polite)","deck":"だい6か かつどう"},{"jpHtml":"きょうりょく（します）","jpClean":"きょうりょく（します）","romaji":"kyooryoku (shimasu)","en":"cooperation (to cooperate)","deck":"だい6か かつどう"},{"jpHtml":"ごきょうりょく","jpClean":"ごきょうりょく","romaji":"gokyooryoku","en":"cooperation (polite)","deck":"だい6か かつどう"},{"jpHtml":"ごさんか","jpClean":"ごさんか","romaji":"gosanka","en":"participation (polite)","deck":"だい6か かつどう"},{"jpHtml":"<ruby>女性<rt>じょせい</rt></ruby>","jpClean":"女性じょせい","romaji":"josee","en":"female / woman","deck":"だい6か かつどう"},{"jpHtml":"せいべつ","jpClean":"せいべつ","romaji":"seebetsu","en":"gender","deck":"だい6か かつどう"},{"jpHtml":"それなら","jpClean":"それなら","romaji":"sorenara","en":"in that case / if so","deck":"だい6か かつどう"},{"jpHtml":"<ruby>男性<rt>だんせい</rt></ruby>","jpClean":"男性だんせい","romaji":"dansee","en":"male / man","deck":"だい6か かつどう"},{"jpHtml":"ちょうど","jpClean":"ちょうど","romaji":"choodo","en":"just / exactly","deck":"だい6か かつどう"},{"jpHtml":"ちょうど いい","jpClean":"ちょうど いい","romaji":"choodo ii","en":"just right / perfect","deck":"だい6か かつどう"},{"jpHtml":"ないよう","jpClean":"ないよう","romaji":"naiyoo","en":"content","deck":"だい6か かつどう"},{"jpHtml":"ねんれい","jpClean":"ねんれい","romaji":"nenree","en":"age","deck":"だい6か かつどう"},{"jpHtml":"ふうん","jpClean":"ふうん","romaji":"fuun","en":"hmm / well","deck":"だい6か かつどう"},{"jpHtml":"ふつう","jpClean":"ふつう","romaji":"futsuu","en":"regular / usual","deck":"だい6か かつどう"},{"jpHtml":"<ruby>森<rt>もり</rt></ruby>","jpClean":"森もり","romaji":"mori","en":"forest","deck":"だい6か かつどう"},{"jpHtml":"オプショナルプラン","jpClean":"オプショナルプラン","romaji":"opushonaru-puran","en":"optional plan","deck":"だい6か かつどう"},{"jpHtml":"ガラス","jpClean":"ガラス","romaji":"garasu","en":"glass","deck":"だい6か かつどう"},{"jpHtml":"ツアーめい","jpClean":"ツアーめい","romaji":"tsuaa-mee","en":"tour name","deck":"だい6か かつどう"},{"jpHtml":"プラン","jpClean":"プラン","romaji":"puran","en":"plan","deck":"だい6か かつどう"}];
+
+const DECKS = [
+  { id: 'all',            name: 'すべて',           label: '全語 · All words' },
+  { id: 'だい4か',         name: 'だい4か',           label: 'Lesson 4' },
+  { id: 'だい5か かつどう', name: 'だい5か かつどう',   label: 'L5 Activities' },
+  { id: 'だい5か りかい',  name: 'だい5か りかい',    label: 'L5 Competences' },
+  { id: 'だい6か かつどう', name: 'だい6か かつどう',   label: 'L6 Activities' },
+];
+
+const STORAGE_KEY = 'tangocard_srs_v1';
+
+// ── State ────────────────────────────────────────────────────────────────────
+let dir = 'ja-en';       // 'ja-en' or 'en-ja'
+let currentDeck = null;  // deck id
+let queue = [];          // [{word, isNew, againCount}]
+let queueIdx = 0;
+let flipped = false;
+let sessionStats = { good: 0, hard: 0, again: 0 };
+let srs = {};            // { jpClean: { interval, ef, due, reps } }
+
+// ── SRS helpers ──────────────────────────────────────────────────────────────
+function loadSRS() {
+  try { srs = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); }
+  catch(e) { srs = {}; }
+}
+
+function saveSRS() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(srs));
+}
+
+function today() {
+  return new Date().toISOString().slice(0, 10);
+}
+
+function addDays(d, n) {
+  const date = new Date(d);
+  date.setDate(date.getDate() + n);
+  return date.toISOString().slice(0, 10);
+}
+
+function cardState(jpClean) {
+  return srs[jpClean] || { interval: 0, ef: 2.5, due: null, reps: 0 };
+}
+
+function isDue(jpClean) {
+  const s = cardState(jpClean);
+  if (!s.due) return false;
+  return s.due <= today();
+}
+
+function isNew(jpClean) {
+  return !srs[jpClean] || srs[jpClean].due === null;
+}
+
+function applyGrade(jpClean, g) {
+  const s = { ...cardState(jpClean) };
+  if (g === 0) {
+    // Again — reset, will show again in session
+    s.interval = 0; s.reps = 0;
+  } else if (g === 1) {
+    // Hard
+    s.interval = Math.max(1, Math.round(s.interval * 1.2));
+    s.ef = Math.max(1.3, s.ef - 0.15);
+    s.reps = Math.max(0, s.reps - 1);
+    s.due = addDays(today(), s.interval);
+  } else {
+    // Good
+    if (s.reps === 0) s.interval = 1;
+    else if (s.reps === 1) s.interval = 6;
+    else s.interval = Math.round(s.interval * s.ef);
+    s.reps++;
+    s.due = addDays(today(), s.interval);
+  }
+  srs[jpClean] = s;
+  saveSRS();
+}
+
+// ── Deck stats ───────────────────────────────────────────────────────────────
+function deckWords(deckId) {
+  return deckId === 'all' ? VOCAB : VOCAB.filter(w => w.deck === deckId);
+}
+
+function deckStats(deckId) {
+  const words = deckWords(deckId);
+  let due = 0, newCards = 0;
+  for (const w of words) {
+    if (isDue(w.jpClean)) due++;
+    else if (isNew(w.jpClean)) newCards++;
+  }
+  return { total: words.length, due, new: newCards };
+}
+
+// ── Home ─────────────────────────────────────────────────────────────────────
+function setDir(d) {
+  dir = d;
+  document.getElementById('dir-ja-en').classList.toggle('active', d === 'ja-en');
+  document.getElementById('dir-en-ja').classList.toggle('active', d === 'en-ja');
+  renderDeckList();
+}
+
+function renderDeckList() {
+  const list = document.getElementById('deck-list');
+  list.innerHTML = '';
+  for (const deck of DECKS) {
+    const stats = deckStats(deck.id);
+    const isAll = deck.id === 'all';
+    const btn = document.createElement('button');
+    btn.className = 'deck-btn' + (isAll ? ' all-btn' : '');
+    
+    let badges = '';
+    if (stats.due > 0) badges += `<span class="deck-due">${stats.due} due</span>`;
+    if (stats.new > 0) badges += `<span class="deck-new">${stats.new} new</span>`;
+
+    btn.innerHTML = `
+      <span class="deck-btn-name">${deck.name}</span>
+      <span class="deck-btn-right">
+        ${badges}
+        <span class="deck-count">${stats.total}語</span>
+      </span>`;
+    btn.onclick = () => startStudy(deck.id);
+    list.appendChild(btn);
+  }
+}
+
+function goHome() {
+  showScreen('home');
+  renderDeckList();
+}
+
+// ── Study ────────────────────────────────────────────────────────────────────
+function startStudy(deckId) {
+  currentDeck = deckId;
+  sessionStats = { good: 0, hard: 0, again: 0 };
+
+  const words = deckWords(deckId);
+  // Sort: due first (oldest due date), then new
+  const due = words.filter(w => isDue(w.jpClean))
+    .sort((a, b) => (srs[a.jpClean]?.due || '') < (srs[b.jpClean]?.due || '') ? -1 : 1);
+  const newCards = words.filter(w => isNew(w.jpClean));
+
+  queue = [...due, ...newCards].map(w => ({ word: w, againCount: 0 }));
+  queueIdx = 0;
+
+  if (queue.length === 0) {
+    // Nothing to study - go straight to done
+    const deckObj = DECKS.find(d => d.id === deckId);
+    showDone(deckObj?.label || deckId, words.length);
+    return;
+  }
+
+  document.getElementById('nav-deck-name').textContent =
+    DECKS.find(d => d.id === deckId)?.name || deckId;
+
+  showScreen('study');
+  showCard();
+}
+
+function currentCard() { return queue[queueIdx]; }
+
+function showCard() {
+  if (queueIdx >= queue.length) {
+    // All done
+    const deckObj = DECKS.find(d => d.id === currentDeck);
+    showDone(deckObj?.label || currentDeck, deckWords(currentDeck).length);
+    return;
+  }
+
+  flipped = false;
+  const { word } = currentCard();
+  const wrap = document.getElementById('card-wrap');
+  wrap.classList.remove('flipped');
+
+  // Progress
+  const total = queue.length;
+  const done = queueIdx;
+  document.getElementById('nav-counter').textContent = `${done + 1} / ${total}`;
+  const pct = total > 0 ? (done / total * 100) : 0;
+  document.getElementById('progress-fill').style.width = pct + '%';
+
+  // Front
+  const frontJp = document.getElementById('card-front-jp');
+  const frontEn = document.getElementById('card-front-en');
+  const hintBtn = document.getElementById('hint-btn');
+
+  frontJp.classList.remove('show-ruby');
+
+  if (dir === 'ja-en') {
+    frontJp.innerHTML = word.jpHtml;
+    frontJp.style.display = '';
+    frontEn.style.display = 'none';
+    // Only show hint btn if card has ruby (i.e. kanji)
+    const hasRuby = word.jpHtml.includes('<ruby>');
+    hintBtn.classList.toggle('hidden', !hasRuby);
+  } else {
+    frontJp.style.display = 'none';
+    frontEn.textContent = word.en;
+    frontEn.style.display = '';
+    hintBtn.classList.add('hidden');
+  }
+
+  // Back
+  document.getElementById('card-back-jp').innerHTML = word.jpHtml;
+  document.getElementById('card-back-romaji').textContent = word.romaji;
+  document.getElementById('card-back-en').textContent = word.en;
+
+  // Grades hidden until flip
+  document.getElementById('grade-area').classList.add('hidden');
+}
+
+function showHint() {
+  document.getElementById('card-front-jp').classList.toggle('show-ruby');
+}
+
+function flipCard() {
+  if (flipped) return;
+  flipped = true;
+  document.getElementById('card-wrap').classList.add('flipped');
+  document.getElementById('grade-area').classList.remove('hidden');
+  // Update progress to "currently on"
+}
+
+function grade(g) {
+  if (!flipped) { flipCard(); return; }
+
+  const entry = currentCard();
+  const jpClean = entry.word.jpClean;
+
+  if (g === 0) {
+    // Again: push to end of queue
+    sessionStats.again++;
+    entry.againCount++;
+    queue.push({ word: entry.word, againCount: entry.againCount });
+    queueIdx++;
+    // Don't save to SRS yet — let them keep seeing it
+  } else {
+    sessionStats[g === 1 ? 'hard' : 'good']++;
+    applyGrade(jpClean, g);
+    queueIdx++;
+  }
+
+  showCard();
+}
+
+function studyAgain() {
+  startStudy(currentDeck);
+}
+
+// ── Done ─────────────────────────────────────────────────────────────────────
+function showDone(deckLabel, totalWords) {
+  document.getElementById('stat-good').textContent = sessionStats.good;
+  document.getElementById('stat-hard').textContent = sessionStats.hard;
+  document.getElementById('stat-again').textContent = sessionStats.again;
+  const total = sessionStats.good + sessionStats.hard + sessionStats.again;
+  document.getElementById('done-sub').textContent =
+    total === 0
+      ? `${totalWords}語 — nothing due right now`
+      : `${total} cards reviewed · ${deckLabel}`;
+  showScreen('done');
+}
+
+// ── Utils ────────────────────────────────────────────────────────────────────
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+// Keyboard support
+document.addEventListener('keydown', e => {
+  const studyActive = document.getElementById('study').classList.contains('active');
+  if (!studyActive) return;
+  if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); flipCard(); }
+  if (e.key === 'h' || e.key === 'H') showHint();
+  if (flipped) {
+    if (e.key === '1') grade(0);
+    if (e.key === '2') grade(1);
+    if (e.key === '3') grade(2);
+  }
+});
+
+// ── Init ─────────────────────────────────────────────────────────────────────
+loadSRS();
+renderDeckList();
+</script>
+</body>
+</html>
