@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>だい6か しゅくだい · 2026年6月22日</title>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;700&family=Noto+Serif+JP:wght@400;500;700&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1a1a;
+  --ink-soft: #3a3a3a;
+  --paper: #f4efe6;
+  --paper-soft: #ebe4d6;
+  --paper-deep: #e2d9c4;
+  --rule: #c9bfa9;
+  --rule-soft: #d8cfb9;
+  --accent: #8b1a1a;
+  --accent-soft: #b85c5c;
+  --muted: #6b6357;
+  --gold: #b8893d;
+  --grammar: #3a5a7a;
+  --grammar-bg: #d4dce4;
+  --done: #5a7a3a;
+  --done-bg: #d8e0c4;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 300;
+  line-height: 1.7;
+  padding: 50px 32px;
+  background-image:
+    radial-gradient(circle at 15% 25%, rgba(139, 26, 26, 0.03) 0%, transparent 40%),
+    radial-gradient(circle at 85% 75%, rgba(184, 137, 61, 0.04) 0%, transparent 50%);
+}
+
+.container { max-width: 880px; margin: 0 auto; }
+
+/* ====== Nav ====== */
+.page-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--rule);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+.page-nav a { color: var(--accent); text-decoration: none; text-transform: uppercase; }
+.page-nav a:hover { text-decoration: underline; }
+.page-nav .center { color: var(--muted); }
+
+/* ====== Masthead ====== */
+.masthead {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: end;
+  gap: 30px;
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 20px;
+  margin-bottom: 40px;
+}
+.masthead-mark {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 80px;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 0.85;
+  letter-spacing: -4px;
+}
+.masthead-title h1 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 32px;
+  font-weight: 500;
+  letter-spacing: -1px;
+  line-height: 1.1;
+  margin-bottom: 6px;
+}
+.masthead-title .sub {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.masthead-meta {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 1.5px;
+  text-align: right;
+  text-transform: uppercase;
+  line-height: 1.8;
+}
+
+/* ====== Section ====== */
+section { margin-bottom: 56px; }
+
+.section-head {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: baseline;
+  gap: 20px;
+  padding-bottom: 14px;
+  margin-bottom: 28px;
+  border-bottom: 1px solid var(--rule);
+}
+.section-num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: 2px;
+  font-weight: 500;
+}
+.section-head h2 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 26px;
+  font-weight: 500;
+}
+
+/* ====== Info grid ====== */
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 0;
+}
+.info-card {
+  background: var(--paper-soft);
+  border: 1px solid var(--rule);
+  padding: 18px 20px;
+}
+.info-card-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+.info-card-body {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+}
+.info-card-body strong { font-weight: 500; color: var(--ink); }
+.info-card .checkbox-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 4px 0;
+  font-size: 13px;
+}
+.info-card .checkbox-item input[type="checkbox"] {
+  margin-top: 3px;
+  accent-color: var(--accent);
+  flex-shrink: 0;
+}
+
+/* ====== Resource links ====== */
+.link-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.link-card {
+  background: var(--paper-soft);
+  border: 1px solid var(--rule);
+  padding: 14px 18px;
+}
+.link-card-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+.link-card a {
+  display: block;
+  font-size: 12px;
+  color: var(--grammar);
+  text-decoration: none;
+  word-break: break-all;
+  line-height: 1.5;
+  margin-bottom: 3px;
+}
+.link-card a:hover { text-decoration: underline; }
+.link-card .link-note {
+  font-size: 11px;
+  color: var(--muted);
+  font-style: italic;
+  margin-top: 4px;
+}
+
+/* ====== Grammar ====== */
+.grammar-pattern { margin-bottom: 44px; }
+.grammar-pattern h3 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 14px;
+  color: var(--ink);
+}
+.pattern-box {
+  background: var(--grammar-bg);
+  border: 1px solid var(--grammar);
+  padding: 18px 24px;
+  margin: 16px 0 18px;
+  text-align: center;
+}
+.pattern-formula {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--grammar);
+  margin-bottom: 6px;
+  line-height: 1.6;
+}
+.pattern-gloss {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.grammar-meta {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+  margin-bottom: 10px;
+}
+.grammar-meta strong { font-weight: 500; color: var(--ink); }
+.formation-list {
+  list-style: none;
+  margin: 10px 0 18px 0;
+  background: var(--paper-soft);
+  border: 1px solid var(--rule);
+  padding: 14px 18px;
+}
+.formation-list li {
+  font-size: 14px;
+  padding: 4px 0;
+  border-bottom: 1px dashed var(--rule-soft);
+  color: var(--ink-soft);
+}
+.formation-list li:last-child { border-bottom: none; }
+.formation-list .jp {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 16px;
+  color: var(--grammar);
+}
+.examples-block { margin-top: 14px; }
+.examples-block h4 {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+.example-item {
+  padding: 10px 0;
+  border-bottom: 1px dashed var(--rule-soft);
+}
+.example-item:last-child { border-bottom: none; }
+.example-jp {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 17px;
+  line-height: 1.8;
+  color: var(--ink);
+  display: block;
+  margin-bottom: 2px;
+}
+.example-en {
+  font-size: 13px;
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* ====== Callout ====== */
+.callout {
+  background: var(--paper-soft);
+  border-left: 3px solid var(--gold);
+  padding: 14px 20px;
+  margin: 14px 0;
+  font-size: 14px;
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+.callout strong { font-weight: 500; color: var(--ink); }
+
+/* ====== Dialogue (かいわ) ====== */
+.dialogue { }
+.dialogue-line {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px dashed var(--rule-soft);
+  align-items: start;
+}
+.dialogue-line:last-child { border-bottom: none; }
+.speaker {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  padding-top: 4px;
+  font-weight: 500;
+}
+.utterance {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 17px;
+  line-height: 1.8;
+  color: var(--ink);
+}
+
+/* ====== Vocab table ====== */
+.vocab-table-wrap {
+  border: 1px solid var(--rule);
+  overflow: hidden;
+}
+.vocab-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+.vocab-table th {
+  background: var(--paper-deep);
+  padding: 10px 14px;
+  text-align: left;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 500;
+  border-bottom: 1px solid var(--rule);
+}
+.vocab-table td {
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--rule-soft);
+  vertical-align: middle;
+}
+.vocab-table tr:last-child td { border-bottom: none; }
+.vocab-table .jp {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 16px;
+  color: var(--ink);
+  width: 200px;
+}
+.vocab-table .romaji {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  color: var(--muted);
+  width: 220px;
+}
+.vocab-table .en { color: var(--muted); }
+
+/* ====== りかい sections ====== */
+.rikai-page { margin-bottom: 48px; }
+.rikai-page h3 {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--rule-soft);
+}
+.rikai-dialogue {
+  background: var(--paper-soft);
+  border-left: 3px solid var(--accent);
+  padding: 20px 24px;
+  margin-bottom: 20px;
+}
+.rikai-line { margin-bottom: 16px; }
+.rikai-line:last-child { margin-bottom: 0; }
+.rikai-speaker {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--accent);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.rikai-jp {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 17px;
+  line-height: 1.8;
+  color: var(--ink);
+  display: block;
+  margin-bottom: 2px;
+}
+.rikai-en {
+  font-size: 13px;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.grammar-table-wrap {
+  border: 1px solid var(--rule);
+  overflow: hidden;
+  margin: 14px 0;
+}
+.grammar-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.grammar-table th {
+  background: var(--paper-deep);
+  padding: 9px 14px;
+  text-align: left;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 500;
+  border-bottom: 1px solid var(--rule);
+}
+.grammar-table td {
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--rule-soft);
+  vertical-align: top;
+  line-height: 1.6;
+}
+.grammar-table tr:last-child td { border-bottom: none; }
+.grammar-table .pattern-col {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 14px;
+  width: 220px;
+}
+.grammar-table .example-col {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 14px;
+}
+.grammar-table .note-col { color: var(--muted); font-size: 12px; }
+
+.exercise-item {
+  background: var(--paper-soft);
+  border: 1px solid var(--rule);
+  padding: 16px 20px;
+  margin-bottom: 10px;
+}
+.exercise-num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--accent);
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+.exercise-context {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+.exercise-answer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+}
+.answer-arrow {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+}
+.answer-val {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 16px;
+  color: var(--done);
+  font-weight: 500;
+}
+.exercise-en {
+  font-size: 12px;
+  color: var(--muted);
+  font-style: italic;
+  margin-top: 6px;
+}
+
+.pattern-note {
+  background: var(--paper-soft);
+  border-left: 3px solid var(--gold);
+  padding: 14px 20px;
+  margin: 16px 0;
+  font-size: 14px;
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+.pattern-note strong { font-weight: 500; color: var(--ink); }
+
+.summary-table-wrap {
+  border: 1px solid var(--rule);
+  overflow: hidden;
+  margin: 14px 0;
+}
+.summary-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.summary-table th {
+  background: var(--paper-deep);
+  padding: 9px 14px;
+  text-align: left;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  border-bottom: 1px solid var(--rule);
+}
+.summary-table td {
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--rule-soft);
+  font-size: 13px;
+}
+.summary-table tr:last-child td { border-bottom: none; }
+.summary-table .jp {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 15px;
+}
+.summary-table .answer { color: var(--done); font-weight: 500; }
+.summary-table .type {
+  font-family: 'IBM Plex Mono', monospace;
+  color: var(--grammar);
+  font-size: 11px;
+}
+
+footer {
+  margin-top: 60px;
+  padding-top: 20px;
+  border-top: 1px solid var(--rule);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+  text-align: center;
+  line-height: 1.8;
+}
+
+/* ====== Translation toggle ====== */
+.example-en,
+.rikai-en,
+.exercise-en,
+.dialogue-en { display: none; }
+
+body.translations-visible .example-en,
+body.translations-visible .rikai-en,
+body.translations-visible .exercise-en,
+body.translations-visible .dialogue-en { display: block; }
+
+.dialogue-en {
+  font-size: 13px;
+  color: var(--muted);
+  font-style: italic;
+  margin-top: 2px;
+}
+
+.toggle-translations {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 100;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  background: var(--paper-deep);
+  border: 1px solid var(--rule);
+  color: var(--muted);
+  padding: 8px 14px;
+  cursor: pointer;
+  border-radius: 3px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+}
+.toggle-translations:hover { background: var(--paper-soft); color: var(--accent); border-color: var(--accent-soft); }
+body.translations-visible .toggle-translations { background: var(--done-bg); color: var(--done); border-color: var(--done); }
+
+@media (max-width: 700px) {
+  body { padding: 30px 18px; }
+  .masthead { grid-template-columns: 1fr; gap: 16px; }
+  .masthead-meta { text-align: left; }
+  .info-grid { grid-template-columns: 1fr; }
+  .link-grid { grid-template-columns: 1fr; }
+  .dialogue-line { grid-template-columns: 70px 1fr; gap: 10px; }
+  .section-head { gap: 12px; }
+}
+
+@media print {
+  body { background: white; padding: 20px; }
+  footer { break-before: avoid; }
+}
+
+/* ====== Audio block (multi-row) ====== */
+.audio-block {
+  margin: 6px 0 18px;
+  border: 1px solid var(--rule);
+  overflow: hidden;
+}
+.audio-block-label {
+  background: var(--paper-deep);
+  padding: 8px 14px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 500;
+  border-bottom: 1px solid var(--rule);
+}
+.audio-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 14px;
+  border-bottom: 1px solid var(--rule-soft);
+}
+.audio-row:last-child { border-bottom: none; }
+.audio-row-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  width: 80px;
+  flex-shrink: 0;
+  letter-spacing: 0.5px;
+}
+.audio-row audio { flex: 1; height: 28px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Nav -->
+  <nav class="page-nav">
+    <a href="../index.html">← ホーム</a>
+    <span class="center">だい6か · 2026年6月22日</span>
+    <span style="color:var(--rule)">—</span>
+  </nav>
+
+  <!-- Masthead -->
+  <header class="masthead">
+    <div class="masthead-mark">六</div>
+    <div class="masthead-title">
+      <h1>だい6か しゅくだい</h1>
+      <div class="sub">2026年6月22日 · まるごと A2-2 · L6 りかい + かつどう</div>
+    </div>
+    <div class="masthead-meta">
+      りかい pp.62–65<br>
+      かつどう pp.57–59<br>
+      <ruby>黄色<rt>きいろ</rt></ruby>い<ruby>本<rt>ほん</rt></ruby> · <ruby>白<rt>しろ</rt></ruby>い<ruby>本<rt>ほん</rt></ruby>
+    </div>
+  </header>
+
+  <!-- INFO -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">INFO</span>
+      <h2><ruby>前回<rt>ぜんかい</rt></ruby> · <ruby>次回<rt>じかい</rt></ruby> · しゅくだい</h2>
+    </div>
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="info-card-label"><ruby>前回<rt>ぜんかい</rt></ruby>のクラス</div>
+        <div class="info-card-body">
+          <strong>6<ruby>月<rt>がつ</rt></ruby>19<ruby>日<rt>にち</rt></ruby>（<ruby>金曜日<rt>きんようび</rt></ruby>）</strong><br>
+          だい5か — 60ページ（りかい）<br>
+          だい6か — 54–57ページ（かつどう）
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label"><ruby>次回<rt>じかい</rt></ruby>のクラス</div>
+        <div class="info-card-body">
+          <strong>6<ruby>月<rt>がつ</rt></ruby>22<ruby>日<rt>にち</rt></ruby>（<ruby>月曜日<rt>げつようび</rt></ruby>）</strong><br>
+          だい6か — 57–59ページ（かつどう）<br>
+          だい6か — 62–65ページ（りかい）
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">しゅくだい</div>
+        <div class="info-card-body">
+          <label class="checkbox-item">
+            <input type="checkbox">
+            <ruby>日記<rt>にっき</rt></ruby>か<ruby>話<rt>はなし</rt></ruby>を<ruby>日本語<rt>にほんご</rt></ruby>で<ruby>書<rt>か</rt></ruby>く（<ruby>先生<rt>せんせい</rt></ruby>に<ruby>提出<rt>ていしゅつ</rt></ruby>）
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox">
+            かいわ L6 を<ruby>見<rt>み</rt></ruby>る
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox">
+            <ruby>文法<rt>ぶんぽう</rt></ruby> L5 を<ruby>練習<rt>れんしゅう</rt></ruby>する（もう<ruby>一回<rt>いっかい</rt></ruby>）
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox">
+            <ruby>文法<rt>ぶんぽう</rt></ruby> L6 を<ruby>見<rt>み</rt></ruby>る
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox">
+            Word Quiz りかい L5 をする
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox">
+            NHK ニュースを<ruby>読<rt>よ</rt></ruby>む
+          </label>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LINKS -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">LINKS</span>
+      <h2>リソースリンク</h2>
+    </div>
+    <div class="link-grid">
+      <div class="link-card">
+        <div class="link-card-label">かいわ L6</div>
+        <a href="https://a2-2.marugotoweb.jp/en/conversation/episode/6/" target="_blank">marugotoweb.jp — Episode 6</a>
+      </div>
+      <div class="link-card">
+        <div class="link-card-label"><ruby>文法<rt>ぶんぽう</rt></ruby> L5 (practice)</div>
+        <a href="https://a2-2.marugotoweb.jp/en/grammar/practice/topic3-sec5/" target="_blank">sec5 · Grammar practice (engang til)</a>
+      </div>
+      <div class="link-card">
+        <div class="link-card-label"><ruby>文法<rt>ぶんぽう</rt></ruby> L6</div>
+        <a href="https://a2-2.marugotoweb.jp/en/grammar/detail/topic3-sec6-1/" target="_blank">sec6-1 · Potential form</a>
+        <a href="https://a2-2.marugotoweb.jp/en/grammar/detail/topic3-sec6-2/" target="_blank">sec6-2 · S し、___</a>
+      </div>
+      <div class="link-card">
+        <div class="link-card-label">Life &amp; Culture / NHK</div>
+        <a href="https://a2-2.marugotoweb.jp/en/life-and-culture/" target="_blank">Life &amp; Culture — Topic 3</a>
+        <a href="https://news.web.nhk/news/easy/" target="_blank">NHK やさしいことばニュース</a>
+      </div>
+      <div class="link-card">
+        <div class="link-card-label">たんごクイズ L5 りかい</div>
+        <a href="https://words.marugotoweb.jp/quiz.php?lv=A2-2&tp%5B%5D=3&ls%5B%5D=5&tx%5B%5D=comp&class%5B%5D=Noun&class%5B%5D=Verb1&class%5B%5D=Verb2&class%5B%5D=Verb3&class%5B%5D=i-Adjective&class%5B%5D=na-Adjective&class%5B%5D=Adverb&class%5B%5D=Conjunction&class%5B%5D=Expression&class%5B%5D=others&learn_ex%5B%5D=A1&learn_ex%5B%5D=A2-1&lang=en&itemtotal=42" target="_blank">Quiz — L5 りかい</a>
+      </div>
+      <div class="link-card">
+        <div class="link-card-label">たんごリスト L6 かつどう</div>
+        <a href="https://words.marugotoweb.jp/mylist.php?lv=A2-2&tp%5B%5D=3&ls%5B%5D=6&tx%5B%5D=act&class%5B%5D=Noun&class%5B%5D=Verb1&class%5B%5D=Verb2&class%5B%5D=Verb3&class%5B%5D=i-Adjective&class%5B%5D=na-Adjective&class%5B%5D=Adverb&class%5B%5D=Conjunction&class%5B%5D=Expression&class%5B%5D=others&learn_ex%5B%5D=A1&learn_ex%5B%5D=A2-1&lang=en" target="_blank">Word list — L6 かつどう (26語)</a>
+      </div>
+      <div class="link-card">
+        <div class="link-card-label">Audio</div>
+        <a href="https://marugoto.jpf.go.jp/en/download/" target="_blank">Marugoto audio download (login required)</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 漢字 -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">かんじ</span>
+      <h2><ruby>漢字<rt>かんじ</rt></ruby> — Topic 3, Lesson 6</h2>
+    </div>
+    <h3 class="rikai-page" style="border:none; margin-bottom:8px; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--accent); font-family:'IBM Plex Mono',monospace;">p.63 — ex.4 · <ruby>漢字<rt>かんじ</rt></ruby>を<ruby>読<rt>よ</rt></ruby>みましょう</h3>
+    <div class="audio-block">
+      <div class="audio-block-label">▶ CHECK! 100</div>
+      <div class="audio-row"><span class="audio-row-label">exercise</span>
+        <audio controls preload="none"><source src="../audio/rikai/track_100.mp3" type="audio/mpeg"></audio></div>
+      <div class="audio-row"><span class="audio-row-label">かんじ</span>
+        <audio controls preload="none"><source src="../audio/rikai/track_100_kanji.mp3" type="audio/mpeg"></audio></div>
+    </div>
+    <div class="vocab-table-wrap">
+      <table class="vocab-table">
+        <thead>
+          <tr><th>漢字</th><th>読み方</th><th>意味</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="jp"><ruby>観光地<rt>かんこうち</rt></ruby></td><td class="romaji">かんこうち</td><td class="en">tourist spot</td></tr>
+          <tr><td class="jp"><ruby>女性<rt>じょせい</rt></ruby></td><td class="romaji">じょせい</td><td class="en">female / woman</td></tr>
+          <tr><td class="jp"><ruby>男性<rt>だんせい</rt></ruby></td><td class="romaji">だんせい</td><td class="en">male / man</td></tr>
+          <tr><td class="jp"><ruby>動物<rt>どうぶつ</rt></ruby></td><td class="romaji">どうぶつ</td><td class="en">animals</td></tr>
+          <tr><td class="jp"><ruby>空気<rt>くうき</rt></ruby></td><td class="romaji">くうき</td><td class="en">air</td></tr>
+          <tr><td class="jp"><ruby>料金<rt>りょうきん</rt></ruby></td><td class="romaji">りょうきん</td><td class="en">fee / charge</td></tr>
+          <tr><td class="jp"><ruby>無料<rt>むりょう</rt></ruby></td><td class="romaji">むりょう</td><td class="en">free (of charge)</td></tr>
+          <tr><td class="jp"><ruby>明<rt>あか</rt></ruby>るい</td><td class="romaji">あかるい</td><td class="en">bright</td></tr>
+          <tr><td class="jp"><ruby>便利<rt>べんり</rt></ruby></td><td class="romaji">べんり</td><td class="en">convenient</td></tr>
+          <tr><td class="jp">～<ruby>中<rt>じゅう</rt></ruby>（<ruby>一年中<rt>いちねんじゅう</rt></ruby>）</td><td class="romaji">じゅう / いちねんじゅう</td><td class="en">throughout / all year round</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 文法 -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">文法</span>
+      <h2><ruby>文法<rt>ぶんぽう</rt></ruby> — だい6か</h2>
+    </div>
+
+    <!-- Grammar 1: Potential -->
+    <div class="grammar-pattern">
+      <h3>1. N が V-（られ）ます <span style="font-size:15px; font-weight:300; color:var(--muted); font-family:'IBM Plex Sans',sans-serif;">— Potential form (can do/see at place)</span></h3>
+      <p class="grammar-meta"><strong>Meaning:</strong> Used when talking about what is possible to do at a place or facility.</p>
+      <div class="pattern-box">
+        <div class="pattern-formula">N が V-（られ）ます</div>
+        <div class="pattern-gloss">potential form · can do / can experience</div>
+      </div>
+      <ul class="formation-list">
+        <li><span class="jp">る-verbs (Group 2):</span> drop る → add られます — みます → <span class="jp">みられます</span> · たべます → <span class="jp">たべられます</span></li>
+        <li><span class="jp">う-verbs (Group 1):</span> change う-row → え-row → add ます — およぎます → <span class="jp">およげます</span> · ききます → <span class="jp">きけます</span> · たのしみます → <span class="jp">たのしめます</span> · とります → <span class="jp">とれます</span> · あいます → <span class="jp">あえます</span></li>
+        <li><span class="jp">します (Group 3):</span> します → <span class="jp">できます</span></li>
+      </ul>
+      <div class="examples-block">
+        <h4>Examples</h4>
+        <div class="example-item">
+          <span class="example-jp"><ruby>店<rt>みせ</rt></ruby>で <ruby>沖縄<rt>おきなわ</rt></ruby>の <ruby>音楽<rt>おんがく</rt></ruby>が <ruby>聞<rt>き</rt></ruby>けます。</span>
+          <span class="example-en">You can hear Okinawan music in this shop.</span>
+        </div>
+        <div class="example-item">
+          <span class="example-jp">この ツアーでは <ruby>沖縄<rt>おきなわ</rt></ruby>ガラスで コップが <ruby>作<rt>つく</rt></ruby>れます。</span>
+          <span class="example-en">In this tour, you can make a cup with Okinawan glass.</span>
+        </div>
+        <div class="example-item">
+          <span class="example-jp"><ruby>沖縄<rt>おきなわ</rt></ruby>で ダイビングは <ruby>一年中<rt>いちねんじゅう</rt></ruby> できます。</span>
+          <span class="example-en">You can go diving in Okinawa all year round.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Grammar 2: V-たし -->
+    <div class="grammar-pattern">
+      <h3>2. S（plain form）し、___ <span style="font-size:15px; font-weight:300; color:var(--muted); font-family:'IBM Plex Sans',sans-serif;">— Listing reasons/impressions</span></h3>
+      <p class="grammar-meta"><strong>Meaning:</strong> Used when expressing your impression or opinion by giving two or more reasons.</p>
+      <div class="pattern-box">
+        <div class="pattern-formula">S（plain form）し、S（plain form）し、___</div>
+        <div class="pattern-gloss">listing reasons · impressions · multiple factors</div>
+      </div>
+      <ul class="formation-list">
+        <li><span class="jp">V-た → V-たし:</span> みました → <span class="jp">みたし</span> · たべました → <span class="jp">たべたし</span> · およぎました → <span class="jp">およいだし</span> · かいました → <span class="jp">かったし</span></li>
+        <li>na-adj: ヘルシー<span class="jp">だし</span> · i-adj: おいしい<span class="jp">し</span></li>
+      </ul>
+      <div class="examples-block">
+        <h4>Examples</h4>
+        <div class="example-item">
+          <span class="example-jp">イルカの ショーも <ruby>見<rt>み</rt></ruby>たし、イルカと いっしょに <ruby>泳<rt>およ</rt></ruby>いだし、<ruby>一日中<rt>いちにちじゅう</rt></ruby> <ruby>楽<rt>たの</rt></ruby>しめました。</span>
+          <span class="example-en">We saw the dolphin show and swam with the dolphins, so we enjoyed ourselves all day.</span>
+        </div>
+        <div class="example-item">
+          <span class="example-jp"><ruby>沖縄料理<rt>おきなわりょうり</rt></ruby>は おいしいし、ヘルシーだし、とても <ruby>気<rt>き</rt></ruby>に いりました。</span>
+          <span class="example-en">Okinawan food is delicious and healthy, so I really liked it.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- かいわ L6 -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">かいわ</span>
+      <h2>Episode 6「イルカの ショーが <ruby>見<rt>み</rt></ruby>られます」</h2>
+    </div>
+    <div class="audio-block">
+      <div class="audio-block-label">▶ CHECK! 101</div>
+      <div class="audio-row"><span class="audio-row-label">exercise</span>
+        <audio controls preload="none"><source src="../audio/rikai/track_101.mp3" type="audio/mpeg"></audio></div>
+      <div class="audio-row"><span class="audio-row-label">かいわ</span>
+        <audio controls preload="none"><source src="../audio/rikai/track_101_kaiwa.mp3" type="audio/mpeg"></audio></div>
+      <div class="audio-row"><span class="audio-row-label">かいわ (n)</span>
+        <audio controls preload="none"><source src="../audio/rikai/track_101_kaiwa_n.mp3" type="audio/mpeg"></audio></div>
+    </div>
+    <div class="dialogue">
+      <div class="dialogue-line">
+        <span class="speaker">1 · あきこ</span>
+        <div><span class="utterance">あ、リサさんの ガイドブック。</span><span class="dialogue-en">Ah, Lisa's guidebook.</span></div>
+      </div>
+      <div class="dialogue-line">
+        <span class="speaker">2 · リサ</span>
+        <div><span class="utterance">あのう、きれいな <ruby>魚<rt>さかな</rt></ruby>とか イルカを <ruby>見<rt>み</rt></ruby>てみたいんですが。</span><span class="dialogue-en">Excuse me, I'd like to try seeing beautiful fish and dolphins.</span></div>
+      </div>
+      <div class="dialogue-line">
+        <span class="speaker">3 · ホテルの<ruby>人<rt>ひと</rt></ruby></span>
+        <div><span class="utterance">それなら、この ツアー、いかがですか。イルカの ショーが <ruby>見<rt>み</rt></ruby>られますよ。</span><span class="dialogue-en">In that case, how about this tour? You can see the dolphin show!</span></div>
+      </div>
+      <div class="dialogue-line">
+        <span class="speaker">4 · リサ</span>
+        <div><span class="utterance">へえ、おもしろそうですね。</span><span class="dialogue-en">Oh, that sounds interesting!</span></div>
+      </div>
+      <div class="dialogue-line">
+        <span class="speaker">5 · ホテルの<ruby>人<rt>ひと</rt></ruby></span>
+        <div><span class="utterance">ええ。イルカと いっしょに <ruby>泳<rt>およ</rt></ruby>げますよ。とても <ruby>人気<rt>にんき</rt></ruby>が ある ツアーです。</span><span class="dialogue-en">Yes! You can swim with the dolphins too. It's a very popular tour.</span></div>
+      </div>
+      <div class="dialogue-line">
+        <span class="speaker">6 · ホテルの<ruby>人<rt>ひと</rt></ruby></span>
+        <div><span class="utterance"><ruby>今日<rt>きょう</rt></ruby>の ツアー、どうでしたか。</span><span class="dialogue-en">How was today's tour?</span></div>
+      </div>
+      <div class="dialogue-line">
+        <span class="speaker">7 · リサ</span>
+        <div><span class="utterance">よかったですよ。イルカの ショーも <ruby>見<rt>み</rt></ruby>たし、イルカと いっしょに <ruby>泳<rt>およ</rt></ruby>いだし、<ruby>一日中<rt>いちにちじゅう</rt></ruby> <ruby>楽<rt>たの</rt></ruby>しめました。</span><span class="dialogue-en">It was great! I saw the dolphin show, swam with the dolphins — I enjoyed myself all day!</span></div>
+      </div>
+      <div class="dialogue-line">
+        <span class="speaker">8 · ホテルの<ruby>人<rt>ひと</rt></ruby></span>
+        <div><span class="utterance">そうですか。よかったです。</span><span class="dialogue-en">I see. That's wonderful.</span></div>
+      </div>
+      <div class="dialogue-line">
+        <span class="speaker">9 · あきこ</span>
+        <div><span class="utterance">リサさん、ゴーヤチャンプルー、おいしかったですか。</span><span class="dialogue-en">Lisa, was the goya champuru delicious?</span></div>
+      </div>
+      <div class="dialogue-line">
+        <span class="speaker">10 · リサ</span>
+        <div><span class="utterance">あー、ゴーヤチャンプルー。</span><span class="dialogue-en">Ah, goya champuru.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- たんごリスト L6 りかい -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">たんご</span>
+      <h2>たんごリスト — L6 りかい (33<ruby>語<rt>ご</rt></ruby>)</h2>
+    </div>
+    <div class="vocab-table-wrap">
+      <table class="vocab-table">
+        <thead>
+          <tr><th>日本語</th><th>ローマ字</th><th>意味</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="jp">あんない（します）</td><td class="romaji">annai (shimasu)</td><td class="en">(to) guide / guidance</td></tr>
+          <tr><td class="jp">いかが</td><td class="romaji">ikaga</td><td class="en">how (formal for どう)</td></tr>
+          <tr><td class="jp">いつごろ</td><td class="romaji">itsugoro</td><td class="en">about when</td></tr>
+          <tr><td class="jp">うつくしい</td><td class="romaji">utsukushii</td><td class="en">beautiful</td></tr>
+          <tr><td class="jp">おおよろこび</td><td class="romaji">ooyorokobi</td><td class="en">very happy / very satisfied</td></tr>
+          <tr><td class="jp">おかえりなさい</td><td class="romaji">okaerinasai</td><td class="en">welcome home</td></tr>
+          <tr><td class="jp">おきなわガラス</td><td class="romaji">okinawa-garasu</td><td class="en">Okinawan glass</td></tr>
+          <tr><td class="jp">おしろ／しろ</td><td class="romaji">oshiro / shiro</td><td class="en">castle</td></tr>
+          <tr><td class="jp">おひる</td><td class="romaji">ohiru</td><td class="en">noon / lunch (polite)</td></tr>
+          <tr><td class="jp">およぎ</td><td class="romaji">oyogi</td><td class="en">swimming (noun)</td></tr>
+          <tr><td class="jp">かんそう</td><td class="romaji">kansoo</td><td class="en">impression / opinion</td></tr>
+          <tr><td class="jp">ぎゅうしゃ</td><td class="romaji">gyuusha</td><td class="en">oxcart</td></tr>
+          <tr><td class="jp"><ruby>空気<rt>くうき</rt></ruby></td><td class="romaji">kuuki</td><td class="en">air</td></tr>
+          <tr><td class="jp">くわしい</td><td class="romaji">kuwashii</td><td class="en">detailed</td></tr>
+          <tr><td class="jp">さいこう</td><td class="romaji">saikoo</td><td class="en">the best</td></tr>
+          <tr><td class="jp">じてんしゃタクシー</td><td class="romaji">jitensha-takushii</td><td class="en">bicycle taxi</td></tr>
+          <tr><td class="jp"><ruby>女性<rt>じょせい</rt></ruby></td><td class="romaji">josee</td><td class="en">female / woman</td></tr>
+          <tr><td class="jp">それなら</td><td class="romaji">sorenara</td><td class="en">in that case / if so</td></tr>
+          <tr><td class="jp">たいけん（します）</td><td class="romaji">taiken (shimasu)</td><td class="en">(to) experience</td></tr>
+          <tr><td class="jp">たいけんツアー</td><td class="romaji">taiken-tsuaa</td><td class="en">experience tour</td></tr>
+          <tr><td class="jp">たのしみます</td><td class="romaji">tanoshimimasu</td><td class="en">to enjoy</td></tr>
+          <tr><td class="jp"><ruby>男性<rt>だんせい</rt></ruby></td><td class="romaji">dansee</td><td class="en">male / man</td></tr>
+          <tr><td class="jp">のんびり</td><td class="romaji">nonbiri</td><td class="en">carefree / relaxing</td></tr>
+          <tr><td class="jp">ぶんかむら</td><td class="romaji">bunkamura</td><td class="en">cultural village</td></tr>
+          <tr><td class="jp">むかし</td><td class="romaji">mukashi</td><td class="en">long ago</td></tr>
+          <tr><td class="jp"><ruby>料金<rt>りょうきん</rt></ruby></td><td class="romaji">ryookin</td><td class="en">fee / price</td></tr>
+          <tr><td class="jp">ガラス</td><td class="romaji">garasu</td><td class="en">glass</td></tr>
+          <tr><td class="jp">クジラ</td><td class="romaji">kujira</td><td class="en">whale</td></tr>
+          <tr><td class="jp">クジラウォッチング</td><td class="romaji">kujira-wocching</td><td class="en">whale watching</td></tr>
+          <tr><td class="jp">ダイナミック（な）</td><td class="romaji">dainamikku (na)</td><td class="en">dynamic</td></tr>
+          <tr><td class="jp">ヘルシー（な）</td><td class="romaji">herushii (na)</td><td class="en">healthy</td></tr>
+          <tr><td class="jp">リラックス（します）</td><td class="romaji">rirakkusu (shimasu)</td><td class="en">(to) relax</td></tr>
+          <tr><td class="jp">～じゅう</td><td class="romaji">~juu</td><td class="en">all over / throughout</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- りかいテキスト pp.62-65 -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">りかい</span>
+      <h2>りかい テキスト (pp.62–65)</h2>
+    </div>
+
+    <!-- p.62 Section 1 Ex 1 -->
+    <div class="rikai-page">
+      <h3>p.62 — section 1 · もじとことば — ex.1 · ただしい ことばを えらびましょう</h3>
+      <p style="font-size:13px; color:var(--muted); margin-bottom:14px;">3つの ことばから どんな ことばを かんがえますか。<span class="exercise-en"> — From the 3 words, what word do you think of?</span></p>
+      <div class="callout" style="margin-bottom:16px;">
+        <strong>a</strong> つり &nbsp; <strong>b</strong> もり &nbsp; <strong>c</strong> おみやげ &nbsp; <strong>d</strong> レンタカー &nbsp; <strong>e</strong> イルカ
+      </div>
+
+      <div class="exercise-item">
+        <div class="exercise-num">❶</div>
+        <div class="exercise-context"><ruby>魚<rt>さかな</rt></ruby>、<ruby>川<rt>かわ</rt></ruby>、しゅみ</div>
+        <div class="exercise-en">Fish, river, hobby</div>
+        <div class="exercise-answer"><span class="answer-arrow">→</span><span class="answer-val">a · つり</span></div>
+      </div>
+      <div class="exercise-item">
+        <div class="exercise-num">❷</div>
+        <div class="exercise-context">ドライブ、<ruby>借<rt>か</rt></ruby>ります、<ruby>車<rt>くるま</rt></ruby></div>
+        <div class="exercise-en">Drive, to borrow/rent, car</div>
+        <div class="exercise-answer"><span class="answer-arrow">→</span><span class="answer-val">d · レンタカー</span></div>
+      </div>
+      <div class="exercise-item">
+        <div class="exercise-num">❸</div>
+        <div class="exercise-context"><ruby>頭<rt>あたま</rt></ruby>が いい、<ruby>海<rt>うみ</rt></ruby>、どうぶつ</div>
+        <div class="exercise-en">Intelligent, sea, animal</div>
+        <div class="exercise-answer"><span class="answer-arrow">→</span><span class="answer-val">e · イルカ</span></div>
+      </div>
+      <div class="exercise-item">
+        <div class="exercise-num">❹</div>
+        <div class="exercise-context">かんこうち、<ruby>買<rt>か</rt></ruby>います、あげます</div>
+        <div class="exercise-en">Sightseeing spot, to buy, to give</div>
+        <div class="exercise-answer"><span class="answer-arrow">→</span><span class="answer-val">c · おみやげ</span></div>
+      </div>
+      <div class="exercise-item">
+        <div class="exercise-num">❺</div>
+        <div class="exercise-context">きれいな くうき、リラックスします、<ruby>場所<rt>ばしょ</rt></ruby></div>
+        <div class="exercise-en">Clean air, to relax, place</div>
+        <div class="exercise-answer"><span class="answer-arrow">→</span><span class="answer-val">b · もり</span></div>
+      </div>
+    </div>
+
+    <!-- p.62-63 Section 1 Ex 2 -->
+    <div class="rikai-page">
+      <h3>p.62–63 — section 1 · ex.2 · どれが ちがいますか</h3>
+      <p style="font-size:13px; color:var(--muted); margin-bottom:14px;"><ruby>旅行<rt>りょこう</rt></ruby>テーマ: <strong>食べます / 見ます / 海であそびます / 山であそびます</strong><span class="exercise-en"> — Which one doesn't fit the theme?</span></p>
+
+      <div class="exercise-item">
+        <div class="exercise-num">❶ <ruby>食<rt>た</rt></ruby>べます</div>
+        <div class="exercise-context">a りょうり &nbsp; b おかし &nbsp; c くだもの &nbsp; d おてら</div>
+        <div class="exercise-en">a cuisine &nbsp; b sweets &nbsp; c fruit &nbsp; d temple — temple is not something you eat!</div>
+        <div class="exercise-answer"><span class="answer-arrow">→</span><span class="answer-val">d · おてら</span></div>
+      </div>
+      <div class="exercise-item">
+        <div class="exercise-num">❷ <ruby>見<rt>み</rt></ruby>ます</div>
+        <div class="exercise-context">a すいぞくかん &nbsp; b おどり &nbsp; c レストラン &nbsp; d ショー</div>
+        <div class="exercise-en">a aquarium &nbsp; b dance &nbsp; c restaurant &nbsp; d show — restaurant is not something you watch!</div>
+        <div class="exercise-answer"><span class="answer-arrow">→</span><span class="answer-val">c · レストラン</span></div>
+      </div>
+      <div class="exercise-item">
+        <div class="exercise-num">❸ <ruby>海<rt>うみ</rt></ruby>で あそびます</div>
+        <div class="exercise-context">a およぎます &nbsp; b つり &nbsp; c オペラ &nbsp; d ダイビング</div>
+        <div class="exercise-en">a swimming &nbsp; b fishing &nbsp; c opera &nbsp; d diving — opera is not a sea activity!</div>
+        <div class="exercise-answer"><span class="answer-arrow">→</span><span class="answer-val">c · オペラ</span></div>
+      </div>
+      <div class="exercise-item">
+        <div class="exercise-num">❹ <ruby>山<rt>やま</rt></ruby>で あそびます</div>
+        <div class="exercise-context">a ピクニック &nbsp; b イルカと あそびます &nbsp; c キャンプ &nbsp; d やまのぼり</div>
+        <div class="exercise-en">a picnic &nbsp; b playing with dolphins &nbsp; c camping &nbsp; d mountain climbing — dolphins are not in the mountains!</div>
+        <div class="exercise-answer"><span class="answer-arrow">→</span><span class="answer-val">b · イルカと あそびます</span></div>
+      </div>
+    </div>
+
+    <!-- p.63 Section 1 Ex 3 -->
+    <div class="rikai-page">
+      <h3>p.63 — section 1 · ex.3 · <ruby>聞<rt>き</rt></ruby>いて <ruby>書<rt>か</rt></ruby>きましょう</h3>
+      <div class="audio-block">
+        <div class="audio-block-label">▶ CHECK! 099</div>
+        <div class="audio-row"><span class="audio-row-label">exercise</span>
+          <audio controls preload="none"><source src="../audio/rikai/track_099.mp3" type="audio/mpeg"></audio></div>
+        <div class="audio-row"><span class="audio-row-label">聞いて書き</span>
+          <audio controls preload="none"><source src="../audio/rikai/track_099_kiite_kaki.mp3" type="audio/mpeg"></audio></div>
+      </div>
+      <p style="font-size:13px; color:var(--muted); margin-bottom:14px;"><ruby>聞<rt>き</rt></ruby>いて、ブランクに<ruby>書<rt>か</rt></ruby>きましょう。<span class="exercise-en"> — Listen and write in the blanks (3 items).</span></p>
+      <div class="callout">
+        ❶ ___________________________________<br>
+        ❷ ___________________________________<br>
+        ❸ ___________________________________
+      </div>
+    </div>
+
+    <!-- p.64 Section 2 かいわとぶんぽう -->
+    <div class="rikai-page">
+      <h3>p.64 — section 2 · かいわとぶんぽう — ex.1 · <ruby>聞<rt>き</rt></ruby>きましょう</h3>
+      <div class="audio-block">
+        <div class="audio-block-label">▶ CHECK! 101</div>
+        <div class="audio-row"><span class="audio-row-label">exercise</span>
+          <audio controls preload="none"><source src="../audio/rikai/track_101.mp3" type="audio/mpeg"></audio></div>
+        <div class="audio-row"><span class="audio-row-label">かいわ</span>
+          <audio controls preload="none"><source src="../audio/rikai/track_101_kaiwa.mp3" type="audio/mpeg"></audio></div>
+        <div class="audio-row"><span class="audio-row-label">かいわ (n)</span>
+          <audio controls preload="none"><source src="../audio/rikai/track_101_kaiwa_n.mp3" type="audio/mpeg"></audio></div>
+      </div>
+      <p style="font-size:13px; color:var(--muted); margin-bottom:14px;">ジョイさんは <ruby>沖縄<rt>おきなわ</rt></ruby>の ホテルで、ツアーについて <ruby>聞<rt>き</rt></ruby>いています。<span class="exercise-en"> — Joy is at a hotel in Okinawa, asking about tours.</span></p>
+      <div class="rikai-dialogue">
+        <div class="rikai-line">
+          <div class="rikai-speaker">ジョイ</div>
+          <span class="rikai-jp">あのう、<ruby>沖縄<rt>おきなわ</rt></ruby>の れきしや <ruby>文化<rt>ぶんか</rt></ruby>を しりたいんですが。</span>
+          <span class="rikai-en">Excuse me, I'd like to learn about Okinawa's history and culture.</span>
+        </div>
+        <div class="rikai-line">
+          <div class="rikai-speaker">ホテルの<ruby>人<rt>ひと</rt></ruby></div>
+          <span class="rikai-jp">それなら、この ツアーは いかがですか。<ruby>古<rt>ふる</rt></ruby>い おしろの <ruby>中<rt>なか</rt></ruby>が <ruby>見<rt>み</rt></ruby>られますよ。</span>
+          <span class="rikai-en">In that case, how about this tour? You can see inside an old castle.</span>
+        </div>
+        <div class="rikai-line">
+          <div class="rikai-speaker">ジョイ</div>
+          <span class="rikai-jp">おもしろそうですね。</span>
+          <span class="rikai-en">That sounds interesting.</span>
+        </div>
+        <div class="rikai-line">
+          <div class="rikai-speaker">ホテルの<ruby>人<rt>ひと</rt></ruby></div>
+          <span class="rikai-jp">ええ。<ruby>沖縄<rt>おきなわ</rt></ruby>の <ruby>音楽<rt>おんがく</rt></ruby>も <ruby>聞<rt>き</rt></ruby>けます。それから、めずらしい おかしも <ruby>食<rt>た</rt></ruby>べられます。</span>
+          <span class="rikai-en">Yes. You can also hear Okinawan music. And you can also eat rare sweets.</span>
+        </div>
+        <div class="rikai-line">
+          <div class="rikai-speaker">ジョイ</div>
+          <span class="rikai-jp"><ruby>沖縄<rt>おきなわ</rt></ruby>の <ruby>文化<rt>ぶんか</rt></ruby>が <ruby>楽<rt>たの</rt></ruby>しめますね。</span>
+          <span class="rikai-en">I can really enjoy Okinawan culture, can't I.</span>
+        </div>
+      </div>
+
+      <!-- Grammar box -->
+      <div class="pattern-box" style="margin:20px 0 18px; text-align:left; padding:18px 24px;">
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); margin-bottom:10px;">GRAMMAR · かのう① · Potential</div>
+        <div class="pattern-formula" style="text-align:center; margin-bottom:8px;">N が V-（られ）ます</div>
+        <div style="font-size:13px; color:var(--ink-soft); margin-bottom:12px;"><ruby>おしろ<rt></rt></ruby>の <ruby>中<rt>なか</rt></ruby>を <ruby>見<rt>み</rt></ruby>ます。→ おしろの <ruby>中<rt>なか</rt></ruby>が <ruby>見<rt>み</rt></ruby>られます。</div>
+        <div class="grammar-table-wrap">
+          <table class="grammar-table">
+            <thead><tr><th>1グループ (う-verb)</th><th>potential</th><th>2グループ (る-verb)</th><th>potential</th></tr></thead>
+            <tbody>
+              <tr><td class="pattern-col">あいます</td><td class="example-col">あえます</td><td class="pattern-col">みます</td><td class="example-col">みられます</td></tr>
+              <tr><td class="pattern-col">ききます</td><td class="example-col">きけます</td><td class="pattern-col">たべます</td><td class="example-col">たべられます</td></tr>
+              <tr><td class="pattern-col">およぎます</td><td class="example-col">およげます</td><td class="pattern-col">3グループ</td><td class="example-col">—</td></tr>
+              <tr><td class="pattern-col">たのしみます</td><td class="example-col">たのしめます</td><td class="pattern-col">します</td><td class="example-col">できます</td></tr>
+              <tr><td class="pattern-col">とります</td><td class="example-col">とれます</td><td colspan="2"></td></tr>
+              <tr><td class="pattern-col">のります</td><td class="example-col">のれます</td><td colspan="2"></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- p.64-65 Section 2 Ex 2① -->
+    <div class="rikai-page">
+      <h3>p.64–65 — section 2 · かいわとぶんぽう — ex.2① · <ruby>聞<rt>き</rt></ruby>いて、ただしい ほうを えらびましょう</h3>
+      <div class="audio-block">
+        <div class="audio-block-label">▶ CHECK! 102–105 → 106</div>
+        <div class="audio-row"><span class="audio-row-label">exercise</span>
+          <audio controls preload="none"><source src="../audio/rikai/track_102.mp3" type="audio/mpeg"></audio></div>
+        <div class="audio-row"><span class="audio-row-label">item 1</span>
+          <audio controls preload="none"><source src="../audio/rikai/track_102_1.mp3" type="audio/mpeg"></audio></div>
+        <div class="audio-row"><span class="audio-row-label">item 2</span>
+          <audio controls preload="none"><source src="../audio/rikai/track_103_2.mp3" type="audio/mpeg"></audio></div>
+        <div class="audio-row"><span class="audio-row-label">item 3</span>
+          <audio controls preload="none"><source src="../audio/rikai/track_104_3.mp3" type="audio/mpeg"></audio></div>
+        <div class="audio-row"><span class="audio-row-label">item 4</span>
+          <audio controls preload="none"><source src="../audio/rikai/track_105_4.mp3" type="audio/mpeg"></audio></div>
+        <div class="audio-row"><span class="audio-row-label">こたえ</span>
+          <audio controls preload="none"><source src="../audio/rikai/track_106_answers.mp3" type="audio/mpeg"></audio></div>
+      </div>
+
+      <div class="exercise-item">
+        <div class="exercise-num">❶</div>
+        <div class="exercise-context">この ツアーでは <ruby>沖縄<rt>おきなわ</rt></ruby>ガラスで コップが（a <ruby>作<rt>つく</rt></ruby>ります · b <ruby>作<rt>つく</rt></ruby>れます）。<br><ruby>沖縄<rt>おきなわ</rt></ruby>ガラスで <ruby>作<rt>つく</rt></ruby>った アクセサリーが（a <ruby>買<rt>か</rt></ruby>います · b <ruby>買<rt>か</rt></ruby>えます）。</div>
+        <div class="exercise-en">In this tour, you can [make] a cup with Okinawan glass. An accessory made from Okinawan glass [can be bought].</div>
+        <div class="exercise-answer"><span class="answer-arrow">→</span><span class="answer-val">b · <ruby>作<rt>つく</rt></ruby>れます　／　b · <ruby>買<rt>か</rt></ruby>えます</span></div>
+      </div>
+      <div class="exercise-item">
+        <div class="exercise-num">❷</div>
+        <div class="exercise-context">しんせんな くだものを <ruby>食<rt>た</rt></ruby>べる ツアーも <ruby>人気<rt>にんき</rt></ruby>です。（a <ruby>買<rt>か</rt></ruby>った · b <ruby>買<rt>か</rt></ruby>えた）くだものは <ruby>家<rt>いえ</rt></ruby>まで（a <ruby>送<rt>おく</rt></ruby>ります · b <ruby>送<rt>おく</rt></ruby>れます）から、<ruby>便利<rt>べんり</rt></ruby>です。</div>
+        <div class="exercise-en">A tour eating fresh fruit is also popular. The fruit you [bought] can be [sent] home, so it's convenient.</div>
+        <div class="exercise-answer"><span class="answer-arrow">→</span><span class="answer-val">a · <ruby>買<rt>か</rt></ruby>った　／　b · <ruby>送<rt>おく</rt></ruby>れます</span></div>
+      </div>
+      <div class="exercise-item">
+        <div class="exercise-num">❸</div>
+        <div class="exercise-context">これは じてんしゃタクシーに（a <ruby>乗<rt>の</rt></ruby>って · b <ruby>乗<rt>の</rt></ruby>れて）<ruby>町<rt>まち</rt></ruby>の <ruby>中<rt>なか</rt></ruby>を <ruby>観光<rt>かんこう</rt></ruby>する ツアーです。</div>
+        <div class="exercise-en">This is a tour where you [can ride] a bicycle taxi to sightsee around town.</div>
+        <div class="exercise-answer"><span class="answer-arrow">→</span><span class="answer-val">b · <ruby>乗<rt>の</rt></ruby>れて</span></div>
+      </div>
+      <div class="exercise-item">
+        <div class="exercise-num">❹</div>
+        <div class="exercise-context"><ruby>沖縄<rt>おきなわ</rt></ruby>では 5<ruby>月<rt>がつ</rt></ruby>から 10<ruby>月<rt>がつ</rt></ruby>ごろまで（a <ruby>泳<rt>およ</rt></ruby>ぎます · b <ruby>泳<rt>およ</rt></ruby>げます）。ダイビングは <ruby>一年中<rt>いちねんじゅう</rt></ruby>（a します · b できます）。</div>
+        <div class="exercise-en">In Okinawa you [can swim] from around May to October. Diving [can be done] all year round.</div>
+        <div class="exercise-answer"><span class="answer-arrow">→</span><span class="answer-val">b · <ruby>泳<rt>およ</rt></ruby>げます　／　b · できます</span></div>
+      </div>
+    </div>
+
+    <!-- p.65 Section 2 Ex 2② -->
+    <div class="rikai-page">
+      <h3>p.65 — section 2 · かいわとぶんぽう — ex.2② · ただしい かたちを <ruby>書<rt>か</rt></ruby>きましょう</h3>
+      <div class="audio-block">
+        <div class="audio-block-label">▶ CHECK! 107</div>
+        <div class="audio-row"><span class="audio-row-label">exercise</span>
+          <audio controls preload="none"><source src="../audio/rikai/track_107.mp3" type="audio/mpeg"></audio></div>
+        <div class="audio-row"><span class="audio-row-label">こたえ</span>
+          <audio controls preload="none"><source src="../audio/rikai/track_107_answers.mp3" type="audio/mpeg"></audio></div>
+      </div>
+      <p style="font-size:13px; color:var(--muted); margin-bottom:14px;"><ruby>沖縄体験<rt>おきなわたいけん</rt></ruby>ツアー — 4つのツアーの<ruby>説明<rt>せつめい</rt></ruby>。かのうけいに<ruby>直<rt>なお</rt></ruby>してください。<span class="exercise-en"> — Convert the verbs to their potential form.</span></p>
+
+      <div class="exercise-item">
+        <div class="exercise-num">❶ &lt;おしろツアー&gt;</div>
+        <div class="exercise-context"><ruby>沖縄<rt>おきなわ</rt></ruby>の れきしと <ruby>文化<rt>ぶんか</rt></ruby>が わかります。おどりの ショーが <ruby>無料<rt>むりょう</rt></ruby>で（<ruby>見<rt>み</rt></ruby>ます → ___）。1<ruby>日<rt>にち</rt></ruby>に 3<ruby>回<rt>かい</rt></ruby> ガイドの あんないが あります。くわしい せつめいが（ききます → ___）。</div>
+        <div class="exercise-en">You can understand Okinawa's history and culture. A dance show can be [watched] for free. There are 3 guided tours per day. Detailed explanations [can be heard].</div>
+        <div class="exercise-answer"><span class="answer-arrow">→</span><span class="answer-val"><ruby>見<rt>み</rt></ruby>られます　／　きけます</span></div>
+      </div>
+      <div class="exercise-item">
+        <div class="exercise-num">❷ &lt;もりツアー&gt;</div>
+        <div class="exercise-context">めずらしい <ruby>動物<rt>どうぶつ</rt></ruby>が たくさん います。しんせんな <ruby>空気<rt>くうき</rt></ruby>を すって、リラックス（します → ___）。おひるに <ruby>沖縄<rt>おきなわ</rt></ruby><ruby>料理<rt>りょうり</rt></ruby>が（たべます → ___）。</div>
+        <div class="exercise-en">There are many rare animals. Breathe fresh air and [can relax]. At lunch, Okinawan food [can be eaten].</div>
+        <div class="exercise-answer"><span class="answer-arrow">→</span><span class="answer-val">できます　／　たべられます</span></div>
+      </div>
+      <div class="exercise-item">
+        <div class="exercise-num">❸ &lt;<ruby>文化<rt>ぶんか</rt></ruby>むらツアー&gt;</div>
+        <div class="exercise-context"><ruby>沖縄<rt>おきなわ</rt></ruby>の <ruby>古<rt>ふる</rt></ruby>い <ruby>家<rt>いえ</rt></ruby>が たくさん あります。むかしの ふくを <ruby>着<rt>き</rt></ruby>て <ruby>写真<rt>しゃしん</rt></ruby>が（とります → ___）。<ruby>沖縄<rt>おきなわ</rt></ruby>の <ruby>文化<rt>ぶんか</rt></ruby>が（たのしみます → ___）。</div>
+        <div class="exercise-en">There are many old Okinawan houses. Wearing old-style clothes, photos [can be taken]. Okinawan culture [can be enjoyed].</div>
+        <div class="exercise-answer"><span class="answer-arrow">→</span><span class="answer-val">とれます　／　たのしめます</span></div>
+      </div>
+      <div class="exercise-item">
+        <div class="exercise-num">❹ &lt;すいぞくかんツアー&gt;</div>
+        <div class="exercise-context">1<ruby>日<rt>にち</rt></ruby>に 3<ruby>回<rt>かい</rt></ruby> イルカの ショーが あります。イルカと いっしょに（およぎます → ___）。あかちゃんイルカにも（あいます → ___）。</div>
+        <div class="exercise-en">There are dolphin shows 3 times a day. [Can swim] together with dolphins. [Can meet] baby dolphins too.</div>
+        <div class="exercise-answer"><span class="answer-arrow">→</span><span class="answer-val">およげます　／　あえます</span></div>
+      </div>
+    </div>
+
+    <!-- p.65 Section 3 Speaking practice -->
+    <div class="rikai-page">
+      <h3>p.65 — section 2 · ex.3 · ①の かいわを れんしゅうしましょう</h3>
+      <p style="font-size:13px; color:var(--muted); margin-bottom:14px;"><ruby>練習<rt>れんしゅう</rt></ruby>: ホテルの<ruby>人<rt>ひと</rt></ruby>の やくを して、①の かいわの パターンで はなしましょう。<span class="exercise-en"> — Play the hotel receptionist role and practise with the dialogue pattern from ①.</span></p>
+      <div class="callout">
+        <strong>Model:</strong><br>
+        A: あのう、___を してみたいんですが。<br>
+        B: それなら、このツアーは いかがですか。___ が ___られますよ。<br>
+        A: へえ、おもしろそうですね。
+      </div>
+    </div>
+  </section>
+
+  <!-- かつどうテキスト pp.57-59 -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">かつどう</span>
+      <h2>かつどう テキスト (pp.57–59)</h2>
+    </div>
+
+    <!-- p.57 Section 2 V-たし rule discovery -->
+    <div class="rikai-page">
+      <h3>p.57 — section 2 · ルールを はっけんしましょう — V-たし (listing past actions)</h3>
+      <p style="font-size:13px; color:var(--muted); margin-bottom:14px;"><ruby>文<rt>ぶん</rt></ruby>を<ruby>読<rt>よ</rt></ruby>んで、かのうけいの V-たし<ruby>形<rt>けい</rt></ruby>を<ruby>入<rt>い</rt></ruby>れましょう。<span class="exercise-en"> — Read the sentences and fill in the potential + V-たし forms.</span></p>
+      <div class="callout" style="margin-bottom:16px;">
+        イルカの ショーも <ruby>見<rt>み</rt></ruby>たし、イルカと いっしょに <ruby>泳<rt>およ</rt></ruby>いだし、<ruby>一日中<rt>いちにちじゅう</rt></ruby> <ruby>楽<rt>たの</rt></ruby>しめました。<span class="exercise-en"> — I saw the dolphin show, and swam with the dolphins — I could enjoy myself all day.</span>
+      </div>
+
+      <!-- Formation box -->
+      <div class="pattern-box" style="text-align:left; padding:18px 24px; margin-bottom:20px;">
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); margin-bottom:10px;">V-たし · plain past + し</div>
+        <div class="grammar-table-wrap" style="margin:0;">
+          <table class="grammar-table">
+            <thead><tr><th>polite past (ます)</th><th>plain past (た)</th><th>V-たし</th></tr></thead>
+            <tbody>
+              <tr><td>みました</td><td>みた</td><td><strong>みたし</strong></td></tr>
+              <tr><td>たべました</td><td>たべた</td><td><strong>たべたし</strong></td></tr>
+              <tr><td>およぎました</td><td>およいだ</td><td><strong>およいだし</strong></td></tr>
+              <tr><td>かいました</td><td>かった</td><td><strong>かったし</strong></td></tr>
+              <tr><td>つくりました</td><td>つくった</td><td><strong>つくったし</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="exercise-item">
+        <div class="exercise-num">練習 ①</div>
+        <div class="exercise-context"><ruby>沖縄<rt>おきなわ</rt></ruby>の おどりも（みました → ___）、めずらしい おかしも（たべました → ___）、<ruby>楽<rt>たの</rt></ruby>しめました。</div>
+        <div class="exercise-en">I [saw] Okinawan dance, and [ate] rare sweets, so I could enjoy myself.</div>
+        <div class="exercise-answer"><span class="answer-arrow">→</span><span class="answer-val">みられました　／　たべられました</span></div>
+      </div>
+      <div class="exercise-item">
+        <div class="exercise-num">練習 ②</div>
+        <div class="exercise-context"><ruby>沖縄<rt>おきなわ</rt></ruby>ガラスで コップも（つくりました → ___）、ネックレスも（かいました → ___）、すごく <ruby>楽<rt>たの</rt></ruby>しかったです。</div>
+        <div class="exercise-en">I [made] a cup with Okinawan glass, and [bought] a necklace — it was so much fun.</div>
+        <div class="exercise-answer"><span class="answer-arrow">→</span><span class="answer-val">つくれました　／　かえました</span></div>
+      </div>
+    </div>
+
+    <!-- p.57 Section 3 Can-do 17 -->
+    <div class="rikai-page">
+      <h3>p.57 — section 3 · Can-do 17 · ホテルの<ruby>人<rt>ひと</rt></ruby>に ツアーの かんそうを <ruby>言<rt>い</rt></ruby>いましょう</h3>
+      <p style="font-size:13px; color:var(--muted); margin-bottom:14px;"><span class="exercise-en">Tell the hotel receptionist your impressions of the tour.</span></p>
+      <div class="rikai-dialogue">
+        <div class="rikai-line">
+          <div class="rikai-speaker">ホテルの<ruby>人<rt>ひと</rt></ruby></div>
+          <span class="rikai-jp"><ruby>今日<rt>きょう</rt></ruby>の ツアー、どうでしたか。</span>
+          <span class="rikai-en">How was today's tour?</span>
+        </div>
+        <div class="rikai-line">
+          <div class="rikai-speaker">あなた</div>
+          <span class="rikai-jp">よかったですよ。イルカの ショーも <ruby>見<rt>み</rt></ruby>たし、イルカと いっしょに <ruby>泳<rt>およ</rt></ruby>いだし、<ruby>一日中<rt>いちにちじゅう</rt></ruby> <ruby>楽<rt>たの</rt></ruby>しめました。</span>
+          <span class="rikai-en">It was great! I saw the dolphin show, swam with the dolphins — I enjoyed myself all day.</span>
+        </div>
+        <div class="rikai-line">
+          <div class="rikai-speaker">ホテルの<ruby>人<rt>ひと</rt></ruby></div>
+          <span class="rikai-jp">そうですか。</span>
+          <span class="rikai-en">Is that so.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- p.58 Section 4 Can-do 18 -->
+    <div class="rikai-page">
+      <h3>p.58 — section 4 · Can-do 18 · おきゃくさまアンケート</h3>
+      <p style="font-size:13px; color:var(--muted); margin-bottom:14px;">シンさんが <ruby>書<rt>か</rt></ruby>いた アンケートを <ruby>読<rt>よ</rt></ruby>みましょう。<span class="exercise-en"> — Read the questionnaire that Shin wrote.</span></p>
+
+      <div class="rikai-dialogue" style="font-size:14px;">
+        <div style="text-align:center; font-family:'Noto Serif JP',serif; font-size:16px; font-weight:500; color:var(--accent); margin-bottom:16px; letter-spacing:2px;">JFトラベル — おきゃくさまアンケート</div>
+        <div class="rikai-line">
+          <div class="rikai-speaker"><ruby>性別<rt>せいべつ</rt></ruby></div>
+          <span class="rikai-jp">☑ <ruby>男性<rt>だんせい</rt></ruby> &nbsp; □ <ruby>女性<rt>じょせい</rt></ruby></span>
+          <span class="rikai-en">Male ✓ / Female □</span>
+        </div>
+        <div class="rikai-line">
+          <div class="rikai-speaker"><ruby>年齢<rt>ねんれい</rt></ruby></div>
+          <span class="rikai-jp">□ 10<ruby>歳<rt>さい</rt></ruby>～ □ 20<ruby>歳<rt>さい</rt></ruby>～ ☑ 30<ruby>歳<rt>さい</rt></ruby>～ □ 40<ruby>歳<rt>さい</rt></ruby>～</span>
+          <span class="rikai-en">Age 30+ ✓</span>
+        </div>
+        <div class="rikai-line">
+          <div class="rikai-speaker">ツアーめい</div>
+          <span class="rikai-jp">☑ C イルカと <ruby>泳<rt>およ</rt></ruby>ぐ ツアー（すいぞくかんと イルカの ショー）</span>
+          <span class="rikai-en">C · Swimming with Dolphins Tour (aquarium + dolphin show) ✓</span>
+        </div>
+        <div class="rikai-line">
+          <div class="rikai-speaker"><ruby>質問<rt>しつもん</rt></ruby>1</div>
+          <span class="rikai-jp">ツアーの ないようは どうでしたか → ☑ とても いい</span>
+          <span class="rikai-en">How was the content? → Very good ✓</span>
+        </div>
+        <div class="rikai-line">
+          <div class="rikai-speaker"><ruby>質問<rt>しつもん</rt></ruby>2</div>
+          <span class="rikai-jp">ツアーの <ruby>時間<rt>じかん</rt></ruby>は どうでしたか → ☑ ちょうど いい</span>
+          <span class="rikai-en">How was the duration? → Just right ✓</span>
+        </div>
+        <div class="rikai-line">
+          <div class="rikai-speaker"><ruby>質問<rt>しつもん</rt></ruby>3</div>
+          <span class="rikai-jp">ツアーの <ruby>料金<rt>りょうきん</rt></ruby>は どうでしたか → ☑ ふつう</span>
+          <span class="rikai-en">How was the price? → Normal ✓</span>
+        </div>
+        <div class="rikai-line">
+          <div class="rikai-speaker"><ruby>質問<rt>しつもん</rt></ruby>4</div>
+          <span class="rikai-jp">ツアーの ガイドは どうでしたか → ☑ とても いい</span>
+          <span class="rikai-en">How was the guide? → Very good ✓</span>
+        </div>
+        <div class="rikai-line">
+          <div class="rikai-speaker">コメント</div>
+          <span class="rikai-jp">ガイドの <ruby>宮里<rt>みやさと</rt></ruby>さんは しんせつでした。とても <ruby>楽<rt>たの</rt></ruby>しかったです。ありがとうございました。</span>
+          <span class="rikai-en">The guide, Miyasato-san, was very kind. It was a lot of fun. Thank you.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- p.59 Life and Culture -->
+    <div class="rikai-page">
+      <h3>p.59 — <ruby>生活<rt>せいかつ</rt></ruby>と<ruby>文化<rt>ぶんか</rt></ruby> · しぜんを <ruby>楽<rt>たの</rt></ruby>しむ かんこうち</h3>
+      <p style="font-size:13px; color:var(--muted); margin-bottom:14px;">Sightseeing spots where one can enjoy nature</p>
+      <div class="callout">
+        あなたの <ruby>国<rt>くに</rt></ruby>には、しぜんを <ruby>楽<rt>たの</rt></ruby>しむ かんこうちが ありますか。<span class="exercise-en"> — Are there places in your country where people go to enjoy nature?</span>
+      </div>
+      <div style="margin-top:16px;">
+        <div class="vocab-table-wrap">
+          <table class="vocab-table">
+            <thead><tr><th><ruby>日本語<rt>にほんご</rt></ruby></th><th>場所</th><th>English</th></tr></thead>
+            <tbody>
+              <tr><td class="jp"><ruby>山<rt>やま</rt></ruby>（<ruby>富士山<rt>ふじさん</rt></ruby>）</td><td class="romaji">Yamanashi / Shizuoka</td><td class="en">mountain — Mt. Fuji</td></tr>
+              <tr><td class="jp">みずうみ（<ruby>摩周湖<rt>ましゅうこ</rt></ruby>）</td><td class="romaji">Hokkaido</td><td class="en">lake — Lake Mashu</td></tr>
+              <tr><td class="jp"><ruby>森<rt>もり</rt></ruby>（<ruby>白神山地<rt>しらかみさんち</rt></ruby>）</td><td class="romaji">Aomori / Akita</td><td class="en">forest — Shirakami Mountain Range</td></tr>
+              <tr><td class="jp"><ruby>川<rt>かわ</rt></ruby>（<ruby>四万十川<rt>しまんとがわ</rt></ruby>）</td><td class="romaji">Kochi</td><td class="en">river — Shimanto River</td></tr>
+              <tr><td class="jp">さきゅう（<ruby>鳥取砂丘<rt>とっとりさきゅう</rt></ruby>）</td><td class="romaji">Tottori</td><td class="en">sand dune — Tottori Sand Dunes</td></tr>
+              <tr><td class="jp">たき（<ruby>那智<rt>なち</rt></ruby>の<ruby>滝<rt>たき</rt></ruby>）</td><td class="romaji">Wakayama</td><td class="en">waterfall — Nachi Falls</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <footer>
+    まるごと A2-2 · だい6か · 2026年6月22日<br>
+    りかい pp.62–65 · かつどう pp.57–59
+  </footer>
+
+</div>
+
+<button class="toggle-translations" onclick="document.body.classList.toggle('translations-visible');this.textContent=document.body.classList.contains('translations-visible')?'EN ✓':'EN'">EN</button>
+
+</body>
+</html>
