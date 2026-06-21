@@ -641,6 +641,30 @@ body.translations-visible .toggle-translations { background: var(--done-bg); col
   letter-spacing: 0.5px;
 }
 .audio-row audio { flex: 1; height: 28px; }
+
+/* ====== Section nav pills ====== */
+.section-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: -16px 0 48px;
+}
+.section-nav a {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--paper-soft);
+  border: 1px solid var(--rule);
+  padding: 5px 12px;
+  text-decoration: none;
+  border-radius: 2px;
+}
+.section-nav a:hover {
+  background: var(--paper-deep);
+  border-color: var(--accent-soft);
+}
 </style>
 </head>
 <body>
@@ -722,8 +746,19 @@ body.translations-visible .toggle-translations { background: var(--done-bg); col
     </div>
   </section>
 
+  <!-- Section nav -->
+  <nav class="section-nav">
+    <a href="#links">リンク</a>
+    <a href="#kanji">漢字</a>
+    <a href="#grammar">文法</a>
+    <a href="#kaiwa">かいわ</a>
+    <a href="#tango">たんご</a>
+    <a href="#rikai">りかい pp.62–65</a>
+    <a href="#katsudoo">かつどう pp.57–59</a>
+  </nav>
+
   <!-- LINKS -->
-  <section>
+  <section id="links">
     <div class="section-head">
       <span class="section-num">LINKS</span>
       <h2>リソースリンク</h2>
@@ -763,7 +798,7 @@ body.translations-visible .toggle-translations { background: var(--done-bg); col
   </section>
 
   <!-- 漢字 -->
-  <section>
+  <section id="kanji">
     <div class="section-head">
       <span class="section-num">かんじ</span>
       <h2><ruby>漢字<rt>かんじ</rt></ruby> — Topic 3, Lesson 6</h2>
@@ -798,7 +833,7 @@ body.translations-visible .toggle-translations { background: var(--done-bg); col
   </section>
 
   <!-- 文法 -->
-  <section>
+  <section id="grammar">
     <div class="section-head">
       <span class="section-num">文法</span>
       <h2><ruby>文法<rt>ぶんぽう</rt></ruby> — だい6か</h2>
@@ -861,7 +896,7 @@ body.translations-visible .toggle-translations { background: var(--done-bg); col
   </section>
 
   <!-- かいわ L6 -->
-  <section>
+  <section id="kaiwa">
     <div class="section-head">
       <span class="section-num">かいわ</span>
       <h2>Episode 6「イルカの ショーが <ruby>見<rt>み</rt></ruby>られます」</h2>
@@ -920,7 +955,7 @@ body.translations-visible .toggle-translations { background: var(--done-bg); col
   </section>
 
   <!-- たんごリスト L6 りかい -->
-  <section>
+  <section id="tango">
     <div class="section-head">
       <span class="section-num">たんご</span>
       <h2>たんごリスト — L6 りかい (33<ruby>語<rt>ご</rt></ruby>)</h2>
@@ -970,7 +1005,7 @@ body.translations-visible .toggle-translations { background: var(--done-bg); col
   </section>
 
   <!-- りかいテキスト pp.62-65 -->
-  <section>
+  <section id="rikai">
     <div class="section-head">
       <span class="section-num">りかい</span>
       <h2>りかい テキスト (pp.62–65)</h2>
@@ -1224,7 +1259,7 @@ body.translations-visible .toggle-translations { background: var(--done-bg); col
   </section>
 
   <!-- かつどうテキスト pp.57-59 -->
-  <section>
+  <section id="katsudoo">
     <div class="section-head">
       <span class="section-num">かつどう</span>
       <h2>かつどう テキスト (pp.57–59)</h2>
