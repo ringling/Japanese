@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>カタカナ読解 · Katakana Reading Fluency</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#e7e0cf;
+    --paper-cell:#f4efe3;
+    --paper-line:#d8cfb8;
+    --sumi:#221f19;
+    --sumi-soft:#5b5346;
+    --ai:#2b4a5e;
+    --ai-tint:#dde4e3;
+    --shu:#b23b32;
+    --shu-tint:#f3ddd9;
+    --yamabuki:#b3862f;
+    --yamabuki-tint:#f1e6cc;
+    --taupe:#8a7f68;
+    --disp:"Shippori Mincho", serif;
+    --body:"Zen Kaku Gothic New", sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    background-image:
+      repeating-linear-gradient(0deg, rgba(0,0,0,0.014) 0 1px, transparent 1px 4px),
+      radial-gradient(circle at 18% 8%, rgba(255,255,255,.35), transparent 46%),
+      radial-gradient(circle at 84% 92%, rgba(0,0,0,.03), transparent 40%);
+    color:var(--sumi);
+    font-family:var(--body);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+    padding:clamp(1rem,4vw,3.5rem) clamp(.75rem,4vw,3rem) 5rem;
+  }
+  .sheet{max-width:980px;margin:0 auto;}
+
+  /* ---- header ---- */
+  header{border-bottom:2px solid var(--sumi); padding-bottom:1.5rem; margin-bottom:2rem; position:relative;}
+  .eyebrow{font-size:.72rem; letter-spacing:.24em; text-transform:uppercase; color:var(--shu); font-weight:700; margin-bottom:.5rem;}
+  h1{font-family:var(--disp); font-weight:800; font-size:clamp(1.8rem,4.5vw,2.6rem); letter-spacing:.02em;}
+  h1 .sub{display:block; font-size:.42em; font-weight:600; color:var(--sumi-soft); letter-spacing:.08em; margin-top:.35rem;}
+  .seal{
+    position:absolute; top:0; right:0; width:56px; height:56px; border-radius:6px;
+    background:var(--shu); color:#f4efe3; display:flex; align-items:center; justify-content:center;
+    font-family:var(--disp); font-weight:800; font-size:1.5rem; transform:rotate(-4deg);
+    box-shadow:0 2px 0 rgba(0,0,0,.15);
+  }
+  .intro{max-width:62ch; color:var(--sumi-soft); font-size:.95rem; margin-top:.9rem;}
+
+  /* ---- progress ribbon ---- */
+  .ribbon-wrap{margin:1.6rem 0 2.4rem;}
+  .ribbon-label{display:flex; justify-content:space-between; font-size:.72rem; text-transform:uppercase; letter-spacing:.14em; color:var(--sumi-soft); margin-bottom:.5rem;}
+  .ribbon{display:flex; gap:3px;}
+  .stone{flex:1; height:10px; background:var(--paper-cell); border:1px solid var(--paper-line); border-radius:2px; position:relative;}
+  .stone.done{background:var(--ai);}
+  .stone.mastered{background:var(--yamabuki);}
+  .stone.weak{background:var(--shu);}
+  .week-gap{width:8px;}
+
+  /* ---- dashboard ---- */
+  .week-block{margin-bottom:2.2rem;}
+  .week-head{display:flex; align-items:baseline; gap:.6rem; margin-bottom:.8rem; border-bottom:1px solid var(--paper-line); padding-bottom:.4rem;}
+  .week-num{font-family:var(--disp); font-weight:800; color:var(--ai); font-size:1.1rem;}
+  .week-title{font-weight:700; font-size:.95rem;}
+  .week-desc{font-size:.78rem; color:var(--taupe); margin-left:auto;}
+  .card-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:.7rem;}
+  .s-card{
+    background:var(--paper-cell); border:1px solid var(--paper-line); border-radius:8px; padding:.85rem .95rem;
+    cursor:pointer; transition:transform .12s, box-shadow .12s; position:relative;
+  }
+  .s-card:hover{transform:translateY(-2px); box-shadow:0 4px 10px rgba(0,0,0,.08);}
+  .s-card .n{font-size:.7rem; color:var(--taupe); letter-spacing:.08em; text-transform:uppercase;}
+  .s-card h3{font-family:var(--disp); font-size:1.05rem; margin:.15rem 0 .2rem;}
+  .s-card .st{font-size:.76rem; color:var(--sumi-soft);}
+  .badge{position:absolute; top:.7rem; right:.7rem; font-size:.68rem; font-weight:700; padding:.15rem .5rem; border-radius:20px;}
+  .badge.new{background:var(--paper-line); color:var(--sumi-soft);}
+  .badge.read{background:var(--ai-tint); color:var(--ai);}
+  .badge.weak{background:var(--shu-tint); color:var(--shu);}
+  .badge.ok{background:var(--yamabuki-tint); color:var(--yamabuki);}
+
+  /* ---- session view ---- */
+  #session-view{display:none;}
+  .back-btn{background:none; border:none; color:var(--ai); font-family:var(--body); font-weight:700; font-size:.85rem; cursor:pointer; margin-bottom:1rem;}
+  .back-btn:hover{text-decoration:underline;}
+  .sv-head h2{font-family:var(--disp); font-size:1.7rem;}
+  .sv-head .st{color:var(--sumi-soft); font-size:.88rem; margin-top:.2rem;}
+  .tabs{display:flex; gap:.4rem; margin:1.2rem 0 1.4rem; border-bottom:2px solid var(--sumi);}
+  .tab{background:none; border:none; font-family:var(--body); font-weight:700; font-size:.85rem; padding:.5rem 1rem; cursor:pointer; color:var(--sumi-soft); border-bottom:3px solid transparent; margin-bottom:-2px;}
+  .tab.active{color:var(--sumi); border-color:var(--shu);}
+
+  .item-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(140px,1fr)); gap:.6rem;}
+  .item-card{background:var(--paper-cell); border:1px solid var(--paper-line); border-radius:8px; padding:1rem .6rem; text-align:center; cursor:pointer;}
+  .item-card .k{font-family:var(--disp); font-size:1.7rem; font-weight:700;}
+  .item-card .rv{margin-top:.4rem; font-size:.8rem; color:var(--sumi-soft); min-height:1.1em; opacity:0; transition:opacity .15s;}
+  .item-card.flip .rv{opacity:1;}
+  .item-card .rv b{color:var(--ai);}
+
+  /* flashcard mode */
+  .fc-wrap{display:flex; flex-direction:column; align-items:center; gap:1.1rem; padding:1rem 0;}
+  .fc-dots{display:flex; gap:4px; flex-wrap:wrap; justify-content:center; max-width:420px;}
+  .fc-dots span{width:8px; height:8px; border-radius:50%; background:var(--paper-line);}
+  .fc-dots span.done{background:var(--ai);}
+  .fc-card{
+    width:min(380px,86vw); min-height:200px; background:var(--paper-cell); border:1px solid var(--paper-line);
+    border-radius:12px; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:.6rem;
+    cursor:pointer; box-shadow:0 3px 0 var(--paper-line); text-align:center; padding:1.2rem;
+  }
+  .fc-card .k{font-family:var(--disp); font-size:3rem; font-weight:800;}
+  .fc-card .back{display:none; font-size:1rem; color:var(--sumi-soft);}
+  .fc-card .back b{display:block; color:var(--ai); font-size:1.15rem; margin-bottom:.15rem;}
+  .fc-card.flipped .k{display:none;}
+  .fc-card.flipped .back{display:block;}
+  .fc-card .hint{font-size:.72rem; color:var(--taupe); margin-top:.3rem;}
+  .fc-actions{display:flex; gap:.7rem;}
+  .fc-actions button{display:none;}
+  .fc-card.flipped ~ .fc-actions button{display:inline-block;}
+  .btn{font-family:var(--body); font-weight:700; font-size:.85rem; padding:.55rem 1.1rem; border-radius:6px; border:1px solid transparent; cursor:pointer;}
+  .btn-know{background:var(--ai); color:#f4efe3;}
+  .btn-miss{background:var(--shu); color:#f4efe3;}
+  .btn-ghost{background:none; border:1px solid var(--sumi); color:var(--sumi);}
+
+  /* quiz mode */
+  .quiz-wrap{max-width:460px; margin:0 auto; text-align:center;}
+  .q-prog{font-size:.74rem; color:var(--taupe); letter-spacing:.06em; text-transform:uppercase; margin-bottom:.6rem;}
+  .q-kana{font-family:var(--disp); font-size:2.6rem; font-weight:800; margin:.8rem 0 1.3rem;}
+  .q-opts{display:grid; gap:.55rem;}
+  .q-opt{background:var(--paper-cell); border:1px solid var(--paper-line); border-radius:8px; padding:.65rem; font-size:.92rem; cursor:pointer; font-family:var(--body);}
+  .q-opt:hover{border-color:var(--ai);}
+  .q-opt.correct{background:var(--ai-tint); border-color:var(--ai); color:var(--ai); font-weight:700;}
+  .q-opt.wrong{background:var(--shu-tint); border-color:var(--shu); color:var(--shu); font-weight:700;}
+  .q-opt[disabled]{cursor:default;}
+
+  .result{text-align:center; padding:1.5rem 1rem;}
+  .result .score{font-family:var(--disp); font-size:3rem; font-weight:800; color:var(--ai);}
+  .result .msg{color:var(--sumi-soft); margin:.4rem 0 1.2rem; font-size:.92rem;}
+
+  footer{text-align:center; margin-top:3rem; font-size:.75rem; color:var(--taupe); letter-spacing:.04em;}
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <header>
+    <div class="seal">読</div>
+    <div class="eyebrow">読解トレーニング · Reading Fluency</div>
+    <h1>カタカナ読解<span class="sub">20-Session Katakana Reading Schedule &amp; Self-Tests</span></h1>
+    <p class="intro">You already have the full katakana map. This is the drill: read it fast, without decoding. Four weeks, five short sessions each (~10–15 min). Each session has a <b>reading list</b> to warm up, <b>flashcards</b> for spaced self-testing, and a <b>quiz</b> to check it stuck.</p>
+  </header>
+
+  <div class="ribbon-wrap">
+    <div class="ribbon-label"><span>Week 1</span><span>Week 2</span><span>Week 3</span><span>Week 4</span></div>
+    <div class="ribbon" id="ribbon"></div>
+  </div>
+
+  <div id="dashboard"></div>
+
+  <section id="session-view">
+    <button class="back-btn" id="back-btn">← Back to schedule</button>
+    <div class="sv-head">
+      <h2 id="sv-title"></h2>
+      <div class="st" id="sv-sub"></div>
+    </div>
+    <div class="tabs">
+      <button class="tab active" data-mode="read">Read</button>
+      <button class="tab" data-mode="flash">Flashcards</button>
+      <button class="tab" data-mode="quiz">Quiz</button>
+    </div>
+    <div id="mode-body"></div>
+  </section>
+
+  <footer>がんばって、トーマスさん — steady reps beat cramming. Progress saves automatically in this browser.</footer>
+</div>
+
+<script>
+/* ---------------------------------------------------------
+   DATA
+--------------------------------------------------------- */
+const S1 = [['ア','a'],['イ','i'],['ウ','u'],['エ','e'],['オ','o'],['カ','ka'],['キ','ki'],['ク','ku'],['ケ','ke'],['コ','ko'],['サ','sa'],['シ','shi'],['ス','su'],['セ','se'],['ソ','so']];
+const S2 = [['タ','ta'],['チ','chi'],['ツ','tsu'],['テ','te'],['ト','to'],['ナ','na'],['ニ','ni'],['ヌ','nu'],['ネ','ne'],['ノ','no'],['ハ','ha'],['ヒ','hi'],['フ','fu'],['ヘ','he'],['ホ','ho']];
+const S3 = [['マ','ma'],['ミ','mi'],['ム','mu'],['メ','me'],['モ','mo'],['ヤ','ya'],['ユ','yu'],['ヨ','yo'],['ラ','ra'],['リ','ri'],['ル','ru'],['レ','re'],['ロ','ro'],['ワ','wa'],['ヲ','wo'],['ン','n']];
+const S4 = [...S1,...S2,...S3];
+const S5 = shuffleCopy(S4);
+
+const S6 = [['ガ','ga'],['ギ','gi'],['グ','gu'],['ゲ','ge'],['ゴ','go'],['ザ','za'],['ジ','ji'],['ズ','zu'],['ゼ','ze'],['ゾ','zo'],['ダ','da'],['ヂ','ji(di)'],['ヅ','zu(du)'],['デ','de'],['ド','do'],['バ','ba'],['ビ','bi'],['ブ','bu'],['ベ','be'],['ボ','bo']];
+const S7 = [['パ','pa'],['ピ','pi'],['プ','pu'],['ペ','pe'],['ポ','po'],['ガ','ga'],['ザ','za'],['ダ','da'],['バ','ba']];
+const S8 = [['キャ','kya'],['キュ','kyu'],['キョ','kyo'],['シャ','sha'],['シュ','shu'],['ショ','sho'],['チャ','cha'],['チュ','chu'],['チョ','cho'],['ニャ','nya'],['ニュ','nyu'],['ニョ','nyo'],['ヒャ','hya'],['ヒュ','hyu'],['ヒョ','hyo'],['ミャ','mya'],['ミュ','myu'],['ミョ','myo'],['リャ','rya'],['リュ','ryu'],['リョ','ryo'],['ギャ','gya'],['ギュ','gyu'],['ギョ','gyo'],['ジャ','ja'],['ジュ','ju'],['ジョ','jo'],['ビャ','bya'],['ビュ','byu'],['ビョ','byo'],['ピャ','pya'],['ピュ','pyu'],['ピョ','pyo']];
+
+function W(k,r,m){return {k,r,m};}
+const S9 = [W('ギター','gitaa','guitar'),W('シャツ','shatsu','shirt'),W('ジュース','juusu','juice'),W('チョコ','choko','chocolate'),W('ラジオ','rajio','radio'),W('ページ','peeji','page'),W('バナナ','banana','banana'),W('ギョーザ','gyooza','dumpling'),W('ジャム','jamu','jam'),W('ジーンズ','jiinzu','jeans')];
+const S10 = shuffleCopy(S6.map(([k,r])=>({k,r,m:null})).concat(S8.map(([k,r])=>({k,r,m:null})))).slice(0,16);
+
+const S11 = [W('コーヒー','koohii','coffee'),W('ケーキ','keeki','cake'),W('ノート','nooto','notebook'),W('カード','kaado','card'),W('スーツ','suutsu','suit'),W('パーティー','paatii','party'),W('チーズ','chiizu','cheese'),W('シャワー','shawaa','shower'),W('タワー','tawaa','tower'),W('ソース','soosu','sauce')];
+const S12 = [W('ベッド','beddo','bed'),W('カット','katto','cut'),W('サッカー','sakkaa','soccer'),W('クッキー','kukkii','cookie'),W('ラケット','raketto','racket'),W('チケット','chiketto','ticket'),W('ネット','netto','net'),W('ロケット','roketto','rocket'),W('マット','matto','mat'),W('ペット','petto','pet')];
+const S13 = [W('サラダ','sarada','salad'),W('スープ','suupu','soup'),W('パン','pan','bread'),W('バター','bataa','butter'),W('チーズ','chiizu','cheese'),W('ソーセージ','sooseeji','sausage'),W('レストラン','resutoran','restaurant'),W('メニュー','menyuu','menu'),W('デザート','dezaato','dessert'),W('フォーク','fooku','fork'),W('ナイフ','naifu','knife'),W('スプーン','supuun','spoon')];
+const S14 = [W('パソコン','pasokon','computer'),W('スマホ','sumaho','smartphone'),W('カメラ','kamera','camera'),W('テレビ','terebi','TV'),W('ラジオ','rajio','radio'),W('シャツ','shatsu','shirt'),W('ジーンズ','jiinzu','jeans'),W('コート','kooto','coat'),W('バッグ','baggu','bag'),W('タオル','taoru','towel')];
+const S15 = shuffleCopy([...S11,...S12,...S13,...S14]).slice(0,16);
+
+const S16 = [['ファ','fa'],['フィ','fi'],['フェ','fe'],['フォ','fo'],['ティ','ti'],['ディ','di'],['トゥ','tu'],['ドゥ','du'],['ウィ','wi'],['ウェ','we'],['ウォ','wo'],['ヴァ','va'],['ヴィ','vi'],['ヴ','vu'],['ヴェ','ve'],['ヴォ','vo'],['ジェ','je'],['チェ','che'],['シェ','she']];
+const S17 = [W('アメリカ','amerika','America'),W('イギリス','igirisu','England / UK'),W('フランス','furansu','France'),W('ドイツ','doitsu','Germany'),W('カナダ','kanada','Canada'),W('オーストラリア','oosutoraria','Australia'),W('スウェーデン','suweeden','Sweden'),W('デンマーク','denmaaku','Denmark'),W('ジョン','jon','John'),W('マリア','maria','Maria'),W('トーマス','toomasu','Thomas')];
+const S18 = [
+  W('コーヒーを ください','koohii wo kudasai','Coffee, please'),
+  W('メニューを みせて ください','menyuu wo misete kudasai','Please show me the menu'),
+  W('チーズと パンを ください','chiizu to pan wo kudasai','Cheese and bread, please'),
+  W('デザートは ケーキです','dezaato wa keeki desu','The dessert is cake'),
+  W('スマホと カメラが あります','sumaho to kamera ga arimasu','I have a smartphone and a camera'),
+  W('サッカーは スポーツです','sakkaa wa supootsu desu','Soccer is a sport')
+];
+const ALL_WORDS = [...S9,...S11,...S12,...S13,...S14,...S17,...S18];
+const S19 = shuffleCopy(ALL_WORDS).slice(0,20);
+const S20 = shuffleCopy([
+  ...S4.slice(0,6).map(([k,r])=>({k,r,m:null})),
+  ...S8.slice(0,6).map(([k,r])=>({k,r,m:null})),
+  ...shuffleCopy(ALL_WORDS).slice(0,10)
+]);
+
+function kanaItems(pairs){ return pairs.map(([k,r])=>({k,r,m:null})); }
+function shuffleCopy(arr){ return [...arr].sort(()=>Math.random()-0.5); }
+
+const SESSIONS = [
+  {id:1, week:1, title:'ア・カ・サ行', sub:'Base kana — a, ka, sa rows', items:kanaItems(S1)},
+  {id:2, week:1, title:'タ・ナ・ハ行', sub:'Base kana — ta, na, ha rows', items:kanaItems(S2)},
+  {id:3, week:1, title:'マ・ヤ・ラ・ワ行', sub:'Base kana — ma, ya, ra, wa, n', items:kanaItems(S3)},
+  {id:4, week:1, title:'全46音 復習', sub:'Full 46-kana mixed review', items:kanaItems(shuffleCopy(S4))},
+  {id:5, week:1, title:'第1週テスト', sub:'Test — all base 46 kana, timed reading', items:kanaItems(S5), test:true},
+
+  {id:6, week:2, title:'濁音（が・ざ・だ・ば行）', sub:'Voiced sounds — dakuten', items:kanaItems(S6)},
+  {id:7, week:2, title:'半濁音（ぱ行）', sub:'Handakuten + voiced review', items:kanaItems(S7)},
+  {id:8, week:2, title:'拗音（きゃ・しゃ…）', sub:'Contracted sounds — full yōon set', items:kanaItems(S8)},
+  {id:9, week:2, title:'単語で練習', sub:'Real words using voiced + contracted kana', items:S9},
+  {id:10, week:2, title:'第2週テスト', sub:'Test — dakuten, handakuten, yōon', items:S10, test:true},
+
+  {id:11, week:3, title:'長音（ー）', sub:'Long vowel mark — coffee, cake, party…', items:S11},
+  {id:12, week:3, title:'促音（っ）', sub:'Small tsu — bed, cut, cookie…', items:S12},
+  {id:13, week:3, title:'食べ物・飲み物', sub:'Food & drink vocabulary', items:S13},
+  {id:14, week:3, title:'テクノロジー・服', sub:'Tech & everyday objects, clothing', items:S14},
+  {id:15, week:3, title:'第3週テスト', sub:'Test — mixed real vocabulary, timed', items:S15, test:true},
+
+  {id:16, week:4, title:'外来音（ファ・ティ・ヴ…）', sub:'Extended sounds for foreign loanwords', items:kanaItems(S16)},
+  {id:17, week:4, title:'国名・人名', sub:'Countries & foreign names in katakana', items:S17},
+  {id:18, week:4, title:'短い文', sub:'Short real-world sentences & menu phrases', items:S18},
+  {id:19, week:4, title:'スピードラウンド', sub:'Speed round — random mix, everything so far', items:S19},
+  {id:20, week:4, title:'最終テスト', sub:'Final comprehensive test + self-assessment', items:S20, test:true},
+];
+
+/* ---------------------------------------------------------
+   STATE
+--------------------------------------------------------- */
+const STORE_KEY = 'katakana-reading-progress-v1';
+function loadProgress(){ try{ return JSON.parse(localStorage.getItem(STORE_KEY)) || {}; }catch(e){ return {}; } }
+function saveProgress(p){ localStorage.setItem(STORE_KEY, JSON.stringify(p)); }
+let progress = loadProgress();
+let currentSession = null;
+let currentMode = 'read';
+
+/* ---------------------------------------------------------
+   DASHBOARD
+--------------------------------------------------------- */
+function statusFor(id){
+  const p = progress[id];
+  if(!p) return {cls:'new', label:'Not started'};
+  const best = Math.max(p.quizScore||0, p.flashScore||0);
+  if(best >= 85) return {cls:'ok', label:'Mastered · '+best+'%'};
+  if(p.quizScore!=null || p.flashScore!=null) return {cls:'weak', label:'Tested · '+best+'%'};
+  return {cls:'read', label:'Read'};
+}
+
+function renderDashboard(){
+  const dash = document.getElementById('dashboard');
+  dash.innerHTML = '';
+  const weekMeta = {
+    1:{title:'Foundations', desc:'The base 46 kana, by row'},
+    2:{title:'Voiced & Contracted', desc:'Dakuten, handakuten, yōon'},
+    3:{title:'Real Vocabulary', desc:'Long vowels, small っ, everyday words'},
+    4:{title:'Fluency', desc:'Foreign sounds, names, sentences, speed'}
+  };
+  for(let w=1; w<=4; w++){
+    const block = document.createElement('div');
+    block.className = 'week-block';
+    block.innerHTML = `<div class="week-head">
+        <span class="week-num">週${w}</span>
+        <span class="week-title">${weekMeta[w].title}</span>
+        <span class="week-desc">${weekMeta[w].desc}</span>
+      </div>
+      <div class="card-grid" id="grid-${w}"></div>`;
+    dash.appendChild(block);
+    const grid = block.querySelector(`#grid-${w}`);
+    SESSIONS.filter(s=>s.week===w).forEach(s=>{
+      const st = statusFor(s.id);
+      const card = document.createElement('div');
+      card.className = 's-card';
+      card.innerHTML = `<span class="badge ${st.cls}">${st.label}</span>
+        <div class="n">Session ${s.id}${s.test?' · Test':''}</div>
+        <h3>${s.title}</h3>
+        <div class="st">${s.sub} · ${s.items.length} items</div>`;
+      card.addEventListener('click', ()=>openSession(s.id));
+      grid.appendChild(card);
+    });
+  }
+  renderRibbon();
+}
+
+function renderRibbon(){
+  const ribbon = document.getElementById('ribbon');
+  ribbon.innerHTML = '';
+  let lastWeek = 1;
+  SESSIONS.forEach(s=>{
+    if(s.week !== lastWeek){
+      const gap = document.createElement('div');
+      gap.className = 'week-gap';
+      ribbon.appendChild(gap);
+      lastWeek = s.week;
+    }
+    const st = statusFor(s.id);
+    const stone = document.createElement('div');
+    stone.className = 'stone' + (st.cls==='ok' ? ' mastered' : st.cls==='weak' ? ' weak' : st.cls==='read' || st.cls==='ok' ? ' done' : '');
+    if(st.cls==='read') stone.classList.add('done');
+    ribbon.appendChild(stone);
+  });
+}
+
+/* ---------------------------------------------------------
+   SESSION VIEW
+--------------------------------------------------------- */
+function openSession(id){
+  currentSession = SESSIONS.find(s=>s.id===id);
+  currentMode = 'read';
+  document.getElementById('dashboard').style.display = 'none';
+  document.querySelector('.ribbon-wrap').style.display = 'none';
+  document.getElementById('session-view').style.display = 'block';
+  document.getElementById('sv-title').textContent = `${currentSession.id}. ${currentSession.title}`;
+  document.getElementById('sv-sub').textContent = currentSession.sub;
+  document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active', t.dataset.mode==='read'));
+  renderMode();
+}
+
+document.getElementById('back-btn').addEventListener('click', ()=>{
+  document.getElementById('session-view').style.display = 'none';
+  document.getElementById('dashboard').style.display = 'block';
+  document.querySelector('.ribbon-wrap').style.display = 'block';
+  renderDashboard();
+});
+
+document.querySelectorAll('.tab').forEach(tab=>{
+  tab.addEventListener('click', ()=>{
+    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+    tab.classList.add('active');
+    currentMode = tab.dataset.mode;
+    renderMode();
+  });
+});
+
+function renderMode(){
+  if(!progress[currentSession.id]) progress[currentSession.id] = {};
+  if(currentMode === 'read'){ progress[currentSession.id].read = true; saveProgress(progress); renderRead(); }
+  else if(currentMode === 'flash') renderFlash();
+  else renderQuiz();
+}
+
+function renderRead(){
+  const body = document.getElementById('mode-body');
+  const grid = document.createElement('div');
+  grid.className = 'item-grid';
+  currentSession.items.forEach(it=>{
+    const card = document.createElement('div');
+    card.className = 'item-card';
+    const meaning = it.m ? `<br><span>${it.m}</span>` : '';
+    card.innerHTML = `<div class="k">${it.k}</div><div class="rv"><b>${it.r}</b>${meaning}</div>`;
+    card.addEventListener('click', ()=> card.classList.toggle('flip'));
+    grid.appendChild(card);
+  });
+  body.innerHTML = '';
+  body.appendChild(grid);
+}
+
+/* ---- flashcards ---- */
+function renderFlash(){
+  const body = document.getElementById('mode-body');
+  const deck = shuffleCopy(currentSession.items);
+  let idx = 0, correct = 0;
+  body.innerHTML = `<div class="fc-wrap">
+      <div class="fc-dots" id="fc-dots"></div>
+      <div class="fc-card" id="fc-card">
+        <div class="k"></div>
+        <div class="back"><b></b><span class="m"></span></div>
+        <div class="hint">Tap the card to flip</div>
+      </div>
+      <div class="fc-actions">
+        <button class="btn btn-know" id="fc-know">I knew it ✓</button>
+        <button class="btn btn-miss" id="fc-miss">Still learning ✗</button>
+      </div>
+    </div>`;
+  const dots = document.getElementById('fc-dots');
+  deck.forEach(()=>{ const d=document.createElement('span'); dots.appendChild(d); });
+
+  const cardEl = document.getElementById('fc-card');
+  function show(){
+    if(idx >= deck.length){ return finishFlash(); }
+    const it = deck[idx];
+    cardEl.classList.remove('flipped');
+    cardEl.querySelector('.k').textContent = it.k;
+    cardEl.querySelector('.back b').textContent = it.r;
+    cardEl.querySelector('.back .m').textContent = it.m || '';
+  }
+  cardEl.addEventListener('click', ()=> cardEl.classList.toggle('flipped'));
+  document.getElementById('fc-know').addEventListener('click', ()=> advance(true));
+  document.getElementById('fc-miss').addEventListener('click', ()=> advance(false));
+  function advance(know){
+    if(know) correct++;
+    dots.children[idx].classList.add('done');
+    idx++;
+    show();
+  }
+  function finishFlash(){
+    const score = Math.round(100*correct/deck.length);
+    progress[currentSession.id].flashScore = score;
+    saveProgress(progress);
+    document.getElementById('mode-body').innerHTML = `<div class="result">
+        <div class="score">${score}%</div>
+        <div class="msg">${correct} of ${deck.length} known on first look.</div>
+        <button class="btn btn-ghost" id="fc-retry">Run again</button>
+      </div>`;
+    document.getElementById('fc-retry').addEventListener('click', renderFlash);
+  }
+  show();
+}
+
+/* ---- quiz ---- */
+function buildOptions(item, pool, key){
+  const others = pool.filter(p => p[key] !== item[key]);
+  const distractors = shuffleCopy(others).slice(0,3).map(p=>p[key]);
+  const opts = shuffleCopy([item[key], ...distractors]);
+  return opts;
+}
+
+function renderQuiz(){
+  const isKanaOnly = currentSession.items.every(it=>!it.m);
+  const key = isKanaOnly ? 'r' : 'm';
+  const pool = isKanaOnly
+    ? SESSIONS.flatMap(s=>s.items).filter(it=>!it.m)
+    : ALL_WORDS;
+  const deck = shuffleCopy(currentSession.items);
+  let idx = 0, correct = 0;
+
+  const body = document.getElementById('mode-body');
+  function renderQuestion(){
+    if(idx >= deck.length) return finishQuiz();
+    const it = deck[idx];
+    const opts = buildOptions(it, pool, key);
+    body.innerHTML = `<div class="quiz-wrap">
+        <div class="q-prog">Question ${idx+1} / ${deck.length}</div>
+        <div class="q-kana">${it.k}</div>
+        <div class="q-opts">${opts.map(o=>`<button class="q-opt" data-val="${escapeHtml(o)}">${o}</button>`).join('')}</div>
+      </div>`;
+    body.querySelectorAll('.q-opt').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const chosen = btn.dataset.val;
+        const isRight = chosen === it[key];
+        body.querySelectorAll('.q-opt').forEach(b=>{
+          b.setAttribute('disabled','');
+          if(b.dataset.val === it[key]) b.classList.add('correct');
+          else if(b === btn && !isRight) b.classList.add('wrong');
+        });
+        if(isRight) correct++;
+        setTimeout(()=>{ idx++; renderQuestion(); }, 650);
+      });
+    });
+  }
+  function finishQuiz(){
+    const score = Math.round(100*correct/deck.length);
+    progress[currentSession.id].quizScore = score;
+    saveProgress(progress);
+    const msg = score>=85 ? 'Mastered — this set is solid.' : score>=60 ? 'Getting there — one more pass will lock it in.' : 'Worth another read-through before retesting.';
+    body.innerHTML = `<div class="result">
+        <div class="score">${score}%</div>
+        <div class="msg">${correct} of ${deck.length} correct. ${msg}</div>
+        <button class="btn btn-ghost" id="q-retry">Retry quiz</button>
+      </div>`;
+    document.getElementById('q-retry').addEventListener('click', renderQuiz);
+  }
+  renderQuestion();
+}
+
+function escapeHtml(str){
+  return String(str).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+/* ---------------------------------------------------------
+   INIT
+--------------------------------------------------------- */
+renderDashboard();
+</script>
+</body>
+</html>
