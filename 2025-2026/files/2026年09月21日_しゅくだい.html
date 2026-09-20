@@ -579,6 +579,10 @@ body.translations-visible .toggle-translations { background: var(--done-bg); col
 .opt-ok  { color: var(--done); font-style: normal; }
 .opt-no  { color: var(--accent-soft); text-decoration: line-through; font-style: normal; }
 
+/* Kanji table meaning column — hidden until EN toggle */
+.kanji-en-col { display: none; }
+body.translations-visible .kanji-en-col { display: table-cell; font-style: italic; color: var(--muted); }
+
 @media (max-width: 700px) {
   body { padding: 30px 18px; }
   .masthead { grid-template-columns: 1fr; gap: 16px; }
@@ -924,13 +928,18 @@ body.translations-visible .toggle-translations { background: var(--done-bg); col
       </div>
       <div class="grammar-table-wrap">
         <table class="grammar-table">
-          <thead><tr><th><ruby>漢字<rt>かんじ</rt></ruby></th><th><ruby>読<rt>よ</rt></ruby>み</th><th><ruby>漢字<rt>かんじ</rt></ruby></th><th><ruby>読<rt>よ</rt></ruby>み</th></tr></thead>
+          <thead><tr><th><ruby>漢字<rt>かんじ</rt></ruby></th><th><ruby>読<rt>よ</rt></ruby>み</th><th class="kanji-en-col">Meaning</th></tr></thead>
           <tbody>
-            <tr><td class="pattern-col"><ruby>観光地<rt>かんこうち</rt></ruby></td><td>kankōchi</td><td class="pattern-col"><ruby>料金<rt>りょうきん</rt></ruby></td><td>ryōkin</td></tr>
-            <tr><td class="pattern-col"><ruby>女性<rt>じょせい</rt></ruby></td><td>josei</td><td class="pattern-col"><ruby>無料<rt>むりょう</rt></ruby></td><td>muryō</td></tr>
-            <tr><td class="pattern-col"><ruby>男性<rt>だんせい</rt></ruby></td><td>dansei</td><td class="pattern-col"><ruby>明<rt>あか</rt></ruby>るい</td><td>akarui</td></tr>
-            <tr><td class="pattern-col"><ruby>動物<rt>どうぶつ</rt></ruby></td><td>dōbutsu</td><td class="pattern-col"><ruby>便利<rt>べんり</rt></ruby></td><td>benri</td></tr>
-            <tr><td class="pattern-col"><ruby>空気<rt>くうき</rt></ruby></td><td>kūki</td><td class="pattern-col">〜<ruby>中<rt>じゅう</rt></ruby>（<ruby>一年中<rt>いちねんじゅう</rt></ruby>）</td><td>-jū</td></tr>
+            <tr><td class="pattern-col"><ruby>観光地<rt>かんこうち</rt></ruby></td><td>kankōchi</td><td class="kanji-en-col">tourist destination / sightseeing spot</td></tr>
+            <tr><td class="pattern-col"><ruby>料金<rt>りょうきん</rt></ruby></td><td>ryōkin</td><td class="kanji-en-col">fee / fare / charge</td></tr>
+            <tr><td class="pattern-col"><ruby>女性<rt>じょせい</rt></ruby></td><td>josei</td><td class="kanji-en-col">woman / female</td></tr>
+            <tr><td class="pattern-col"><ruby>無料<rt>むりょう</rt></ruby></td><td>muryō</td><td class="kanji-en-col">free of charge</td></tr>
+            <tr><td class="pattern-col"><ruby>男性<rt>だんせい</rt></ruby></td><td>dansei</td><td class="kanji-en-col">man / male</td></tr>
+            <tr><td class="pattern-col"><ruby>明<rt>あか</rt></ruby>るい</td><td>akarui</td><td class="kanji-en-col">bright / light / cheerful</td></tr>
+            <tr><td class="pattern-col"><ruby>動物<rt>どうぶつ</rt></ruby></td><td>dōbutsu</td><td class="kanji-en-col">animal</td></tr>
+            <tr><td class="pattern-col"><ruby>便利<rt>べんり</rt></ruby></td><td>benri</td><td class="kanji-en-col">convenient / handy</td></tr>
+            <tr><td class="pattern-col"><ruby>空気<rt>くうき</rt></ruby></td><td>kūki</td><td class="kanji-en-col">air / atmosphere</td></tr>
+            <tr><td class="pattern-col">〜<ruby>中<rt>じゅう</rt></ruby>（<ruby>一年中<rt>いちねんじゅう</rt></ruby>）</td><td>-jū</td><td class="kanji-en-col">throughout / all through (e.g. 一年中 = all year round)</td></tr>
           </tbody>
         </table>
       </div>
