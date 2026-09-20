@@ -574,6 +574,11 @@ body.translations-visible .toggle-translations { background: var(--done-bg); col
   border-color: var(--accent-soft);
 }
 
+/* Choice annotations inside exercise-en */
+.opts { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-bottom: 4px; }
+.opt-ok  { color: var(--done); font-style: normal; }
+.opt-no  { color: var(--accent-soft); text-decoration: line-through; font-style: normal; }
+
 @media (max-width: 700px) {
   body { padding: 30px 18px; }
   .masthead { grid-template-columns: 1fr; gap: 16px; }
@@ -857,25 +862,25 @@ body.translations-visible .toggle-translations { background: var(--done-bg); col
         <div class="exercise-num">❶ <ruby>食<rt>た</rt></ruby>べます</div>
         <div class="exercise-context">a りょうり　b おかし　c くだもの　d おてら</div>
         <div class="exercise-answer"><span class="answer-arrow">→</span><span class="answer-val">d おてら</span></div>
-        <div class="exercise-en">d temple — does not belong in the "things you eat" group.</div>
+        <div class="exercise-en"><span class="opts"><span class="opt-ok">a: cuisine</span><span class="opt-ok">b: sweets / snacks</span><span class="opt-ok">c: fruit</span><span class="opt-no">d: temple ← odd one out</span></span>You can eat a, b, c on a trip — but not a temple.</div>
       </div>
       <div class="exercise-item">
         <div class="exercise-num">❷ <ruby>見<rt>み</rt></ruby>ます</div>
         <div class="exercise-context">a すいぞくかん　b おどり　c レストラン　d ショー</div>
         <div class="exercise-answer"><span class="answer-arrow">→</span><span class="answer-val">c レストラン</span></div>
-        <div class="exercise-en">c restaurant — does not belong in the "things you see" group (it's where you eat).</div>
+        <div class="exercise-en"><span class="opts"><span class="opt-ok">a: aquarium</span><span class="opt-ok">b: dance / dance performance</span><span class="opt-no">c: restaurant ← odd one out</span><span class="opt-ok">d: show / performance</span></span>At a sightseeing attraction you see a, b, d — a restaurant is where you eat, not something you "see".</div>
       </div>
       <div class="exercise-item">
         <div class="exercise-num">❸ <ruby>海<rt>うみ</rt></ruby>で あそびます</div>
         <div class="exercise-context">a およぎます　b つり　c オペラ　d ダイビング</div>
         <div class="exercise-answer"><span class="answer-arrow">→</span><span class="answer-val">c オペラ</span></div>
-        <div class="exercise-en">c opera — does not belong in the "sea activities" group.</div>
+        <div class="exercise-en"><span class="opts"><span class="opt-ok">a: swimming</span><span class="opt-ok">b: fishing</span><span class="opt-no">c: opera ← odd one out</span><span class="opt-ok">d: diving / scuba diving</span></span>Swimming, fishing, and diving are all sea activities — opera is an indoor performing art.</div>
       </div>
       <div class="exercise-item">
         <div class="exercise-num">❹ <ruby>山<rt>やま</rt></ruby>で あそびます</div>
         <div class="exercise-context">a ピクニック　b イルカと あそびます　c キャンプ　d やまのぼり</div>
         <div class="exercise-answer"><span class="answer-arrow">→</span><span class="answer-val">b イルカと あそびます</span></div>
-        <div class="exercise-en">b swimming with dolphins — does not belong in the "mountain activities" group.</div>
+        <div class="exercise-en"><span class="opts"><span class="opt-ok">a: picnic</span><span class="opt-no">b: playing with dolphins ← odd one out</span><span class="opt-ok">c: camping</span><span class="opt-ok">d: hiking / mountain climbing</span></span>Picnics, camping, and hiking are mountain activities — playing with dolphins is a sea / aquarium activity.</div>
       </div>
 
       <h3>Ex.3 — <ruby>聞<rt>き</rt></ruby>いて <ruby>書<rt>か</rt></ruby>きましょう (p.63, track 099)</h3>
@@ -1047,25 +1052,25 @@ body.translations-visible .toggle-translations { background: var(--done-bg); col
         <div class="exercise-num">❶</div>
         <div class="exercise-context">この ツアーでは <ruby>沖縄<rt>おきなわ</rt></ruby>ガラスで コップが（a <ruby>作<rt>つく</rt></ruby>ります　b <ruby>作<rt>つく</rt></ruby>れます）。<br><ruby>沖縄<rt>おきなわ</rt></ruby>ガラスで <ruby>作<rt>つく</rt></ruby>った アクセサリーが（a <ruby>買<rt>か</rt></ruby>います　b <ruby>買<rt>か</rt></ruby>えます）。</div>
         <div class="exercise-answer"><span class="answer-arrow">→</span><span class="answer-val"><ruby>作<rt>つく</rt></ruby>れます　<ruby>買<rt>か</rt></ruby>えます</span></div>
-        <div class="exercise-en">In this tour you can make cups with Okinawan glass. You can also buy accessories made from Okinawan glass.</div>
+        <div class="exercise-en"><span class="opts"><span>blank 1: <span class="opt-no">a 作ります — will make (plain, not potential)</span> / <span class="opt-ok">b 作れます — can make ✓</span></span><span>blank 2: <span class="opt-no">a 買います — will buy (plain)</span> / <span class="opt-ok">b 買えます — can buy ✓</span></span></span>In this tour you can make cups with Okinawan glass, and can also buy accessories made from Okinawan glass.</div>
       </div>
       <div class="exercise-item">
         <div class="exercise-num">❷</div>
         <div class="exercise-context">しんせんな くだものを <ruby>食<rt>た</rt></ruby>べる ツアーも <ruby>人気<rt>にんき</rt></ruby>です。（a <ruby>買<rt>か</rt></ruby>った　b <ruby>買<rt>か</rt></ruby>えた）くだものは <ruby>家<rt>いえ</rt></ruby>まで（a <ruby>送<rt>おく</rt></ruby>ります　b <ruby>送<rt>おく</rt></ruby>れます）から、<ruby>便利<rt>べんり</rt></ruby>です。</div>
         <div class="exercise-answer"><span class="answer-arrow">→</span><span class="answer-val"><ruby>買<rt>か</rt></ruby>った　<ruby>送<rt>おく</rt></ruby>れます</span></div>
-        <div class="exercise-en">Tours where you can eat fresh fruit are also popular. The fruit you bought can be sent home, so it's convenient.</div>
+        <div class="exercise-en"><span class="opts"><span>blank 1: <span class="opt-ok">a 買った — (fruit) you bought ✓</span> / <span class="opt-no">b 買えた — was able to buy (potential past, unnecessary here)</span></span><span>blank 2: <span class="opt-no">a 送ります — will send (plain, no potential meaning)</span> / <span class="opt-ok">b 送れます — can be sent ✓</span></span></span>Fresh-fruit tours are popular. The fruit you bought can be sent home, so it's convenient.</div>
       </div>
       <div class="exercise-item">
         <div class="exercise-num">❸</div>
         <div class="exercise-context">これは じてんしゃタクシーに（a <ruby>乗<rt>の</rt></ruby>って　b <ruby>乗<rt>の</rt></ruby>れて）<ruby>町<rt>まち</rt></ruby>の <ruby>中<rt>なか</rt></ruby>を <ruby>観光<rt>かんこう</rt></ruby>する ツアーです。</div>
         <div class="exercise-answer"><span class="answer-arrow">→</span><span class="answer-val"><ruby>乗<rt>の</rt></ruby>って</span></div>
-        <div class="exercise-en">This is a tour that sightseeing the town center riding in a bicycle taxi.</div>
+        <div class="exercise-en"><span class="opts"><span class="opt-ok">a 乗って — riding / getting on (te-form, used to connect actions) ✓</span><span class="opt-no">b 乗れて — being able to ride (potential te-form, wrong here — "ability" is not the point)</span></span>This is a tour where you ride a bicycle taxi and sightsee the town center.</div>
       </div>
       <div class="exercise-item">
         <div class="exercise-num">❹</div>
         <div class="exercise-context"><ruby>沖縄<rt>おきなわ</rt></ruby>では 5<ruby>月<rt>がつ</rt></ruby>から 10<ruby>月<rt>がつ</rt></ruby>ごろまで（a <ruby>泳<rt>およ</rt></ruby>ぎます　b <ruby>泳<rt>およ</rt></ruby>げます）。ダイビングは <ruby>一年中<rt>いちねんじゅう</rt></ruby>（a します　b できます）。</div>
         <div class="exercise-answer"><span class="answer-arrow">→</span><span class="answer-val"><ruby>泳<rt>およ</rt></ruby>げます　できます</span></div>
-        <div class="exercise-en">In Okinawa you can swim from around May to October. Diving is possible all year round.</div>
+        <div class="exercise-en"><span class="opts"><span>blank 1: <span class="opt-no">a 泳ぎます — will swim (plain, no potential)</span> / <span class="opt-ok">b 泳げます — can swim ✓</span></span><span>blank 2: <span class="opt-no">a します — will do (plain)</span> / <span class="opt-ok">b できます — is possible / can do ✓ (irregular potential of する)</span></span></span>In Okinawa you can swim from around May to October. Diving is possible all year round.</div>
       </div>
 
       <h3>Ex.2② — ただしい かたちを <ruby>書<rt>か</rt></ruby>きましょう (p.65, CHECK! 107) — <ruby>沖縄<rt>おきなわ</rt></ruby><ruby>体験<rt>たいけん</rt></ruby>ツアー</h3>
