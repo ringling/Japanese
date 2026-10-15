@@ -226,6 +226,8 @@ rt{font-family:var(--ui);font-size:.42em;font-weight:400;color:var(--dim);letter
 <script>
 (function(){
 const LIB=window.STORIES||[];
+const sameText=(a,b)=>a.length===b.length&&a.every((l,i)=>l.replace(/\s/g,'')===b[i].replace(/\s/g,''));
+const findLib=ja=>LIB.find(x=>sameText(x.ja,ja));
 const KEY='yobanashi.v2';
 const $=id=>document.getElementById(id);
 const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -238,8 +240,8 @@ let slides=[];
 let pend={ja:null,en:null,jaName:'',enName:''};
 
 function load(){try{const s=JSON.parse(localStorage.getItem(KEY)||'null');if(s&&s.ja&&s.ja.length&&!/[\u00c3\u00e3\u00e2][\u0080-\u00ff\u0152-\u2122]/.test(s.ja.join('')))st=Object.assign(st,s);}catch(e){}
-  const b=st.storyId&&LIB.find(x=>x.id===st.storyId);
-  if(b){st.ja=b.ja;st.en=b.en;st.html=b.jaHtml;st.words=b.words;}}
+  const b=(st.storyId&&LIB.find(x=>x.id===st.storyId))||(st.ja.length&&findLib(st.ja));
+  if(b){st.storyId=b.id;st.ja=b.ja;st.en=b.en;st.html=b.jaHtml;st.words=b.words;st.name=b.title;}}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(st));}catch(e){}}
 
 const tsRe=/^\s*\[?\(?\d{1,2}:\d{2}(?::\d{2})?(?:[.,]\d+)?\)?\]?\s*[-–]?\s*/;
@@ -323,6 +325,7 @@ function renderLib(){
 function openLoad(){renderLib();$('closeLoad').hidden=!slides.length;$('loadOv').hidden=false;}
 
 function useStory(ja,en,name,sample,lib){
+  if(!lib&&!sample){lib=findLib(ja);if(lib){ja=lib.ja;en=lib.en;name=lib.title;}}
   st.ja=ja;st.en=en;st.name=name;st.sample=!!sample;st.pos=0;
   st.storyId=lib?lib.id:null;st.html=lib?lib.jaHtml:null;st.words=lib?lib.words:null;
   build();render(true);save();closeOv('loadOv');
