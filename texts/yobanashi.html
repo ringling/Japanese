@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Yobanashi Story Deck</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
+<style>
+/* Layout: one night-sky stage, a slim control bar above, progress + nav below. Single dark look by choice: it's a bedtime deck. */
+:root{
+  --night:#11152a; --night-2:#1a2040; --night-3:#252c52;
+  --washi:#ede5d3; --dim:#9b9fbb; --moon:#e9d6a0; --willow:#93b59e;
+  --rule:rgba(237,229,211,.13); --warn:#e6a77a;
+  --ja:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif;
+  --en:"Newsreader","Iowan Old Style",Georgia,serif;
+  --ui:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",system-ui,sans-serif;
+  color-scheme:dark;
+}
+html,body{height:100%}
+body{background:var(--night);color:var(--washi);font-family:var(--ui);overflow:hidden}
+.app{height:100%;display:flex;flex-direction:column;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  background:radial-gradient(circle at 86% 8%,rgba(233,214,160,.16) 0 46px,rgba(233,214,160,.05) 47px 140px,transparent 141px),
+             linear-gradient(180deg,var(--night-2),var(--night) 70%)}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--moon);outline-offset:3px;border-radius:6px}
+
+/* bar */
+.bar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding-block:14px 8px}
+.brand{font-family:var(--ja);font-weight:700;font-size:1.05rem;letter-spacing:.12em;color:var(--moon);white-space:nowrap}
+.storyname{min-width:0;flex:1;font-size:.8rem;color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.storyname b{color:var(--washi);font-weight:500}
+.chip{font-size:.7rem;color:var(--warn);border:1px solid currentColor;border-radius:99px;padding:1px 8px;margin-left:6px}
+.controls{display:flex;gap:6px;flex-wrap:wrap}
+.tog{background:transparent;border:1px solid var(--rule);border-radius:99px;padding:5px 12px;font-size:.78rem;letter-spacing:.04em;color:var(--dim);display:inline-flex;align-items:center;gap:6px}
+.tog kbd{font-family:var(--ui);font-size:.66rem;opacity:.6}
+.tog[aria-pressed="true"]{background:var(--washi);color:var(--night);border-color:var(--washi)}
+.tog:hover{border-color:var(--dim)}
+
+/* stage */
+.stage{flex:1;min-height:0;display:grid;place-items:center;position:relative;touch-action:pan-y}
+.slide{max-width:52rem;width:100%;display:flex;flex-direction:column;align-items:center;text-align:center;gap:1.4rem;transition:opacity .35s ease,transform .35s ease}
+.slide.pre{opacity:0;transform:translateY(8px)}
+.eyebrow{font-size:.72rem;letter-spacing:.22em;color:var(--willow);text-transform:uppercase;display:flex;gap:10px;align-items:center}
+.eyebrow::before,.eyebrow::after{content:"";width:28px;height:1px;background:var(--rule)}
+.ja{font-family:var(--ja);font-weight:500;font-size:clamp(1.55rem,4.3vw,3rem);line-height:1.75;text-wrap:balance;margin:0;max-width:22em}
+.en{font-family:var(--en);font-style:italic;font-size:clamp(1.05rem,2.2vw,1.45rem);line-height:1.5;color:var(--dim);margin:0;max-width:34em;text-wrap:balance;
+  opacity:0;visibility:hidden;transform:translateY(4px);transition:opacity .25s,transform .25s,visibility .25s}
+.show-en .en{opacity:1;visibility:visible;transform:none}
+.k-speech .ja{color:#fff7e6}
+.k-speech .ja .q{color:var(--moon)}
+.k-title .ja{font-weight:700;font-size:clamp(2.4rem,8vw,5rem);letter-spacing:.08em;color:var(--moon)}
+.k-title .rule{width:64px;height:1px;background:var(--moon);opacity:.5}
+.k-end .ja{letter-spacing:.3em;color:var(--moon)}
+/* tategaki */
+.tate .slide{flex-direction:row-reverse;justify-content:center;align-items:center;gap:2.4rem;text-align:left}
+.tate .slide .eyebrow{writing-mode:vertical-rl;text-transform:none}
+.tate .slide .eyebrow::before,.tate .slide .eyebrow::after{width:1px;height:28px}
+.tate .ja{writing-mode:vertical-rl;max-height:62vh;max-width:none;line-height:1.9}
+.tate .en{max-width:18em;text-align:left}
+.tate .k-title .rule{width:1px;height:64px}
+.tapzone{position:absolute;top:0;bottom:0;width:22%;background:none;border:0;opacity:0}
+.tapzone.l{left:0}.tapzone.r{right:0}
+
+/* footer */
+.foot{padding-block:8px max(14px,env(safe-area-inset-bottom,0px));display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center}
+.nav{width:42px;height:42px;border-radius:50%;border:1px solid var(--rule);background:transparent;font-size:1.1rem;color:var(--washi)}
+.nav:hover{border-color:var(--moon);color:var(--moon)}
+.nav:disabled{opacity:.3;cursor:default}
+.track{display:flex;flex-direction:column;gap:6px;min-width:0}
+.bar-p{height:3px;background:var(--rule);border-radius:3px;overflow:hidden}
+.bar-p i{display:block;height:100%;background:var(--moon);width:0;transition:width .3s}
+.count{font-size:.74rem;color:var(--dim);display:flex;justify-content:space-between;font-variant-numeric:tabular-nums;gap:8px}
+.hint{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* overlays */
+.overlay{position:fixed;inset:0;background:rgba(10,12,26,.94);z-index:5;overflow:auto;
+  padding:max(20px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(20px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.ov-in{max-width:68rem;margin:0 auto;display:flex;flex-direction:column;gap:16px}
+.ov-head{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.ov-head h2{font-family:var(--ja);font-weight:700;color:var(--moon);margin:0;font-size:1.3rem;letter-spacing:.1em}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
+.cell{display:flex;flex-direction:column;gap:6px;text-align:left;background:var(--night-2);border:1px solid var(--rule);border-radius:10px;padding:12px;min-width:0}
+.cell:hover{border-color:var(--dim)}
+.cell.cur{border-color:var(--moon)}
+.cell .n{font-size:.68rem;color:var(--willow);letter-spacing:.1em;font-variant-numeric:tabular-nums}
+.cell .j{font-family:var(--ja);font-size:.95rem;line-height:1.55;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.cell .e{font-family:var(--en);font-style:italic;font-size:.82rem;color:var(--dim);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.cell.k-title .j{color:var(--moon);font-weight:700}
+
+/* loader */
+.load{max-width:44rem}
+.load p.lede{color:var(--dim);line-height:1.6;margin:0;max-width:60ch}
+.drops{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.drop{position:relative;border:1.5px dashed var(--rule);border-radius:12px;padding:22px 16px;display:flex;flex-direction:column;gap:6px;background:var(--night-2)}
+.drop.over{border-color:var(--moon)}
+.drop.ok{border-style:solid;border-color:var(--willow)}
+.drop strong{font-family:var(--ja);font-size:1.1rem}
+.drop span{font-size:.8rem;color:var(--dim)}
+.drop input{position:absolute;inset:0;opacity:0;cursor:pointer}
+details{color:var(--dim);font-size:.85rem}
+details summary{cursor:pointer}
+.pastes{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-top:10px}
+textarea{width:100%;box-sizing:border-box;min-height:140px;background:var(--night-2);color:var(--washi);border:1px solid var(--rule);border-radius:10px;padding:10px;font-family:var(--ja);font-size:.9rem;resize:vertical}
+.actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.primary{background:var(--moon);color:var(--night);border:0;border-radius:99px;padding:10px 22px;font-weight:700;letter-spacing:.04em}
+.primary:disabled{opacity:.4;cursor:default}
+.ghost{background:transparent;border:1px solid var(--rule);border-radius:99px;padding:9px 18px;color:var(--washi)}
+.msg{font-size:.8rem;color:var(--warn)}
+.preview{border:1px solid var(--rule);border-radius:12px;padding:22px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center}
+.preview .pj{font-family:var(--ja);font-size:1.4rem}
+.preview .pe{font-family:var(--en);font-style:italic;color:var(--dim)}
+.preview .tag{font-size:.66rem;letter-spacing:.2em;color:var(--willow);text-transform:uppercase}
+.keys{font-size:.76rem;color:var(--dim);line-height:1.8}
+.keys kbd{border:1px solid var(--rule);border-radius:4px;padding:0 5px;font-family:var(--ui)}
+/* furigana + words */
+rt{font-family:var(--ui);font-size:.42em;font-weight:400;color:var(--dim);letter-spacing:0}
+.k-title rt{color:var(--moon);opacity:.75}
+.no-furi rt{visibility:hidden}
+.lw{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 16px;font-size:.82rem;color:var(--dim);max-width:40em;
+  opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s}
+.show-en .lw{opacity:1;visibility:visible}
+.lw b{font-family:var(--ja);font-weight:500;color:var(--willow);margin-right:4px}
+.lw rt{font-size:.55em}
+.tate .lw{flex-direction:column;align-items:flex-start;max-width:14em}
+.lib{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px}
+.lib button{display:flex;flex-direction:column;gap:4px;text-align:left;background:var(--night-2);border:1px solid var(--rule);border-radius:12px;padding:14px}
+.lib button:hover{border-color:var(--moon)}
+.lib .lt{font-family:var(--ja);font-size:1.25rem;color:var(--moon)}
+.lib .le{font-family:var(--en);font-style:italic;color:var(--dim);font-size:.9rem}
+.lib .lm{font-size:.72rem;color:var(--willow);letter-spacing:.06em}
+.sub{font-size:.72rem;letter-spacing:.2em;color:var(--willow);text-transform:uppercase;margin:6px 0 -4px}
+.words{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
+.wcell{display:flex;flex-direction:column;gap:4px;text-align:left;background:var(--night-2);border:1px solid var(--rule);border-radius:10px;padding:12px}
+.wcell:hover{border-color:var(--dim)}
+.wcell .wj{font-family:var(--ja);font-size:1.25rem;color:var(--washi)}
+.wcell .we{font-family:var(--en);font-style:italic;color:var(--dim);font-size:.9rem}
+.wcell .wl{font-size:.68rem;color:var(--willow);letter-spacing:.08em}
+.src{color:var(--dim);font-size:.72rem;margin-left:8px}
+@media (max-width:520px){.tog kbd,.hint{display:none}.tate .ja{max-height:52vh}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="app" id="app">
+  <header class="bar">
+    <div class="brand">夜話</div>
+    <div class="storyname" id="storyname"></div>
+    <div class="controls">
+      <button class="tog" id="tEn" aria-pressed="false" title="Toggle English (E)">EN <kbd>E</kbd></button>
+      <button class="tog" id="tFuri" aria-pressed="true" title="Furigana (F)">ふりがな <kbd>F</kbd></button>
+      <button class="tog" id="tTate" aria-pressed="false" title="Vertical Japanese (T)">縦書き <kbd>T</kbd></button>
+      <button class="tog" id="tWords" title="New words (W)">ことば <kbd>W</kbd></button>
+      <button class="tog" id="tGrid" title="All lines (G)">一覧 <kbd>G</kbd></button>
+      <button class="tog" id="tLoad" title="Load another story">読み込み</button>
+    </div>
+  </header>
+
+  <main class="stage" id="stage" aria-live="polite">
+    <div class="slide" id="slide"></div>
+    <button class="tapzone l" id="tapL" aria-label="Previous line" tabindex="-1"></button>
+    <button class="tapzone r" id="tapR" aria-label="Next line" tabindex="-1"></button>
+  </main>
+
+  <footer class="foot">
+    <button class="nav" id="prev" aria-label="Previous line">←</button>
+    <div class="track">
+      <div class="bar-p"><i id="prog"></i></div>
+      <div class="count"><span id="count">0 / 0</span><span class="hint">← → or swipe · E for English</span></div>
+    </div>
+    <button class="nav" id="next" aria-label="Next line">→</button>
+  </footer>
+</div>
+
+<div class="overlay" id="gridOv" hidden>
+  <div class="ov-in">
+    <div class="ov-head"><h2>一覧</h2><button class="ghost" id="closeGrid">Close</button></div>
+    <div class="grid" id="grid"></div>
+  </div>
+</div>
+
+<div class="overlay" id="wordsOv" hidden>
+  <div class="ov-in">
+    <div class="ov-head"><h2>ことば</h2><button class="ghost" id="closeWords">Close</button></div>
+    <p class="lede" id="wordsLede" style="color:var(--dim);margin:0"></p>
+    <div class="words" id="words"></div>
+  </div>
+</div>
+
+<div class="overlay" id="loadOv" hidden>
+  <div class="ov-in load">
+    <div class="ov-head"><h2>おはなしを読み込む</h2><button class="ghost" id="closeLoad" hidden>Close</button></div>
+    <div class="sub">ものがたり · built-in stories</div>
+    <div class="lib" id="lib"></div>
+    <div class="sub">or load your own</div>
+    <p class="lede">Load a story transcript. Each line becomes one slide, with the Japanese up front and the English line from the same position behind the EN toggle. Timestamps and subtitle numbering are stripped. The text stays in this browser.</p>
+    <div class="drops">
+      <label class="drop" id="dJa"><strong>日本語</strong><span id="dJaS">Japanese .txt (required)</span><input type="file" id="fJa" accept=".txt,.srt,.vtt,text/plain"></label>
+      <label class="drop" id="dEn"><strong>English</strong><span id="dEnS">English .txt (optional)</span><input type="file" id="fEn" accept=".txt,.srt,.vtt,text/plain"></label>
+    </div>
+    <details><summary>Paste text instead</summary>
+      <div class="pastes">
+        <textarea id="pJa" placeholder="日本語の文…" aria-label="Japanese text"></textarea>
+        <textarea id="pEn" placeholder="English lines…" aria-label="English text" style="font-family:var(--en)"></textarea>
+      </div>
+    </details>
+    <div class="actions">
+      <button class="primary" id="build" disabled>Build deck</button>
+      <button class="ghost" id="sample">Open sample story</button>
+      <span class="msg" id="msg"></span>
+    </div>
+    <div class="preview" aria-hidden="true">
+      <span class="tag">How a slide looks</span>
+      <span class="pj">ある夜、小さなねこが月を見ていました。</span>
+      <span class="pe">One night, a little cat was looking at the moon.</span>
+    </div>
+    <div class="keys"><kbd>←</kbd> <kbd>→</kbd> move · <kbd>E</kbd> English · <kbd>F</kbd> furigana · <kbd>T</kbd> vertical · <kbd>W</kbd> new words · <kbd>G</kbd> all lines · tap the screen edges on a phone</div>
+  </div>
+</div>
+
+<script src="stories.js"></script>
+<script>
+(function(){
+const LIB=window.STORIES||[];
+const KEY='yobanashi.v2';
+const $=id=>document.getElementById(id);
+const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const SAMPLE={name:'Sample story',sample:true,
+  ja:['今夜は、ねこのお話です。','「よるのねこ」','ある夜、小さなねこが月を見ていました。','「きれいだなあ。」','ねこは、しずかにねむりました。','おしまい。','おやすみなさい。'],
+  en:["Tonight's story is about a cat.",'"The Night Cat"','One night, a little cat was looking at the moon.','"How beautiful."','The cat quietly fell asleep.','The End.','Good night.']};
+
+let st={ja:[],en:[],html:null,words:null,storyId:null,name:'',sample:false,pos:0,showEn:false,tate:false,furi:true};
+let slides=[];
+let pend={ja:null,en:null,jaName:'',enName:''};
+
+function load(){try{const s=JSON.parse(localStorage.getItem(KEY)||'null');if(s&&s.ja&&s.ja.length&&!/[\u00c3\u00e3\u00e2][\u0080-\u00ff\u0152-\u2122]/.test(s.ja.join('')))st=Object.assign(st,s);}catch(e){}
+  const b=st.storyId&&LIB.find(x=>x.id===st.storyId);
+  if(b){st.ja=b.ja;st.en=b.en;st.html=b.jaHtml;st.words=b.words;}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(st));}catch(e){}}
+
+const tsRe=/^\s*\[?\(?\d{1,2}:\d{2}(?::\d{2})?(?:[.,]\d+)?\)?\]?\s*[-–]?\s*/;
+function parse(t){
+  return t.replace(/^﻿/,'').split(/\r?\n/).map(l=>l.replace(tsRe,'').trim())
+    .filter(l=>l&&!/^\d+$/.test(l)&&!/-->/.test(l)&&l!=='WEBVTT');
+}
+
+function build(){
+  const ja=st.ja,en=st.en;
+  const titleRe=/^[「『][^。！？!?]+[」』]$/, endRe=/^(おしまい|おわり|めでたし)/;
+  let ti=ja.findIndex(l=>titleRe.test(l));
+  let ei=ja.findIndex((l,i)=>i>ti&&endRe.test(l));
+  slides=ja.map((j,i)=>{
+    let kind=i===ti?'title':endRe.test(j)?'end':/^[「『].*[」』]$/.test(j)?'speech':'line';
+    let phase=ti<0?'おはなし':i<ti?'はじめに':(ei>=0&&i>ei)?'おわりに':'おはなし';
+    const words=(st.words||[]).filter(w=>w.lines.includes(i));
+    return {ja:j,html:st.html?st.html[i]:null,en:en[i]||'',kind,phase,words};
+  });
+  const t=ti>=0?ja[ti].replace(/^[「『]|[」』]$/g,''):'';
+  const b=st.storyId&&LIB.find(x=>x.id===st.storyId);
+  const enT=ti>=0&&en[ti]?en[ti].replace(/^["“「]|["”」]$/g,''):'';
+  $('storyname').innerHTML=(t?'<b>'+esc(t)+'</b>'+(enT?' · '+esc(enT):''):'<b>'+esc(st.name||'Story')+'</b>')
+    +(st.sample?'<span class="chip" style="color:var(--willow)">sample</span>':'')
+    +(en.length&&en.length!==ja.length?'<span class="chip" title="Lines are paired by position">JA '+ja.length+' · EN '+en.length+'</span>':'')
+    +(!en.length?'<span class="chip">no English loaded</span>':'')
+    +(b&&b.source?'<a class="src" href="'+esc(b.source)+'" target="_blank" rel="noopener">▶ video</a>':'');
+  $('tWords').hidden=!(st.words&&st.words.length);
+}
+
+function jaHtml(s){
+  const h=s.html||esc(s.ja);
+  if(s.kind==='speech')return h.replace(/^([「『])/,'<span class="q">$1</span>').replace(/([」』])$/,'<span class="q">$1</span>');
+  if(s.kind==='title')return h.replace(/^[「『]|[」』]$/g,'');
+  return h;
+}
+function wordsHtml(ws){
+  return ws.length?'<div class="lw" lang="ja">'+ws.map(w=>'<span><b>'+w.html+'</b>'+esc(w.en)+'</span>').join('')+'</div>':'';
+}
+
+function render(anim){
+  const n=slides.length;
+  if(!n){$('slide').innerHTML='';return;}
+  st.pos=Math.max(0,Math.min(st.pos,n-1));
+  const s=slides[st.pos],el=$('slide');
+  el.className='slide k-'+s.kind+(anim?' pre':'');
+  el.innerHTML='<div class="eyebrow">'+s.phase+' · '+(st.pos+1)+'</div>'
+    +'<p class="ja" lang="ja">'+jaHtml(s)+'</p>'
+    +(s.kind==='title'?'<div class="rule"></div>':'')
+    +'<p class="en" lang="en">'+esc(s.en||'—')+'</p>'
+    +wordsHtml(s.words);
+  if(anim)requestAnimationFrame(()=>requestAnimationFrame(()=>el.classList.remove('pre')));
+  $('count').textContent=(st.pos+1)+' / '+n;
+  $('prog').style.width=((st.pos+1)/n*100)+'%';
+  $('prev').disabled=st.pos===0;$('next').disabled=st.pos===n-1;
+  save();
+}
+
+function go(d){const p=st.pos+d;if(p<0||p>=slides.length)return;st.pos=p;render(true);}
+function jump(i){st.pos=i;render(true);closeOv('gridOv');}
+
+function setEn(v){st.showEn=v;document.body.classList.toggle('show-en',v);$('tEn').setAttribute('aria-pressed',v);save();}
+function setFuri(v){st.furi=v;document.body.classList.toggle('no-furi',!v);$('tFuri').setAttribute('aria-pressed',v);save();}
+function setTate(v){st.tate=v;document.body.classList.toggle('tate',v);$('tTate').setAttribute('aria-pressed',v);save();}
+
+function openGrid(){
+  $('grid').innerHTML=slides.map((s,i)=>'<button class="cell k-'+s.kind+(i===st.pos?' cur':'')+'" data-i="'+i+'"><span class="n">'+String(i+1).padStart(2,'0')+' · '+s.phase+'</span><span class="j" lang="ja">'+esc(s.ja)+'</span>'+(st.showEn&&s.en?'<span class="e">'+esc(s.en)+'</span>':'')+'</button>').join('');
+  $('gridOv').hidden=false;
+  const c=$('grid').querySelector('.cur');if(c){c.scrollIntoView({block:'center'});c.focus();}
+}
+function closeOv(id){$(id).hidden=true;}
+function openWords(){
+  const ws=st.words||[];if(!ws.length)return;
+  $('wordsLede').textContent=ws.length+' words in this story that are new for you (not in 入門 / 初級1 / A2-2 so far, not in the Anki deck). Tap one to jump to where it first appears.';
+  $('words').innerHTML=ws.map(w=>'<button class="wcell" data-i="'+w.lines[0]+'"><span class="wj" lang="ja">'+w.html+'</span><span class="we">'+esc(w.en)+'</span><span class="wl">line '+w.lines.map(l=>l+1).join(' · ')+'</span></button>').join('');
+  $('wordsOv').hidden=false;
+}
+function renderLib(){
+  $('lib').innerHTML=LIB.length?LIB.map(b=>'<button data-id="'+esc(b.id)+'"><span class="lt" lang="ja">'+esc(b.title)+'</span><span class="le">'+esc(b.titleEn||'')+'</span><span class="lm">'+b.ja.length+' lines · '+(b.words||[]).length+' new words</span></button>').join(''):'<span style="color:var(--dim)">No built-in stories yet.</span>';
+}
+function openLoad(){renderLib();$('closeLoad').hidden=!slides.length;$('loadOv').hidden=false;}
+
+function useStory(ja,en,name,sample,lib){
+  st.ja=ja;st.en=en;st.name=name;st.sample=!!sample;st.pos=0;
+  st.storyId=lib?lib.id:null;st.html=lib?lib.jaHtml:null;st.words=lib?lib.words:null;
+  build();render(true);save();closeOv('loadOv');
+}
+
+function readFile(file,which){
+  const r=new FileReader();
+  r.onload=()=>{pend[which]=parse(String(r.result));pend[which+'Name']=file.name;
+    const d=$(which==='ja'?'dJa':'dEn');d.classList.add('ok');
+    $(which==='ja'?'dJaS':'dEnS').textContent=file.name+' · '+pend[which].length+' lines';
+    refreshBuild();};
+  r.readAsText(file,'utf-8');
+}
+function refreshBuild(){
+  const ja=pend.ja||parse($('pJa').value);
+  $('build').disabled=!ja.length;
+  const en=pend.en||parse($('pEn').value);
+  $('msg').textContent=ja.length&&en.length&&ja.length!==en.length?'Line counts differ ('+ja.length+' JA, '+en.length+' EN). Lines pair by position.':'';
+}
+['ja','en'].forEach(w=>{
+  const inp=$(w==='ja'?'fJa':'fEn'),zone=$(w==='ja'?'dJa':'dEn');
+  inp.addEventListener('change',()=>{if(inp.files[0])readFile(inp.files[0],w);});
+  zone.addEventListener('dragover',e=>{e.preventDefault();zone.classList.add('over');});
+  zone.addEventListener('dragleave',()=>zone.classList.remove('over'));
+  zone.addEventListener('drop',e=>{e.preventDefault();zone.classList.remove('over');const f=e.dataTransfer.files[0];if(f)readFile(f,w);});
+});
+$('pJa').addEventListener('input',refreshBuild);$('pEn').addEventListener('input',refreshBuild);
+$('build').onclick=()=>{
+  const ja=pend.ja||parse($('pJa').value),en=pend.en||parse($('pEn').value);
+  if(!ja.length)return;
+  useStory(ja,en,(pend.jaName||'Pasted story').replace(/(_ja)?\.(txt|srt|vtt)$/i,''),false);
+};
+$('sample').onclick=()=>useStory(SAMPLE.ja,SAMPLE.en,SAMPLE.name,true);
+$('lib').addEventListener('click',e=>{const b=e.target.closest('button[data-id]');if(!b)return;const s=LIB.find(x=>x.id===b.dataset.id);if(s)useStory(s.ja,s.en,s.title,false,s);});
+$('tFuri').onclick=()=>setFuri(!st.furi);$('tWords').onclick=openWords;$('closeWords').onclick=()=>closeOv('wordsOv');
+$('words').addEventListener('click',e=>{const b=e.target.closest('.wcell');if(b){closeOv('wordsOv');jump(+b.dataset.i);}});
+
+$('prev').onclick=()=>go(-1);$('next').onclick=()=>go(1);
+$('tapL').onclick=()=>go(-1);$('tapR').onclick=()=>go(1);
+$('tEn').onclick=()=>setEn(!st.showEn);$('tTate').onclick=()=>setTate(!st.tate);
+$('tGrid').onclick=openGrid;$('closeGrid').onclick=()=>closeOv('gridOv');
+$('tLoad').onclick=openLoad;$('closeLoad').onclick=()=>closeOv('loadOv');
+$('grid').addEventListener('click',e=>{const b=e.target.closest('.cell');if(b)jump(+b.dataset.i);});
+
+document.addEventListener('keydown',e=>{
+  if(e.target.matches('textarea,input'))return;
+  if(!$('loadOv').hidden){if(e.key==='Escape'&&slides.length)closeOv('loadOv');return;}
+  if(!$('gridOv').hidden){if(e.key==='Escape'||e.key==='g'||e.key==='G')closeOv('gridOv');return;}
+  if(!$('wordsOv').hidden){if(e.key==='Escape'||e.key==='w'||e.key==='W')closeOv('wordsOv');return;}
+  if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();go(1);}
+  else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();go(-1);}
+  else if(e.key==='Home'){st.pos=0;render(true);}
+  else if(e.key==='End'){st.pos=slides.length-1;render(true);}
+  else if(e.key==='e'||e.key==='E')setEn(!st.showEn);
+  else if(e.key==='t'||e.key==='T')setTate(!st.tate);
+  else if(e.key==='f'||e.key==='F')setFuri(!st.furi);
+  else if(e.key==='w'||e.key==='W')openWords();
+  else if(e.key==='g'||e.key==='G')openGrid();
+});
+let tx=null,ty=null;
+$('stage').addEventListener('touchstart',e=>{tx=e.touches[0].clientX;ty=e.touches[0].clientY;},{passive:true});
+$('stage').addEventListener('touchend',e=>{if(tx===null)return;const dx=e.changedTouches[0].clientX-tx,dy=e.changedTouches[0].clientY-ty;
+  if(Math.abs(dx)>45&&Math.abs(dx)>Math.abs(dy))go(dx<0?1:-1);tx=null;},{passive:true});
+
+load();
+setEn(!!st.showEn);setTate(!!st.tate);setFuri(st.furi!==false);
+if(st.ja.length){build();render(false);}
+else if(LIB.length){useStory(LIB[0].ja,LIB[0].en,LIB[0].title,false,LIB[0]);}
+else{st.ja=SAMPLE.ja;st.en=SAMPLE.en;st.name=SAMPLE.name;st.sample=true;build();render(false);openLoad();}
+})();
+</script>
+</body>
+</html>
