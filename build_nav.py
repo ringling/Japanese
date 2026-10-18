@@ -103,6 +103,7 @@ with open("assets/nav-tree.js", "w", encoding="utf-8") as f:
     f.write("window.SITE_TREE = " + json.dumps(tree, ensure_ascii=False, indent=1) + ";\n")
 
 MARK = re.compile(r'\n*<script src="[^"]*assets/nav-tree\.js"></script>\n<script src="[^"]*assets/nav\.js" defer></script>\n*')
+HEAD_MARK = re.compile(r'\n*<link rel="stylesheet" href="[^"]*assets/theme\.css">\n<script src="[^"]*assets/theme\.js"></script>\n*')
 for p in pages:
     rel = "../" * p.count("/") + "assets/"
     tag = f'<script src="{rel}nav-tree.js"></script>\n<script src="{rel}nav.js" defer></script>\n'
@@ -112,6 +113,10 @@ for p in pages:
         print("skip (no </body>):", p)
         continue
     src = src.replace("</body>", tag.lstrip("\n") + "</body>", 1)
+    if "</head>" in src:
+        head_tag = f'<link rel="stylesheet" href="{rel}theme.css">\n<script src="{rel}theme.js"></script>\n'
+        src = HEAD_MARK.sub("\n", src)
+        src = src.replace("</head>", head_tag + "</head>", 1)
     open(p, "w", encoding="utf-8").write(src)
 
 print(f"{len(pages)} pages, {len(orphans)} orphans")

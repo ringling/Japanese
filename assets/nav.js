@@ -27,11 +27,20 @@
   .snav a { display: block; padding: 3px 6px; border-radius: 3px; color: #3a3a3a; text-decoration: none; }
   .snav a.cur { background: #8b1a1a; color: #f4efe6; }
   .snav .hide { display: none; }
+  .snav-theme { left: 48px; font-size: 15px; }
   .snav-toggle { position: fixed; top: 10px; left: 10px; z-index: 950; width: 34px; height: 34px;
     border: 1px solid #c9bfa9; background: #ebe4d6; color: #8b1a1a; border-radius: 3px; cursor: pointer;
     font: 500 16px/1 'IBM Plex Mono', monospace; box-shadow: 0 1px 4px rgba(0,0,0,.12); }
-  @media (min-width: 1100px) { html.snav-on { padding-left: 280px; } .snav-toggle { left: 290px; }
-    html:not(.snav-on) .snav-toggle { left: 10px; } }
+  @media (min-width: 1100px) { html.snav-on { padding-left: 280px; } .snav-toggle { left: 290px; } .snav-toggle.snav-theme { left: 328px; }
+    html:not(.snav-on) .snav-toggle { left: 10px; } html:not(.snav-on) .snav-toggle.snav-theme { left: 48px; } }
+  html[data-site-dark] .snav { background: #232228; border-color: #3a3740; color: #ece6da; }
+  html[data-site-dark] .snav summary, html[data-site-dark] .snav a { color: #cfc8bb; }
+  html[data-site-dark] .snav summary:hover, html[data-site-dark] .snav a:hover { background: #2c2b33; }
+  html[data-site-dark] .snav a.cur { background: #ef7a5f; color: #1b1a1f; }
+  html[data-site-dark] .snav input { background: #1b1a1f; border-color: #3a3740; }
+  html[data-site-dark] .snav .kids { border-color: #3a3740; }
+  html[data-site-dark] .snav-title { color: #ef7a5f; }
+  html[data-site-dark] .snav-toggle { background: #232228; border-color: #3a3740; color: #ef7a5f; }
   @media print { .snav, .snav-toggle { display: none; } html.snav-on { padding-left: 0; } }`;
 
   var style = document.createElement('style');
@@ -102,6 +111,14 @@
   btn.setAttribute('aria-label', 'Toggle navigation');
   btn.textContent = '☰';
 
+  var tbtn = document.createElement('button');
+  tbtn.className = 'snav-toggle snav-theme';
+  tbtn.setAttribute('aria-label', 'Toggle light/dark theme');
+  function themeIcon() { tbtn.textContent = (window.SiteTheme && SiteTheme.get() === 'dark') ? '☀' : '☾'; }
+  themeIcon();
+  tbtn.addEventListener('click', function () { if (window.SiteTheme) SiteTheme.toggle(); });
+  window.addEventListener('site-theme', themeIcon);
+
   var wide = window.matchMedia('(min-width: 1100px)');
   var pref = store.get('snav-open');
   var open = pref === null ? wide.matches : pref === '1';
@@ -115,6 +132,7 @@
   function mount() {
     document.body.appendChild(nav);
     document.body.appendChild(btn);
+    if (window.SiteTheme) document.body.appendChild(tbtn);
     apply();
     var cur = nav.querySelector('a.cur');
     if (cur) cur.scrollIntoView({ block: 'center' });

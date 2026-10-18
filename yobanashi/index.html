@@ -176,6 +176,8 @@ rt{font-family:var(--ui);font-size:.42em;font-weight:400;color:var(--dim);letter
 @media (max-width:520px){.tog kbd,.hint{display:none}.tate .ja{max-height:52vh}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
+<link rel="stylesheet" href="../assets/theme.css">
+<script src="../assets/theme.js"></script>
 </head>
 <body>
 
@@ -372,6 +374,8 @@ function jump(i){st.pos=i;render(true);closeOv('gridOv');}
 
 function setEn(v){st.showEn=v;document.body.classList.toggle('show-en',v);$('tEn').setAttribute('aria-pressed',v);save();}
 function setFuri(v){st.furi=v;document.body.classList.toggle('no-furi',!v);$('tFuri').setAttribute('aria-pressed',v);save();}
+function toggleYoru(){if(window.SiteTheme)SiteTheme.set(st.yoru?'light':'dark');else setYoru(!st.yoru);}
+window.addEventListener('site-theme',()=>{if(window.SiteTheme)setYoru(SiteTheme.get()==='dark');});
 function setYoru(v){st.yoru=v;document.body.classList.toggle('yoru',v);$('tYoru').setAttribute('aria-pressed',v);save();}
 function setTate(v){st.tate=v;document.body.classList.toggle('tate',v);$('tTate').setAttribute('aria-pressed',v);save();}
 
@@ -508,7 +512,7 @@ $('build').onclick=()=>{
 };
 $('sample').onclick=()=>useStory(SAMPLE.ja,SAMPLE.en,SAMPLE.name,true);
 $('lib').addEventListener('click',e=>{const b=e.target.closest('button[data-id]');if(b)openStory(b.dataset.id);});
-$('tFuri').onclick=()=>setFuri(!st.furi);$('tYoru').onclick=()=>setYoru(!st.yoru);$('tWords').onclick=openWords;$('closeWords').onclick=()=>closeOv('wordsOv');
+$('tFuri').onclick=()=>setFuri(!st.furi);$('tYoru').onclick=()=>toggleYoru();$('tWords').onclick=openWords;$('closeWords').onclick=()=>closeOv('wordsOv');
 function wordAction(el,ok){
   if(ok){const l=el.dataset.l;if(l){learned.has(l)?learned.delete(l):learned.add(l);saveLearned();drawWords();render(false,true);}return;}
   closeOv('wordsOv');jump(+el.dataset.i);
@@ -537,7 +541,7 @@ document.addEventListener('keydown',e=>{
   else if(e.key==='e'||e.key==='E')setEn(!st.showEn);
   else if(e.key==='t'||e.key==='T')setTate(!st.tate);
   else if(e.key==='f'||e.key==='F')setFuri(!st.furi);
-  else if(e.key==='n'||e.key==='N')setYoru(!st.yoru);
+  else if(e.key==='n'||e.key==='N')toggleYoru();
   else if(e.key==='w'||e.key==='W')openWords();
   else if(e.key==='p'||e.key==='P'){if(audioOk())setAudio(!st.audio);}
   else if(e.key==='r'||e.key==='R'){if(st.audio)playLine();}
@@ -553,7 +557,7 @@ async function boot(){
   try{const r=await fetch('stories/index.json');if(!r.ok)throw new Error('HTTP '+r.status);LIB=await r.json();}
   catch(e){err=e.message;}
   load();
-  setEn(!!st.showEn);setTate(!!st.tate);setFuri(st.furi!==false);setYoru(!!st.yoru);
+  setEn(!!st.showEn);setTate(!!st.tate);setFuri(st.furi!==false);setYoru(window.SiteTheme?SiteTheme.get()==='dark':!!st.yoru);
   if(st.storyId)await openStory(st.storyId,st.pos);
   else if(st.ja.length){build();render(false);}
   else if(LIB.length)await openStory(LIB[0].id);

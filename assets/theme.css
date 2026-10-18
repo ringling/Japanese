@@ -1,0 +1,28 @@
+/* Dark palette for the pages that share the Marugoto colour variables.
+   Matches the grammar sheets' dark colours. Pages in grammar/ and yobanashi/ bring their own. */
+html[data-site-dark] {
+  color-scheme: dark;
+  --ink: #ece6da; --ink-soft: #cfc8bb; --muted: #a39a8c;
+  --paper: #1b1a1f; --paper-soft: #232228; --paper-deep: #2c2b33; --paper-cell: #232228; --paper-line: #3a3740;
+  --rule: #3a3740; --rule-soft: #2f2d35;
+  --accent: #ef7a5f; --accent-soft: #d98a78; --gold: #d6b061; --gold-soft: #8a6a3a; --highlight: #8a6a3a;
+  --grammar: #8fb0da; --grammar-bg: #26303f;
+  --done: #7cc28f; --done-bg: #1e3325; --solid: #7cc28f; --solid-bg: #1e3325; --review: #7cc28f; --review-bg: #1e3325;
+  --green: #7cc28f; --green-bg: #1e3325;
+  --vocab: #d6b061; --vocab-bg: #342c1b; --warning: #d6b061; --warning-bg: #342c1b; --amber: #d6b061; --amber-bg: #342c1b;
+  --red: #ef7a5f; --red-bg: #3a2420; --kanji: #ef7a5f; --kanji-bg: #3a2420; --gap: #ef7a5f; --gap-bg: #3a2420;
+  --rest: #7d756a;
+  --sumi: #ece6da; --sumi-soft: #cfc8bb; --taupe: #a39a8c; --shu: #ef7a5f; --shu-tint: #3a2420;
+  --yamabuki: #d6b061; --yamabuki-tint: #342c1b; --ai: #8fb0da; --ai-tint: #26303f;
+}
+html[data-site-dark] body { background-image: none; }
+html[data-site-dark] input, html[data-site-dark] textarea, html[data-site-dark] select { color-scheme: dark; }
+
+/* page-specific hardcoded light colours (anki.html) */
+html[data-site-dark] .card-front { background: #2c2b33; box-shadow: 0 2px 12px rgba(0,0,0,.4); }
+html[data-site-dark] .dir-btn.active, html[data-site-dark] .btn-primary { color: #1b1a1f; }
+html[data-site-dark] .deck-btn.all-btn { background: #2b2420; }
+html[data-site-dark] .btn-again:hover { background: #4a2c28; }
+html[data-site-dark] .btn-hard:hover { background: #463a22; }
+html[data-site-dark] .btn-good:hover { background: #2a4533; }
+html[data-site-dark] .card-tap-hint { color: #6d655b; }
