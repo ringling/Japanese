@@ -1,0 +1,145 @@
+{
+ "words": {
+  "昔話": {
+   "en": "old tale, folktale"
+  },
+  "原作": {
+   "en": "the original story"
+  },
+  "昔々": {
+   "w": "むかしむかし",
+   "r": "",
+   "en": "once upon a time"
+  },
+  "洗濯": {
+   "w": "洗濯(する)",
+   "r": "せんたく(する)",
+   "en": "to do the laundry"
+  },
+  "桃": {
+   "en": "peach"
+  },
+  "流れる": {
+   "en": "to flow, to drift along"
+  },
+  "持ち帰る": {
+   "en": "to take home, to bring back"
+  },
+  "授かり物": {
+   "w": "授かりもの",
+   "r": "さずかりもの",
+   "en": "a gift (from the gods)"
+  },
+  "育てる": {
+   "en": "to raise (a child)"
+  },
+  "育つ": {
+   "en": "to grow up"
+  },
+  "鬼": {
+   "en": "oni, ogre, demon"
+  },
+  "倒す": {
+   "en": "to defeat, to knock down"
+  },
+  "旅": {
+   "en": "journey, trip"
+  },
+  "黍": {
+   "w": "きび",
+   "r": "",
+   "en": "millet (きびだんご = millet dumplings)"
+  },
+  "団子": {
+   "w": "だんご",
+   "r": "",
+   "en": "dumpling"
+  },
+  "雉": {
+   "w": "キジ",
+   "r": "",
+   "en": "pheasant"
+  },
+  "分ける": {
+   "en": "to share, to divide"
+  },
+  "門": {
+   "en": "gate"
+  },
+  "力": {
+   "en": "strength, power (力を合わせる = join forces)"
+  },
+  "合わせる": {
+   "en": "to combine, to put together"
+  },
+  "戦う": {
+   "en": "to fight"
+  },
+  "御免": {
+   "w": "ごめん(なさい)",
+   "r": "",
+   "en": "sorry"
+  },
+  "宝物": {
+   "en": "treasure"
+  },
+  "渡す": {
+   "en": "to hand over"
+  },
+  "仲間": {
+   "en": "companion, friend"
+  },
+  "幸せ": {
+   "w": "幸せ(な)",
+   "r": "しあわせ(な)",
+   "en": "happy, happiness"
+  },
+  "暮らす": {
+   "en": "to live, to spend one's life"
+  },
+  "愛する": {
+   "en": "to love"
+  },
+  "チームワーク": {
+   "en": "teamwork"
+  },
+  "諦める": {
+   "en": "to give up"
+  },
+  "心": {
+   "en": "heart, mind"
+  },
+  "学ぶ": {
+   "en": "to learn, to study"
+  },
+  "届ける": {
+   "en": "to deliver (おとどけします = we will bring you)"
+  },
+  "不思議": {
+   "w": "不思議(な)",
+   "r": "ふしぎ(な)",
+   "en": "strange, mysterious"
+  },
+  "夢": {
+   "en": "dream"
+  }
+ },
+ "title": "桃太郎",
+ "titleEn": "Momotaro, the Peach Boy",
+ "readings": {
+  "宝物": "たからもの"
+ },
+ "skip": [
+  "供",
+  "字幕",
+  "対応",
+  "オン",
+  "御覧",
+  "シリーズ",
+  "動画",
+  "爺",
+  "婆",
+  "一緒",
+  "皆"
+ ]
+}

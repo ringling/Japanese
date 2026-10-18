@@ -10,7 +10,7 @@ Usage: .venv/bin/python build_story.py <video_id> [--lesson N] [--strict] [--add
    get-transcript.py if missing).
 2. Adds furigana to every kanji word (fugashi + UniDic). Reading fixes come from
    overrides.json (shared) and stories/<id>.edit.json (this story, wins):
-   "readings": {"都": "みやこ"}, "line_readings": {"5": {"柳": "やなぎ"}}.
+   "readings": {"都": "みやこ"}, "line_readings": {"5": {"柳": "やなぎ"}}; "title"/"titleEn" override the detected title.
 3. Lists the content words that are new: not in 入門 / 初級1 / A2-2 up to lesson N
    (../2025-2026/books/vocab_index.json) and not in Anki. "skip": [lemmas] hides words.
    Glosses: edit.json "words" > overrides.json "words" > a JMdict draft that is written
@@ -170,8 +170,8 @@ def build(video_id, lesson, problems):
     title_i = next((i for i, l in enumerate(ja) if re.match(r'^[「『][^。！？]+[」』]$', l)), -1)
     story = {
         'id': video_id,
-        'title': ja[title_i].strip('「」『』') if title_i >= 0 else video_id,
-        'titleEn': en[title_i].strip('"“”') if title_i >= 0 and title_i < len(en) else '',
+        'title': edit.get('title') or (ja[title_i].strip('「」『』') if title_i >= 0 else video_id),
+        'titleEn': edit.get('titleEn') or (en[title_i].strip('"“”') if title_i >= 0 and title_i < len(en) else ''),
         'source': f'https://www.youtube.com/watch?v={video_id}',
         'ja': ja, 'jaHtml': lines_html, 'en': en,
         'words': sorted(words.values(), key=lambda w: w['lines'][0]),
