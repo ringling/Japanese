@@ -1,0 +1,516 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>～し Grammar Sheet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --washi:#f5efe3; --paper:#fbf8f1; --ink:#2a2622; --muted:#6d655b;
+  --indigo:#1f3a5f; --indigo-soft:#e3e8ef; --vermilion:#c8452d; --verm-soft:#f6e1da;
+  --gold:#b8923a; --gold-soft:#f3e8cf; --green:#3f7a4f; --green-soft:#e0eee2;
+  --line:#e2d8c6; --card:#ffffff; --chip-line:#c6d0de; --gold-line:#e3cf9f; --gold-text:#8a6a22;
+  --seg1:#dfe6f0; --seg2:#e8e0f0; --seg3:#dcebe4; --bar-bg:rgba(245,239,227,.94); --formula-s:#ffb9a8;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){color-scheme:dark;
+  --washi:#1b1a1f; --paper:#232228; --ink:#ece6da; --muted:#a39a8c;
+  --indigo:#8fb0da; --indigo-soft:#26303f; --vermilion:#ef7a5f; --verm-soft:#3a2420;
+  --gold:#d6b061; --gold-soft:#342c1b; --green:#7cc28f; --green-soft:#1e3325;
+  --line:#3a3740; --card:#29282f; --chip-line:#34445a; --gold-line:#57482a; --gold-text:#d6b061;
+  --seg1:#2a3446; --seg2:#352c44; --seg3:#243a2f; --bar-bg:rgba(27,26,31,.94); --formula-s:#8e2a17;}}
+:root[data-theme="dark"]{color-scheme:dark;
+  --washi:#1b1a1f; --paper:#232228; --ink:#ece6da; --muted:#a39a8c;
+  --indigo:#8fb0da; --indigo-soft:#26303f; --vermilion:#ef7a5f; --verm-soft:#3a2420;
+  --gold:#d6b061; --gold-soft:#342c1b; --green:#7cc28f; --green-soft:#1e3325;
+  --line:#3a3740; --card:#29282f; --chip-line:#34445a; --gold-line:#57482a; --gold-text:#d6b061;
+  --seg1:#2a3446; --seg2:#352c44; --seg3:#243a2f; --bar-bg:rgba(27,26,31,.94); --formula-s:#8e2a17;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--washi);color:var(--ink);font-family:"Zen Kaku Gothic New",sans-serif;line-height:1.7;
+  background-image:radial-gradient(rgba(120,100,70,.05) 1px,transparent 1px);background-size:6px 6px}
+.wrap{max-width:900px;margin:0 auto;padding:24px 16px 80px}
+button:focus-visible,a:focus-visible,textarea:focus-visible{outline:2px solid var(--vermilion);outline-offset:2px}
+h1,h2,h3,.mincho{font-family:"Shippori Mincho",serif}
+rt{font-size:.55em;color:var(--muted);font-family:"Zen Kaku Gothic New",sans-serif}
+body.hide-furi rt{visibility:hidden}
+body.hide-en .en{display:none}
+
+/* toolbar */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--bar-bg);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+.bar .in{max-width:900px;margin:0 auto;padding:8px 16px;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.bar a{color:var(--indigo);text-decoration:none;font-size:.85rem;padding:2px 8px;border-radius:12px}
+.bar a:hover{background:var(--indigo-soft)}
+.bar .sp{flex:1}
+.tog{border:1px solid var(--indigo);background:var(--paper);color:var(--indigo);border-radius:14px;padding:3px 10px;font:inherit;font-size:.8rem;cursor:pointer}
+.tog.off{background:transparent;color:var(--muted);border-color:var(--line)}
+
+/* hero */
+.hero{text-align:center;padding:40px 0 20px}
+.hero .big{font-family:"Shippori Mincho",serif;font-size:6rem;line-height:1;color:var(--vermilion);font-weight:800}
+.hero .sub{font-family:"Shippori Mincho",serif;font-size:1.5rem;color:var(--indigo);margin:.3em 0}
+.hero p{color:var(--muted);margin:.2em 0}
+.seal{display:inline-block;border:2px solid var(--vermilion);color:var(--vermilion);padding:2px 10px;border-radius:4px;font-size:.8rem;letter-spacing:.1em;margin-top:10px}
+
+/* sections */
+section{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:22px 22px;margin:22px 0;box-shadow:0 1px 0 rgba(0,0,0,.03)}
+section>h2{margin:0 0 4px;color:var(--indigo);font-size:1.45rem;display:flex;gap:12px;align-items:baseline}
+section>h2 .n{font-size:.9rem;color:var(--gold);font-weight:700;letter-spacing:.1em}
+.lead{color:var(--muted);margin:0 0 16px}
+.jp{font-size:1.2rem}
+.en{color:var(--muted);font-size:.92rem}
+b.s,.s{color:var(--vermilion);font-weight:700}
+.da{color:var(--gold);font-weight:700}
+
+/* flow diagram */
+.flow{display:flex;align-items:stretch;gap:10px;flex-wrap:wrap;justify-content:center;margin:12px 0 6px}
+.chip{border-radius:12px;padding:12px 14px;text-align:center;min-width:150px;flex:1}
+.chip .lab{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:4px}
+.chip.r{background:var(--indigo-soft);border:1px solid var(--chip-line)}
+.chip.r .lab{color:var(--indigo)}
+.chip.c{background:var(--gold-soft);border:1px solid var(--gold-line)}
+.chip.c .lab{color:var(--gold-text)}
+.arrow{align-self:center;font-size:1.6rem;color:var(--gold)}
+.plus{align-self:center;font-size:1.3rem;color:var(--muted)}
+.meaning{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:16px}
+.card{background:var(--washi);border-radius:10px;padding:12px 14px;border-left:4px solid var(--indigo)}
+.card.v{border-left-color:var(--vermilion)}
+.card.g{border-left-color:var(--gold)}
+.card h4{margin:0 0 4px;font-size:.95rem}
+
+/* formation table */
+table{width:100%;border-collapse:collapse;font-size:1rem}
+th,td{padding:9px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:middle}
+th{font-size:.78rem;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;font-weight:500}
+td.t{font-weight:700;color:var(--indigo);white-space:nowrap}
+.tag{display:inline-block;font-size:.7rem;padding:1px 7px;border-radius:9px;background:var(--indigo-soft);color:var(--indigo);margin-left:4px;vertical-align:middle}
+.tag.warn{background:var(--verm-soft);color:var(--vermilion)}
+.scroll{overflow-x:auto}
+.warnbox{margin-top:14px;background:var(--verm-soft);border-radius:10px;padding:12px 14px;border:1px dashed var(--vermilion)}
+.warnbox strong{color:var(--vermilion)}
+
+/* sentence breakdown */
+.sent{background:var(--washi);border-radius:12px;padding:14px 16px;margin:12px 0}
+.sent .jp{line-height:2.3}
+.seg{display:inline;padding:2px 4px;border-radius:5px}
+.seg.r1{background:var(--seg1)}
+.seg.r2{background:var(--seg2)}
+.seg.r3{background:var(--seg3)}
+.seg.cc{background:var(--gold-soft);border-bottom:2px solid var(--gold)}
+.legend{display:flex;gap:10px;flex-wrap:wrap;font-size:.78rem;color:var(--muted);margin-top:6px}
+.legend span{padding:1px 8px;border-radius:5px}
+.src{font-size:.75rem;color:var(--gold);letter-spacing:.08em}
+
+/* patterns */
+.pat{border-top:1px dashed var(--line);padding:14px 0}
+.pat:first-of-type{border-top:none}
+.pat h3{margin:0 0 4px;font-size:1.1rem;color:var(--ink)}
+.formula{font-family:"Shippori Mincho",serif;font-size:1.1rem;background:var(--indigo);color:var(--paper);display:inline-block;padding:4px 12px;border-radius:8px;margin:4px 0 8px}
+.formula .s{color:var(--formula-s)}
+.ex{margin:6px 0 6px 4px}
+
+/* compare */
+.cmp{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.cmp .card h4{font-family:"Shippori Mincho",serif;font-size:1.3rem;margin-bottom:2px}
+.cmp .card .jp{font-size:1.05rem}
+
+/* quiz */
+.progress{display:flex;align-items:center;gap:10px;margin:6px 0 14px}
+.pbar{flex:1;height:8px;background:var(--line);border-radius:6px;overflow:hidden}
+.pbar i{display:block;height:100%;background:linear-gradient(90deg,var(--indigo),var(--vermilion));width:0;transition:width .3s}
+.pnum{font-size:.85rem;color:var(--muted);min-width:70px;text-align:right}
+.q{border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:10px 0;background:var(--card)}
+.q .prompt{font-size:1.15rem;line-height:2.1;margin-bottom:6px}
+.q .hint{font-size:.8rem;color:var(--muted)}
+.opts{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.opt{border:1px solid var(--line);background:var(--paper);border-radius:10px;padding:6px 14px;font:inherit;font-size:1.05rem;cursor:pointer;transition:.15s}
+.opt:hover{border-color:var(--indigo)}
+.opt.right{background:var(--green-soft);border-color:var(--green);color:var(--green);font-weight:700}
+.opt.wrong{background:var(--verm-soft);border-color:var(--vermilion);color:var(--vermilion);text-decoration:line-through}
+.opt:disabled{cursor:default}
+.fb{margin-top:8px;font-size:.9rem;padding:8px 10px;border-radius:8px;background:var(--washi);display:none}
+.fb.show{display:block}
+.q.done-ok{border-left:4px solid var(--green)}
+.q.done-bad{border-left:4px solid var(--vermilion)}
+.btn{border:none;background:var(--indigo);color:var(--paper);border-radius:10px;padding:7px 14px;font:inherit;font-size:.9rem;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--indigo);border:1px solid var(--indigo)}
+.reveal{display:none;margin-top:8px;background:var(--gold-soft);border-radius:8px;padding:10px 12px}
+.reveal.show{display:block}
+textarea{width:100%;min-height:60px;border:1px solid var(--line);border-radius:8px;padding:8px;font:inherit;font-size:1.05rem;background:var(--paper);margin-top:6px}
+.cheat{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
+.cheat div{background:var(--washi);border-radius:10px;padding:10px 12px;text-align:center}
+.cheat .k{font-family:"Shippori Mincho",serif;font-size:1.25rem}
+footer{text-align:center;color:var(--muted);font-size:.8rem;margin-top:30px}
+@media(max-width:560px){.hero .big{font-size:4.5rem}.arrow{transform:rotate(90deg)}.flow{flex-direction:column}}
+@media print{.bar,.btn,.opts,textarea{display:none}.fb,.reveal{display:block}section{break-inside:avoid}}
+
+/* verb drawer */
+.vbtn{border:1px solid var(--vermilion);background:var(--vermilion);color:var(--paper);border-radius:14px;padding:3px 12px;font:inherit;font-size:.8rem;cursor:pointer;font-weight:700}
+.vbtn[aria-expanded="true"]{background:transparent;color:var(--vermilion)}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(460px,100%);background:var(--paper);border-left:1px solid var(--line);z-index:30;
+  box-shadow:-8px 0 24px rgba(0,0,0,.12);display:flex;flex-direction:column;transform:translateX(100%);transition:transform .25s ease;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+.drawer.open{transform:none}
+.drawer header{display:flex;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid var(--line)}
+.drawer header h2{margin:0;font-size:1.2rem;color:var(--indigo);flex:1}
+.drawer .x{border:none;background:transparent;color:var(--muted);font-size:1.4rem;cursor:pointer;line-height:1;padding:2px 6px}
+.dctl{display:flex;gap:6px;flex-wrap:wrap;padding:10px 16px;border-bottom:1px solid var(--line)}
+.dctl button{border:1px solid var(--line);background:var(--washi);color:var(--ink);border-radius:12px;padding:2px 10px;font:inherit;font-size:.78rem;cursor:pointer}
+.dctl button.on{background:var(--indigo);border-color:var(--indigo);color:var(--paper)}
+.dbody{overflow:auto;padding:4px 16px 20px;flex:1}
+.vt{font-size:.95rem}
+.vt td{padding:8px 6px}
+.vt .dict{font-size:1.1rem;font-weight:700;white-space:nowrap}
+.vt .mas{white-space:nowrap;color:var(--muted);font-size:.85rem}
+.vt .shi{white-space:nowrap}
+.vt .gloss{color:var(--ink);font-size:.9rem}
+.grp{display:inline-block;font-size:.68rem;padding:1px 7px;border-radius:9px;white-space:nowrap}
+.grp.u{background:var(--indigo-soft);color:var(--indigo)}
+.grp.ru{background:var(--green-soft);color:var(--green)}
+.grp.irr{background:var(--verm-soft);color:var(--vermilion)}
+.vt .note{display:block;font-size:.72rem;color:var(--vermilion)}
+.dnote{font-size:.8rem;color:var(--muted);margin:10px 0 0}
+.scrim{position:fixed;inset:0;background:rgba(0,0,0,.25);z-index:25;opacity:0;pointer-events:none;transition:opacity .25s}
+.scrim.open{opacity:1;pointer-events:auto}
+.drawer.hide-vt-en .vt td.gloss{color:transparent;text-shadow:none}
+.drawer.hide-vt-en .vt td.gloss .note{color:transparent}
+.drawer.hide-vt-en .vt td.gloss:hover,.drawer.hide-vt-en .vt td.gloss:hover .note{color:var(--ink)}
+@media (prefers-reduced-motion:reduce){.drawer,.scrim{transition:none}}
+@media print{.drawer,.scrim,.vbtn{display:none}}
+</style>
+</head>
+<body>
+
+<div class="bar"><div class="in">
+  <a href="#idea">Idea</a><a href="#form">Form</a><a href="#patterns">Patterns</a><a href="#textbook">p.68</a><a href="#compare">て/し/から</a><a href="#drill">Drills</a><a href="#write">Write</a>
+  <span class="sp"></span>
+  <button class="vbtn" id="vOpen" aria-expanded="false" aria-controls="drawer">動詞 Verbs</button>
+  <button class="tog" id="tFuri">ふりがな</button>
+  <button class="tog" id="tEn">English</button>
+</div></div>
+
+<div class="wrap">
+
+<div class="hero">
+  <div class="big">～し</div>
+  <div class="sub">「～し、～し」 and on top of that…</div>
+  <p>Listing reasons that stack up toward a conclusion</p>
+  <span class="seal">まるごと A2-2 · だい6か · N4</span>
+</div>
+
+<!-- 1 IDEA -->
+<section id="idea">
+  <h2><span class="n">01</span>The core idea</h2>
+  <p class="lead">～し lines up reasons like stones on a scale. Each one tips it further, until you state the verdict.</p>
+
+  <div class="flow">
+    <div class="chip r"><div class="lab">Reason 1</div><div class="jp">安{やす}い<b class="s">し</b></div><div class="en">it's cheap</div></div>
+    <div class="plus">＋</div>
+    <div class="chip r"><div class="lab">Reason 2</div><div class="jp">おいしい<b class="s">し</b></div><div class="en">it's tasty</div></div>
+    <div class="arrow">➜</div>
+    <div class="chip c"><div class="lab">Conclusion</div><div class="jp">よく 来{き}ます。</div><div class="en">so I come often</div></div>
+  </div>
+  <p style="text-align:center" class="en">この店{みせ}は 安{やす}い<b class="s">し</b>、おいしい<b class="s">し</b>、よく 来{き}ます。 — This shop is cheap, tasty, and so on, so I come here often.</p>
+
+  <div class="meaning">
+    <div class="card"><h4>① Stacking reasons</h4>"A, and B too…". The reasons build up to one judgment.</div>
+    <div class="card v"><h4>② "Among other things"</h4>Even one し implies there are more reasons you didn't say.</div>
+    <div class="card g"><h4>③ Same direction</h4>All reasons must point toward the same conclusion, all good or all bad.</div>
+  </div>
+</section>
+
+<!-- 2 FORM -->
+<section id="form">
+  <h2><span class="n">02</span>How to make it</h2>
+  <p class="lead">Rule: <b>plain form + し</b>. It works for any tense or polarity.</p>
+  <div class="scroll">
+  <table>
+    <tr><th>Type</th><th>Present</th><th>Negative</th><th>Past</th></tr>
+    <tr><td class="t">い-adj</td><td>高{たか}い<b class="s">し</b></td><td>高{たか}くない<b class="s">し</b></td><td>高{たか}かった<b class="s">し</b></td></tr>
+    <tr><td class="t">いい <span class="tag warn">irregular</span></td><td>いい<b class="s">し</b></td><td>よくない<b class="s">し</b></td><td>よかった<b class="s">し</b></td></tr>
+    <tr><td class="t">な-adj</td><td>静{しず}か<b class="da">だ</b><b class="s">し</b></td><td>静{しず}かじゃない<b class="s">し</b></td><td>静{しず}かだった<b class="s">し</b></td></tr>
+    <tr><td class="t">Noun</td><td>雨{あめ}<b class="da">だ</b><b class="s">し</b></td><td>雨{あめ}じゃない<b class="s">し</b></td><td>雨{あめ}だった<b class="s">し</b></td></tr>
+    <tr><td class="t">Verb</td><td>行{い}く<b class="s">し</b></td><td>行{い}かない<b class="s">し</b></td><td>行{い}った<b class="s">し</b></td></tr>
+    <tr><td class="t">Verb ～ている</td><td>ふっている<b class="s">し</b></td><td>ふっていない<b class="s">し</b></td><td>ふっていた<b class="s">し</b></td></tr>
+    <tr><td class="t">Potential</td><td>できる<b class="s">し</b></td><td>できない<b class="s">し</b></td><td>できた<b class="s">し</b></td></tr>
+  </table>
+  </div>
+  <div class="warnbox">
+    <strong>⚠ The だ trap:</strong> な-adjectives and nouns need <b class="da">だ</b> before し.<br>
+    <span class="jp">✗ 静{しず}かし　✗ 静{しず}かなし　✓ 静{しず}か<b class="da">だ</b>し</span><br>
+    <span class="en">Watch out for きれい: it looks like an い-adjective but it's a な-adjective, so it becomes きれい<b class="da">だ</b>し.</span>
+  </div>
+  <div class="card g" style="margin-top:12px">
+    <h4>Politeness</h4>
+    You can also use the polite form + し: 高{たか}いです<b class="s">し</b>、行{い}きます<b class="s">し</b>. It sounds softer and is common when talking to superiors. At this stage, <b>plain + し, then a polite ending</b> (～です／～ます) is the safest pattern, and it's what the textbook uses.
+  </div>
+</section>
+
+<!-- 3 PATTERNS -->
+<section id="patterns">
+  <h2><span class="n">03</span>Patterns you'll meet</h2>
+
+  <div class="pat">
+    <h3>A. Two (or three) reasons → conclusion</h3>
+    <div class="formula">A<span class="s">し</span>、B<span class="s">し</span>、結論{けつろん}</div>
+    <div class="ex"><div class="jp">今日{きょう}は 雨{あめ}だ<b class="s">し</b>、寒{さむ}い<b class="s">し</b>、うちに います。</div><div class="en">It's raining and it's cold, so I'm staying home.</div></div>
+    <div class="ex"><div class="jp">日本語{にほんご}は おもしろい<b class="s">し</b>、友{とも}だちも できる<b class="s">し</b>、勉強{べんきょう}が 楽{たの}しいです。</div><div class="en">Japanese is interesting, I make friends too… so studying is fun.</div></div>
+  </div>
+
+  <div class="pat">
+    <h3>B. も instead of が/は: "also"</h3>
+    <div class="formula">X<span class="s">も</span> A<span class="s">し</span>、Y<span class="s">も</span> B<span class="s">し</span></div>
+    <p class="en" style="margin:0">Very common. Swapping in も underlines "this too, and that too".</p>
+    <div class="ex"><div class="jp">京都{きょうと}は お寺{てら}<b class="s">も</b> ある<b class="s">し</b>、食{た}べ物{もの}<b class="s">も</b> おいしい<b class="s">し</b>、いい 所{ところ}ですよ。</div><div class="en">Kyoto has temples, and the food is good too. It's a great place.</div></div>
+  </div>
+
+  <div class="pat">
+    <h3>C. Just one し (the others are implied)</h3>
+    <div class="formula">A<span class="s">し</span>、結論{けつろん}</div>
+    <div class="ex"><div class="jp">もう おそい<b class="s">し</b>、帰{かえ}りましょう。</div><div class="en">It's late already (among other things), so let's go home.</div></div>
+    <div class="ex"><div class="jp">時間{じかん}も ない<b class="s">し</b>、タクシーで 行{い}きましょう。</div><div class="en">We don't have time either, so let's take a taxi.</div></div>
+  </div>
+
+  <div class="pat">
+    <h3>D. Last reason with から</h3>
+    <div class="formula">A<span class="s">し</span>、B<span class="s">から</span>、結論{けつろん}</div>
+    <div class="ex"><div class="jp">近{ちか}い<b class="s">し</b>、安{やす}い<b class="s">から</b>、あの 店{みせ}に しましょう。</div><div class="en">It's close, and since it's cheap, let's go with that shop.</div></div>
+  </div>
+
+  <div class="pat">
+    <h3>E. Trailing off: a soft excuse</h3>
+    <div class="formula">A<span class="s">し</span>…</div>
+    <div class="ex"><div class="jp">A: パーティーに 行{い}きませんか。<br>B: すみません、明日{あした}は 朝{あさ} 早{はや}い<b class="s">し</b>…。</div><div class="en">"Won't you come to the party?" / "Sorry, I have an early morning tomorrow, and…"</div></div>
+    <p class="en" style="margin:4px 0 0">Leaving the conclusion unsaid is a polite way to say no, much like ちょっと…</p>
+  </div>
+</section>
+
+<!-- 4 TEXTBOOK -->
+<section id="textbook">
+  <h2><span class="n">04</span>From your textbook: りかい p.68</h2>
+  <p class="lead">All three tour reviews use the ～し、～し pattern. Colour key:</p>
+  <div class="legend"><span class="seg r1">reason 1</span><span class="seg r2">reason 2</span><span class="seg cc">conclusion</span></div>
+
+  <div class="sent">
+    <div class="src">❶ 島{しま}ツアー</div>
+    <div class="jp"><span class="seg r1">海{うみ}は うつくしい<b class="s">し</b></span>、<span class="seg r2">空気{くうき}は しんせんだ<b class="s">し</b></span>、<span class="seg cc">さいこうでした</span>。</div>
+    <div class="en">The sea is beautiful, the air is fresh… it was the best.<br>Note: しんせん is a な-adjective, so it takes <b class="da">だ</b>し.</div>
+  </div>
+
+  <div class="sent">
+    <div class="src">❷ クジラ ウォッチング</div>
+    <div class="jp"><span class="seg r1">ガイドさんの せつめいは おもしろい<b class="s">し</b></span>、<span class="seg r2">ダイナミックな 泳{およ}ぎは すばらしい<b class="s">し</b></span>、<span class="seg cc">楽{たの}しめました</span>。</div>
+    <div class="en">The guide's explanations were interesting, the swimming was amazing… I could really enjoy it.<br>Note: the reasons are in present tense even though the conclusion is past. That's normal: the tense sits on the conclusion.</div>
+  </div>
+
+  <div class="sent">
+    <div class="src">❸ 沖縄{おきなわ}ガラス</div>
+    <div class="jp"><span class="seg r1">楽{たの}しい<b class="s">し</b></span>、<span class="seg r2">おみやげに なる<b class="s">し</b></span>、<span class="seg cc">家族{かぞく} みんな 大{おお}よろこびでした</span>。</div>
+    <div class="en">It's fun, it becomes a souvenir… the whole family was delighted.<br>Note: mixes an い-adj (楽しい) and a verb (なる). Any plain form works.</div>
+  </div>
+</section>
+
+<!-- 5 COMPARE -->
+<section id="compare">
+  <h2><span class="n">05</span>～て vs ～し vs ～から</h2>
+  <p class="lead">All three can connect "cheap" and "tasty", but each one says something different.</p>
+  <div class="cmp">
+    <div class="card"><h4>～て</h4><div class="jp">安{やす}く<b class="s">て</b>、おいしいです。</div><div class="en">Cheap and tasty. A neutral description that just joins two facts.</div></div>
+    <div class="card v"><h4>～し</h4><div class="jp">安{やす}い<b class="s">し</b>、おいしい<b class="s">し</b>、また 来{き}たい。</div><div class="en">It's cheap, it's tasty… I want to come again. Reasons that build a case.</div></div>
+    <div class="card g"><h4>～から</h4><div class="jp">安{やす}い<b class="s">から</b>、買{か}いました。</div><div class="en">Because it was cheap, I bought it. One direct cause.</div></div>
+  </div>
+</section>
+
+<!-- 6 DRILLS -->
+<section id="drill">
+  <h2><span class="n">06</span>Drills</h2>
+  <p class="lead">Your progress is saved in this browser.</p>
+  <div class="progress"><div class="pbar"><i id="pfill"></i></div><div class="pnum" id="pnum">0 / 0</div><button class="btn ghost" id="reset">Reset</button></div>
+
+  <h3 class="mincho" style="color:var(--indigo);margin:14px 0 0">A · Make the し form</h3>
+  <div id="qA"></div>
+
+  <h3 class="mincho" style="color:var(--indigo);margin:22px 0 0">B · Fill the gap</h3>
+  <div id="qB"></div>
+
+  <h3 class="mincho" style="color:var(--indigo);margin:22px 0 0">C · Does it make sense?</h3>
+  <div id="qC"></div>
+</section>
+
+<!-- 7 WRITE -->
+<section id="write">
+  <h2><span class="n">07</span>Write your own</h2>
+  <p class="lead">Answer with two reasons using ～し、～し. Write your answer first, then compare it with the model.</p>
+  <div id="wr"></div>
+</section>
+
+<!-- 8 CHEAT -->
+<section>
+  <h2><span class="n">08</span>One-glance summary</h2>
+  <div class="cheat">
+    <div><div class="k">い-adj ＋し</div><div class="en">高{たか}いし</div></div>
+    <div><div class="k">な／N ＋<span class="da">だ</span>し</div><div class="en">静{しず}かだし・雨{あめ}だし</div></div>
+    <div><div class="k">V plain ＋し</div><div class="en">行{い}くし・行{い}ったし</div></div>
+    <div><div class="k">Xも ～し</div><div class="en">"also" feel</div></div>
+    <div><div class="k">Same direction</div><div class="en">all + or all −</div></div>
+    <div><div class="k">～し…</div><div class="en">soft excuse</div></div>
+  </div>
+</section>
+
+<footer>まるごと初級2 A2 · だい6か 文法 · ～し · Grammar is exposure; kanji is the bottleneck.</footer>
+</div>
+
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-label="Verb list" aria-hidden="true">
+  <header><h2 class="mincho">動詞{どうし} · Verbs on this sheet</h2><button class="x" id="vClose" aria-label="Close verb list">×</button></header>
+  <div class="dctl" id="dctl">
+    <button data-f="all" class="on">All</button><button data-f="u">う-verbs</button><button data-f="ru">る-verbs</button><button data-f="irr">Irregular</button>
+    <button id="hideEn">Hide English</button>
+  </div>
+  <div class="dbody">
+    <table class="vt"><thead><tr><th>Verb</th><th>English</th><th>＋し</th></tr></thead><tbody id="vbody"></tbody></table>
+    <p class="dnote">The ＋し column shows the plain present. For past use た-form＋し (行{い}った<b class="s">し</b>), and for negative use ない-form＋し (行{い}かない<b class="s">し</b>).</p>
+  </div>
+</aside>
+<script>
+// ruby converter: 漢字{かな} -> <ruby>
+const RB = s => s.replace(/([\u4e00-\u9fff\u3005]+)\{([^}]+)\}/g,'<ruby>$1<rt>$2</rt></ruby>');
+document.querySelector('.wrap').innerHTML = RB(document.querySelector('.wrap').innerHTML);
+
+// storage
+const KEY='shi-form-sheet-v1';
+let st={}; try{st=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){st={}}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}};
+
+// toggles
+const tF=document.getElementById('tFuri'), tE=document.getElementById('tEn');
+function applyT(){document.body.classList.toggle('hide-furi',!!st.noFuri);document.body.classList.toggle('hide-en',!!st.noEn);
+  tF.classList.toggle('off',!!st.noFuri);tE.classList.toggle('off',!!st.noEn)}
+tF.onclick=()=>{st.noFuri=!st.noFuri;save();applyT()};
+tE.onclick=()=>{st.noEn=!st.noEn;save();applyT()};
+applyT();
+
+const A=[
+ {p:'高{たか}い',h:'い-adj',o:['高{たか}いし','高{たか}いだし','高{たか}くし'],a:0,e:'い-adjectives take し directly.'},
+ {p:'静{しず}か',h:'な-adj',o:['静{しず}かし','静{しず}かなし','静{しず}かだし'],a:2,e:'な-adjective → だ + し.'},
+ {p:'学生{がくせい}',h:'noun',o:['学生{がくせい}だし','学生{がくせい}し','学生{がくせい}のし'],a:0,e:'Noun → だ + し.'},
+ {p:'行{い}く',h:'verb',o:['行{い}きし','行{い}くし','行{い}ってし'],a:1,e:'Dictionary (plain) form + し. Not the ます-stem.'},
+ {p:'きれい',h:'careful…',o:['きれいし','きれいくし','きれいだし'],a:2,e:'きれい is a な-adjective in disguise → きれいだし.'},
+ {p:'おいしくない',h:'い-adj, negative',o:['おいしくないし','おいしいないし','おいしくないだし'],a:0,e:'Negative ～ない acts like an い-adjective. Add し directly.'},
+ {p:'楽{たの}しかった',h:'い-adj, past',o:['楽{たの}しいだったし','楽{たの}しかったし','楽{たの}しかっただし'],a:1,e:'Past い-adj ～かった + し.'},
+ {p:'いい',h:'irregular, negative',o:['いくないし','よくないし','いいじゃないし'],a:1,e:'いい → よくない. Irregular stem よ.'},
+ {p:'ひま',h:'な-adj',o:['ひまだし','ひまなし','ひまし'],a:0,e:'な-adjective → だし.'},
+ {p:'雨{あめ}だった',h:'noun, past',o:['雨{あめ}かったし','雨{あめ}だったし','雨{あめ}だっただし'],a:1,e:'Past already contains だった, so just + し.'},
+ {p:'できる',h:'verb (potential)',o:['できるだし','できし','できるし'],a:2,e:'Plain verb + し. Never だ after a verb.'},
+ {p:'つかれている',h:'verb ～ている',o:['つかれているし','つかれていだし','つかれてし'],a:0,e:'～ている is plain already → + し.'},
+];
+const B=[
+ {p:'海{うみ}は（うつくしい → ＿＿）、空気{くうき}も しんせんだし、さいこうでした。',o:['うつくしいし','うつくしくて し','うつくしだし'],a:0,e:'い-adj + し. (Adapted from p.68 ❶.)'},
+ {p:'この 町{まち}は（静{しず}か → ＿＿）、人{ひと}も しんせつだし、住{す}みやすいです。',o:['静{しず}かなし','静{しず}かだし','静{しず}かし'],a:1,e:'な-adj → だし. "Quiet, kind people… easy to live in."'},
+ {p:'雨{あめ}も（ふっている → ＿＿）、寒{さむ}いし、今日{きょう}は うちに います。',o:['ふっているし','ふっていてし','ふりし'],a:0,e:'～ている + し.'},
+ {p:'きのうは（いそがしい → ＿＿）、つかれたし、早{はや}く ねました。',o:['いそがしいだったし','いそがしくし','いそがしかったし'],a:2,e:'Past い-adj: いそがしかった + し.'},
+ {p:'食{た}べ物{もの}（＿）おいしいし、けしき（＿）きれいだし、また 行{い}きたいです。',o:['が／が','も／も','を／を'],a:1,e:'も／も is the most natural: "the food is good, AND the scenery is beautiful too".'},
+ {p:'（しかいが できる → ＿＿）、日本語{にほんご}も 上手{じょうず}だし、キャシーさんに たのみましょう。',o:['しかいが できるし','しかいが できますし だ','しかいが できだし'],a:0,e:'Plain potential + し. This combines L6 and L7 grammar.'},
+];
+const C=[
+ {p:'Which sentence is natural?',o:['この レストランは 安{やす}いし、おいしいし、よく 来{き}ます。','この レストランは 高{たか}いし、おいしいし、よく 来{き}ます。','この レストランは 安{やす}いし、まずいし、よく 来{き}ます。'],a:0,e:'All reasons must point the same way. 高い (a minus) or まずい (a minus) can\'t support "I come often".',big:true},
+ {p:'Which sentence is natural?',o:['駅{えき}から 遠{とお}いし、せまいし、この 部屋{へや}に します。','駅{えき}から 遠{とお}いし、せまいし、この 部屋{へや}は ちょっと…。','駅{えき}から 近{ちか}いし、せまいし、この 部屋{へや}は ちょっと…。'],a:1,e:'Two negatives → a negative verdict. Option 3 mixes a plus (近い) with a minus.',big:true},
+ {p:'Friend: 「映画{えいが}、行{い}かない？」 — Which is the most natural soft refusal?',o:['ごめん、今日{きょう}は つかれてるし…。','ごめん、今日{きょう}は つかれてし…。','ごめん、今日{きょう}は つかれたから し。'],a:0,e:'Trailing ～し… leaves the refusal unsaid (pattern E). つかれてる = casual つかれている.',big:true},
+];
+const W=[
+ {p:'日本語{にほんご}の 勉強{べんきょう}は どうですか。',m:'むずかしいですが、おもしろいし、アニメも わかるし、楽{たの}しいです。',en:'How is studying Japanese?'},
+ {p:'どうして その 店{みせ}が 好{す}きですか。',m:'駅{えき}から 近{ちか}いし、コーヒーも おいしいし、よく 行{い}きます。',en:'Why do you like that shop?'},
+ {p:'週末{しゅうまつ}、山{やま}に 行{い}きませんか。 (say no politely)',m:'すみません、週末{しゅうまつ}は 仕事{しごと}も あるし、天気{てんき}も よくないし…。',en:'Won\'t you come to the mountains this weekend?'},
+ {p:'どうして 日本{にほん}に 行{い}きたいですか。',m:'食{た}べ物{もの}も おいしいし、古{ふる}い お寺{てら}も たくさん あるし、行{い}ってみたいです。',en:'Why do you want to go to Japan?'},
+];
+
+function renderQ(list,id,prefix){
+  const el=document.getElementById(id);
+  el.innerHTML=list.map((q,i)=>{
+    const k=prefix+i;
+    return `<div class="q" data-k="${k}"><div class="prompt">${q.big?'':'<b>'}${RB(q.p)}${q.big?'':'</b>'} ${q.h?`<span class="tag">${q.h}</span>`:''}</div>
+    <div class="opts">${q.o.map((o,j)=>`<button class="opt" data-j="${j}">${RB(o)}</button>`).join('')}</div>
+    <div class="fb">${RB(q.e)}</div></div>`}).join('');
+  el.querySelectorAll('.q').forEach((qd,i)=>{
+    const q=list[i],k=qd.dataset.k;
+    const mark=(j)=>{qd.querySelectorAll('.opt').forEach((b,bj)=>{b.disabled=true;if(bj===q.a)b.classList.add('right');else if(bj===j)b.classList.add('wrong')});
+      qd.querySelector('.fb').classList.add('show');qd.classList.add(j===q.a?'done-ok':'done-bad')};
+    if(st[k]!==undefined)mark(st[k]);
+    qd.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{const j=+b.dataset.j;st[k]=j;save();mark(j);prog()});
+  });
+}
+function renderW(){
+  document.getElementById('wr').innerHTML=W.map((w,i)=>`<div class="q"><div class="prompt">${RB(w.p)}</div><div class="en">${w.en}</div>
+  <textarea data-w="${i}" placeholder="～し、～し、…">${(st['w'+i]||'').replace(/</g,'&lt;')}</textarea>
+  <div style="margin-top:6px"><button class="btn" data-r="${i}">Show model answer</button></div>
+  <div class="reveal" id="rv${i}"><span class="jp">${RB(w.m)}</span></div></div>`).join('');
+  document.querySelectorAll('textarea[data-w]').forEach(t=>t.oninput=()=>{st['w'+t.dataset.w]=t.value;save()});
+  document.querySelectorAll('[data-r]').forEach(b=>b.onclick=()=>document.getElementById('rv'+b.dataset.r).classList.toggle('show'));
+}
+function prog(){
+  const total=A.length+B.length+C.length;
+  let done=0,ok=0;
+  [[A,'a'],[B,'b'],[C,'c']].forEach(([l,p])=>l.forEach((q,i)=>{if(st[p+i]!==undefined){done++;if(st[p+i]===q.a)ok++}}));
+  document.getElementById('pfill').style.width=(done/total*100)+'%';
+  document.getElementById('pnum').textContent=`${ok} ✓ · ${done}/${total}`;
+}
+function all(){renderQ(A,'qA','a');renderQ(B,'qB','b');renderQ(C,'qC','c');renderW();prog()}
+document.getElementById('reset').onclick=()=>{Object.keys(st).forEach(k=>{if(/^[abcw]\d+$/.test(k))delete st[k]});save();all()};
+all();
+
+// verb drawer
+const V=[
+ ['行{い}く','行{い}きます','u','to go','行{い}くし','た-form is 行った (irregular)'],
+ ['来{く}る','来{き}ます','irr','to come','来{く}るし',''],
+ ['する','します','irr','to do','するし','勉強{べんきょう}する = to study; ～にする = to decide on'],
+ ['ある','あります','u','to exist, to have (things)','あるし','negative is ない'],
+ ['いる','います','ru','to exist, to be (people/animals)','いるし','also ～ている'],
+ ['できる','できます','ru','can do; to be made','できるし','友{とも}だちが できる = make friends'],
+ ['なる','なります','u','to become','なるし','おみやげに なる = become a souvenir'],
+ ['わかる','わかります','u','to understand','わかるし',''],
+ ['帰{かえ}る','帰{かえ}ります','u','to go home, to return','帰{かえ}るし','looks like a る-verb but it is not'],
+ ['買{か}う','買{か}います','u','to buy','買{か}うし',''],
+ ['ふる','ふります','u','to fall (rain, snow)','ふるし','雨{あめ}が ふる = it rains'],
+ ['住{す}む','住{す}みます','u','to live (reside)','住{す}むし','住{す}みやすい = easy to live in'],
+ ['たのむ','たのみます','u','to ask (a favour), to request','たのむし',''],
+ ['楽{たの}しむ','楽{たの}しみます','u','to enjoy','楽{たの}しむし','potential: 楽{たの}しめる = can enjoy'],
+ ['泳{およ}ぐ','泳{およ}ぎます','u','to swim','泳{およ}ぐし','泳{およ}ぎ = swimming (noun)'],
+ ['作{つく}る','作{つく}ります','u','to make','作{つく}るし',''],
+ ['食{た}べる','食{た}べます','ru','to eat','食{た}べるし','食{た}べ物{もの} = food'],
+ ['つかれる','つかれます','ru','to get tired','つかれるし','つかれている = be tired'],
+ ['ねる','ねます','ru','to sleep, to go to bed','ねるし',''],
+ ['おしえる','おしえます','ru','to teach','おしえるし','potential: おしえられる'],
+ ['かく','かきます','u','to write, to draw','かくし','potential: かける'],
+];
+const GL={u:'う-verb',ru:'る-verb',irr:'irregular'};
+let vf='all';
+function renderV(){
+  document.getElementById('vbody').innerHTML=V.filter(v=>vf==='all'||v[2]===vf).map(v=>
+   `<tr><td><div class="dict">${RB(v[0])}</div><div class="mas">${RB(v[1])}</div><span class="grp ${v[2]}">${GL[v[2]]}</span></td>
+    <td class="gloss">${v[3]}${v[5]?`<span class="note">${RB(v[5])}</span>`:''}</td>
+    <td class="shi">${RB(v[4]).replace(/し$/,'<b class="s">し</b>')}</td></tr>`).join('');
+}
+document.querySelector('.dctl').innerHTML=RB(document.querySelector('.dctl').innerHTML);
+document.querySelector('#drawer header').innerHTML=RB(document.querySelector('#drawer header').innerHTML);
+document.querySelector('.dnote').innerHTML=RB(document.querySelector('.dnote').innerHTML);
+const dr=document.getElementById('drawer'),sc=document.getElementById('scrim'),vo=document.getElementById('vOpen');
+function setD(o){dr.classList.toggle('open',o);sc.classList.toggle('open',o);vo.setAttribute('aria-expanded',o);dr.setAttribute('aria-hidden',!o);st.verbs=o;save();
+  if(o)document.getElementById('vClose').focus()}
+vo.onclick=()=>setD(!dr.classList.contains('open'));
+sc.onclick=()=>setD(false);
+document.addEventListener('click',e=>{if(e.target.closest('#vClose'))setD(false)});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&dr.classList.contains('open'))setD(false)});
+document.getElementById('dctl').addEventListener('click',e=>{
+  const b=e.target.closest('button');if(!b)return;
+  if(b.id==='hideEn'){dr.classList.toggle('hide-vt-en');b.classList.toggle('on');return}
+  vf=b.dataset.f;document.querySelectorAll('#dctl [data-f]').forEach(x=>x.classList.toggle('on',x===b));renderV();
+});
+renderV();
+if(st.verbs)setD(true);
+</script>
+
+<script src="../assets/nav-tree.js"></script>
+<script src="../assets/nav.js" defer></script>
+</body>
+</html>

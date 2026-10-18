@@ -119,6 +119,27 @@ window.SITE_TREE = [
   ]
  },
  {
+  "label": "文法 (Grammar sheets)",
+  "children": [
+   {
+    "label": "～し",
+    "href": "grammar/1_shi_form.html"
+   },
+   {
+    "label": "～て",
+    "href": "grammar/2_te_form.html"
+   },
+   {
+    "label": "～かった",
+    "href": "grammar/3_katta_past.html"
+   },
+   {
+    "label": "～たら",
+    "href": "grammar/4_tara.html"
+   }
+  ]
+ },
+ {
   "label": "読み物",
   "children": [
    {

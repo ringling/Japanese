@@ -1,0 +1,575 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>～たら Grammar Sheet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --washi:#f5efe3; --paper:#fbf8f1; --ink:#2a2622; --muted:#6d655b;
+  --indigo:#1f3a5f; --indigo-soft:#e3e8ef; --vermilion:#c8452d; --verm-soft:#f6e1da;
+  --gold:#b8923a; --gold-soft:#f3e8cf; --green:#3f7a4f; --green-soft:#e0eee2;
+  --line:#e2d8c6; --card:#ffffff; --chip-line:#c6d0de; --gold-line:#e3cf9f; --gold-text:#8a6a22;
+  --seg1:#dfe6f0; --seg2:#e8e0f0; --seg3:#dcebe4; --bar-bg:rgba(245,239,227,.94); --formula-s:#ffb9a8;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){color-scheme:dark;
+  --washi:#1b1a1f; --paper:#232228; --ink:#ece6da; --muted:#a39a8c;
+  --indigo:#8fb0da; --indigo-soft:#26303f; --vermilion:#ef7a5f; --verm-soft:#3a2420;
+  --gold:#d6b061; --gold-soft:#342c1b; --green:#7cc28f; --green-soft:#1e3325;
+  --line:#3a3740; --card:#29282f; --chip-line:#34445a; --gold-line:#57482a; --gold-text:#d6b061;
+  --seg1:#2a3446; --seg2:#352c44; --seg3:#243a2f; --bar-bg:rgba(27,26,31,.94); --formula-s:#8e2a17;}}
+:root[data-theme="dark"]{color-scheme:dark;
+  --washi:#1b1a1f; --paper:#232228; --ink:#ece6da; --muted:#a39a8c;
+  --indigo:#8fb0da; --indigo-soft:#26303f; --vermilion:#ef7a5f; --verm-soft:#3a2420;
+  --gold:#d6b061; --gold-soft:#342c1b; --green:#7cc28f; --green-soft:#1e3325;
+  --line:#3a3740; --card:#29282f; --chip-line:#34445a; --gold-line:#57482a; --gold-text:#d6b061;
+  --seg1:#2a3446; --seg2:#352c44; --seg3:#243a2f; --bar-bg:rgba(27,26,31,.94); --formula-s:#8e2a17;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--washi);color:var(--ink);font-family:"Zen Kaku Gothic New",sans-serif;line-height:1.7;
+  background-image:radial-gradient(rgba(120,100,70,.05) 1px,transparent 1px);background-size:6px 6px}
+.wrap{max-width:900px;margin:0 auto;padding:24px 16px 80px}
+button:focus-visible,a:focus-visible,textarea:focus-visible{outline:2px solid var(--vermilion);outline-offset:2px}
+h1,h2,h3,.mincho{font-family:"Shippori Mincho",serif}
+rt{font-size:.55em;color:var(--muted);font-family:"Zen Kaku Gothic New",sans-serif}
+body.hide-furi rt{visibility:hidden}
+body.hide-en .en{display:none}
+
+/* toolbar */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--bar-bg);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+.bar .in{max-width:900px;margin:0 auto;padding:8px 16px;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.bar a{color:var(--indigo);text-decoration:none;font-size:.85rem;padding:2px 8px;border-radius:12px}
+.bar a:hover{background:var(--indigo-soft)}
+.bar .sp{flex:1}
+.tog{border:1px solid var(--indigo);background:var(--paper);color:var(--indigo);border-radius:14px;padding:3px 10px;font:inherit;font-size:.8rem;cursor:pointer}
+.tog.off{background:transparent;color:var(--muted);border-color:var(--line)}
+
+/* hero */
+.hero{text-align:center;padding:40px 0 20px}
+.hero .big{font-family:"Shippori Mincho",serif;font-size:6rem;line-height:1;color:var(--vermilion);font-weight:800}
+.hero .sub{font-family:"Shippori Mincho",serif;font-size:1.5rem;color:var(--indigo);margin:.3em 0}
+.hero p{color:var(--muted);margin:.2em 0}
+.seal{display:inline-block;border:2px solid var(--vermilion);color:var(--vermilion);padding:2px 10px;border-radius:4px;font-size:.8rem;letter-spacing:.1em;margin-top:10px}
+
+/* sections */
+section{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:22px 22px;margin:22px 0;box-shadow:0 1px 0 rgba(0,0,0,.03)}
+section>h2{margin:0 0 4px;color:var(--indigo);font-size:1.45rem;display:flex;gap:12px;align-items:baseline}
+section>h2 .n{font-size:.9rem;color:var(--gold);font-weight:700;letter-spacing:.1em}
+.lead{color:var(--muted);margin:0 0 16px}
+.jp{font-size:1.2rem}
+.en{color:var(--muted);font-size:.92rem}
+b.s,.s{color:var(--vermilion);font-weight:700}
+.da{color:var(--gold);font-weight:700}
+
+/* flow diagram */
+.flow{display:flex;align-items:stretch;gap:10px;flex-wrap:wrap;justify-content:center;margin:12px 0 6px}
+.chip{border-radius:12px;padding:12px 14px;text-align:center;min-width:150px;flex:1}
+.chip .lab{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:4px}
+.chip.r{background:var(--indigo-soft);border:1px solid var(--chip-line)}
+.chip.r .lab{color:var(--indigo)}
+.chip.c{background:var(--gold-soft);border:1px solid var(--gold-line)}
+.chip.c .lab{color:var(--gold-text)}
+.arrow{align-self:center;font-size:1.6rem;color:var(--gold)}
+.plus{align-self:center;font-size:1.3rem;color:var(--muted)}
+.meaning{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:16px}
+.card{background:var(--washi);border-radius:10px;padding:12px 14px;border-left:4px solid var(--indigo)}
+.card.v{border-left-color:var(--vermilion)}
+.card.g{border-left-color:var(--gold)}
+.card h4{margin:0 0 4px;font-size:.95rem}
+
+/* formation table */
+table{width:100%;border-collapse:collapse;font-size:1rem}
+th,td{padding:9px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:middle}
+th{font-size:.78rem;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;font-weight:500}
+td.t{font-weight:700;color:var(--indigo);white-space:nowrap}
+.tag{display:inline-block;font-size:.7rem;padding:1px 7px;border-radius:9px;background:var(--indigo-soft);color:var(--indigo);margin-left:4px;vertical-align:middle}
+.tag.warn{background:var(--verm-soft);color:var(--vermilion)}
+.scroll{overflow-x:auto}
+.warnbox{margin-top:14px;background:var(--verm-soft);border-radius:10px;padding:12px 14px;border:1px dashed var(--vermilion)}
+.warnbox strong{color:var(--vermilion)}
+
+/* sentence breakdown */
+.sent{background:var(--washi);border-radius:12px;padding:14px 16px;margin:12px 0}
+.sent .jp{line-height:2.3}
+.seg{display:inline;padding:2px 4px;border-radius:5px}
+.seg.r1{background:var(--seg1)}
+.seg.r2{background:var(--seg2)}
+.seg.r3{background:var(--seg3)}
+.seg.cc{background:var(--gold-soft);border-bottom:2px solid var(--gold)}
+.legend{display:flex;gap:10px;flex-wrap:wrap;font-size:.78rem;color:var(--muted);margin-top:6px}
+.legend span{padding:1px 8px;border-radius:5px}
+.src{font-size:.75rem;color:var(--gold);letter-spacing:.08em}
+
+/* patterns */
+.pat{border-top:1px dashed var(--line);padding:14px 0}
+.pat:first-of-type{border-top:none}
+.pat h3{margin:0 0 4px;font-size:1.1rem;color:var(--ink)}
+.formula{font-family:"Shippori Mincho",serif;font-size:1.1rem;background:var(--indigo);color:var(--paper);display:inline-block;padding:4px 12px;border-radius:8px;margin:4px 0 8px}
+.formula .s{color:var(--formula-s)}
+.ex{margin:6px 0 6px 4px}
+
+/* compare */
+.cmp{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.cmp .card h4{font-family:"Shippori Mincho",serif;font-size:1.3rem;margin-bottom:2px}
+.cmp .card .jp{font-size:1.05rem}
+
+/* quiz */
+.progress{display:flex;align-items:center;gap:10px;margin:6px 0 14px}
+.pbar{flex:1;height:8px;background:var(--line);border-radius:6px;overflow:hidden}
+.pbar i{display:block;height:100%;background:linear-gradient(90deg,var(--indigo),var(--vermilion));width:0;transition:width .3s}
+.pnum{font-size:.85rem;color:var(--muted);min-width:70px;text-align:right}
+.q{border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:10px 0;background:var(--card)}
+.q .prompt{font-size:1.15rem;line-height:2.1;margin-bottom:6px}
+.q .hint{font-size:.8rem;color:var(--muted)}
+.opts{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.opt{border:1px solid var(--line);background:var(--paper);border-radius:10px;padding:6px 14px;font:inherit;font-size:1.05rem;cursor:pointer;transition:.15s}
+.opt:hover{border-color:var(--indigo)}
+.opt.right{background:var(--green-soft);border-color:var(--green);color:var(--green);font-weight:700}
+.opt.wrong{background:var(--verm-soft);border-color:var(--vermilion);color:var(--vermilion);text-decoration:line-through}
+.opt:disabled{cursor:default}
+.fb{margin-top:8px;font-size:.9rem;padding:8px 10px;border-radius:8px;background:var(--washi);display:none}
+.fb.show{display:block}
+.q.done-ok{border-left:4px solid var(--green)}
+.q.done-bad{border-left:4px solid var(--vermilion)}
+.btn{border:none;background:var(--indigo);color:var(--paper);border-radius:10px;padding:7px 14px;font:inherit;font-size:.9rem;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--indigo);border:1px solid var(--indigo)}
+.reveal{display:none;margin-top:8px;background:var(--gold-soft);border-radius:8px;padding:10px 12px}
+.reveal.show{display:block}
+textarea{width:100%;min-height:60px;border:1px solid var(--line);border-radius:8px;padding:8px;font:inherit;font-size:1.05rem;background:var(--paper);margin-top:6px}
+.cheat{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
+.cheat div{background:var(--washi);border-radius:10px;padding:10px 12px;text-align:center}
+.cheat .k{font-family:"Shippori Mincho",serif;font-size:1.25rem}
+footer{text-align:center;color:var(--muted);font-size:.8rem;margin-top:30px}
+@media(max-width:560px){.hero .big{font-size:4.5rem}.arrow{transform:rotate(90deg)}.flow{flex-direction:column}}
+@media print{.bar,.btn,.opts,textarea{display:none}.fb,.reveal{display:block}section{break-inside:avoid}}
+
+/* verb drawer */
+.vbtn{border:1px solid var(--vermilion);background:var(--vermilion);color:var(--paper);border-radius:14px;padding:3px 12px;font:inherit;font-size:.8rem;cursor:pointer;font-weight:700}
+.vbtn[aria-expanded="true"]{background:transparent;color:var(--vermilion)}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(460px,100%);background:var(--paper);border-left:1px solid var(--line);z-index:30;
+  box-shadow:-8px 0 24px rgba(0,0,0,.12);display:flex;flex-direction:column;transform:translateX(100%);transition:transform .25s ease;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+.drawer.open{transform:none}
+.drawer header{display:flex;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid var(--line)}
+.drawer header h2{margin:0;font-size:1.2rem;color:var(--indigo);flex:1}
+.drawer .x{border:none;background:transparent;color:var(--muted);font-size:1.4rem;cursor:pointer;line-height:1;padding:2px 6px}
+.dctl{display:flex;gap:6px;flex-wrap:wrap;padding:10px 16px;border-bottom:1px solid var(--line)}
+.dctl button{border:1px solid var(--line);background:var(--washi);color:var(--ink);border-radius:12px;padding:2px 10px;font:inherit;font-size:.78rem;cursor:pointer}
+.dctl button.on{background:var(--indigo);border-color:var(--indigo);color:var(--paper)}
+.dbody{overflow:auto;padding:4px 16px 20px;flex:1}
+.vt{font-size:.95rem}
+.vt td{padding:8px 6px}
+.vt .dict{font-size:1.1rem;font-weight:700;white-space:nowrap}
+.vt .mas{white-space:nowrap;color:var(--muted);font-size:.85rem}
+.vt .shi{white-space:nowrap}
+.vt .gloss{color:var(--ink);font-size:.9rem}
+.grp{display:inline-block;font-size:.68rem;padding:1px 7px;border-radius:9px;white-space:nowrap}
+.grp.u{background:var(--indigo-soft);color:var(--indigo)}
+.grp.ru{background:var(--green-soft);color:var(--green)}
+.grp.irr{background:var(--verm-soft);color:var(--vermilion)}
+.vt .note{display:block;font-size:.72rem;color:var(--vermilion)}
+.dnote{font-size:.8rem;color:var(--muted);margin:10px 0 0}
+.scrim{position:fixed;inset:0;background:rgba(0,0,0,.25);z-index:25;opacity:0;pointer-events:none;transition:opacity .25s}
+.scrim.open{opacity:1;pointer-events:auto}
+.drawer.hide-vt-en .vt td.gloss{color:transparent;text-shadow:none}
+.drawer.hide-vt-en .vt td.gloss .note{color:transparent}
+.drawer.hide-vt-en .vt td.gloss:hover,.drawer.hide-vt-en .vt td.gloss:hover .note{color:var(--ink)}
+.vt .note{white-space:normal}
+.vt .tef{font-size:1.1rem;font-weight:700;color:var(--vermilion)}
+.drawer.hide-te .vt td.shi{color:transparent}
+.drawer.hide-te .vt td.shi .tef,.drawer.hide-te .vt td.shi .note,.drawer.hide-te .vt td.shi rt{color:transparent}
+.drawer.hide-te .vt td.shi:hover .tef{color:var(--vermilion)}
+.drawer.hide-te .vt td.shi .mas{color:transparent}
+.drawer.hide-te .vt td.shi:hover .mas,.drawer.hide-te .vt td.shi:hover .note,.drawer.hide-te .vt td.shi:hover rt{color:var(--muted)}
+@media (prefers-reduced-motion:reduce){.drawer,.scrim{transition:none}}
+@media print{.drawer,.scrim,.vbtn{display:none}}
+
+/* te-form specific */
+.gridE{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px;margin-top:10px}
+.eb{background:var(--washi);border-radius:12px;padding:12px 14px;border:1px solid var(--line)}
+.eb .ends{font-family:"Shippori Mincho",serif;font-size:1.5rem;color:var(--indigo);font-weight:700;letter-spacing:.1em}
+.eb .to{font-family:"Shippori Mincho",serif;font-size:1.5rem;color:var(--vermilion);font-weight:800}
+.eb .exs{font-size:1rem;margin-top:4px}
+.eb.x{border:1px dashed var(--vermilion);background:var(--verm-soft)}
+.decide{display:grid;gap:8px;margin:10px 0}
+.step{display:flex;gap:10px;align-items:flex-start;background:var(--washi);border-radius:10px;padding:10px 12px}
+.step .q1{flex:1}
+.step .ans{white-space:nowrap;font-weight:700;color:var(--vermilion)}
+.chain{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center;margin:10px 0}
+.chain .lk{background:var(--indigo-soft);border:1px solid var(--chip-line);border-radius:10px;padding:8px 12px;text-align:center}
+.chain .lk .jp{font-size:1.15rem}
+.chain .ar{color:var(--gold);font-size:1.3rem}
+.usegrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-top:14px}
+
+.grp.i{background:var(--indigo-soft);color:var(--indigo)}
+.grp.na{background:var(--gold-soft);color:var(--gold-text)}
+.grp.v{background:var(--green-soft);color:var(--green)}
+.lanes{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:10px}
+.lane{border-radius:12px;padding:14px;background:var(--washi);border-top:4px solid var(--indigo)}
+.lane.na{border-top-color:var(--gold)}
+.lane.v{border-top-color:var(--green)}
+.lane .lab{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.lane .mark{font-family:"Shippori Mincho",serif;font-size:2rem;font-weight:800;color:var(--vermilion);line-height:1.3}
+.lane .jp{font-size:1.1rem}
+.big4 td,.big4 th{text-align:center}
+.big4 td.t{text-align:left}
+.big4 .pol{display:block;font-size:.85rem;color:var(--muted)}
+</style>
+</head>
+<body>
+
+<div class="bar"><div class="in">
+  <a href="#idea">Idea</a><a href="#form">Form</a><a href="#patterns">Uses</a><a href="#textbook">L7</a><a href="#compare">た／たら</a><a href="#drill">Drills</a><a href="#write">Write</a>
+  <span class="sp"></span>
+  <button class="vbtn" id="vOpen" aria-expanded="false" aria-controls="drawer">単語 Words</button>
+  <button class="tog" id="tFuri">ふりがな</button>
+  <button class="tog" id="tEn">English</button>
+</div></div>
+
+<div class="wrap">
+
+<div class="hero">
+  <div class="big">～たら</div>
+  <div class="sub">S1 たら、S2: "if…" and "when…"</div>
+  <p>Saying what you'll do under certain conditions</p>
+  <span class="seal">まるごと A2-2 · だい7か 文法{ぶんぽう} 2 · N4</span>
+</div>
+
+<!-- 1 IDEA -->
+<section id="idea">
+  <h2><span class="n">01</span>The core idea</h2>
+  <p class="lead">S1 sets up a situation. S2 says what happens, or what to do, once that situation is real.</p>
+
+  <div class="flow">
+    <div class="chip r"><div class="lab">S1 · Condition</div><div class="jp">雨{あめ}が ふった<b class="s">ら</b></div><div class="en">if it rains</div></div>
+    <div class="arrow">➜</div>
+    <div class="chip c"><div class="lab">S2 · What happens / what to do</div><div class="jp">ホールで ぼんおどりを します。</div><div class="en">we'll do the bon dance in the hall</div></div>
+  </div>
+
+  <div class="meaning">
+    <div class="card"><h4>① "If…": it might happen</h4>雨{あめ}が ふったら… (maybe it will rain, maybe not).</div>
+    <div class="card v"><h4>② "When… / once…": it will happen</h4>じゅんびが おわったら… (setup will finish, and then…).</div>
+    <div class="card g"><h4>③ Past form, future meaning</h4>ふった looks past, but ～たら talks about a situation that hasn't happened yet. The tense of the sentence comes from S2.</div>
+  </div>
+</section>
+
+<!-- 2 FORM -->
+<section id="form">
+  <h2><span class="n">02</span>How to make it</h2>
+  <p class="lead">One rule for every word type: <b>plain past ＋ ら</b>. If you know the past tense, you already know ～たら.</p>
+
+  <div class="flow">
+    <div class="chip r"><div class="lab">Dictionary</div><div class="jp">ふる</div></div>
+    <div class="arrow">➜</div>
+    <div class="chip r"><div class="lab">Plain past</div><div class="jp">ふっ<b class="da">た</b></div></div>
+    <div class="arrow">➜</div>
+    <div class="chip c"><div class="lab">＋ ら</div><div class="jp">ふった<b class="s">ら</b></div></div>
+  </div>
+
+  <div class="scroll"><table>
+    <tr><th>Type</th><th>Plain past</th><th>＋ら</th><th>Negative ＋ら</th></tr>
+    <tr><td class="t">Verb</td><td>ふった</td><td>ふった<b class="s">ら</b></td><td>ふらなかった<b class="s">ら</b></td></tr>
+    <tr><td class="t">Verb</td><td>わかった</td><td>わかった<b class="s">ら</b></td><td>わからなかった<b class="s">ら</b></td></tr>
+    <tr><td class="t">する</td><td>した</td><td>した<b class="s">ら</b></td><td>しなかった<b class="s">ら</b></td></tr>
+    <tr><td class="t">来{く}る</td><td>来{き}た</td><td>来{き}た<b class="s">ら</b></td><td>来{こ}なかった<b class="s">ら</b></td></tr>
+    <tr><td class="t">ある</td><td>あった</td><td>あった<b class="s">ら</b></td><td>なかった<b class="s">ら</b></td></tr>
+    <tr><td class="t">い-adj</td><td>暑{あつ}かった</td><td>暑{あつ}かった<b class="s">ら</b></td><td>暑{あつ}くなかった<b class="s">ら</b></td></tr>
+    <tr><td class="t">いい <span class="tag warn">irregular</span></td><td>よかった</td><td>よかった<b class="s">ら</b></td><td>よくなかった<b class="s">ら</b></td></tr>
+    <tr><td class="t">な-adj</td><td>ひまだった</td><td>ひまだった<b class="s">ら</b></td><td>ひまじゃなかった<b class="s">ら</b></td></tr>
+    <tr><td class="t">Noun</td><td>雨{あめ}だった</td><td>雨{あめ}だった<b class="s">ら</b></td><td>雨{あめ}じゃなかった<b class="s">ら</b></td></tr>
+  </table></div>
+
+  <div class="warnbox">
+    <strong>⚠ Common slips:</strong><br>
+    <span class="jp">✗ ふるたら → ✓ ふった<b class="s">ら</b></span> <span class="en">(always the past form, never the dictionary form)</span><br>
+    <span class="jp">✗ 雨{あめ}たら → ✓ 雨{あめ}だった<b class="s">ら</b></span> <span class="en">(nouns and な-adjectives need だった)</span><br>
+    <span class="jp">✗ ふりましたら → ✓ ふった<b class="s">ら</b></span> <span class="en">(use the plain past. Politeness goes at the end of S2.)</span><br>
+    <span class="jp">✗ 行{い}いたら → ✓ 行{い}った<b class="s">ら</b></span> <span class="en">(行く is still the exception)</span>
+  </div>
+</section>
+
+<!-- 3 PATTERNS -->
+<section id="patterns">
+  <h2><span class="n">03</span>What you can put in S2</h2>
+  <p class="lead">This is the strength of ～たら: S2 can be a request, a suggestion or a plan.</p>
+
+  <div class="pat">
+    <h3>A. A request: ～て ください</h3>
+    <div class="formula">～たら、V-て ください</div>
+    <div class="ex"><div class="jp">使{つか}いかたが わからなかった<b class="s">ら</b>、たなかさんに 聞{き}いて ください。</div><div class="en">If you don't know how to use it, please ask Tanaka-san.</div></div>
+  </div>
+
+  <div class="pat">
+    <h3>B. A suggestion: ～ましょう</h3>
+    <div class="formula">～たら、V-ましょう</div>
+    <div class="ex"><div class="jp">暑{あつ}かった<b class="s">ら</b>、エアコンを つけましょう。</div><div class="en">If it's hot, let's turn on the air conditioning.</div></div>
+  </div>
+
+  <div class="pat">
+    <h3>C. A plan or fact: ～ます／～です</h3>
+    <div class="formula">～たら、V-ます／N です</div>
+    <div class="ex"><div class="jp">人{ひと}が たくさん 来{き}た<b class="s">ら</b>、はやく 受付{うけつけ}を はじめます。</div><div class="en">If a lot of people come, we'll open reception early.</div></div>
+    <div class="ex"><div class="jp">雨{あめ}だった<b class="s">ら</b>、イベントは 中止{ちゅうし}です。</div><div class="en">If it rains, the event is cancelled.</div></div>
+  </div>
+
+  <div class="pat">
+    <h3>D. Asking what to do: ～たら、どう しますか</h3>
+    <div class="formula">～たら、どう しますか。</div>
+    <div class="ex"><div class="jp">かいじょうに わすれものが あった<b class="s">ら</b>、どう しますか。</div><div class="en">What do we do if there's lost property at the venue? This is the key question for Can-do 20.</div></div>
+  </div>
+
+  <div class="pat">
+    <h3>E. "When / once" (it will happen)</h3>
+    <div class="formula">～たら (certain) ＝ once…</div>
+    <div class="ex"><div class="jp">じゅんびが おわった<b class="s">ら</b>、さいとうさんに れんらくして ください。</div><div class="en">Once setup is finished, please contact Saito-san.</div></div>
+    <div class="ex"><div class="jp">うちに 帰{かえ}った<b class="s">ら</b>、電話{でんわ}します。</div><div class="en">I'll call when I get home.</div></div>
+  </div>
+
+  <div class="pat">
+    <h3>F. Set phrase: よかったら</h3>
+    <div class="formula">よかったら、…</div>
+    <div class="ex"><div class="jp">よかった<b class="s">ら</b>、いっしょに 行{い}きませんか。</div><div class="en">If you'd like, shall we go together? This is a soft, polite way to make an offer or invitation, and it's very common.</div></div>
+  </div>
+</section>
+
+<!-- 4 TEXTBOOK -->
+<section id="textbook">
+  <h2><span class="n">04</span>From your class: だい7か</h2>
+  <p class="lead">These are the MARUGOTO grammar page examples plus the Episode 7 and かつどう lines. Colour key:</p>
+  <div class="legend"><span class="seg r1">S1 condition</span><span class="seg cc">S2 result</span></div>
+
+  <div class="sent"><div class="src">MARUGOTO 文法{ぶんぽう} · MAIN EXAMPLE</div>
+    <div class="jp"><span class="seg r1">雨{あめ}が ふった<b class="s">ら</b></span>、<span class="seg cc">ホールで ぼんおどりを します</span>。</div>
+    <div class="en">If it rains, we'll do the bon dance in the hall. ふる → ふった → ふったら.</div></div>
+
+  <div class="sent"><div class="src">MARUGOTO 文法{ぶんぽう}</div>
+    <div class="jp"><span class="seg r1">人{ひと}が たくさん 来{き}た<b class="s">ら</b></span>、<span class="seg cc">はやく 受付{うけつけ}を はじめます</span>。</div>
+    <div class="en">If a lot of people come, we'll open reception early. 来る → 来た (read as き).</div></div>
+
+  <div class="sent"><div class="src">MARUGOTO 文法{ぶんぽう} · DIALOGUE</div>
+    <div class="jp">A: <span class="seg r1">かいじょうに わすれものが あった<b class="s">ら</b></span>、<span class="seg cc">どう しますか</span>。<br>B: わすれものは 全部{ぜんぶ} 受付{うけつけ}に 持{も}って いって ください。</div>
+    <div class="en">"What do we do if there's lost property at the venue?" / "Please take all lost property to reception."</div></div>
+
+  <div class="sent"><div class="src">MARUGOTO 文法{ぶんぽう} · い-ADJECTIVE</div>
+    <div class="jp"><span class="seg r1">暑{あつ}かった<b class="s">ら</b></span>、<span class="seg cc">エアコンを つけましょう</span>。</div>
+    <div class="en">If it's hot, let's turn on the air conditioning. 暑い → 暑かった → 暑かったら.</div></div>
+
+  <div class="sent"><div class="src">MARUGOTO 文法{ぶんぽう} · NOUN</div>
+    <div class="jp"><span class="seg r1">雨{あめ}だった<b class="s">ら</b></span>、<span class="seg cc">イベントは 中止{ちゅうし}です</span>。</div>
+    <div class="en">If it rains, the event is cancelled. 雨 → 雨だった → 雨だったら.</div></div>
+
+  <div class="sent"><div class="src">MARUGOTO 文法{ぶんぽう} · NEGATIVE ／ かつどう CHECK! 075</div>
+    <div class="jp"><span class="seg r1">使{つか}いかたが わからなかった<b class="s">ら</b></span>、<span class="seg cc">たなかさんに 聞{き}いて ください</span>。</div>
+    <div class="en">If you don't know how to use it, please ask Tanaka-san. わからない → わからなかった → わからなかったら.</div></div>
+
+  <div class="sent"><div class="src">MARUGOTO 文法{ぶんぽう} · な-ADJECTIVE</div>
+    <div class="jp"><span class="seg r1">ひまだった<b class="s">ら</b></span>、<span class="seg cc">あした、てつだって ください</span>。</div>
+    <div class="en">If you're free, please help tomorrow. The negative version is ひまじゃなかったら ("if you're not free").</div></div>
+
+  <div class="sent"><div class="src">EPISODE 7 · ジェームズ</div>
+    <div class="jp"><span class="seg r1">雨{あめ}が ふった<b class="s">ら</b></span>、<span class="seg cc">みどりホールに 集{あつ}まって ください</span>。</div>
+    <div class="en">If it rains, please gather at Midori Hall.</div></div>
+</section>
+
+<!-- 5 COMPARE -->
+<section id="compare">
+  <h2><span class="n">05</span>ふった vs ふったら vs ふってから</h2>
+  <p class="lead">They look alike, but each one has a different time relationship.</p>
+  <div class="cmp">
+    <div class="card"><h4>～た</h4><div class="jp">雨{あめ}が ふっ<b class="s">た</b>。</div><div class="en">It rained. It happened in the past.</div></div>
+    <div class="card v"><h4>～たら</h4><div class="jp">雨{あめ}が ふった<b class="s">ら</b>、…</div><div class="en">If it rains / once it rains… A condition that hasn't happened yet.</div></div>
+    <div class="card g"><h4>～てから</h4><div class="jp">雨{あめ}が ふって<b class="s">から</b>、…</div><div class="en">After it rains… Plain order of events, with no "if".</div></div>
+  </div>
+</section>
+
+<!-- 6 DRILLS -->
+<section id="drill">
+  <h2><span class="n">06</span>Drills</h2>
+  <p class="lead">Your progress is saved in this browser.</p>
+  <div class="progress"><div class="pbar"><i id="pfill"></i></div><div class="pnum" id="pnum">0 / 0</div><button class="btn ghost" id="reset">Reset</button></div>
+
+  <h3 class="mincho" style="color:var(--indigo);margin:14px 0 0">A · Make the たら form</h3>
+  <div id="qA"></div>
+
+  <h3 class="mincho" style="color:var(--indigo);margin:22px 0 0">B · Fill the gap</h3>
+  <div id="qB"></div>
+
+  <h3 class="mincho" style="color:var(--indigo);margin:22px 0 0">C · Pick the natural S2</h3>
+  <div id="qC"></div>
+</section>
+
+<!-- 7 WRITE -->
+<section id="write">
+  <h2><span class="n">07</span>Write your own</h2>
+  <p class="lead">Answer with ～たら、～. Write your answer first, then compare it with the model.</p>
+  <div id="wr"></div>
+</section>
+
+<!-- 8 CHEAT -->
+<section>
+  <h2><span class="n">08</span>One-glance summary</h2>
+  <div class="cheat">
+    <div><div class="k">plain past ＋ら</div><div class="en">the one rule</div></div>
+    <div><div class="k">V-た → たら</div><div class="en">ふったら・来{き}たら</div></div>
+    <div><div class="k">い-adj → かったら</div><div class="en">暑{あつ}かったら・よかったら</div></div>
+    <div><div class="k">な／N → だったら</div><div class="en">ひまだったら・雨{あめ}だったら</div></div>
+    <div><div class="k">～ない → なかったら</div><div class="en">わからなかったら</div></div>
+    <div><div class="k">S2 = ください／ましょう</div><div class="en">requests and suggestions are fine</div></div>
+    <div><div class="k">～たら、どうしますか</div><div class="en">What do we do if…?</div></div>
+    <div><div class="k">よかったら</div><div class="en">if you'd like</div></div>
+  </div>
+</section>
+
+<footer>まるごと初級2 A2 · だい7か 文法 2 · S1 たら、S2</footer>
+</div>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-label="Word list" aria-hidden="true">
+  <header><h2 class="mincho">単語{たんご} · たら forms</h2><button class="x" id="vClose" aria-label="Close word list">×</button></header>
+  <div class="dctl" id="dctl">
+    <button data-f="all" class="on">All</button><button data-f="v">Verbs</button><button data-f="i">い-adj</button><button data-f="na">な-adj · noun</button>
+    <button id="hideEn">Hide English</button><button id="hideTe">Hide たら</button>
+  </div>
+  <div class="dbody">
+    <table class="vt"><thead><tr><th>Word</th><th>English</th><th>たら</th></tr></thead><tbody id="vbody"></tbody></table>
+    <p class="dnote">The big form is "if (it does)", and the small form below it is the negative "if (it doesn't)". Hover over a hidden cell to reveal it.</p>
+  </div>
+</aside>
+
+<script>
+const RB = s => s.replace(/([一-鿿々]+)\{([^}]+)\}/g,'<ruby>$1<rt>$2</rt></ruby>');
+['.wrap','#drawer header','.dnote'].forEach(q=>{const e=document.querySelector(q);e.innerHTML=RB(e.innerHTML)});
+
+const KEY='tara-sheet-v1';
+let st={}; try{st=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){st={}}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}};
+
+const tF=document.getElementById('tFuri'), tE=document.getElementById('tEn');
+function applyT(){document.body.classList.toggle('hide-furi',!!st.noFuri);document.body.classList.toggle('hide-en',!!st.noEn);
+  tF.classList.toggle('off',!!st.noFuri);tE.classList.toggle('off',!!st.noEn)}
+tF.onclick=()=>{st.noFuri=!st.noFuri;save();applyT()};
+tE.onclick=()=>{st.noEn=!st.noEn;save();applyT()};
+applyT();
+
+const A=[
+ {p:'ふる',h:'verb',o:['ふるたら','ふったら','ふりたら'],a:1,e:'Plain past ふった + ら.'},
+ {p:'来{く}る',h:'irregular',o:['来{く}ったら','来{き}たら','来{く}たら'],a:1,e:'来た (read as き) + ら.'},
+ {p:'わからない',h:'negative',o:['わからないたら','わからなかったら','わかったら'],a:1,e:'ない → なかった → なかったら.'},
+ {p:'ある',h:'verb',o:['あったら','あるたら','ありたら'],a:0,e:'ある → あった → あったら.'},
+ {p:'暑{あつ}い',h:'い-adj',o:['暑{あつ}いたら','暑{あつ}だったら','暑{あつ}かったら'],a:2,e:'い-adj: 暑かった + ら.'},
+ {p:'いい',h:'irregular',o:['いかったら','よかったら','いいだったら'],a:1,e:'いい → よかった → よかったら.'},
+ {p:'ひま',h:'な-adj',o:['ひまだったら','ひまかったら','ひまたら'],a:0,e:'な-adj: だった + ら.'},
+ {p:'雨{あめ}',h:'noun',o:['雨{あめ}たら','雨{あめ}だったら','雨{あめ}かったら'],a:1,e:'Noun: だった + ら.'},
+ {p:'おわる',h:'verb',o:['おわたら','おわりたら','おわったら'],a:2,e:'る → って → った → ったら.'},
+ {p:'行{い}く',h:'careful…',o:['行{い}いたら','行{い}ったら','行{い}くたら'],a:1,e:'The exception: 行った → 行ったら.'},
+ {p:'する',h:'irregular',o:['したら','するたら','すったら'],a:0,e:'する → した → したら.'},
+ {p:'ひまじゃない',h:'negative な-adj',o:['ひまじゃないたら','ひまじゃなかったら','ひまなかったら'],a:1,e:'じゃない → じゃなかった → じゃなかったら.'},
+];
+const B=[
+ {p:'あした 雨{あめ}が（ふる → ＿＿）、うちで えいがを 見{み}ます。',o:['ふったら','ふるたら','ふって'],a:0,e:'"If it rains tomorrow, I\'ll watch a film at home."'},
+ {p:'かいぎが（おわる → ＿＿）、れんらくして ください。',o:['おわるから','おわったら','おわった'],a:1,e:'"Once the meeting is over, please contact me." This is the "when/once" meaning.'},
+ {p:'（さむい → ＿＿）、まどを しめましょう。',o:['さむかったら','さむいだったら','さむくたら'],a:0,e:'い-adj: さむかったら. "If it\'s cold, let\'s close the window."'},
+ {p:'あした（ひま → ＿＿）、いっしょに 行{い}きませんか。',o:['ひまかったら','ひまだったら','ひまなら たら'],a:1,e:'な-adj: ひまだったら.'},
+ {p:'（いい → ＿＿）、これ 食{た}べて ください。',o:['いかったら','いいたら','よかったら'],a:2,e:'よかったら = "if you\'d like". Please eat this if you like.'},
+ {p:'人{ひと}が あまり（来{く}る → 来{こ}ない → ＿＿）、イベントは 1時{じ}に おわります。',o:['来{こ}なかったら','来{こ}ないたら','来{き}なかったら'],a:0,e:'来ない (read as こ) → 来なかったら.'},
+ {p:'日本{にほん}に（行{い}く → ＿＿）、すしを 食{た}べたいです。',o:['行{い}ったら','行{い}きたら','行{い}くと たら'],a:0,e:'"When I go to Japan, I want to eat sushi."'},
+];
+const C=[
+ {p:'雨{あめ}が ふったら、…',o:['きのう 雨{あめ}が ふりました。','ホールで します。','かさを わすれました。'],a:1,e:'S2 should describe what happens under the condition. Options 1 and 3 are past events, so they don\'t fit.',big:true},
+ {p:'使{つか}いかたが わからなかったら、…',o:['たなかさんに 聞{き}いて ください。','たなかさんに 聞{き}きました。','使{つか}いかたが わかります。'],a:0,e:'A request in S2 is natural with ～たら.',big:true},
+ {p:'Which sentence talks about the past (it already happened)?',o:['雨{あめ}が ふったら、寒{さむ}く なります。','きのう 雨{あめ}が ふって、寒{さむ}く なりました。','あした 雨{あめ}が ふったら、うちに います。'],a:1,e:'～たら looks past but is about a condition. The past is carried by S2 (なりました). See section 05.',big:true},
+ {p:'A colleague offers you coffee: 「＿＿、コーヒー どうぞ。」',o:['よかったら','いかったら','よくて'],a:0,e:'よかったら, the polite "if you like".',big:true},
+];
+const W=[
+ {p:'あした 雨{あめ}だったら、何{なに}を しますか。',m:'雨{あめ}だったら、うちで ギターを ひきます。',en:'What will you do if it rains tomorrow?'},
+ {p:'日本{にほん}に 行{い}ったら、何{なに}を したいですか。',m:'日本{にほん}に 行{い}ったら、京都{きょうと}の お寺{てら}を 見{み}たいです。',en:'What do you want to do when you go to Japan?'},
+ {p:'Ask a colleague to message you when the deploy is done.',m:'デプロイが おわったら、メッセージを ください。',en:'Use おわったら + ください.'},
+ {p:'Invite someone softly to lunch.',m:'よかったら、いっしょに ひるごはんを 食{た}べませんか。',en:'Use よかったら.'},
+ {p:'You are the event leader. Tell volunteers what to do if many people come.',m:'人{ひと}が たくさん 来{き}たら、はやく 受付{うけつけ}を はじめて ください。',en:'Like Saito-san in かつどう p.65.'},
+];
+
+function renderQ(list,id,prefix){
+  const el=document.getElementById(id);
+  el.innerHTML=list.map((q,i)=>{const k=prefix+i;
+    return `<div class="q" data-k="${k}"><div class="prompt">${q.big?'':'<b>'}${RB(q.p)}${q.big?'':'</b>'} ${q.h?`<span class="tag">${q.h}</span>`:''}</div>
+    <div class="opts">${q.o.map((o,j)=>`<button class="opt" data-j="${j}">${RB(o)}</button>`).join('')}</div>
+    <div class="fb">${RB(q.e)}</div></div>`}).join('');
+  el.querySelectorAll('.q').forEach((qd,i)=>{const q=list[i],k=qd.dataset.k;
+    const mark=j=>{qd.querySelectorAll('.opt').forEach((b,bj)=>{b.disabled=true;if(bj===q.a)b.classList.add('right');else if(bj===j)b.classList.add('wrong')});
+      qd.querySelector('.fb').classList.add('show');qd.classList.add(j===q.a?'done-ok':'done-bad')};
+    if(st[k]!==undefined)mark(st[k]);
+    qd.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{const j=+b.dataset.j;st[k]=j;save();mark(j);prog()});
+  });
+}
+function renderW(){
+  document.getElementById('wr').innerHTML=W.map((w,i)=>`<div class="q"><div class="prompt">${RB(w.p)}</div><div class="en">${w.en}</div>
+  <textarea id="w${i}" data-w="${i}" placeholder="～たら、～">${(st['w'+i]||'').replace(/</g,'&lt;')}</textarea>
+  <div style="margin-top:6px"><button class="btn" data-r="${i}">Show model answer</button></div>
+  <div class="reveal" id="rv${i}"><span class="jp">${RB(w.m)}</span></div></div>`).join('');
+  document.querySelectorAll('textarea[data-w]').forEach(t=>t.oninput=()=>{st['w'+t.dataset.w]=t.value;save()});
+  document.querySelectorAll('[data-r]').forEach(b=>b.onclick=()=>document.getElementById('rv'+b.dataset.r).classList.toggle('show'));
+}
+function prog(){
+  const total=A.length+B.length+C.length;let done=0,ok=0;
+  [[A,'a'],[B,'b'],[C,'c']].forEach(([l,p])=>l.forEach((q,i)=>{if(st[p+i]!==undefined){done++;if(st[p+i]===q.a)ok++}}));
+  document.getElementById('pfill').style.width=(done/total*100)+'%';
+  document.getElementById('pnum').textContent=`${ok} ✓ · ${done}/${total}`;
+}
+function all(){renderQ(A,'qA','a');renderQ(B,'qB','b');renderQ(C,'qC','c');renderW();prog()}
+document.getElementById('reset').onclick=()=>{Object.keys(st).forEach(k=>{if(/^[abcw]\d+$/.test(k))delete st[k]});save();all()};
+all();
+
+// word drawer: [word, type, english, tara, negative tara, note]
+const V=[
+ ['ふる','v','to fall (rain)','ふったら','ふらなかったら','Episode 7'],
+ ['来{く}る','v','to come','来{き}たら','来{こ}なかったら','irregular'],
+ ['ある','v','to be, exist (things)','あったら','なかったら','negative is just なかった'],
+ ['いる','v','to be (people)','いたら','いなかったら',''],
+ ['わかる','v','to understand','わかったら','わからなかったら','CHECK! 075'],
+ ['おわる','v','to finish','おわったら','おわらなかったら','CHECK! 076'],
+ ['する','v','to do','したら','しなかったら','irregular'],
+ ['行{い}く','v','to go','行{い}ったら','行{い}かなかったら','exception'],
+ ['帰{かえ}る','v','to go home','帰{かえ}ったら','帰{かえ}らなかったら','う-verb'],
+ ['できる','v','can do','できたら','できなかったら','できたら = if possible'],
+ ['なる','v','to become','なったら','ならなかったら','9時{じ}に なったら = at 9'],
+ ['使{つか}う','v','to use','使{つか}ったら','使{つか}わなかったら','う → わ in the negative'],
+ ['暑{あつ}い','i','hot (weather)','暑{あつ}かったら','暑{あつ}くなかったら','MARUGOTO example'],
+ ['寒{さむ}い','i','cold (weather)','寒{さむ}かったら','寒{さむ}くなかったら',''],
+ ['高{たか}い','i','expensive','高{たか}かったら','高{たか}くなかったら',''],
+ ['いい','i','good','よかったら','よくなかったら','よかったら = if you like'],
+ ['多{おお}い','i','many','多{おお}かったら','多{おお}くなかったら',''],
+ ['ひま','na','free (time)','ひまだったら','ひまじゃなかったら','MARUGOTO example'],
+ ['大変{たいへん}','na','tough','大変{たいへん}だったら','大変{たいへん}じゃなかったら',''],
+ ['しずか','na','quiet','しずかだったら','しずかじゃなかったら',''],
+ ['雨{あめ}','na','rain (noun)','雨{あめ}だったら','雨{あめ}じゃなかったら','MARUGOTO example'],
+ ['休{やす}み','na','day off (noun)','休{やす}みだったら','休{やす}みじゃなかったら',''],
+];
+const GL={i:'い-adj',na:'な-adj / noun',v:'verb'};
+let vf='all';
+function renderV(){
+  document.getElementById('vbody').innerHTML=V.filter(v=>vf==='all'||v[1]===vf).map(v=>
+   `<tr><td><div class="dict">${RB(v[0])}</div><span class="grp ${v[1]}">${GL[v[1]]}</span></td>
+    <td class="gloss">${v[2]}${v[5]?`<span class="note">${RB(v[5])}</span>`:''}</td>
+    <td class="shi"><span class="tef">${RB(v[3])}</span><div class="mas">${RB(v[4])}</div></td></tr>`).join('');
+}
+const dr=document.getElementById('drawer'),sc=document.getElementById('scrim'),vo=document.getElementById('vOpen');
+function setD(o){dr.classList.toggle('open',o);sc.classList.toggle('open',o);vo.setAttribute('aria-expanded',o);dr.setAttribute('aria-hidden',!o);st.verbs=o;save();
+  if(o)document.getElementById('vClose').focus()}
+vo.onclick=()=>setD(!dr.classList.contains('open'));
+sc.onclick=()=>setD(false);
+document.getElementById('vClose').onclick=()=>setD(false);
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&dr.classList.contains('open'))setD(false)});
+document.getElementById('dctl').addEventListener('click',e=>{
+  const b=e.target.closest('button');if(!b)return;
+  if(b.id==='hideEn'){dr.classList.toggle('hide-vt-en');b.classList.toggle('on');return}
+  if(b.id==='hideTe'){dr.classList.toggle('hide-te');b.classList.toggle('on');return}
+  vf=b.dataset.f;document.querySelectorAll('#dctl [data-f]').forEach(x=>x.classList.toggle('on',x===b));renderV();
+});
+renderV();
+if(st.verbs)setD(true);
+</script>
+<script src="../assets/nav-tree.js"></script>
+<script src="../assets/nav.js" defer></script>
+</body>
+</html>

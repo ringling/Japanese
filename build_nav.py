@@ -83,9 +83,13 @@ jlpt = [
          "files/jlpt_n5_grammar_tool.html", "files/jlpt_n5_grammar_gap_check.html"] if p in pages]},
 ]
 
+grammar = [take(p, re.sub(r"\s*Grammar Sheet\s*$", "", title_of(p)))
+           for p in pages if re.match(r"grammar/\d+_.*\.html$", p)]
+
 tree = [
     take("index.html", "ホーム"),
     {"label": "A2-2 クラスノート 2025–2026", "open": True, "children": a2},
+    {"label": "文法 (Grammar sheets)", "children": grammar},
     {"label": "読み物", "children": [take("yobanashi/index.html", "夜話 — Bedtime Stories")]},
     {"label": "JLPT N5", "children": jlpt},
 ]

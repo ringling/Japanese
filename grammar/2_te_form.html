@@ -1,0 +1,613 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>～て Grammar Sheet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --washi:#f5efe3; --paper:#fbf8f1; --ink:#2a2622; --muted:#6d655b;
+  --indigo:#1f3a5f; --indigo-soft:#e3e8ef; --vermilion:#c8452d; --verm-soft:#f6e1da;
+  --gold:#b8923a; --gold-soft:#f3e8cf; --green:#3f7a4f; --green-soft:#e0eee2;
+  --line:#e2d8c6; --card:#ffffff; --chip-line:#c6d0de; --gold-line:#e3cf9f; --gold-text:#8a6a22;
+  --seg1:#dfe6f0; --seg2:#e8e0f0; --seg3:#dcebe4; --bar-bg:rgba(245,239,227,.94); --formula-s:#ffb9a8;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){color-scheme:dark;
+  --washi:#1b1a1f; --paper:#232228; --ink:#ece6da; --muted:#a39a8c;
+  --indigo:#8fb0da; --indigo-soft:#26303f; --vermilion:#ef7a5f; --verm-soft:#3a2420;
+  --gold:#d6b061; --gold-soft:#342c1b; --green:#7cc28f; --green-soft:#1e3325;
+  --line:#3a3740; --card:#29282f; --chip-line:#34445a; --gold-line:#57482a; --gold-text:#d6b061;
+  --seg1:#2a3446; --seg2:#352c44; --seg3:#243a2f; --bar-bg:rgba(27,26,31,.94); --formula-s:#8e2a17;}}
+:root[data-theme="dark"]{color-scheme:dark;
+  --washi:#1b1a1f; --paper:#232228; --ink:#ece6da; --muted:#a39a8c;
+  --indigo:#8fb0da; --indigo-soft:#26303f; --vermilion:#ef7a5f; --verm-soft:#3a2420;
+  --gold:#d6b061; --gold-soft:#342c1b; --green:#7cc28f; --green-soft:#1e3325;
+  --line:#3a3740; --card:#29282f; --chip-line:#34445a; --gold-line:#57482a; --gold-text:#d6b061;
+  --seg1:#2a3446; --seg2:#352c44; --seg3:#243a2f; --bar-bg:rgba(27,26,31,.94); --formula-s:#8e2a17;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--washi);color:var(--ink);font-family:"Zen Kaku Gothic New",sans-serif;line-height:1.7;
+  background-image:radial-gradient(rgba(120,100,70,.05) 1px,transparent 1px);background-size:6px 6px}
+.wrap{max-width:900px;margin:0 auto;padding:24px 16px 80px}
+button:focus-visible,a:focus-visible,textarea:focus-visible{outline:2px solid var(--vermilion);outline-offset:2px}
+h1,h2,h3,.mincho{font-family:"Shippori Mincho",serif}
+rt{font-size:.55em;color:var(--muted);font-family:"Zen Kaku Gothic New",sans-serif}
+body.hide-furi rt{visibility:hidden}
+body.hide-en .en{display:none}
+
+/* toolbar */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--bar-bg);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+.bar .in{max-width:900px;margin:0 auto;padding:8px 16px;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.bar a{color:var(--indigo);text-decoration:none;font-size:.85rem;padding:2px 8px;border-radius:12px}
+.bar a:hover{background:var(--indigo-soft)}
+.bar .sp{flex:1}
+.tog{border:1px solid var(--indigo);background:var(--paper);color:var(--indigo);border-radius:14px;padding:3px 10px;font:inherit;font-size:.8rem;cursor:pointer}
+.tog.off{background:transparent;color:var(--muted);border-color:var(--line)}
+
+/* hero */
+.hero{text-align:center;padding:40px 0 20px}
+.hero .big{font-family:"Shippori Mincho",serif;font-size:6rem;line-height:1;color:var(--vermilion);font-weight:800}
+.hero .sub{font-family:"Shippori Mincho",serif;font-size:1.5rem;color:var(--indigo);margin:.3em 0}
+.hero p{color:var(--muted);margin:.2em 0}
+.seal{display:inline-block;border:2px solid var(--vermilion);color:var(--vermilion);padding:2px 10px;border-radius:4px;font-size:.8rem;letter-spacing:.1em;margin-top:10px}
+
+/* sections */
+section{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:22px 22px;margin:22px 0;box-shadow:0 1px 0 rgba(0,0,0,.03)}
+section>h2{margin:0 0 4px;color:var(--indigo);font-size:1.45rem;display:flex;gap:12px;align-items:baseline}
+section>h2 .n{font-size:.9rem;color:var(--gold);font-weight:700;letter-spacing:.1em}
+.lead{color:var(--muted);margin:0 0 16px}
+.jp{font-size:1.2rem}
+.en{color:var(--muted);font-size:.92rem}
+b.s,.s{color:var(--vermilion);font-weight:700}
+.da{color:var(--gold);font-weight:700}
+
+/* flow diagram */
+.flow{display:flex;align-items:stretch;gap:10px;flex-wrap:wrap;justify-content:center;margin:12px 0 6px}
+.chip{border-radius:12px;padding:12px 14px;text-align:center;min-width:150px;flex:1}
+.chip .lab{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:4px}
+.chip.r{background:var(--indigo-soft);border:1px solid var(--chip-line)}
+.chip.r .lab{color:var(--indigo)}
+.chip.c{background:var(--gold-soft);border:1px solid var(--gold-line)}
+.chip.c .lab{color:var(--gold-text)}
+.arrow{align-self:center;font-size:1.6rem;color:var(--gold)}
+.plus{align-self:center;font-size:1.3rem;color:var(--muted)}
+.meaning{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:16px}
+.card{background:var(--washi);border-radius:10px;padding:12px 14px;border-left:4px solid var(--indigo)}
+.card.v{border-left-color:var(--vermilion)}
+.card.g{border-left-color:var(--gold)}
+.card h4{margin:0 0 4px;font-size:.95rem}
+
+/* formation table */
+table{width:100%;border-collapse:collapse;font-size:1rem}
+th,td{padding:9px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:middle}
+th{font-size:.78rem;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;font-weight:500}
+td.t{font-weight:700;color:var(--indigo);white-space:nowrap}
+.tag{display:inline-block;font-size:.7rem;padding:1px 7px;border-radius:9px;background:var(--indigo-soft);color:var(--indigo);margin-left:4px;vertical-align:middle}
+.tag.warn{background:var(--verm-soft);color:var(--vermilion)}
+.scroll{overflow-x:auto}
+.warnbox{margin-top:14px;background:var(--verm-soft);border-radius:10px;padding:12px 14px;border:1px dashed var(--vermilion)}
+.warnbox strong{color:var(--vermilion)}
+
+/* sentence breakdown */
+.sent{background:var(--washi);border-radius:12px;padding:14px 16px;margin:12px 0}
+.sent .jp{line-height:2.3}
+.seg{display:inline;padding:2px 4px;border-radius:5px}
+.seg.r1{background:var(--seg1)}
+.seg.r2{background:var(--seg2)}
+.seg.r3{background:var(--seg3)}
+.seg.cc{background:var(--gold-soft);border-bottom:2px solid var(--gold)}
+.legend{display:flex;gap:10px;flex-wrap:wrap;font-size:.78rem;color:var(--muted);margin-top:6px}
+.legend span{padding:1px 8px;border-radius:5px}
+.src{font-size:.75rem;color:var(--gold);letter-spacing:.08em}
+
+/* patterns */
+.pat{border-top:1px dashed var(--line);padding:14px 0}
+.pat:first-of-type{border-top:none}
+.pat h3{margin:0 0 4px;font-size:1.1rem;color:var(--ink)}
+.formula{font-family:"Shippori Mincho",serif;font-size:1.1rem;background:var(--indigo);color:var(--paper);display:inline-block;padding:4px 12px;border-radius:8px;margin:4px 0 8px}
+.formula .s{color:var(--formula-s)}
+.ex{margin:6px 0 6px 4px}
+
+/* compare */
+.cmp{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.cmp .card h4{font-family:"Shippori Mincho",serif;font-size:1.3rem;margin-bottom:2px}
+.cmp .card .jp{font-size:1.05rem}
+
+/* quiz */
+.progress{display:flex;align-items:center;gap:10px;margin:6px 0 14px}
+.pbar{flex:1;height:8px;background:var(--line);border-radius:6px;overflow:hidden}
+.pbar i{display:block;height:100%;background:linear-gradient(90deg,var(--indigo),var(--vermilion));width:0;transition:width .3s}
+.pnum{font-size:.85rem;color:var(--muted);min-width:70px;text-align:right}
+.q{border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:10px 0;background:var(--card)}
+.q .prompt{font-size:1.15rem;line-height:2.1;margin-bottom:6px}
+.q .hint{font-size:.8rem;color:var(--muted)}
+.opts{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.opt{border:1px solid var(--line);background:var(--paper);border-radius:10px;padding:6px 14px;font:inherit;font-size:1.05rem;cursor:pointer;transition:.15s}
+.opt:hover{border-color:var(--indigo)}
+.opt.right{background:var(--green-soft);border-color:var(--green);color:var(--green);font-weight:700}
+.opt.wrong{background:var(--verm-soft);border-color:var(--vermilion);color:var(--vermilion);text-decoration:line-through}
+.opt:disabled{cursor:default}
+.fb{margin-top:8px;font-size:.9rem;padding:8px 10px;border-radius:8px;background:var(--washi);display:none}
+.fb.show{display:block}
+.q.done-ok{border-left:4px solid var(--green)}
+.q.done-bad{border-left:4px solid var(--vermilion)}
+.btn{border:none;background:var(--indigo);color:var(--paper);border-radius:10px;padding:7px 14px;font:inherit;font-size:.9rem;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--indigo);border:1px solid var(--indigo)}
+.reveal{display:none;margin-top:8px;background:var(--gold-soft);border-radius:8px;padding:10px 12px}
+.reveal.show{display:block}
+textarea{width:100%;min-height:60px;border:1px solid var(--line);border-radius:8px;padding:8px;font:inherit;font-size:1.05rem;background:var(--paper);margin-top:6px}
+.cheat{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
+.cheat div{background:var(--washi);border-radius:10px;padding:10px 12px;text-align:center}
+.cheat .k{font-family:"Shippori Mincho",serif;font-size:1.25rem}
+footer{text-align:center;color:var(--muted);font-size:.8rem;margin-top:30px}
+@media(max-width:560px){.hero .big{font-size:4.5rem}.arrow{transform:rotate(90deg)}.flow{flex-direction:column}}
+@media print{.bar,.btn,.opts,textarea{display:none}.fb,.reveal{display:block}section{break-inside:avoid}}
+
+/* verb drawer */
+.vbtn{border:1px solid var(--vermilion);background:var(--vermilion);color:var(--paper);border-radius:14px;padding:3px 12px;font:inherit;font-size:.8rem;cursor:pointer;font-weight:700}
+.vbtn[aria-expanded="true"]{background:transparent;color:var(--vermilion)}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(460px,100%);background:var(--paper);border-left:1px solid var(--line);z-index:30;
+  box-shadow:-8px 0 24px rgba(0,0,0,.12);display:flex;flex-direction:column;transform:translateX(100%);transition:transform .25s ease;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+.drawer.open{transform:none}
+.drawer header{display:flex;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid var(--line)}
+.drawer header h2{margin:0;font-size:1.2rem;color:var(--indigo);flex:1}
+.drawer .x{border:none;background:transparent;color:var(--muted);font-size:1.4rem;cursor:pointer;line-height:1;padding:2px 6px}
+.dctl{display:flex;gap:6px;flex-wrap:wrap;padding:10px 16px;border-bottom:1px solid var(--line)}
+.dctl button{border:1px solid var(--line);background:var(--washi);color:var(--ink);border-radius:12px;padding:2px 10px;font:inherit;font-size:.78rem;cursor:pointer}
+.dctl button.on{background:var(--indigo);border-color:var(--indigo);color:var(--paper)}
+.dbody{overflow:auto;padding:4px 16px 20px;flex:1}
+.vt{font-size:.95rem}
+.vt td{padding:8px 6px}
+.vt .dict{font-size:1.1rem;font-weight:700;white-space:nowrap}
+.vt .mas{white-space:nowrap;color:var(--muted);font-size:.85rem}
+.vt .shi{white-space:nowrap}
+.vt .gloss{color:var(--ink);font-size:.9rem}
+.grp{display:inline-block;font-size:.68rem;padding:1px 7px;border-radius:9px;white-space:nowrap}
+.grp.u{background:var(--indigo-soft);color:var(--indigo)}
+.grp.ru{background:var(--green-soft);color:var(--green)}
+.grp.irr{background:var(--verm-soft);color:var(--vermilion)}
+.vt .note{display:block;font-size:.72rem;color:var(--vermilion)}
+.dnote{font-size:.8rem;color:var(--muted);margin:10px 0 0}
+.scrim{position:fixed;inset:0;background:rgba(0,0,0,.25);z-index:25;opacity:0;pointer-events:none;transition:opacity .25s}
+.scrim.open{opacity:1;pointer-events:auto}
+.drawer.hide-vt-en .vt td.gloss{color:transparent;text-shadow:none}
+.drawer.hide-vt-en .vt td.gloss .note{color:transparent}
+.drawer.hide-vt-en .vt td.gloss:hover,.drawer.hide-vt-en .vt td.gloss:hover .note{color:var(--ink)}
+.vt .note{white-space:normal}
+.vt .tef{font-size:1.1rem;font-weight:700;color:var(--vermilion)}
+.drawer.hide-te .vt td.shi{color:transparent}
+.drawer.hide-te .vt td.shi .tef,.drawer.hide-te .vt td.shi .note,.drawer.hide-te .vt td.shi rt{color:transparent}
+.drawer.hide-te .vt td.shi:hover .tef{color:var(--vermilion)}
+.drawer.hide-te .vt td.shi:hover .note,.drawer.hide-te .vt td.shi:hover rt{color:var(--muted)}
+@media (prefers-reduced-motion:reduce){.drawer,.scrim{transition:none}}
+@media print{.drawer,.scrim,.vbtn{display:none}}
+
+/* te-form specific */
+.gridE{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px;margin-top:10px}
+.eb{background:var(--washi);border-radius:12px;padding:12px 14px;border:1px solid var(--line)}
+.eb .ends{font-family:"Shippori Mincho",serif;font-size:1.5rem;color:var(--indigo);font-weight:700;letter-spacing:.1em}
+.eb .to{font-family:"Shippori Mincho",serif;font-size:1.5rem;color:var(--vermilion);font-weight:800}
+.eb .exs{font-size:1rem;margin-top:4px}
+.eb.x{border:1px dashed var(--vermilion);background:var(--verm-soft)}
+.decide{display:grid;gap:8px;margin:10px 0}
+.step{display:flex;gap:10px;align-items:flex-start;background:var(--washi);border-radius:10px;padding:10px 12px}
+.step .q1{flex:1}
+.step .ans{white-space:nowrap;font-weight:700;color:var(--vermilion)}
+.chain{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center;margin:10px 0}
+.chain .lk{background:var(--indigo-soft);border:1px solid var(--chip-line);border-radius:10px;padding:8px 12px;text-align:center}
+.chain .lk .jp{font-size:1.15rem}
+.chain .ar{color:var(--gold);font-size:1.3rem}
+.usegrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-top:14px}
+</style>
+</head>
+<body>
+
+<div class="bar"><div class="in">
+  <a href="#idea">Idea</a><a href="#form">Form</a><a href="#patterns">Uses</a><a href="#textbook">L7</a><a href="#compare">て/し/から</a><a href="#drill">Drills</a><a href="#write">Write</a>
+  <span class="sp"></span>
+  <button class="vbtn" id="vOpen" aria-expanded="false" aria-controls="drawer">動詞 Verbs</button>
+  <button class="tog" id="tFuri">ふりがな</button>
+  <button class="tog" id="tEn">English</button>
+</div></div>
+
+<div class="wrap">
+
+<div class="hero">
+  <div class="big">～て</div>
+  <div class="sub">The glue form: 「～て、～て」</div>
+  <p>Links actions and descriptions, and builds requests, ongoing actions, permission and more</p>
+  <span class="seal">JLPT N5 · まるごと A2</span>
+</div>
+
+<!-- 1 IDEA -->
+<section id="idea">
+  <h2><span class="n">01</span>The core idea</h2>
+  <p class="lead">The て-form can't end a sentence by itself. It holds the sentence open and hands it on to what comes next.</p>
+
+  <div class="flow">
+    <div class="chip r"><div class="lab">Action 1</div><div class="jp">起{お}き<b class="s">て</b></div><div class="en">get up, and</div></div>
+    <div class="arrow">➜</div>
+    <div class="chip r"><div class="lab">Action 2</div><div class="jp">食{た}べ<b class="s">て</b></div><div class="en">eat, and</div></div>
+    <div class="arrow">➜</div>
+    <div class="chip c"><div class="lab">Final verb (sets the tense)</div><div class="jp">会社{かいしゃ}に 行{い}きます。</div><div class="en">go to work</div></div>
+  </div>
+  <p style="text-align:center" class="en">朝{あさ} 起{お}き<b class="s">て</b>、食{た}べ<b class="s">て</b>、会社{かいしゃ}に 行{い}きます。 — In the morning I get up, eat, and go to work.</p>
+
+  <p class="lead" style="margin-top:18px">The same form is also the base for many fixed patterns:</p>
+  <div class="usegrid">
+    <div class="card"><h4>～て ください</h4>Please do…</div>
+    <div class="card"><h4>～て いる</h4>Is doing… / is in a state</div>
+    <div class="card v"><h4>～ても いいです</h4>You may…</div>
+    <div class="card v"><h4>～ては いけません</h4>You must not…</div>
+    <div class="card g"><h4>～て から</h4>After doing…</div>
+    <div class="card g"><h4>～て みる</h4>Try doing…</div>
+  </div>
+</section>
+
+<!-- 2 FORM -->
+<section id="form">
+  <h2><span class="n">02</span>How to make it</h2>
+  <p class="lead">First find the verb's group. Then apply that group's rule.</p>
+
+  <h3 class="mincho" style="margin:6px 0 0;color:var(--indigo)">Step 1 · Which group?</h3>
+  <div class="decide">
+    <div class="step"><div class="q1">Is it する or 来{く}る (or ～する, like 勉強{べんきょう}する)?</div><div class="ans">→ Irregular</div></div>
+    <div class="step"><div class="q1">Does it end in <b>-iru</b> or <b>-eru</b> (食{た}べる, 見{み}る, 起{お}きる)?</div><div class="ans">→ usually a る-verb</div></div>
+    <div class="step"><div class="q1">Everything else (書{か}く, 飲{の}む, 待{ま}つ…)</div><div class="ans">→ う-verb</div></div>
+  </div>
+  <div class="warnbox" style="margin-top:4px"><strong>⚠ Look-alikes:</strong> 帰{かえ}る, 入{はい}る, 知{し}る, 走{はし}る end in -eru/-iru but are <b>う-verbs</b>. Their て-forms are 帰{かえ}って, 入{はい}って, 知{し}って, 走{はし}って.</div>
+
+  <h3 class="mincho" style="margin:18px 0 0;color:var(--indigo)">Step 2a · る-verbs: easy</h3>
+  <div class="flow">
+    <div class="chip r"><div class="lab">Dictionary</div><div class="jp">食{た}べ<b class="da">る</b></div></div>
+    <div class="arrow">➜</div>
+    <div class="chip r"><div class="lab">Drop る</div><div class="jp">食{た}べ</div></div>
+    <div class="arrow">➜</div>
+    <div class="chip c"><div class="lab">Add て</div><div class="jp">食{た}べ<b class="s">て</b></div></div>
+  </div>
+
+  <h3 class="mincho" style="margin:18px 0 0;color:var(--indigo)">Step 2b · う-verbs: the ending decides</h3>
+  <p class="en" style="margin:2px 0 0">Look at the last kana of the dictionary form.</p>
+  <div class="gridE">
+    <div class="eb"><div class="ends">う つ る</div><div class="to">→ って</div><div class="exs">会{あ}う → 会{あ}<b class="s">って</b><br>待{ま}つ → 待{ま}<b class="s">って</b><br>帰{かえ}る → 帰{かえ}<b class="s">って</b></div></div>
+    <div class="eb"><div class="ends">む ぶ ぬ</div><div class="to">→ んで</div><div class="exs">飲{の}む → 飲{の}<b class="s">んで</b><br>遊{あそ}ぶ → 遊{あそ}<b class="s">んで</b><br>死{し}ぬ → 死{し}<b class="s">んで</b></div></div>
+    <div class="eb"><div class="ends">く</div><div class="to">→ いて</div><div class="exs">書{か}く → 書{か}<b class="s">いて</b><br>聞{き}く → 聞{き}<b class="s">いて</b></div></div>
+    <div class="eb"><div class="ends">ぐ</div><div class="to">→ いで</div><div class="exs">泳{およ}ぐ → 泳{およ}<b class="s">いで</b><br>急{いそ}ぐ → 急{いそ}<b class="s">いで</b></div></div>
+    <div class="eb"><div class="ends">す</div><div class="to">→ して</div><div class="exs">話{はな}す → 話{はな}<b class="s">して</b><br>出{だ}す → 出{だ}<b class="s">して</b></div></div>
+    <div class="eb x"><div class="ends">行{い}く</div><div class="to">→ 行{い}って</div><div class="exs">The only く-verb that breaks the rule. It's never 行{い}いて.</div></div>
+  </div>
+
+  <h3 class="mincho" style="margin:18px 0 0;color:var(--indigo)">Step 2c · Irregular</h3>
+  <div class="scroll"><table>
+    <tr><th>Dictionary</th><th>て-form</th><th>Meaning</th></tr>
+    <tr><td class="t">する</td><td><b class="s">して</b></td><td>do (勉強{べんきょう}する → 勉強{べんきょう}して)</td></tr>
+    <tr><td class="t">来{く}る</td><td>来{き}<b class="s">て</b> <span class="tag warn">reading changes to き</span></td><td>come</td></tr>
+  </table></div>
+
+  <h3 class="mincho" style="margin:18px 0 0;color:var(--indigo)">Adjectives and nouns</h3>
+  <div class="scroll"><table>
+    <tr><th>Type</th><th>Rule</th><th>Example</th></tr>
+    <tr><td class="t">い-adj</td><td>～い → <b class="s">くて</b></td><td>安{やす}い → 安{やす}<b class="s">くて</b></td></tr>
+    <tr><td class="t">いい <span class="tag warn">irregular</span></td><td>→ <b class="s">よくて</b></td><td>いい → よくて</td></tr>
+    <tr><td class="t">Negative ～ない</td><td>～ない → <b class="s">なくて</b></td><td>高{たか}くない → 高{たか}く<b class="s">なくて</b></td></tr>
+    <tr><td class="t">な-adj</td><td>+ <b class="da">で</b></td><td>静{しず}か → 静{しず}か<b class="da">で</b>, きれい → きれい<b class="da">で</b></td></tr>
+    <tr><td class="t">Noun</td><td>+ <b class="da">で</b></td><td>学生{がくせい} → 学生{がくせい}<b class="da">で</b></td></tr>
+  </table></div>
+</section>
+
+<!-- 3 PATTERNS -->
+<section id="patterns">
+  <h2><span class="n">03</span>What you do with it</h2>
+
+  <div class="pat">
+    <h3>A. A sequence of actions</h3>
+    <div class="formula">V<span class="s">て</span>、V<span class="s">て</span>、V-ます</div>
+    <div class="ex"><div class="jp">うちに 帰{かえ}っ<b class="s">て</b>、シャワーを あび<b class="s">て</b>、ねました。</div><div class="en">I went home, took a shower and went to bed. The last verb sets the tense for the whole chain.</div></div>
+  </div>
+
+  <div class="pat">
+    <h3>B. Requests: please do…</h3>
+    <div class="formula">V<span class="s">て</span> ください</div>
+    <div class="ex"><div class="jp">ここに 名前{なまえ}を 書{か}い<b class="s">て</b> ください。</div><div class="en">Please write your name here.</div></div>
+    <div class="ex"><div class="jp">ちょっと 待{ま}っ<b class="s">て</b> ください。</div><div class="en">Please wait a moment.</div></div>
+  </div>
+
+  <div class="pat">
+    <h3>C. Ongoing action or state</h3>
+    <div class="formula">V<span class="s">て</span> いる／います</div>
+    <div class="ex"><div class="jp">今{いま}、雨{あめ}が ふっ<b class="s">て</b> います。</div><div class="en">It's raining right now (an action in progress).</div></div>
+    <div class="ex"><div class="jp">ナスさんは 結婚{けっこん}し<b class="s">て</b> います。</div><div class="en">Nasu-san is married (a state that resulted from an action).</div></div>
+    <p class="en" style="margin:4px 0 0">In speech, the い often drops: さがし<b class="s">て</b>いる → さがし<b class="s">て</b>る.</p>
+  </div>
+
+  <div class="pat">
+    <h3>D. Permission and prohibition</h3>
+    <div class="formula">V<span class="s">て</span>も いいです ／ V<span class="s">て</span>は いけません</div>
+    <div class="ex"><div class="jp">しゃしんを とっ<b class="s">て</b>も いいですか。</div><div class="en">May I take a photo?</div></div>
+    <div class="ex"><div class="jp">ここで たばこを すっ<b class="s">て</b>は いけません。</div><div class="en">You must not smoke here.</div></div>
+  </div>
+
+  <div class="pat">
+    <h3>E. After doing…</h3>
+    <div class="formula">V<span class="s">て</span> から</div>
+    <div class="ex"><div class="jp">しゅくだいを し<b class="s">て</b> から、テレビを 見{み}ます。</div><div class="en">I'll watch TV after doing my homework.</div></div>
+  </div>
+
+  <div class="pat">
+    <h3>F. Try doing…</h3>
+    <div class="formula">V<span class="s">て</span> みる</div>
+    <div class="ex"><div class="jp">沖縄{おきなわ}に 行{い}っ<b class="s">て</b> みたいです。</div><div class="en">I'd like to try going to Okinawa.</div></div>
+  </div>
+
+  <div class="pat">
+    <h3>G. Describing: A and B</h3>
+    <div class="formula">Adj-<span class="s">くて</span>／N・な-adj <span class="s">で</span>、…</div>
+    <div class="ex"><div class="jp">この 部屋{へや}は ひろ<b class="s">くて</b>、しずか<b class="s">で</b>、いいですね。</div><div class="en">This room is spacious and quiet. Nice.</div></div>
+    <div class="ex"><div class="jp">寒{さむ}<b class="s">くて</b>、ねられませんでした。</div><div class="en">It was so cold that I couldn't sleep (a light cause).</div></div>
+  </div>
+</section>
+
+<!-- 4 TEXTBOOK -->
+<section id="textbook">
+  <h2><span class="n">04</span>From your class: だい7か</h2>
+  <p class="lead">The て-form is all over Episode 7 and かつどう pp.63–66.</p>
+
+  <div class="sent">
+    <div class="src">EPISODE 7 · ジェームズ</div>
+    <div class="jp">この カード 書{か}い<b class="s">て</b> ください。</div>
+    <div class="en">Please fill in this card. 書く ends in く, so it becomes 書いて, then + ください.</div>
+  </div>
+  <div class="sent">
+    <div class="src">EPISODE 7 · ジェームズ</div>
+    <div class="jp">朝{あさ} 9時{くじ}に さくら広場{ひろば}に 集{あつ}まっ<b class="s">て</b> ください。</div>
+    <div class="en">Please gather at Sakura Plaza at 9 a.m. 集まる ends in る (and is a う-verb), so it becomes 集まって.</div>
+  </div>
+  <div class="sent">
+    <div class="src">EPISODE 7 · ジェームズ</div>
+    <div class="jp">ヨサコイが 教{おし}えられる 人{ひと}を さがし<b class="s">てる</b>んですが…。</div>
+    <div class="en">We're looking for someone who can teach Yosakoi… さがしてる is casual speech for さがしている (pattern C). さがす ends in す, so it becomes さがして.</div>
+  </div>
+
+  <h3 class="mincho" style="margin:18px 0 4px;color:var(--indigo)">Bonus: learn て and ～たら comes free</h3>
+  <p class="en" style="margin:0">The た-form is the て-form with て→た (and で→だ). Add ら, and you have L7's new grammar, ～たら.</p>
+  <div class="chain">
+    <div class="lk"><div class="jp">ふる</div><div class="en">dictionary</div></div><span class="ar">➜</span>
+    <div class="lk"><div class="jp">ふっ<b class="s">て</b></div><div class="en">て-form</div></div><span class="ar">➜</span>
+    <div class="lk"><div class="jp">ふっ<b class="s">た</b></div><div class="en">た-form</div></div><span class="ar">➜</span>
+    <div class="lk"><div class="jp">ふった<b class="s">ら</b></div><div class="en">if it rains</div></div>
+  </div>
+  <div class="chain">
+    <div class="lk"><div class="jp">おわる</div></div><span class="ar">➜</span>
+    <div class="lk"><div class="jp">おわっ<b class="s">て</b></div></div><span class="ar">➜</span>
+    <div class="lk"><div class="jp">おわっ<b class="s">た</b></div></div><span class="ar">➜</span>
+    <div class="lk"><div class="jp">おわった<b class="s">ら</b></div><div class="en">when it's done</div></div>
+  </div>
+  <div class="chain">
+    <div class="lk"><div class="jp">来{く}る</div></div><span class="ar">➜</span>
+    <div class="lk"><div class="jp">来{き}<b class="s">て</b></div></div><span class="ar">➜</span>
+    <div class="lk"><div class="jp">来{き}<b class="s">た</b></div></div><span class="ar">➜</span>
+    <div class="lk"><div class="jp">来{き}た<b class="s">ら</b></div><div class="en">if (people) come</div></div>
+  </div>
+</section>
+
+<!-- 5 COMPARE -->
+<section id="compare">
+  <h2><span class="n">05</span>～て vs ～し vs ～から</h2>
+  <p class="lead">Three ways to join "cheap" and "tasty". Each one says something different.</p>
+  <div class="cmp">
+    <div class="card"><h4>～て</h4><div class="jp">安{やす}く<b class="s">て</b>、おいしいです。</div><div class="en">Cheap and tasty. A neutral description.</div></div>
+    <div class="card v"><h4>～し</h4><div class="jp">安{やす}い<b class="s">し</b>、おいしい<b class="s">し</b>、また 来{き}たい。</div><div class="en">Cheap, tasty… so I want to come again. Reasons building a case.</div></div>
+    <div class="card g"><h4>～から</h4><div class="jp">安{やす}い<b class="s">から</b>、買{か}いました。</div><div class="en">I bought it because it was cheap. One direct cause.</div></div>
+  </div>
+</section>
+
+<!-- 6 DRILLS -->
+<section id="drill">
+  <h2><span class="n">06</span>Drills</h2>
+  <p class="lead">Your progress is saved in this browser.</p>
+  <div class="progress"><div class="pbar"><i id="pfill"></i></div><div class="pnum" id="pnum">0 / 0</div><button class="btn ghost" id="reset">Reset</button></div>
+
+  <h3 class="mincho" style="color:var(--indigo);margin:14px 0 0">A · Make the て-form</h3>
+  <div id="qA"></div>
+
+  <h3 class="mincho" style="color:var(--indigo);margin:22px 0 0">B · Fill the gap</h3>
+  <div id="qB"></div>
+
+  <h3 class="mincho" style="color:var(--indigo);margin:22px 0 0">C · What does it mean?</h3>
+  <div id="qC"></div>
+</section>
+
+<!-- 7 WRITE -->
+<section id="write">
+  <h2><span class="n">07</span>Write your own</h2>
+  <p class="lead">Answer using the て-form. Write your answer first, then compare it with the model.</p>
+  <div id="wr"></div>
+</section>
+
+<!-- 8 CHEAT -->
+<section>
+  <h2><span class="n">08</span>One-glance summary</h2>
+  <div class="cheat">
+    <div><div class="k">う つ る → って</div><div class="en">待{ま}って・帰{かえ}って</div></div>
+    <div><div class="k">む ぶ ぬ → んで</div><div class="en">飲{の}んで・遊{あそ}んで</div></div>
+    <div><div class="k">く → いて　ぐ → いで</div><div class="en">書{か}いて・泳{およ}いで</div></div>
+    <div><div class="k">す → して</div><div class="en">話{はな}して</div></div>
+    <div><div class="k">る-verb: る → て</div><div class="en">食{た}べて・見{み}て</div></div>
+    <div><div class="k">行{い}く → 行{い}って</div><div class="en">the exception</div></div>
+    <div><div class="k">する → して　来{く}る → 来{き}て</div><div class="en">irregular</div></div>
+    <div><div class="k">い-adj → くて</div><div class="en">安{やす}くて・よくて</div></div>
+    <div><div class="k">な／N → で</div><div class="en">静{しず}かで・雨{あめ}で</div></div>
+  </div>
+</section>
+
+<footer>まるごと初級2 A2 · だい7か · JLPT N5 · ～て</footer>
+</div>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-label="Verb list" aria-hidden="true">
+  <header><h2 class="mincho">動詞{どうし} · て-form list</h2><button class="x" id="vClose" aria-label="Close verb list">×</button></header>
+  <div class="dctl" id="dctl">
+    <button data-f="all" class="on">All</button><button data-f="u">う-verbs</button><button data-f="ru">る-verbs</button><button data-f="irr">Irregular</button>
+    <button id="hideEn">Hide English</button><button id="hideTe">Hide て-form</button>
+  </div>
+  <div class="dbody">
+    <table class="vt"><thead><tr><th>Verb</th><th>English</th><th>て-form</th></tr></thead><tbody id="vbody"></tbody></table>
+    <p class="dnote">Hover over a hidden cell to reveal it. For the た-form, swap て→た and で→だ (飲{の}んで → 飲{の}んだ).</p>
+  </div>
+</aside>
+
+<script>
+const RB = s => s.replace(/([一-鿿々]+)\{([^}]+)\}/g,'<ruby>$1<rt>$2</rt></ruby>');
+['.wrap','#drawer header','.dnote'].forEach(q=>{const e=document.querySelector(q);e.innerHTML=RB(e.innerHTML)});
+
+const KEY='te-form-sheet-v1';
+let st={}; try{st=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){st={}}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}};
+
+const tF=document.getElementById('tFuri'), tE=document.getElementById('tEn');
+function applyT(){document.body.classList.toggle('hide-furi',!!st.noFuri);document.body.classList.toggle('hide-en',!!st.noEn);
+  tF.classList.toggle('off',!!st.noFuri);tE.classList.toggle('off',!!st.noEn)}
+tF.onclick=()=>{st.noFuri=!st.noFuri;save();applyT()};
+tE.onclick=()=>{st.noEn=!st.noEn;save();applyT()};
+applyT();
+
+const A=[
+ {p:'食{た}べる',h:'る-verb',o:['食{た}べって','食{た}べて','食{た}べんで'],a:1,e:'る-verb: drop る, add て.'},
+ {p:'書{か}く',h:'ends in く',o:['書{か}って','書{か}きて','書{か}いて'],a:2,e:'く → いて.'},
+ {p:'飲{の}む',h:'ends in む',o:['飲{の}んで','飲{の}って','飲{の}みて'],a:0,e:'む・ぶ・ぬ → んで.'},
+ {p:'待{ま}つ',h:'ends in つ',o:['待{ま}ちて','待{ま}って','待{ま}んで'],a:1,e:'う・つ・る → って.'},
+ {p:'話{はな}す',h:'ends in す',o:['話{はな}して','話{はな}って','話{はな}いて'],a:0,e:'す → して.'},
+ {p:'泳{およ}ぐ',h:'ends in ぐ',o:['泳{およ}いて','泳{およ}いで','泳{およ}んで'],a:1,e:'ぐ → いで. The voiced ぐ gives a voiced で.'},
+ {p:'行{い}く',h:'careful…',o:['行{い}いて','行{い}って','行{い}きて'],a:1,e:'The one exception: 行く → 行って.'},
+ {p:'帰{かえ}る',h:'careful…',o:['帰{かえ}て','帰{かえ}って','帰{かえ}りて'],a:1,e:'帰る looks like a る-verb but is a う-verb, so it becomes 帰って.'},
+ {p:'見{み}る',h:'る-verb',o:['見{み}って','見{み}て','見{み}んで'],a:1,e:'-iru る-verb: drop る → 見て.'},
+ {p:'会{あ}う',h:'ends in う',o:['会{あ}って','会{あ}いて','会{あ}うて'],a:0,e:'う → って.'},
+ {p:'遊{あそ}ぶ',h:'ends in ぶ',o:['遊{あそ}って','遊{あそ}びて','遊{あそ}んで'],a:2,e:'ぶ → んで.'},
+ {p:'来{く}る',h:'irregular',o:['来{く}って','来{き}て','来{く}て'],a:1,e:'来る → 来て, and the reading changes to き.'},
+ {p:'勉強{べんきょう}する',h:'irregular',o:['勉強{べんきょう}して','勉強{べんきょう}すって','勉強{べんきょう}しって'],a:0,e:'する → して.'},
+ {p:'入{はい}る',h:'careful…',o:['入{はい}て','入{はい}って','入{はい}りて'],a:1,e:'入る is another う-verb in disguise → 入って.'},
+ {p:'安{やす}い',h:'い-adj',o:['安{やす}いて','安{やす}くて','安{やす}いで'],a:1,e:'い-adj: ～い → くて.'},
+ {p:'いい',h:'irregular い-adj',o:['いくて','いいで','よくて'],a:2,e:'いい → よくて.'},
+ {p:'きれい',h:'careful…',o:['きれくて','きれいで','きれいくて'],a:1,e:'きれい is a な-adjective → きれいで.'},
+];
+const B=[
+ {p:'すみません、もう 一度{いちど}（言{い}う → ＿＿）ください。',o:['言{い}って','言{い}いて','言{い}んで'],a:0,e:'言う ends in う → 言って. "Please say it once more."'},
+ {p:'雨{あめ}が（ふる → ＿＿）います。',o:['ふりて','ふって','ふんで'],a:1,e:'～ている: ongoing. "It is raining."'},
+ {p:'ここで しゃしんを（とる → ＿＿）も いいですか。',o:['とって','とて','とりて'],a:0,e:'とる is a う-verb → とって. "May I take a photo here?"'},
+ {p:'ごはんを（食{た}べる → ＿＿）から、しゅくだいを します。',o:['食{た}べって','食{た}べて','食{た}べた'],a:1,e:'～てから: "After eating, I do my homework."'},
+ {p:'この 本{ほん}は（おもしろい → ＿＿）、やすいです。',o:['おもしろいて','おもしろくて','おもしろいで'],a:1,e:'い-adj → くて. "This book is interesting and cheap."'},
+ {p:'えきまで（歩{ある}く → ＿＿）行{い}きます。',o:['歩{ある}いて','歩{ある}って','歩{ある}きて'],a:0,e:'歩いて行く = to go on foot. く → いて.'},
+ {p:'あした 9時{じ}に さくら広場{ひろば}に（あつまる → ＿＿）ください。',o:['あつまて','あつまって','あつまりて'],a:1,e:'From Episode 7. あつまる is a う-verb → あつまって.'},
+ {p:'この 町{まち}は（しずか → ＿＿）、きれいです。',o:['しずかくて','しずかで','しずかって'],a:1,e:'な-adj → で. "This town is quiet and beautiful."'},
+];
+const C=[
+ {p:'かいぎしつで 電話{でんわ}を しては いけません。',o:['You may use the phone in the meeting room.','You must not use the phone in the meeting room.','Please use the phone in the meeting room.'],a:1,e:'～ては いけません = prohibition.',big:true},
+ {p:'今{いま}、しりょうを 読{よ}んで います。',o:['I will read the documents.','I read the documents.','I am reading the documents now.'],a:2,e:'～ている with an action verb = in progress. 読む → 読んで.',big:true},
+ {p:'この くつを はいて みても いいですか。',o:['May I try these shoes on?','Please put these shoes on.','I already tried these shoes on.'],a:0,e:'～てみる (try) + ～てもいいですか (may I). はく ends in く → はいて.',big:true},
+ {p:'友{とも}だちに 会{あ}って、えいがを 見{み}て、うちに 帰{かえ}りました。',o:['I will meet a friend, see a film and go home.','I met a friend, saw a film and went home.','I meet a friend to see a film at home.'],a:1,e:'The final verb 帰りました is past, so the whole chain is past.',big:true},
+];
+const W=[
+ {p:'朝{あさ}、何{なに}を しますか。 (3 actions)',m:'6時{じ}に 起{お}きて、コーヒーを 飲{の}んで、7時{じ}に うちを 出{で}ます。',en:'What do you do in the morning?'},
+ {p:'Ask a colleague politely to send the file.',m:'すみません、その ファイルを 送{おく}って ください。',en:'送る (send) is a う-verb.'},
+ {p:'Ask if you may open the window.',m:'まどを あけても いいですか。',en:'あける is a る-verb.'},
+ {p:'きのうの 夜{よる}は 何{なに}を しましたか。',m:'うちに 帰{かえ}って、ばんごはんを 作{つく}って、ギターを ひきました。',en:'What did you do last night? The last verb carries the past tense.'},
+ {p:'Describe your apartment with two adjectives.',m:'わたしの アパートは ひろくて、しずかです。',en:'い-adj くて ＋ な-adj です.'},
+];
+
+function renderQ(list,id,prefix){
+  const el=document.getElementById(id);
+  el.innerHTML=list.map((q,i)=>{const k=prefix+i;
+    return `<div class="q" data-k="${k}"><div class="prompt">${q.big?'':'<b>'}${RB(q.p)}${q.big?'':'</b>'} ${q.h?`<span class="tag">${q.h}</span>`:''}</div>
+    <div class="opts">${q.o.map((o,j)=>`<button class="opt" data-j="${j}">${RB(o)}</button>`).join('')}</div>
+    <div class="fb">${RB(q.e)}</div></div>`}).join('');
+  el.querySelectorAll('.q').forEach((qd,i)=>{const q=list[i],k=qd.dataset.k;
+    const mark=j=>{qd.querySelectorAll('.opt').forEach((b,bj)=>{b.disabled=true;if(bj===q.a)b.classList.add('right');else if(bj===j)b.classList.add('wrong')});
+      qd.querySelector('.fb').classList.add('show');qd.classList.add(j===q.a?'done-ok':'done-bad')};
+    if(st[k]!==undefined)mark(st[k]);
+    qd.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{const j=+b.dataset.j;st[k]=j;save();mark(j);prog()});
+  });
+}
+function renderW(){
+  document.getElementById('wr').innerHTML=W.map((w,i)=>`<div class="q"><div class="prompt">${RB(w.p)}</div><div class="en">${w.en}</div>
+  <textarea id="w${i}" data-w="${i}" placeholder="～て、～て、…">${(st['w'+i]||'').replace(/</g,'&lt;')}</textarea>
+  <div style="margin-top:6px"><button class="btn" data-r="${i}">Show model answer</button></div>
+  <div class="reveal" id="rv${i}"><span class="jp">${RB(w.m)}</span></div></div>`).join('');
+  document.querySelectorAll('textarea[data-w]').forEach(t=>t.oninput=()=>{st['w'+t.dataset.w]=t.value;save()});
+  document.querySelectorAll('[data-r]').forEach(b=>b.onclick=()=>document.getElementById('rv'+b.dataset.r).classList.toggle('show'));
+}
+function prog(){
+  const total=A.length+B.length+C.length;let done=0,ok=0;
+  [[A,'a'],[B,'b'],[C,'c']].forEach(([l,p])=>l.forEach((q,i)=>{if(st[p+i]!==undefined){done++;if(st[p+i]===q.a)ok++}}));
+  document.getElementById('pfill').style.width=(done/total*100)+'%';
+  document.getElementById('pnum').textContent=`${ok} ✓ · ${done}/${total}`;
+}
+function all(){renderQ(A,'qA','a');renderQ(B,'qB','b');renderQ(C,'qC','c');renderW();prog()}
+document.getElementById('reset').onclick=()=>{Object.keys(st).forEach(k=>{if(/^[abcw]\d+$/.test(k))delete st[k]});save();all()};
+all();
+
+// verb drawer: [dict, masu, group, english, te, note]
+const V=[
+ ['会{あ}う','会{あ}います','u','to meet','会{あ}って','う → って'],
+ ['使{つか}う','使{つか}います','u','to use','使{つか}って','う → って'],
+ ['言{い}う','言{い}います','u','to say','言{い}って','う → って'],
+ ['待{ま}つ','待{ま}ちます','u','to wait','待{ま}って','つ → って'],
+ ['帰{かえ}る','帰{かえ}ります','u','to go home','帰{かえ}って','looks like a る-verb'],
+ ['入{はい}る','入{はい}ります','u','to enter','入{はい}って','looks like a る-verb'],
+ ['知{し}る','知{し}ります','u','to know','知{し}って','usually 知っています'],
+ ['集{あつ}まる','集{あつ}まります','u','to gather','集{あつ}まって','Episode 7'],
+ ['おわる','おわります','u','to end, finish','おわって','→ おわったら (L7)'],
+ ['ふる','ふります','u','to fall (rain)','ふって','→ ふったら (L7)'],
+ ['とる','とります','u','to take (a photo)','とって',''],
+ ['作{つく}る','作{つく}ります','u','to make','作{つく}って',''],
+ ['飲{の}む','飲{の}みます','u','to drink','飲{の}んで','む → んで'],
+ ['読{よ}む','読{よ}みます','u','to read','読{よ}んで','む → んで'],
+ ['遊{あそ}ぶ','遊{あそ}びます','u','to play, hang out','遊{あそ}んで','ぶ → んで'],
+ ['死{し}ぬ','死{し}にます','u','to die','死{し}んで','the only ぬ-verb'],
+ ['書{か}く','書{か}きます','u','to write','書{か}いて','く → いて'],
+ ['聞{き}く','聞{き}きます','u','to listen, ask','聞{き}いて','く → いて'],
+ ['歩{ある}く','歩{ある}きます','u','to walk','歩{ある}いて','く → いて'],
+ ['行{い}く','行{い}きます','u','to go','行{い}って','exception: not 行いて'],
+ ['泳{およ}ぐ','泳{およ}ぎます','u','to swim','泳{およ}いで','ぐ → いで'],
+ ['急{いそ}ぐ','急{いそ}ぎます','u','to hurry','急{いそ}いで','ぐ → いで'],
+ ['話{はな}す','話{はな}します','u','to speak','話{はな}して','す → して'],
+ ['さがす','さがします','u','to look for','さがして','Episode 7: さがしてる'],
+ ['食{た}べる','食{た}べます','ru','to eat','食{た}べて',''],
+ ['見{み}る','見{み}ます','ru','to see, watch','見{み}て',''],
+ ['起{お}きる','起{お}きます','ru','to get up','起{お}きて',''],
+ ['ねる','ねます','ru','to sleep','ねて',''],
+ ['おしえる','おしえます','ru','to teach','おしえて',''],
+ ['あける','あけます','ru','to open','あけて',''],
+ ['いる','います','ru','to be (people)','いて',''],
+ ['する','します','irr','to do','して','勉強{べんきょう}する → 勉強{べんきょう}して'],
+ ['来{く}る','来{き}ます','irr','to come','来{き}て','reading changes to き'],
+];
+const GL={u:'う-verb',ru:'る-verb',irr:'irregular'};
+let vf='all';
+function renderV(){
+  document.getElementById('vbody').innerHTML=V.filter(v=>vf==='all'||v[2]===vf).map(v=>
+   `<tr><td><div class="dict">${RB(v[0])}</div><div class="mas">${RB(v[1])}</div><span class="grp ${v[2]}">${GL[v[2]]}</span></td>
+    <td class="gloss">${v[3]}</td>
+    <td class="shi"><span class="tef">${RB(v[4])}</span>${v[5]?`<span class="note">${RB(v[5])}</span>`:''}</td></tr>`).join('');
+}
+const dr=document.getElementById('drawer'),sc=document.getElementById('scrim'),vo=document.getElementById('vOpen');
+function setD(o){dr.classList.toggle('open',o);sc.classList.toggle('open',o);vo.setAttribute('aria-expanded',o);dr.setAttribute('aria-hidden',!o);st.verbs=o;save();
+  if(o)document.getElementById('vClose').focus()}
+vo.onclick=()=>setD(!dr.classList.contains('open'));
+sc.onclick=()=>setD(false);
+document.getElementById('vClose').onclick=()=>setD(false);
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&dr.classList.contains('open'))setD(false)});
+document.getElementById('dctl').addEventListener('click',e=>{
+  const b=e.target.closest('button');if(!b)return;
+  if(b.id==='hideEn'){dr.classList.toggle('hide-vt-en');b.classList.toggle('on');return}
+  if(b.id==='hideTe'){dr.classList.toggle('hide-te');b.classList.toggle('on');return}
+  vf=b.dataset.f;document.querySelectorAll('#dctl [data-f]').forEach(x=>x.classList.toggle('on',x===b));renderV();
+});
+renderV();
+if(st.verbs)setD(true);
+</script>
+<script src="../assets/nav-tree.js"></script>
+<script src="../assets/nav.js" defer></script>
+</body>
+</html>
