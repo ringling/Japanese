@@ -2,7 +2,7 @@
 # requires-python = ">=3.10"
 # dependencies = ["youtube-transcript-api", "fugashi", "unidic-lite"]
 # ///
-"""Build a 夜話 story for yobanashi.html.
+"""Build a 夜話 story for index.html.
 
 Usage: .venv/bin/python build_story.py <video_id> [--lesson N]
 
