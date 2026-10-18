@@ -160,6 +160,19 @@ rt{font-family:var(--ui);font-size:.42em;font-weight:400;color:var(--dim);letter
 .wcell .we{font-family:var(--en);font-style:italic;color:var(--dim);font-size:.9rem}
 .wcell .wl{font-size:.68rem;color:var(--green);letter-spacing:.08em}
 .src{color:var(--dim);font-size:.72rem;margin-left:8px}
+.wcell{position:relative;cursor:pointer;padding-right:44px}
+.wcell .ok{position:absolute;top:8px;right:8px;width:28px;height:28px;border-radius:50%;border:1px solid var(--rule);background:transparent;color:var(--dim);font-size:.8rem;line-height:1;padding:0}
+.wcell .ok:hover{border-color:var(--green);color:var(--green)}
+.wcell.done{opacity:.5}
+.wcell.done .ok{background:var(--green);border-color:var(--green);color:var(--on-accent)}
+.wcell .dr{color:var(--warn);font-size:.7rem;margin-left:6px;cursor:help}
+.ov-tools{display:flex;gap:8px;align-items:center}
+.dock{position:fixed;right:max(12px,env(safe-area-inset-right,0px));bottom:76px;width:min(320px,calc(100vw - 24px));z-index:4;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg-2);box-shadow:0 4px 18px rgba(0,0,0,.18)}
+.dock .vid{aspect-ratio:16/9;width:100%;background:#000}
+.dock .vid iframe{width:100%;height:100%;display:block}
+.dock .dk{display:flex;gap:6px;align-items:center;padding:6px 8px;font-size:.72rem;color:var(--dim)}
+.dock .dk button{border:1px solid var(--rule);border-radius:99px;background:transparent;padding:3px 10px;font-size:.74rem}
+.dock .dk .sp{flex:1;text-align:right}
 @media (max-width:520px){.tog kbd,.hint{display:none}.tate .ja{max-height:52vh}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
@@ -175,6 +188,7 @@ rt{font-family:var(--ui);font-size:.42em;font-weight:400;color:var(--dim);letter
       <button class="tog" id="tFuri" aria-pressed="true" title="Furigana (F)">ふりがな <kbd>F</kbd></button>
       <button class="tog" id="tTate" aria-pressed="false" title="Vertical Japanese (T)">縦書き <kbd>T</kbd></button>
       <button class="tog" id="tWords" title="New words (W)">ことば <kbd>W</kbd></button>
+      <button class="tog" id="tAudio" aria-pressed="false" title="Listen along with the video (P)" hidden>音声 <kbd>P</kbd></button>
       <button class="tog" id="tGrid" title="All lines (G)">一覧 <kbd>G</kbd></button>
       <button class="tog" id="tYoru" aria-pressed="false" title="Night look (N)">夜 <kbd>N</kbd></button>
       <button class="tog" id="tLoad" title="Load another story">読み込み</button>
@@ -197,6 +211,11 @@ rt{font-family:var(--ui);font-size:.42em;font-weight:400;color:var(--dim);letter
   </footer>
 </div>
 
+<div class="dock" id="dock" hidden>
+  <div class="vid"><div id="ytbox"></div></div>
+  <div class="dk"><button id="aPlay">▶ / ❚❚</button><button id="aLine" title="Replay this line (R)">↺ line</button><span class="sp" id="aState">follows the story</span></div>
+</div>
+
 <div class="overlay" id="gridOv" hidden>
   <div class="ov-in">
     <div class="ov-head"><h2>一覧</h2><button class="ghost" id="closeGrid">Close</button></div>
@@ -206,7 +225,7 @@ rt{font-family:var(--ui);font-size:.42em;font-weight:400;color:var(--dim);letter
 
 <div class="overlay" id="wordsOv" hidden>
   <div class="ov-in">
-    <div class="ov-head"><h2>ことば</h2><button class="ghost" id="closeWords">Close</button></div>
+    <div class="ov-head"><h2>ことば</h2><div class="ov-tools"><button class="ghost" id="hideDone" aria-pressed="false">Hide learned</button><button class="ghost" id="closeWords">Close</button></div></div>
     <p class="lede" id="wordsLede" style="color:var(--dim);margin:0"></p>
     <div class="words" id="words"></div>
   </div>
@@ -243,27 +262,51 @@ rt{font-family:var(--ui);font-size:.42em;font-weight:400;color:var(--dim);letter
   </div>
 </div>
 
-<script src="stories.js"></script>
 <script>
 (function(){
-const LIB=window.STORIES||[];
-const sameText=(a,b)=>a.length===b.length&&a.every((l,i)=>l.replace(/\s/g,'')===b[i].replace(/\s/g,''));
-const findLib=ja=>LIB.find(x=>sameText(x.ja,ja));
-const KEY='yobanashi.v2';
+let LIB=[];const CACHE={};
+const KEY='yobanashi.v3',OLD_KEY='yobanashi.v2',LKEY='yobanashi.learned.v1';
+let learned=new Set();try{learned=new Set(JSON.parse(localStorage.getItem(LKEY)||'[]'));}catch(e){}
+function saveLearned(){try{localStorage.setItem(LKEY,JSON.stringify([...learned]));}catch(e){}}
 const $=id=>document.getElementById(id);
 const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const SAMPLE={name:'Sample story',sample:true,
   ja:['今夜は、ねこのお話です。','「よるのねこ」','ある夜、小さなねこが月を見ていました。','「きれいだなあ。」','ねこは、しずかにねむりました。','おしまい。','おやすみなさい。'],
   en:["Tonight's story is about a cat.",'"The Night Cat"','One night, a little cat was looking at the moon.','"How beautiful."','The cat quietly fell asleep.','The End.','Good night.']};
 
-let st={ja:[],en:[],html:null,words:null,storyId:null,name:'',sample:false,pos:0,showEn:false,tate:false,furi:true,yoru:false};
+let st={ja:[],en:[],html:null,words:null,times:null,storyId:null,name:'',sample:false,pos:0,posById:{},showEn:false,tate:false,furi:true,yoru:false,hideDone:false,audio:false};
 let slides=[];
 let pend={ja:null,en:null,jaName:'',enName:''};
 
-function load(){try{const s=JSON.parse(localStorage.getItem(KEY)||'null');if(s&&s.ja&&s.ja.length&&!/[\u00c3\u00e3\u00e2][\u0080-\u00ff\u0152-\u2122]/.test(s.ja.join('')))st=Object.assign(st,s);}catch(e){}
-  const b=(st.storyId&&LIB.find(x=>x.id===st.storyId))||(st.ja.length&&findLib(st.ja));
-  if(b){st.storyId=b.id;st.ja=b.ja;st.en=b.en;st.html=b.jaHtml;st.words=b.words;st.name=b.title;}}
-function save(){try{localStorage.setItem(KEY,JSON.stringify(st));}catch(e){}}
+function load(){
+  let raw=null;
+  try{raw=JSON.parse(localStorage.getItem(KEY)||'null');}catch(e){}
+  if(!raw){
+    try{
+      const o=JSON.parse(localStorage.getItem(OLD_KEY)||'null');
+      if(o){
+        raw={showEn:o.showEn,tate:o.tate,furi:o.furi,yoru:o.yoru,pos:o.pos||0,storyId:o.storyId||null};
+        const b=!raw.storyId&&o.ja&&LIB.find(x=>o.ja.includes('「'+x.title+'」'));
+        const garbled=o.ja&&/[\u00c3\u00e3\u00e2][\u0080-\u00ff\u0152-\u2122]/.test(o.ja.join(''));
+        if(b)raw.storyId=b.id;
+        else if(!raw.storyId&&o.ja&&o.ja.length&&!garbled){raw.ja=o.ja;raw.en=o.en||[];raw.name=o.name||'';raw.sample=!!o.sample;}
+        localStorage.removeItem(OLD_KEY);
+      }
+    }catch(e){}
+  }
+  if(!raw)return;
+  ['showEn','tate','furi','yoru','hideDone','audio'].forEach(k=>{if(raw[k]!==undefined)st[k]=raw[k];});
+  st.posById=raw.posById||{};
+  st.pos=raw.pos||0;
+  if(raw.storyId&&LIB.some(x=>x.id===raw.storyId))st.storyId=raw.storyId;
+  else if(raw.ja&&raw.ja.length){st.ja=raw.ja;st.en=raw.en||[];st.name=raw.name||'';st.sample=!!raw.sample;}
+}
+function save(){
+  if(st.storyId)st.posById[st.storyId]=st.pos;
+  const o={showEn:st.showEn,tate:st.tate,furi:st.furi,yoru:st.yoru,hideDone:st.hideDone,audio:st.audio,posById:st.posById,pos:st.pos,storyId:st.storyId};
+  if(!st.storyId){o.ja=st.ja;o.en=st.en;o.name=st.name;o.sample=st.sample;}
+  try{localStorage.setItem(KEY,JSON.stringify(o));}catch(e){}
+}
 
 const tsRe=/^\s*\[?\(?\d{1,2}:\d{2}(?::\d{2})?(?:[.,]\d+)?\)?\]?\s*[-–]?\s*/;
 function parse(t){
@@ -291,6 +334,7 @@ function build(){
     +(!en.length?'<span class="chip">no English loaded</span>':'')
     +(b&&b.source?'<a class="src" href="'+esc(b.source)+'" target="_blank" rel="noopener">▶ video</a>':'');
   $('tWords').hidden=!(st.words&&st.words.length);
+  refreshAudioUi();
 }
 
 function jaHtml(s){
@@ -300,10 +344,11 @@ function jaHtml(s){
   return h;
 }
 function wordsHtml(ws){
+  ws=ws.filter(w=>!learned.has(w.lemma));
   return ws.length?'<div class="lw" lang="ja">'+ws.map(w=>'<span><b>'+w.html+'</b>'+esc(w.en)+'</span>').join('')+'</div>':'';
 }
 
-function render(anim){
+function render(anim,fromAudio){
   const n=slides.length;
   if(!n){$('slide').innerHTML='';return;}
   st.pos=Math.max(0,Math.min(st.pos,n-1));
@@ -319,6 +364,7 @@ function render(anim){
   $('prog').style.width=((st.pos+1)/n*100)+'%';
   $('prev').disabled=st.pos===0;$('next').disabled=st.pos===n-1;
   save();
+  if(!fromAudio)audioSeek();
 }
 
 function go(d){const p=st.pos+d;if(p<0||p>=slides.length)return;st.pos=p;render(true);}
@@ -336,21 +382,101 @@ function openGrid(){
 }
 function closeOv(id){$(id).hidden=true;}
 function openWords(){
-  const ws=st.words||[];if(!ws.length)return;
-  $('wordsLede').textContent=ws.length+' words in this story that are new for you (not in 入門 / 初級1 / A2-2 so far, not in the Anki deck). Tap one to jump to where it first appears.';
-  $('words').innerHTML=ws.map(w=>'<button class="wcell" data-i="'+w.lines[0]+'"><span class="wj" lang="ja">'+w.html+'</span><span class="we">'+esc(w.en)+'</span><span class="wl">line '+w.lines.map(l=>l+1).join(' · ')+'</span></button>').join('');
-  $('wordsOv').hidden=false;
+  if(!(st.words||[]).length)return;
+  drawWords();$('wordsOv').hidden=false;
+}
+function drawWords(){
+  const ws=st.words||[];
+  const done=ws.filter(w=>learned.has(w.lemma)).length;
+  $('wordsLede').textContent=ws.length+' words in this story that are new for you (not in 入門 / 初級1 / A2-2 so far, not in the Anki deck). Tap one to jump to where it first appears; ✓ marks it as learned and hides it from the slides ('+done+' so far). A ? means the English is an unchecked dictionary draft.';
+  $('hideDone').setAttribute('aria-pressed',st.hideDone);
+  $('words').innerHTML=ws.filter(w=>!(st.hideDone&&learned.has(w.lemma))).map(w=>{
+    const d=learned.has(w.lemma);
+    return '<div class="wcell'+(d?' done':'')+'" role="button" tabindex="0" data-i="'+w.lines[0]+'" data-l="'+esc(w.lemma||'')+'">'
+      +'<button class="ok" data-ok="1" aria-pressed="'+d+'" aria-label="Mark as learned">✓</button>'
+      +'<span class="wj" lang="ja">'+w.html+'</span><span class="we">'+esc(w.en)+(w.draft?'<span class="dr" title="Auto-drafted gloss, not yet checked">?</span>':'')+'</span>'
+      +'<span class="wl">line '+w.lines.map(l=>l+1).join(' · ')+'</span></div>';
+  }).join('');
 }
 function renderLib(){
-  $('lib').innerHTML=LIB.length?LIB.map(b=>'<button data-id="'+esc(b.id)+'"><span class="lt" lang="ja">'+esc(b.title)+'</span><span class="le">'+esc(b.titleEn||'')+'</span><span class="lm">'+b.ja.length+' lines · '+(b.words||[]).length+' new words</span></button>').join(''):'<span style="color:var(--dim)">No built-in stories yet.</span>';
+  $('lib').innerHTML=LIB.length?LIB.map(b=>'<button data-id="'+esc(b.id)+'"><span class="lt" lang="ja">'+esc(b.title)+'</span><span class="le">'+esc(b.titleEn||'')+'</span><span class="lm">'+b.lines+' lines · '+b.words+' new words'+(b.audio?' · 音声':'')+'</span></button>').join(''):'<span style="color:var(--dim)">No built-in stories available.</span>';
 }
 function openLoad(){renderLib();$('closeLoad').hidden=!slides.length;$('loadOv').hidden=false;}
 
-function useStory(ja,en,name,sample,lib){
-  if(!lib&&!sample){lib=findLib(ja);if(lib){ja=lib.ja;en=lib.en;name=lib.title;}}
-  st.ja=ja;st.en=en;st.name=name;st.sample=!!sample;st.pos=0;
-  st.storyId=lib?lib.id:null;st.html=lib?lib.jaHtml:null;st.words=lib?lib.words:null;
+async function getStory(id){
+  if(CACHE[id])return CACHE[id];
+  const r=await fetch('stories/'+encodeURIComponent(id)+'.json');
+  if(!r.ok)throw new Error('HTTP '+r.status);
+  return CACHE[id]=await r.json();
+}
+async function openStory(id,pos){
+  try{const s=await getStory(id);useStory(s.ja,s.en,s.title,false,s,pos===undefined?(st.posById[id]||0):pos);}
+  catch(e){$('msg').textContent='Could not load the story ('+e.message+'). Serve this folder over http, e.g. python3 -m http.server.';openLoad();}
+}
+function useStory(ja,en,name,sample,lib,pos){
+  st.ja=ja;st.en=en;st.name=name;st.sample=!!sample;st.pos=pos||0;
+  st.storyId=lib?lib.id:null;st.html=lib?lib.jaHtml:null;st.words=lib?lib.words:null;st.times=lib&&lib.times?lib.times:null;
   build();render(true);save();closeOv('loadOv');
+  if(st.audio&&audioOk())startPlayer();else if(A.ready)A.yt.pauseVideo();
+}
+
+/* listen along: YouTube player, slides follow the timestamps */
+const A={yt:null,ready:false,timer:null,vid:null};
+const ytId=src=>{const m=/[?&]v=([\w-]{11})/.exec(src||'');return m?m[1]:null;};
+const curMeta=()=>st.storyId?LIB.find(x=>x.id===st.storyId):null;
+const audioOk=()=>{const m=curMeta();return !!(m&&st.times&&st.times.length===slides.length&&ytId(m.source));};
+function refreshAudioUi(){
+  const ok=audioOk();
+  $('tAudio').hidden=!ok;
+  const on=ok&&st.audio;
+  $('tAudio').setAttribute('aria-pressed',on);
+  $('dock').hidden=!on;
+}
+function loadYT(cb){
+  if(window.YT&&YT.Player)return cb();
+  const prev=window.onYouTubeIframeAPIReady;
+  window.onYouTubeIframeAPIReady=()=>{if(prev)prev();cb();};
+  if(!document.getElementById('ytapi')){const sc=document.createElement('script');sc.id='ytapi';sc.src='https://www.youtube.com/iframe_api';document.head.appendChild(sc);}
+}
+function startPlayer(){
+  const id=ytId(curMeta().source);
+  if(A.ready){if(A.vid!==id){A.yt.cueVideoById(id);A.vid=id;}return;}
+  if(A.yt)return;
+  loadYT(()=>{
+    A.vid=id;
+    A.yt=new YT.Player('ytbox',{videoId:id,playerVars:{playsinline:1,rel:0,modestbranding:1},events:{
+      onReady:()=>{A.ready=true;if(A.vid!==ytId(curMeta()&&curMeta().source))startPlayer();},
+      onStateChange:e=>{
+        clearInterval(A.timer);
+        if(e.data===1){A.timer=setInterval(tick,250);$('aState').textContent='playing';}
+        else if(e.data===2)$('aState').textContent='paused';
+      }}});
+  });
+}
+function audioSeek(){
+  if(!A.ready||!st.audio||!audioOk())return;
+  const s=A.yt.getPlayerState();
+  if(s===1||s===2)A.yt.seekTo(st.times[st.pos],true);
+}
+function tick(){
+  if(!A.ready||!st.times)return;
+  const t=A.yt.getCurrentTime()+.2;
+  let i=0;for(let k=0;k<st.times.length;k++){if(st.times[k]<=t)i=k;else break;}
+  if(i!==st.pos){st.pos=i;render(true,true);}
+}
+function playLine(){
+  if(!A.ready||!audioOk())return;
+  A.yt.seekTo(st.times[st.pos],true);A.yt.playVideo();
+}
+function togglePlay(){
+  if(!A.ready||!audioOk())return;
+  const s=A.yt.getPlayerState();
+  if(s===1)A.yt.pauseVideo();else if(s===2)A.yt.playVideo();else playLine();
+}
+function setAudio(v){
+  st.audio=v;refreshAudioUi();
+  if(v&&audioOk())startPlayer();else if(A.ready)A.yt.pauseVideo();
+  save();
 }
 
 function readFile(file,which){
@@ -381,9 +507,16 @@ $('build').onclick=()=>{
   useStory(ja,en,(pend.jaName||'Pasted story').replace(/(_ja)?\.(txt|srt|vtt)$/i,''),false);
 };
 $('sample').onclick=()=>useStory(SAMPLE.ja,SAMPLE.en,SAMPLE.name,true);
-$('lib').addEventListener('click',e=>{const b=e.target.closest('button[data-id]');if(!b)return;const s=LIB.find(x=>x.id===b.dataset.id);if(s)useStory(s.ja,s.en,s.title,false,s);});
+$('lib').addEventListener('click',e=>{const b=e.target.closest('button[data-id]');if(b)openStory(b.dataset.id);});
 $('tFuri').onclick=()=>setFuri(!st.furi);$('tYoru').onclick=()=>setYoru(!st.yoru);$('tWords').onclick=openWords;$('closeWords').onclick=()=>closeOv('wordsOv');
-$('words').addEventListener('click',e=>{const b=e.target.closest('.wcell');if(b){closeOv('wordsOv');jump(+b.dataset.i);}});
+function wordAction(el,ok){
+  if(ok){const l=el.dataset.l;if(l){learned.has(l)?learned.delete(l):learned.add(l);saveLearned();drawWords();render(false,true);}return;}
+  closeOv('wordsOv');jump(+el.dataset.i);
+}
+$('words').addEventListener('click',e=>{const b=e.target.closest('.wcell');if(b)wordAction(b,!!e.target.closest('[data-ok]'));});
+$('words').addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.classList.contains('wcell')){e.preventDefault();wordAction(e.target,false);}});
+$('hideDone').onclick=()=>{st.hideDone=!st.hideDone;save();drawWords();};
+$('tAudio').onclick=()=>setAudio(!st.audio);$('aPlay').onclick=togglePlay;$('aLine').onclick=playLine;
 
 $('prev').onclick=()=>go(-1);$('next').onclick=()=>go(1);
 $('tapL').onclick=()=>go(-1);$('tapR').onclick=()=>go(1);
@@ -406,6 +539,8 @@ document.addEventListener('keydown',e=>{
   else if(e.key==='f'||e.key==='F')setFuri(!st.furi);
   else if(e.key==='n'||e.key==='N')setYoru(!st.yoru);
   else if(e.key==='w'||e.key==='W')openWords();
+  else if(e.key==='p'||e.key==='P'){if(audioOk())setAudio(!st.audio);}
+  else if(e.key==='r'||e.key==='R'){if(st.audio)playLine();}
   else if(e.key==='g'||e.key==='G')openGrid();
 });
 let tx=null,ty=null;
@@ -413,11 +548,19 @@ $('stage').addEventListener('touchstart',e=>{tx=e.touches[0].clientX;ty=e.touche
 $('stage').addEventListener('touchend',e=>{if(tx===null)return;const dx=e.changedTouches[0].clientX-tx,dy=e.changedTouches[0].clientY-ty;
   if(Math.abs(dx)>45&&Math.abs(dx)>Math.abs(dy))go(dx<0?1:-1);tx=null;},{passive:true});
 
-load();
-setEn(!!st.showEn);setTate(!!st.tate);setFuri(st.furi!==false);setYoru(!!st.yoru);
-if(st.ja.length){build();render(false);}
-else if(LIB.length){useStory(LIB[0].ja,LIB[0].en,LIB[0].title,false,LIB[0]);}
-else{st.ja=SAMPLE.ja;st.en=SAMPLE.en;st.name=SAMPLE.name;st.sample=true;build();render(false);openLoad();}
+async function boot(){
+  let err='';
+  try{const r=await fetch('stories/index.json');if(!r.ok)throw new Error('HTTP '+r.status);LIB=await r.json();}
+  catch(e){err=e.message;}
+  load();
+  setEn(!!st.showEn);setTate(!!st.tate);setFuri(st.furi!==false);setYoru(!!st.yoru);
+  if(st.storyId)await openStory(st.storyId,st.pos);
+  else if(st.ja.length){build();render(false);}
+  else if(LIB.length)await openStory(LIB[0].id);
+  else{st.ja=SAMPLE.ja;st.en=SAMPLE.en;st.name=SAMPLE.name;st.sample=true;build();render(false);openLoad();
+    $('msg').textContent='Built-in stories could not be loaded ('+err+'). Serve this folder over http, e.g. python3 -m http.server.';}
+}
+boot();
 })();
 </script>
 <script src="../assets/nav-tree.js"></script>

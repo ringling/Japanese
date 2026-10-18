@@ -1,0 +1,6 @@
+{
+ "_": "Shared across all stories. Per-story files (stories/<id>.edit.json) win over these.",
+ "readings": {"日本": "にほん", "下": "した", "明日": "あした"},
+ "skip": ["ジャパニーズ", "チャンネル", "コメント", "様", "為", "仕舞い", "明日"],
+ "words": {}
+}

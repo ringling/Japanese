@@ -20,3 +20,4 @@
 
 # Playwright local install (pre-installed, ~300MB — do not commit)
 .playwright/
+__pycache__/
