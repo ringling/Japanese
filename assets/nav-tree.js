@@ -105,6 +105,10 @@ window.SITE_TREE = [
      {
       "label": "Lesson 5 復習",
       "href": "2025-2026/復習/marugoto_a2_l5_recap.html"
+     },
+     {
+      "label": "Lesson 6 復習",
+      "href": "2025-2026/復習/marugoto_a2_l6_recap.html"
      }
     ]
    },
