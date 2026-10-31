@@ -18,6 +18,10 @@ window.SITE_TREE = [
       "label": "2026年",
       "children": [
        {
+        "label": "11月2日 しゅくだい",
+        "href": "2025-2026/files/2026年11月02日_しゅくだい.html"
+       },
+       {
         "label": "10月26日 しゅくだい",
         "href": "2025-2026/files/2026年10月26日_しゅくだい.html"
        },
