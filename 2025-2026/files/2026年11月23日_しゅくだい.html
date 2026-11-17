@@ -1,0 +1,1699 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>だい8か・だい9か しゅくだい · 2026年11月23日</title>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;700&family=Noto+Serif+JP:wght@400;500;700&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1a1a;
+  --ink-soft: #3a3a3a;
+  --paper: #f4efe6;
+  --paper-soft: #ebe4d6;
+  --paper-deep: #e2d9c4;
+  --rule: #c9bfa9;
+  --rule-soft: #d8cfb9;
+  --accent: #8b1a1a;
+  --accent-soft: #b85c5c;
+  --muted: #6b6357;
+  --gold: #b8893d;
+  --grammar: #3a5a7a;
+  --grammar-bg: #d4dce4;
+  --done: #5a7a3a;
+  --done-bg: #d8e0c4;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 300;
+  line-height: 1.7;
+  padding: 50px 32px;
+  background-image:
+    radial-gradient(circle at 15% 25%, rgba(139, 26, 26, 0.03) 0%, transparent 40%),
+    radial-gradient(circle at 85% 75%, rgba(184, 137, 61, 0.04) 0%, transparent 50%);
+}
+
+.container { max-width: 880px; margin: 0 auto; }
+
+/* ====== Nav ====== */
+.page-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--rule);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+.page-nav a { color: var(--accent); text-decoration: none; text-transform: uppercase; }
+.page-nav a:hover { text-decoration: underline; }
+.page-nav .center { color: var(--muted); }
+
+/* ====== Masthead ====== */
+.masthead {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: end;
+  gap: 30px;
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 20px;
+  margin-bottom: 40px;
+}
+.masthead-mark {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 80px;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 0.85;
+  letter-spacing: -4px;
+}
+.masthead-title h1 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 32px;
+  font-weight: 500;
+  letter-spacing: -1px;
+  line-height: 1.1;
+  margin-bottom: 6px;
+}
+.masthead-title .sub {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.masthead-meta {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 1.5px;
+  text-align: right;
+  text-transform: uppercase;
+  line-height: 1.8;
+}
+
+/* ====== Section ====== */
+section { margin-bottom: 56px; }
+
+.section-head {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: baseline;
+  gap: 20px;
+  padding-bottom: 14px;
+  margin-bottom: 28px;
+  border-bottom: 1px solid var(--rule);
+}
+.section-num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: 2px;
+  font-weight: 500;
+}
+.section-head h2 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 26px;
+  font-weight: 500;
+}
+
+/* ====== Info grid ====== */
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+}
+.info-card {
+  background: var(--paper-soft);
+  border: 1px solid var(--rule);
+  padding: 18px 20px;
+}
+.info-card-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+.info-card-body {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+}
+.info-card-body strong { font-weight: 500; color: var(--ink); }
+.info-card .checkbox-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 4px 0;
+  font-size: 13px;
+}
+.info-card .checkbox-item input[type="checkbox"] {
+  margin-top: 3px;
+  accent-color: var(--accent);
+  flex-shrink: 0;
+}
+
+/* ====== Resource links ====== */
+.link-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.link-card {
+  background: var(--paper-soft);
+  border: 1px solid var(--rule);
+  padding: 14px 18px;
+}
+.link-card-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+.link-card a {
+  display: block;
+  font-size: 12px;
+  color: var(--grammar);
+  text-decoration: none;
+  word-break: break-all;
+  line-height: 1.5;
+  margin-bottom: 3px;
+}
+.link-card a:hover { text-decoration: underline; }
+.link-card .link-note {
+  font-size: 11px;
+  color: var(--muted);
+  font-style: italic;
+  margin-top: 4px;
+}
+
+/* ====== Grammar ====== */
+.grammar-pattern { margin-bottom: 44px; }
+.grammar-pattern h3 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 14px;
+  color: var(--ink);
+}
+.pattern-box {
+  background: var(--grammar-bg);
+  border: 1px solid var(--grammar);
+  padding: 18px 24px;
+  margin: 16px 0 18px;
+  text-align: center;
+}
+.pattern-formula {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--grammar);
+  margin-bottom: 6px;
+  line-height: 1.6;
+}
+.pattern-gloss {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.grammar-meta {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+  margin-bottom: 10px;
+}
+.grammar-meta strong { font-weight: 500; color: var(--ink); }
+.formation-list {
+  list-style: none;
+  margin: 10px 0 18px 0;
+  background: var(--paper-soft);
+  border: 1px solid var(--rule);
+  padding: 14px 18px;
+}
+.formation-list li {
+  font-size: 14px;
+  padding: 4px 0;
+  border-bottom: 1px dashed var(--rule-soft);
+  color: var(--ink-soft);
+}
+.formation-list li:last-child { border-bottom: none; }
+.formation-list .jp {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 16px;
+  color: var(--grammar);
+}
+.examples-block { margin-top: 14px; }
+.examples-block h4 {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+.example-item {
+  padding: 10px 0;
+  border-bottom: 1px dashed var(--rule-soft);
+}
+.example-item:last-child { border-bottom: none; }
+.example-jp {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 17px;
+  line-height: 1.8;
+  color: var(--ink);
+  display: block;
+  margin-bottom: 2px;
+}
+.example-en {
+  font-size: 13px;
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* ====== Callout ====== */
+.callout {
+  background: var(--paper-soft);
+  border-left: 3px solid var(--gold);
+  padding: 14px 20px;
+  margin: 14px 0;
+  font-size: 14px;
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+.callout strong { font-weight: 500; color: var(--ink); }
+.callout a { color: var(--grammar); }
+
+/* ====== Dialogue (かいわ) ====== */
+.dialogue-line {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px dashed var(--rule-soft);
+  align-items: start;
+}
+.dialogue-line:last-child { border-bottom: none; }
+.speaker {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  padding-top: 4px;
+  font-weight: 500;
+}
+.utterance {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 17px;
+  line-height: 1.8;
+  color: var(--ink);
+}
+
+/* ====== りかい sections ====== */
+.rikai-page { margin-bottom: 48px; }
+.rikai-page h3 {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--rule-soft);
+}
+.rikai-section-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.rikai-section-label .badge {
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 2px;
+  font-weight: 500;
+}
+.badge-review { background: var(--paper-deep); color: var(--muted); border: 1px solid var(--rule); }
+.badge-new { background: var(--done-bg); color: var(--done); border: 1px solid var(--done); }
+
+.rikai-dialogue {
+  background: var(--paper-soft);
+  border-left: 3px solid var(--accent);
+  padding: 20px 24px;
+  margin-bottom: 20px;
+}
+.rikai-line { margin-bottom: 16px; }
+.rikai-line:last-child { margin-bottom: 0; }
+.rikai-speaker {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--accent);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.rikai-jp {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 17px;
+  line-height: 1.8;
+  color: var(--ink);
+  display: block;
+  margin-bottom: 2px;
+}
+.rikai-en {
+  font-size: 13px;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.exercise-item {
+  background: var(--paper-soft);
+  border: 1px solid var(--rule);
+  padding: 16px 20px;
+  margin-bottom: 10px;
+}
+.exercise-num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--accent);
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+.exercise-context {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+.exercise-answer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+}
+.answer-arrow {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+}
+.answer-val {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 16px;
+  color: var(--done);
+  font-weight: 500;
+}
+.exercise-en {
+  font-size: 12px;
+  color: var(--muted);
+  font-style: italic;
+  margin-top: 6px;
+}
+
+/* ====== Tables ====== */
+.grammar-table-wrap {
+  border: 1px solid var(--rule);
+  overflow: hidden;
+  margin: 14px 0;
+}
+.grammar-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.grammar-table th {
+  background: var(--paper-deep);
+  padding: 9px 14px;
+  text-align: left;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 500;
+  border-bottom: 1px solid var(--rule);
+}
+.grammar-table td {
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--rule-soft);
+  vertical-align: top;
+  line-height: 1.6;
+}
+.grammar-table tr:last-child td { border-bottom: none; }
+.grammar-table .pattern-col {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 14px;
+  width: 180px;
+}
+.grammar-table .answer-col {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 16px;
+  color: var(--done);
+  font-weight: 500;
+  width: 80px;
+  text-align: center;
+}
+.grammar-table .en-col {
+  font-size: 12px;
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* ====== Translation toggle ====== */
+.example-en,
+.rikai-en,
+.exercise-en,
+.dialogue-en { display: none; }
+
+body.translations-visible .example-en,
+body.translations-visible .rikai-en,
+body.translations-visible .exercise-en,
+body.translations-visible .dialogue-en { display: block; }
+
+.dialogue-en {
+  font-size: 13px;
+  color: var(--muted);
+  font-style: italic;
+  margin-top: 2px;
+}
+
+.toggle-translations {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 100;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  background: var(--paper-deep);
+  border: 1px solid var(--rule);
+  color: var(--muted);
+  padding: 8px 14px;
+  cursor: pointer;
+  border-radius: 3px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+}
+.toggle-translations:hover { background: var(--paper-soft); color: var(--accent); border-color: var(--accent-soft); }
+body.translations-visible .toggle-translations { background: var(--done-bg); color: var(--done); border-color: var(--done); }
+
+/* ====== Audio block ====== */
+.audio-block {
+  margin: 6px 0 18px;
+  border: 1px solid var(--rule);
+  overflow: hidden;
+}
+.audio-block-label {
+  background: var(--paper-deep);
+  padding: 8px 14px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 500;
+  border-bottom: 1px solid var(--rule);
+}
+.audio-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 14px;
+  border-bottom: 1px solid var(--rule-soft);
+}
+.audio-row:last-child { border-bottom: none; }
+.audio-row-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  width: 80px;
+  flex-shrink: 0;
+  letter-spacing: 0.5px;
+}
+.audio-row audio { flex: 1; height: 28px; }
+
+/* ====== Section nav pills ====== */
+.section-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: -16px 0 48px;
+}
+.section-nav a {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--paper-soft);
+  border: 1px solid var(--rule);
+  padding: 5px 12px;
+  text-decoration: none;
+  border-radius: 2px;
+}
+.section-nav a:hover {
+  background: var(--paper-deep);
+  border-color: var(--accent-soft);
+}
+
+/* Choice annotations inside exercise-en */
+.opts { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-bottom: 4px; }
+.opt-ok  { color: var(--done); font-style: normal; }
+.opt-no  { color: var(--accent-soft); text-decoration: line-through; font-style: normal; }
+
+/* Kanji table meaning column */
+.kanji-en-col { display: none; }
+body.translations-visible .kanji-en-col { display: table-cell; font-style: italic; color: var(--muted); }
+
+/* Volunteer table */
+.vol-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.vol-table th {
+  background: var(--paper-deep);
+  padding: 8px 12px;
+  text-align: left;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 500;
+  border-bottom: 1px solid var(--rule);
+  border-right: 1px solid var(--rule-soft);
+}
+.vol-table td {
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--rule-soft);
+  border-right: 1px solid var(--rule-soft);
+  vertical-align: middle;
+  line-height: 1.5;
+}
+.vol-table td:last-child, .vol-table th:last-child { border-right: none; }
+.vol-table tr:last-child td { border-bottom: none; }
+.vol-table .jp-cell {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 14px;
+}
+.vol-table .ans-ok { color: var(--done); font-weight: 500; font-size: 16px; text-align: center; }
+.vol-table .ans-no { color: var(--accent-soft); font-weight: 500; font-size: 16px; text-align: center; }
+.vol-table .person-name {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 14px;
+  font-weight: 500;
+}
+.vol-table .en-hint { font-size: 11px; color: var(--muted); font-style: italic; display: block; }
+
+footer {
+  margin-top: 60px;
+  padding-top: 20px;
+  border-top: 1px solid var(--rule);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+  text-align: center;
+  line-height: 1.8;
+}
+
+@media (max-width: 700px) {
+  body { padding: 30px 18px; }
+  .masthead { grid-template-columns: 1fr; gap: 16px; }
+  .masthead-meta { text-align: left; }
+  .info-grid { grid-template-columns: 1fr; }
+  .link-grid { grid-template-columns: 1fr; }
+  .dialogue-line { grid-template-columns: 70px 1fr; gap: 10px; }
+  .section-head { gap: 12px; }
+}
+</style>
+<link rel="stylesheet" href="../../assets/theme.css">
+<script src="../../assets/theme.js"></script>
+</head>
+<body>
+<div class="container">
+
+  <nav class="page-nav">
+    <a href="../index.html">← ホーム</a>
+    <span class="center">だい8か・だい9か · 2026年11月23日</span>
+    <span style="color:var(--rule)">—</span>
+  </nav>
+
+  <header class="masthead">
+    <div class="masthead-mark">九</div>
+    <div class="masthead-title">
+      <h1>だい8か・だい9か しゅくだい</h1>
+      <div class="sub">2026年11月23日 · まるごと A2-2 · L8 りかい · L9 かつどう「お<ruby>正月<rt>しょうがつ</rt></ruby>は どう していましたか」</div>
+    </div>
+    <div class="masthead-meta">
+      りかい pp.82–84<br>
+      かつどう pp.74–76<br>
+      CHECK! 152–157 · 088–097
+    </div>
+  </header>
+
+  <section>
+    <div class="section-head">
+      <span class="section-num">INFO</span>
+      <h2><ruby>前回<rt>ぜんかい</rt></ruby> · <ruby>次回<rt>じかい</rt></ruby> · しゅくだい</h2>
+    </div>
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="info-card-label"><ruby>前回<rt>ぜんかい</rt></ruby>のクラス</div>
+        <div class="info-card-body">
+          <strong>11<ruby>月<rt>がつ</rt></ruby>16<ruby>日<rt>にち</rt></ruby>（<ruby>月曜日<rt>げつようび</rt></ruby>）</strong><br>
+          だい8か — 78–81ページ（りかい）
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label"><ruby>次回<rt>じかい</rt></ruby>のクラス</div>
+        <div class="info-card-body">
+          <strong>11<ruby>月<rt>がつ</rt></ruby>23<ruby>日<rt>にち</rt></ruby>（<ruby>月曜日<rt>げつようび</rt></ruby>）</strong><br>
+          だい8か — 82–84ページ（りかい）<br>
+          だい9か — 74–76ページ（かつどう）
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">しゅくだい</div>
+        <div class="info-card-body">
+          <label class="checkbox-item">
+            <input type="checkbox" id="nov23_cb0" onchange="saveCheckbox('nov23_cb0',this.checked)">
+            <ruby>日記<rt>にっき</rt></ruby>か <ruby>話<rt>はなし</rt></ruby>を <ruby>日本語<rt>にほんご</rt></ruby>で <ruby>書<rt>か</rt></ruby>く（<ruby>先生<rt>せんせい</rt></ruby>に <ruby>出<rt>だ</rt></ruby>す）
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox" id="nov23_cb1" onchange="saveCheckbox('nov23_cb1',this.checked)">
+            りかい 84ページを <ruby>準備<rt>じゅんび</rt></ruby>する（どっかい「<ruby>日本祭<rt>にほんまつり</rt></ruby>の アンケート」）
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox" id="nov23_cb2" onchange="saveCheckbox('nov23_cb2',this.checked)">
+            かいわ L8 を <ruby>見<rt>み</rt></ruby>る
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox" id="nov23_cb3" onchange="saveCheckbox('nov23_cb3',this.checked)">
+            <ruby>文法<rt>ぶんぽう</rt></ruby> L8 と れんしゅう<ruby>問題<rt>もんだい</rt></ruby>
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox" id="nov23_cb4" onchange="saveCheckbox('nov23_cb4',this.checked)">
+            かんじ Topic 4（L7・L8）
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox" id="nov23_cb5" onchange="saveCheckbox('nov23_cb5',this.checked)">
+            <ruby>生活<rt>せいかつ</rt></ruby>と<ruby>文化<rt>ぶんか</rt></ruby>スナップ「<ruby>交通安全<rt>こうつうあんぜん</rt></ruby>」を <ruby>読<rt>よ</rt></ruby>む
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox" id="nov23_cb6" onchange="saveCheckbox('nov23_cb6',this.checked)">
+            たんごリスト・クイズ L8（りかい）・ たんごリスト L9（かつどう）
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox" id="nov23_cb7" onchange="saveCheckbox('nov23_cb7',this.checked)">
+            NHK やさしいことばニュースを <ruby>見<rt>み</rt></ruby>る
+          </label>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <nav class="section-nav">
+    <a href="#links">リンク</a>
+    <a href="#kanji">漢字</a>
+    <a href="#atarashii">あたらしい ことば</a>
+    <a href="#grammar">文法 L8</a>
+    <a href="#practice">れんしゅう</a>
+    <a href="#kaiwa">かいわ</a>
+    <a href="#rikai">りかい pp.82–84</a>
+    <a href="#katsudoo">かつどう pp.74–76</a>
+  </nav>
+
+  <section id="links">
+    <div class="section-head">
+      <span class="section-num">01</span>
+      <h2>リソースリンク</h2>
+    </div>
+    <div class="link-grid">
+      <div class="link-card">
+        <div class="link-card-label">かいわ L8</div>
+        <a href="https://a2-2.marugotoweb.jp/en/conversation/episode/8/" target="_blank">a2-2.marugotoweb.jp/en/conversation/episode/8/</a>
+        <div class="link-note">Episode 8「<ruby>祭<rt>まつ</rt></ruby>りの <ruby>日<rt>ひ</rt></ruby>」</div>
+      </div>
+      <div class="link-card">
+        <div class="link-card-label">文法 L8</div>
+        <a href="https://a2-2.marugotoweb.jp/en/grammar/detail/topic4-sec8-1/" target="_blank">a2-2.marugotoweb.jp/en/grammar/detail/topic4-sec8-1/</a>
+        <a href="https://a2-2.marugotoweb.jp/en/grammar/detail/topic4-sec8-2/" target="_blank">a2-2.marugotoweb.jp/en/grammar/detail/topic4-sec8-2/</a>
+        <a href="https://a2-2.marugotoweb.jp/en/grammar/detail/topic4-sec8-3/" target="_blank">a2-2.marugotoweb.jp/en/grammar/detail/topic4-sec8-3/</a>
+        <a href="https://a2-2.marugotoweb.jp/en/grammar/practice/topic4-sec8/" target="_blank">a2-2.marugotoweb.jp/en/grammar/practice/topic4-sec8/</a>
+        <div class="link-note">もう／まだ · 〜か、しっていますか · れんしゅう（Q1–Q3 below）</div>
+      </div>
+      <div class="link-card">
+        <div class="link-card-label">かんじ Topic 4</div>
+        <a href="https://a2-2.marugotoweb.jp/en/kanji/?topic=4" target="_blank">a2-2.marugotoweb.jp/en/kanji/?topic=4</a>
+        <div class="link-note"><ruby>日本<rt>にほん</rt></ruby>まつり — Lesson 7 + Lesson 8</div>
+      </div>
+      <div class="link-card">
+        <div class="link-card-label"><ruby>生活<rt>せいかつ</rt></ruby>と<ruby>文化<rt>ぶんか</rt></ruby>スナップ</div>
+        <a href="https://a2-2.marugotoweb.jp/ja/snap/posts/126.php" target="_blank">a2-2.marugotoweb.jp/ja/snap/posts/126.php</a>
+        <div class="link-note">「<ruby>交通安全<rt>こうつうあんぜん</rt></ruby>」— Topic 4 · LIFE</div>
+      </div>
+      <div class="link-card">
+        <div class="link-card-label">たんごリスト · たんごクイズ</div>
+        <a href="https://words.marugotoweb.jp/" target="_blank">words.marugotoweb.jp</a>
+        <div class="link-note">No direct link in the email: list + quiz = 初級2 りかい L8 · list = 初級2 かつどう L9</div>
+      </div>
+      <div class="link-card">
+        <div class="link-card-label">NHK NEWS WEB EASY</div>
+        <a href="https://news.web.nhk/news/easy/" target="_blank">news.web.nhk/news/easy/</a>
+        <div class="link-note">やさしいことばニュース</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="kanji">
+    <div class="section-head">
+      <span class="section-num">02</span>
+      <h2><ruby>漢字<rt>かんじ</rt></ruby> — Topic 4「<ruby>日本<rt>にほん</rt></ruby>まつり」</h2>
+    </div>
+    <p class="grammar-meta">Lesson 7 · <ruby>雨<rt>あめ</rt></ruby>だったら、どう しますか<span class="exercise-en"> — What do we do if it rains?</span></p>
+    <div class="grammar-table-wrap">
+      <table class="grammar-table">
+        <thead><tr><th>漢字</th><th>読み</th><th class="kanji-en-col">Meaning</th></tr></thead>
+        <tbody>
+          <tr><td class="pattern-col">受付</td><td>うけつけ</td><td class="kanji-en-col">reception (desk)</td></tr>
+          <tr><td class="pattern-col">広場</td><td>ひろば</td><td class="kanji-en-col">square, plaza</td></tr>
+          <tr><td class="pattern-col">問題</td><td>もんだい</td><td class="kanji-en-col">problem, question</td></tr>
+          <tr><td class="pattern-col">同じ</td><td>おなじ</td><td class="kanji-en-col">same</td></tr>
+          <tr><td class="pattern-col">集まります</td><td>あつまります</td><td class="kanji-en-col">to gather</td></tr>
+          <tr><td class="pattern-col">始まります</td><td>はじまります</td><td class="kanji-en-col">to begin</td></tr>
+          <tr><td class="pattern-col">終わります</td><td>おわります</td><td class="kanji-en-col">to end</td></tr>
+          <tr><td class="pattern-col">中止します</td><td>ちゅうしします</td><td class="kanji-en-col">to cancel</td></tr>
+          <tr><td class="pattern-col">教えます</td><td>おしえます</td><td class="kanji-en-col">to teach, to tell</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="grammar-meta" style="margin-top:20px;">Lesson 8 · コンサートは もう <ruby>始<rt>はじ</rt></ruby>まりましたか<span class="exercise-en"> — Has the concert started already?</span></p>
+    <div class="grammar-table-wrap">
+      <table class="grammar-table">
+        <thead><tr><th>漢字</th><th>読み</th><th class="kanji-en-col">Meaning</th></tr></thead>
+        <tbody>
+          <tr><td class="pattern-col">祭り</td><td>まつり</td><td class="kanji-en-col">festival</td></tr>
+          <tr><td class="pattern-col">日本祭</td><td>にほんまつり</td><td class="kanji-en-col">Japan Festival</td></tr>
+          <tr><td class="pattern-col">会場</td><td>かいじょう</td><td class="kanji-en-col">venue</td></tr>
+          <tr><td class="pattern-col">入場料</td><td>にゅうじょうりょう</td><td class="kanji-en-col">entrance fee</td></tr>
+          <tr><td class="pattern-col">参加者</td><td>さんかしゃ</td><td class="kanji-en-col">participant</td></tr>
+          <tr><td class="pattern-col">急ぎます</td><td>いそぎます</td><td class="kanji-en-col">to hurry</td></tr>
+          <tr><td class="pattern-col">決めます</td><td>きめます</td><td class="kanji-en-col">to decide</td></tr>
+          <tr><td class="pattern-col">知ります</td><td>しります</td><td class="kanji-en-col">to (get to) know → しっています</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="atarashii">
+    <div class="section-head">
+      <span class="section-num">NEW</span>
+      <h2>あたらしい ことば — だい8か・だい9か</h2>
+    </div>
+    <p class="grammar-meta">45 words that first appear in だい8か・だい9か (かつどう か · りかい り · ス = only in the audio script). Words from 入門/初級1 and words already in the Anki deck are left out.<span class="exercise-en"> — Source: official Marugoto vocabulary indexes (order of appearance).</span></p>
+    <div class="grammar-table-wrap">
+      <table class="grammar-table vocab-table">
+        <thead><tr><th>ことば</th><th>romaji</th><th class="kanji-en-col">Meaning</th><th>book</th></tr></thead>
+        <tbody>
+            <tr><td class="jp">あちらこちら</td><td class="romaji">achirakochira</td><td class="en kanji-en-col">everyplace/here and there</td><td class="book"><span title="かつどう">か</span> · ス</td></tr>
+            <tr><td class="jp"><ruby>家中<rt>いえじゅう</rt></ruby></td><td class="romaji">iejuu</td><td class="en kanji-en-col">whole house</td><td class="book"><span title="かつどう">か</span> · ス</td></tr>
+            <tr><td class="jp"><ruby>売<rt>う</rt></ruby>りきれ</td><td class="romaji">urikire</td><td class="en kanji-en-col">sold out</td><td class="book"><span title="りかい">り</span></td></tr>
+            <tr><td class="jp"><ruby>大<rt>おお</rt></ruby>そうじ</td><td class="romaji">oosooji</td><td class="en kanji-en-col">major cleaning</td><td class="book"><span title="かつどう">か</span>・<span title="りかい">り</span></td></tr>
+            <tr><td class="jp">おおみそか</td><td class="romaji">oomisoka</td><td class="en kanji-en-col">New Year's Eve</td><td class="book"><span title="かつどう">か</span>・<span title="りかい">り</span></td></tr>
+            <tr><td class="jp"><ruby>大雪<rt>おおゆき</rt></ruby></td><td class="romaji">ooyuki</td><td class="en kanji-en-col">heavy snow</td><td class="book"><span title="りかい">り</span></td></tr>
+            <tr><td class="jp"><ruby>お正月<rt>おしょうがつ</rt></ruby></td><td class="romaji">oshoogatsu (shoogatsu)</td><td class="en kanji-en-col">New Year's holiday</td><td class="book"><span title="かつどう">か</span>・<span title="りかい">り</span></td></tr>
+            <tr><td class="jp">おせち</td><td class="romaji">osechi (ryoori)</td><td class="en kanji-en-col">osechi (traditional Japanese New Year's food)</td><td class="book"><span title="かつどう">か</span></td></tr>
+            <tr><td class="jp"><ruby>お世話<rt>おせわ</rt></ruby></td><td class="romaji">osewa (sewa)</td><td class="en kanji-en-col">care/help</td><td class="book"><span title="かつどう">か</span>・<span title="りかい">り</span></td></tr>
+            <tr><td class="jp">おとしだま</td><td class="romaji">otoshidama</td><td class="en kanji-en-col">New Year's gift (money) for children</td><td class="book"><span title="かつどう">か</span></td></tr>
+            <tr><td class="jp"><ruby>親<rt>おや</rt></ruby></td><td class="romaji">oya</td><td class="en kanji-en-col">parent</td><td class="book"><span title="かつどう">か</span>・<span title="りかい">り</span></td></tr>
+            <tr><td class="jp">かざりつけ</td><td class="romaji">kazaritsuke</td><td class="en kanji-en-col">decorating</td><td class="book"><span title="かつどう">か</span></td></tr>
+            <tr><td class="jp">かるた</td><td class="romaji">karuta</td><td class="en kanji-en-col">karuta (a Japanese card game)</td><td class="book"><span title="かつどう">か</span></td></tr>
+            <tr><td class="jp">かわの／かわのさん</td><td class="romaji">kawano</td><td class="en kanji-en-col">Kawano/Mr.Kawano</td><td class="book"><span title="りかい">り</span></td></tr>
+            <tr><td class="jp"><ruby>元日<rt>がんじつ</rt></ruby></td><td class="romaji">ganjitsu</td><td class="en kanji-en-col">New Year's Day</td><td class="book"><span title="かつどう">か</span></td></tr>
+            <tr><td class="jp"><ruby>元旦<rt>がんたん</rt></ruby></td><td class="romaji">gantan</td><td class="en kanji-en-col">New Year's Day</td><td class="book"><span title="かつどう">か</span></td></tr>
+            <tr><td class="jp"><ruby>帰国<rt>きこく</rt></ruby></td><td class="romaji">kikoku (shimasu)</td><td class="en kanji-en-col">to return to home country</td><td class="book"><span title="りかい">り</span></td></tr>
+            <tr><td class="jp"><ruby>旧年中<rt>きゅうねんちゅう</rt></ruby></td><td class="romaji">kyuunenchuu</td><td class="en kanji-en-col">during the past year</td><td class="book"><span title="かつどう">か</span></td></tr>
+            <tr><td class="jp">クリスマスコンサート</td><td class="romaji">kurisumasukonsaato</td><td class="en kanji-en-col">Christmas concert</td><td class="book"><span title="りかい">り</span></td></tr>
+            <tr><td class="jp">ごちそう</td><td class="romaji">gochisoo</td><td class="en kanji-en-col">feast</td><td class="book"><span title="かつどう">か</span></td></tr>
+            <tr><td class="jp">ごろごろします</td><td class="romaji">gorogoroshimasu</td><td class="en kanji-en-col">to lie around</td><td class="book"><span title="かつどう">か</span>・<span title="りかい">り</span></td></tr>
+            <tr><td class="jp"><ruby>昨年<rt>さくねん</rt></ruby></td><td class="romaji">sakunen</td><td class="en kanji-en-col">last year</td><td class="book"><span title="りかい">り</span></td></tr>
+            <tr><td class="jp"><ruby>試験<rt>しけん</rt></ruby></td><td class="romaji">shiken</td><td class="en kanji-en-col">exam/test</td><td class="book"><span title="りかい">り</span></td></tr>
+            <tr><td class="jp"><ruby>正月休<rt>しょうがつやす</rt></ruby>み</td><td class="romaji">shoogatsuyasumi</td><td class="en kanji-en-col">New Year's holidays</td><td class="book"><span title="りかい">り</span></td></tr>
+            <tr><td class="jp"><ruby>新年<rt>しんねん</rt></ruby></td><td class="romaji">shinnen</td><td class="en kanji-en-col">new year</td><td class="book"><span title="りかい">り</span></td></tr>
+            <tr><td class="jp">すごします</td><td class="romaji">sugoshimasu</td><td class="en kanji-en-col">to spend time</td><td class="book"><span title="かつどう">か</span>・<span title="りかい">り</span></td></tr>
+            <tr><td class="jp">たいくつ(な)</td><td class="romaji">taikutsu (na)</td><td class="en kanji-en-col">boring/dull</td><td class="book"><span title="りかい">り</span></td></tr>
+            <tr><td class="jp"><ruby>大変<rt>たいへん</rt></ruby></td><td class="romaji">taihen</td><td class="en kanji-en-col">very much/greatly</td><td class="book"><span title="かつどう">か</span>・<span title="りかい">り</span></td></tr>
+            <tr><td class="jp">だって</td><td class="romaji">datte</td><td class="en kanji-en-col">because</td><td class="book"><span title="かつどう">か</span> · ス</td></tr>
+            <tr><td class="jp">てら</td><td class="romaji">tera</td><td class="en kanji-en-col">temple</td><td class="book"><span title="かつどう">か</span></td></tr>
+            <tr><td class="jp"><ruby>特別<rt>とくべつ</rt></ruby></td><td class="romaji">tokubetsu (na)</td><td class="en kanji-en-col">special</td><td class="book"><span title="かつどう">か</span>・<span title="りかい">り</span></td></tr>
+            <tr><td class="jp"><ruby>年<rt>とし</rt></ruby></td><td class="romaji">toshi</td><td class="en kanji-en-col">year</td><td class="book"><span title="りかい">り</span></td></tr>
+            <tr><td class="jp">ニューイヤーパーティー</td><td class="romaji">nyuuiyaapaatii</td><td class="en kanji-en-col">New Year party</td><td class="book"><span title="りかい">り</span></td></tr>
+            <tr><td class="jp">ねんがじょう</td><td class="romaji">nengajoo</td><td class="en kanji-en-col">New Year's card</td><td class="book"><span title="かつどう">か</span></td></tr>
+            <tr><td class="jp"><ruby>年始<rt>ねんし</rt></ruby></td><td class="romaji">nenshi</td><td class="en kanji-en-col">beginning of the year</td><td class="book"><span title="りかい">り</span></td></tr>
+            <tr><td class="jp"><ruby>年末<rt>ねんまつ</rt></ruby></td><td class="romaji">nenmatsu</td><td class="en kanji-en-col">end of the year</td><td class="book"><span title="りかい">り</span></td></tr>
+            <tr><td class="jp"><ruby>年末年始<rt>ねんまつねんし</rt></ruby></td><td class="romaji">nenmatsunenshi</td><td class="en kanji-en-col">year-end and New Year</td><td class="book"><span title="りかい">り</span></td></tr>
+            <tr><td class="jp">はつもうで</td><td class="romaji">hatsumoode</td><td class="en kanji-en-col">New Year's visit to a shrine</td><td class="book"><span title="かつどう">か</span></td></tr>
+            <tr><td class="jp"><ruby>冬休<rt>ふゆやす</rt></ruby>み</td><td class="romaji">fuyuyasumi</td><td class="en kanji-en-col">winter holidays</td><td class="book"><span title="りかい">り</span></td></tr>
+            <tr><td class="jp"><ruby>平成<rt>へいせい</rt></ruby></td><td class="romaji">heisei</td><td class="en kanji-en-col">Heesee/Heisei (imperial era name)</td><td class="book"><span title="かつどう">か</span></td></tr>
+            <tr><td class="jp">ホンコン</td><td class="romaji">honkon</td><td class="en kanji-en-col">HongKong</td><td class="book"><span title="かつどう">か</span></td></tr>
+            <tr><td class="jp"><ruby>６日<rt>むいか</rt></ruby></td><td class="romaji">muika</td><td class="en kanji-en-col">the sixth day of the month/six days</td><td class="book"><span title="りかい">り</span></td></tr>
+            <tr><td class="jp">めんどう(な)</td><td class="romaji">mendoo (na)</td><td class="en kanji-en-col">troublesome</td><td class="book"><span title="かつどう">か</span></td></tr>
+            <tr><td class="jp">もどります</td><td class="romaji">modorimasu</td><td class="en kanji-en-col">to return/to go back</td><td class="book"><span title="りかい">り</span></td></tr>
+            <tr><td class="jp"><ruby>４日<rt>よっか</rt></ruby></td><td class="romaji">yokka</td><td class="en kanji-en-col">the fourth day of the month/four days</td><td class="book"><span title="かつどう">か</span>・<span title="りかい">り</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+
+  <section id="grammar">
+    <div class="section-head">
+      <span class="section-num">03</span>
+      <h2><ruby>文法<rt>ぶんぽう</rt></ruby> — だい8か</h2>
+    </div>
+
+    <div class="grammar-pattern">
+      <h3>1. もう V ました ／ まだ V-て いません — already / not yet</h3>
+      <div class="pattern-box">
+        <div class="pattern-formula">じゅんびは もう <ruby>終<rt>お</rt></ruby>わりましたか。— いいえ、まだ <ruby>終<rt>お</rt></ruby>わっていません。</div>
+        <div class="pattern-gloss">whether an action or event has finished</div>
+      </div>
+      <ul class="formation-list">
+        <li><span class="jp">もう ＋ V-ました</span> — already did / has already happened</li>
+        <li><span class="jp">まだ ＋ V-て いません</span> — hasn't happened yet (not まだ V-ませんでした)</li>
+      </ul>
+      <div class="examples-block">
+        <h4>Examples</h4>
+          <div class="example-item">
+            <span class="example-jp"><ruby>受付<rt>うけつけ</rt></ruby>の じゅんびは もう できました。</span>
+            <span class="example-en">The reception preparations are already done.</span>
+          </div>
+          <div class="example-item">
+            <span class="example-jp">14<ruby>時<rt>じ</rt></ruby>からの えいがは もう <ruby>始<rt>はじ</rt></ruby>まりました。つぎは 16<ruby>時<rt>じ</rt></ruby>からです。</span>
+            <span class="example-en">The 2 p.m. film has already started. The next one is from 4 p.m.</span>
+          </div>
+          <div class="example-item">
+            <span class="example-jp">A) カラオケコンテストの <ruby>参加者<rt>さんかしゃ</rt></ruby>は もう <ruby>来<rt>き</rt></ruby>ましたか。<br>B) いいえ、まだ <ruby>来<rt>き</rt></ruby>ていません。</span>
+            <span class="example-en">A) Have the karaoke contest participants arrived yet? B) No, not yet.</span>
+          </div>
+      </div>
+    </div>
+
+    <div class="grammar-pattern">
+      <h3>2. まだ V1 ます／V1-て います ・ もう V1 ません／V2 ました — still / no longer</h3>
+      <div class="pattern-box">
+        <div class="pattern-formula">ペンは まだ ありますか。— ペンは もう ありません。</div>
+        <div class="pattern-gloss">whether something is still going on / still available</div>
+      </div>
+      <ul class="formation-list">
+        <li><span class="jp">まだ ＋ V-ます／V-て います</span> — still (is / is doing)</li>
+        <li><span class="jp">もう ＋ V-ません</span> — no longer · <span class="jp">もう ＋ V-ました</span> — has already (ended)</li>
+      </ul>
+      <div class="examples-block">
+        <h4>Examples</h4>
+          <div class="example-item">
+            <span class="example-jp">A) カラオケコンテスト、まだ さんかできますか。<br>B) はい、まだ できますよ。</span>
+            <span class="example-en">A) Can I still enter the karaoke contest? B) Yes, you still can.</span>
+          </div>
+          <div class="example-item">
+            <span class="example-jp">A) おかしは まだ ありますか。<br>B) いいえ、もう ありません。おかしは もう <ruby>全部<rt>ぜんぶ</rt></ruby> <ruby>食<rt>た</rt></ruby>べました。</span>
+            <span class="example-en">A) Are there still snacks? B) No, there aren't any more. I already ate all of them.</span>
+          </div>
+          <div class="example-item">
+            <span class="example-jp">A) すみません。からて デモンストレーションは まだ やっていますか。<br>B) はい、まだ やっていますよ。こちらから どうぞ。</span>
+            <span class="example-en">A) Excuse me, is the karate demonstration still on? B) Yes, it's still on. This way, please.</span>
+          </div>
+          <div class="example-item">
+            <span class="example-jp">A) Jポップコンサートは まだ やっていますか。<br>B) すみません、もう <ruby>終<rt>お</rt></ruby>わりました。</span>
+            <span class="example-en">A) Is the J-pop concert still on? B) Sorry, it's already finished.</span>
+          </div>
+      </div>
+    </div>
+
+    <div class="grammar-pattern">
+      <h3>3. S〔いつ／どこ／何…（ふつうけい）か〕、しっていますか／わかりますか — do you know…?</h3>
+      <div class="pattern-box">
+        <div class="pattern-formula">コンサートが <ruby>何時<rt>なんじ</rt></ruby>に <ruby>始<rt>はじ</rt></ruby>まるか、<ruby>知<rt>し</rt></ruby>っていますか。</div>
+        <div class="pattern-gloss">embedded question: question word + plain form + か</div>
+      </div>
+      <ul class="formation-list">
+        <li><span class="jp">はじまりますか → はじまるか</span></li>
+        <li><span class="jp">もらえますか → もらえるか</span></li>
+        <li><span class="jp">やっていますか → やっているか</span></li>
+      </ul>
+      <p class="grammar-meta">わかります also means "know (have the information)", so 〜か、わかりますか works the same as 〜か、しっていますか.</p>
+      <div class="examples-block">
+        <h4>Examples</h4>
+          <div class="example-item">
+            <span class="example-jp">A) <ruby>何時<rt>なんじ</rt></ruby>に マンガきょうしつが <ruby>終<rt>お</rt></ruby>わるか、<ruby>知<rt>し</rt></ruby>っていますか。<br>B) わかりません。<ruby>受付<rt>うけつけ</rt></ruby>で <ruby>聞<rt>き</rt></ruby>いてみましょう。</span>
+            <span class="example-en">A) Do you know what time the manga class finishes? B) I don't know. Let's ask at reception.</span>
+          </div>
+          <div class="example-item">
+            <span class="example-jp">A) どこで カラオケコンテストを やるか、わかりますか。<br>B) あの <ruby>大<rt>おお</rt></ruby>きい ホールですよ。</span>
+            <span class="example-en">A) Do you know where the karaoke contest is held? B) In that big hall.</span>
+          </div>
+          <div class="example-item">
+            <span class="example-jp">A) たいこ きょうしつは どこで やっているか、わかりますか。<br>B) たいこ きょうしつは 1かいの ホールですよ。</span>
+            <span class="example-en">A) Do you know where the drum class is? B) It's in the hall on the first floor.</span>
+          </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="practice">
+    <div class="section-head">
+      <span class="section-num">03b</span>
+      <h2><ruby>文法<rt>ぶんぽう</rt></ruby> L8 れんしゅう<ruby>問題<rt>もんだい</rt></ruby></h2>
+    </div>
+    <p class="grammar-meta">From the online practice page (answers from the site). Try first, then press EN for the explanations.</p>
+    <h3 style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin:18px 0 10px;">Q1 — ただしい ほうを えらびましょう。</h3>
+      <div class="exercise-item">
+        <div class="exercise-num">1</div>
+        <div class="exercise-context">コンテストの <ruby>参加者<rt>さんかしゃ</rt></ruby>は もう（<ruby>来<rt>き</rt></ruby>ました ／ <ruby>来<rt>き</rt></ruby>ていません）。</div>
+        <div class="exercise-answer"><span class="answer-arrow">→</span><span class="answer-val">来ました</span></div>
+        <div class="exercise-en"><span class="opts"><span class="opt-ok">来ました — have come ✓</span><span class="opt-no">来ていません — haven't come (goes with まだ)</span></span>The contest participants have already arrived.</div>
+      </div>
+      <div class="exercise-item">
+        <div class="exercise-num">2</div>
+        <div class="exercise-context">A）まんがきょうしつは（まだ ／ もう）<ruby>終<rt>お</rt></ruby>わりましたか。<br>B）いいえ、まだ（<ruby>終<rt>お</rt></ruby>わりました ／ <ruby>終<rt>お</rt></ruby>わっていません）。</div>
+        <div class="exercise-answer"><span class="answer-arrow">→</span><span class="answer-val">もう · 終わっていません</span></div>
+        <div class="exercise-en"><span class="opts"><span>blank 1: <span class="opt-no">まだ — still</span> / <span class="opt-ok">もう — already ✓</span></span><span>blank 2: <span class="opt-no">終わりました — has ended</span> / <span class="opt-ok">終わっていません — hasn't ended ✓</span></span></span>A: Has the manga class finished already? B: No, not yet.</div>
+      </div>
+      <div class="exercise-item">
+        <div class="exercise-num">3</div>
+        <div class="exercise-context">A）ペンは（まだ ／ もう）ありますか。<br>B）はい、（まだ ／ もう）ありますよ。どうぞ。</div>
+        <div class="exercise-answer"><span class="answer-arrow">→</span><span class="answer-val">まだ · まだ</span></div>
+        <div class="exercise-en"><span class="opts"><span>blank 1: <span class="opt-ok">まだ — still ✓</span> / <span class="opt-no">もう — already</span></span><span>blank 2: <span class="opt-ok">まだ — still ✓</span> / <span class="opt-no">もう — (もう + ありません = none left)</span></span></span>A: Are there still pens? B: Yes, there still are. Here you go.</div>
+      </div>
+      <div class="exercise-item">
+        <div class="exercise-num">4</div>
+        <div class="exercise-context">A）Jポップコンサートが <ruby>何時<rt>なんじ</rt></ruby>に（<ruby>始<rt>はじ</rt></ruby>まって ／ <ruby>始<rt>はじ</rt></ruby>まる）か、わかりますか。<br>B）ううん、わかりません。あそこで <ruby>聞<rt>き</rt></ruby>いてみましょう。</div>
+        <div class="exercise-answer"><span class="answer-arrow">→</span><span class="answer-val">始まる</span></div>
+        <div class="exercise-en"><span class="opts"><span class="opt-no">始まって — て-form (can't go before か)</span><span class="opt-ok">始まる — plain form + か ✓</span></span>A: Do you know what time the J-pop concert starts? B: No, I don't. Let's ask over there.</div>
+      </div>
+    <h3 style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin:18px 0 10px;">Q2 — ただしい ほうを えらびましょう。</h3>
+      <div class="exercise-item">
+        <div class="exercise-num">1</div>
+        <div class="exercise-context">A）<ruby>受付<rt>うけつけ</rt></ruby>の じゅんびは もう（できました ／ できませんでした）か。<br>B）いいえ、まだです。<ruby>急<rt>いそ</rt></ruby>ぎましょう。</div>
+        <div class="exercise-answer"><span class="answer-arrow">→</span><span class="answer-val">できました</span></div>
+        <div class="exercise-en"><span class="opts"><span class="opt-ok">できました — is ready / done ✓</span><span class="opt-no">できませんでした — wasn't done (past negative, not "not yet")</span></span>A: Are the reception preparations done already? B: No, not yet. Let's hurry.</div>
+      </div>
+      <div class="exercise-item">
+        <div class="exercise-num">2</div>
+        <div class="exercise-context">A）<ruby>日本祭<rt>にほんまつり</rt></ruby>で <ruby>使<rt>つか</rt></ruby>う どうぐは もう（<ruby>買<rt>か</rt></ruby>いました ／ <ruby>買<rt>か</rt></ruby>いませんでした）か。<br>B）はい、もう（<ruby>買<rt>か</rt></ruby>いました ／ <ruby>買<rt>か</rt></ruby>いませんでした）。</div>
+        <div class="exercise-answer"><span class="answer-arrow">→</span><span class="answer-val">買いました · 買いました</span></div>
+        <div class="exercise-en"><span class="opts"><span>blank 1: <span class="opt-ok">買いました — bought ✓</span> / <span class="opt-no">買いませんでした — didn't buy</span></span><span>blank 2: <span class="opt-ok">買いました — bought ✓</span> / <span class="opt-no">買いませんでした — didn't buy</span></span></span>A: Have you already bought the tools for the Japan Festival? B: Yes, I've already bought them.</div>
+      </div>
+      <div class="exercise-item">
+        <div class="exercise-num">3</div>
+        <div class="exercise-context">A）Jポップコンサートは まだ やっていますか。<br>B）えーと、コンサートは 3<ruby>時<rt>じ</rt></ruby>までですから、あ、まだ（やっています ／ やっていません）よ。</div>
+        <div class="exercise-answer"><span class="answer-arrow">→</span><span class="answer-val">やっています</span></div>
+        <div class="exercise-en"><span class="opts"><span class="opt-ok">やっています — is (still) on ✓</span><span class="opt-no">やっていません — isn't on</span></span>A: Is the J-pop concert still on? B: Um, the concert is until 3, so… oh, it's still on.</div>
+      </div>
+      <div class="exercise-item">
+        <div class="exercise-num">4</div>
+        <div class="exercise-context">A）お<ruby>客<rt>きゃく</rt></ruby>さんに あげる おかしは まだ ありますか。<br>B）もう（あります ／ ありません）。じむしつに とりに <ruby>行<rt>い</rt></ruby>きます。<br>A）そうですか。<ruby>人気<rt>にんき</rt></ruby>が ありますね。</div>
+        <div class="exercise-answer"><span class="answer-arrow">→</span><span class="answer-val">ありません</span></div>
+        <div class="exercise-en"><span class="opts"><span class="opt-no">あります — there are</span><span class="opt-ok">ありません — もう ありません = none left ✓</span></span>A: Are there still sweets to give the guests? B: There are none left. I'll go and get some from the office. A: I see. They're popular, aren't they.</div>
+      </div>
+    <h3 style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin:18px 0 10px;">Q3 — ただしい じゅんに ならべましょう。</h3>
+      <div class="exercise-item">
+        <div class="exercise-num">1</div>
+        <div class="exercise-context">A）しょどうきょうしつ ＿ ＿ ＿ ＿ か、<ruby>知<rt>し</rt></ruby>っていますか。〔<ruby>始<rt>はじ</rt></ruby>まる ／ が ／ に ／ <ruby>何時<rt>なんじ</rt></ruby>〕<br>B）10<ruby>時<rt>じ</rt></ruby>からですよ。</div>
+        <div class="exercise-answer"><span class="answer-arrow">→</span><span class="answer-val">しょどうきょうしつが 何時に 始まるか</span></div>
+        <div class="exercise-en">A: Do you know what time the calligraphy class starts? B: From 10 o'clock.</div>
+      </div>
+      <div class="exercise-item">
+        <div class="exercise-num">2</div>
+        <div class="exercise-context">A）しょどうきょうしつ ＿ ＿ ＿ ＿ か、<ruby>知<rt>し</rt></ruby>っていますか。〔で ／ は ／ やる ／ どこ〕<br>B）さくらホールですよ。</div>
+        <div class="exercise-answer"><span class="answer-arrow">→</span><span class="answer-val">しょどうきょうしつは どこで やるか</span></div>
+        <div class="exercise-en">A: Do you know where the calligraphy class is held? B: In Sakura Hall.</div>
+      </div>
+      <div class="exercise-item">
+        <div class="exercise-num">3</div>
+        <div class="exercise-context">A）しょどうの どうぐ ＿ ＿ ＿ ＿ か、わかりますか。〔が ／ <ruby>何<rt>なに</rt></ruby> ／ ひつよう ／ は〕<br>B）どうぐは きょうしつに ありますよ。</div>
+        <div class="exercise-answer"><span class="answer-arrow">→</span><span class="answer-val">しょどうの どうぐは 何が ひつようか</span></div>
+        <div class="exercise-en">A: Do you know which calligraphy tools are needed? B: The tools are in the classroom. (ナA: ひつようだ → ひつようか)</div>
+      </div>
+      <div class="exercise-item">
+        <div class="exercise-num">4</div>
+        <div class="exercise-context">A）しょどうきょうしつ ＿ ＿ ＿ ＿ ＿ か、<ruby>知<rt>し</rt></ruby>っていますか。〔どんな ／ で ／ を ／ <ruby>書<rt>か</rt></ruby>く ／ <ruby>字<rt>じ</rt></ruby>〕<br>B）<ruby>好<rt>す</rt></ruby>きな ことばを <ruby>書<rt>か</rt></ruby>きますよ。</div>
+        <div class="exercise-answer"><span class="answer-arrow">→</span><span class="answer-val">しょどうきょうしつで どんな 字を 書くか</span></div>
+        <div class="exercise-en">A: Do you know what characters we'll write in the calligraphy class? B: You write a word you like.</div>
+      </div>
+  </section>
+
+  <section id="kaiwa">
+    <div class="section-head">
+      <span class="section-num">04</span>
+      <h2>かいわ Episode 8「<ruby>祭<rt>まつ</rt></ruby>りの <ruby>日<rt>ひ</rt></ruby>」</h2>
+    </div>
+    <div class="rikai-section-label"><span>Can-do 22 · 23 · 24</span><span class="badge badge-new">L8</span></div>
+    <div class="dialogue-line">
+      <span class="speaker">1 · リサ</span>
+      <div>
+        <span class="utterance">Jポップコンサート、<ruby>何時<rt>なんじ</rt></ruby>に <ruby>始<rt>はじ</rt></ruby>まるか、<ruby>知<rt>し</rt></ruby>ってますか。</span>
+        <span class="dialogue-en">Do you know what time the J-pop concert starts?</span>
+      </div>
+    </div>
+    <div class="dialogue-line">
+      <span class="speaker">2 · ロイ</span>
+      <div>
+        <span class="utterance">わかりません。<ruby>受付<rt>うけつけ</rt></ruby>で <ruby>聞<rt>き</rt></ruby>いてみましょう。</span>
+        <span class="dialogue-en">I don't know. Let's ask at reception.</span>
+      </div>
+    </div>
+    <div class="dialogue-line">
+      <span class="speaker">3 · リサ</span>
+      <div>
+        <span class="utterance">あのう、すみません。Jポップコンサートは <ruby>何時<rt>なんじ</rt></ruby>からですか。</span>
+        <span class="dialogue-en">Excuse me. What time does the J-pop concert start?</span>
+      </div>
+    </div>
+    <div class="dialogue-line">
+      <span class="speaker">4 · 受付</span>
+      <div>
+        <span class="utterance"><ruby>2時<rt>にじ</rt></ruby>からです。</span>
+        <span class="dialogue-en">From 2 o'clock.</span>
+      </div>
+    </div>
+    <div class="dialogue-line">
+      <span class="speaker">5 · リサ</span>
+      <div>
+        <span class="utterance">ありがとうございます。</span>
+        <span class="dialogue-en">Thank you.</span>
+      </div>
+    </div>
+    <div class="dialogue-line">
+      <span class="speaker">6 · ロイ</span>
+      <div>
+        <span class="utterance"><ruby>私<rt>わたし</rt></ruby>は じゅうどうの デモンストレーションを <ruby>見<rt>み</rt></ruby>に <ruby>行<rt>い</rt></ruby>きます。</span>
+        <span class="dialogue-en">I'm going to see the judo demonstration.</span>
+      </div>
+    </div>
+    <div class="dialogue-line">
+      <span class="speaker">7 · リサ</span>
+      <div>
+        <span class="utterance"><ruby>私<rt>わたし</rt></ruby>は ヨサコイの <ruby>写真<rt>しゃしん</rt></ruby>を とりに <ruby>行<rt>い</rt></ruby>きます。</span>
+        <span class="dialogue-en">I'm going to take photos of the Yosakoi.</span>
+      </div>
+    </div>
+    <div class="dialogue-line">
+      <span class="speaker">8 · ロイ</span>
+      <div>
+        <span class="utterance">オッケー。コンサートで <ruby>会<rt>あ</rt></ruby>いましょう。</span>
+        <span class="dialogue-en">OK. Let's meet at the concert.</span>
+      </div>
+    </div>
+    <div class="dialogue-line">
+      <span class="speaker">9 · ロイ</span>
+      <div>
+        <span class="utterance">すみません。じゅうどうデモンストレーション、もう <ruby>始<rt>はじ</rt></ruby>まりましたか。</span>
+        <span class="dialogue-en">Excuse me. Has the judo demonstration started yet?</span>
+      </div>
+    </div>
+    <div class="dialogue-line">
+      <span class="speaker">10 · 受付</span>
+      <div>
+        <span class="utterance">いいえ、まだ <ruby>始<rt>はじ</rt></ruby>まってません。</span>
+        <span class="dialogue-en">No, it hasn't started yet.</span>
+      </div>
+    </div>
+    <div class="dialogue-line">
+      <span class="speaker">11 · ロイ</span>
+      <div>
+        <span class="utterance"><ruby>入<rt>はい</rt></ruby>っても いいですか。</span>
+        <span class="dialogue-en">May I go in?</span>
+      </div>
+    </div>
+    <div class="dialogue-line">
+      <span class="speaker">12 · 受付</span>
+      <div>
+        <span class="utterance">どうぞ。</span>
+        <span class="dialogue-en">Go ahead.</span>
+      </div>
+    </div>
+    <div class="dialogue-line">
+      <span class="speaker">13 · (メッセージ)</span>
+      <div>
+        <span class="utterance">すみません。おくれます。</span>
+        <span class="dialogue-en">Sorry. I'll be late.</span>
+      </div>
+    </div>
+    <div class="dialogue-line">
+      <span class="speaker">14 · (メッセージ)</span>
+      <div>
+        <span class="utterance">じゃ、<ruby>私<rt>わたし</rt></ruby>は コンサートに <ruby>行<rt>い</rt></ruby>きます。</span>
+        <span class="dialogue-en">OK, then I'll go to the concert.</span>
+      </div>
+    </div>
+    <div class="dialogue-line">
+      <span class="speaker">15 · ジェームズ</span>
+      <div>
+        <span class="utterance">みなさん、ほんじつは おいそがしい <ruby>中<rt>なか</rt></ruby>、Jポップコンサートに おいでくださって、ありがとうございます。</span>
+        <span class="dialogue-en">Everyone, thank you for taking time out of your busy day to come to the J-pop concert.</span>
+      </div>
+    </div>
+    <div class="dialogue-line">
+      <span class="speaker">16 · ジェームズ</span>
+      <div>
+        <span class="utterance">はじめに みなさんに おねがいが あります。この かいじょうでは <ruby>飲食<rt>いんしょく</rt></ruby>は ごえんりょください。よろしく お<ruby>願<rt>ねが</rt></ruby>いいたします。</span>
+        <span class="dialogue-en">First, I have a request: please refrain from eating and drinking in this venue. Thank you.</span>
+      </div>
+    </div>
+    <div class="dialogue-line">
+      <span class="speaker">17 · ジェームズ</span>
+      <div>
+        <span class="utterance"><ruby>写真<rt>しゃしん</rt></ruby>は だいじょうぶです。</span>
+        <span class="dialogue-en">Photos are fine.</span>
+      </div>
+    </div>
+    <div class="dialogue-line">
+      <span class="speaker">18 · ロイ</span>
+      <div>
+        <span class="utterance">すみません。Jポップコンサート、まだ やってますか。</span>
+        <span class="dialogue-en">Excuse me. Is the J-pop concert still on?</span>
+      </div>
+    </div>
+    <div class="dialogue-line">
+      <span class="speaker">19 · 受付</span>
+      <div>
+        <span class="utterance">はい、まだ やってます。</span>
+        <span class="dialogue-en">Yes, it's still on.</span>
+      </div>
+    </div>
+    <div class="dialogue-line">
+      <span class="speaker">20 · ロイ</span>
+      <div>
+        <span class="utterance">よかった。<ruby>入<rt>はい</rt></ruby>っても いいですか。</span>
+        <span class="dialogue-en">Great. May I go in?</span>
+      </div>
+    </div>
+    <div class="dialogue-line">
+      <span class="speaker">21 · 受付</span>
+      <div>
+        <span class="utterance">どうぞ。</span>
+        <span class="dialogue-en">Go ahead.</span>
+      </div>
+    </div>
+    <div class="dialogue-line">
+      <span class="speaker">22 · ロイ</span>
+      <div>
+        <span class="utterance">すみませんでした。</span>
+        <span class="dialogue-en">Sorry (for being late).</span>
+      </div>
+    </div>
+    <div class="dialogue-line">
+      <span class="speaker">23 · リサ</span>
+      <div>
+        <span class="utterance">だいじょうぶです。</span>
+        <span class="dialogue-en">It's OK.</span>
+      </div>
+    </div>
+
+    <div class="rikai-page">
+      <h3><ruby>生活<rt>せいかつ</rt></ruby>と<ruby>文化<rt>ぶんか</rt></ruby>スナップ —「<ruby>交通安全<rt>こうつうあんぜん</rt></ruby>」</h3>
+      <p class="grammar-meta"><ruby>日本<rt>にほん</rt></ruby>の<ruby>小学生<rt>しょうがくせい</rt></ruby>は、<ruby>子<rt>こ</rt></ruby>どもだけで<ruby>歩<rt>ある</rt></ruby>いて<ruby>学校<rt>がっこう</rt></ruby>へ<ruby>行<rt>い</rt></ruby>くことが<ruby>多<rt>おお</rt></ruby>いです。<span class="exercise-en"> — Japanese primary school children often walk to school on their own, without adults.</span></p>
+      <p class="grammar-meta">ふじわらさんは、<ruby>子<rt>こ</rt></ruby>どもが<ruby>学校<rt>がっこう</rt></ruby>へ<ruby>行<rt>い</rt></ruby>くとき<ruby>危<rt>あぶ</rt></ruby>なくないように、<ruby>毎朝<rt>まいあさ</rt></ruby>、<ruby>道<rt>みち</rt></ruby>に<ruby>立<rt>た</rt></ruby>って<ruby>交通安全<rt>こうつうあんぜん</rt></ruby>のボランティアをしています。<span class="exercise-en"> — So that the children are safe on their way to school, Mr./Ms. Fujiwara stands in the street every morning as a road-safety volunteer.</span></p>
+      <p class="grammar-meta"><ruby>旗<rt>はた</rt></ruby>を<ruby>上<rt>あ</rt></ruby>げて<ruby>車<rt>くるま</rt></ruby>に<ruby>知<rt>し</rt></ruby>らせたり、<ruby>子<rt>こ</rt></ruby>どもが<ruby>道路<rt>どうろ</rt></ruby>を<ruby>渡<rt>わた</rt></ruby>るのを<ruby>見守<rt>みまも</rt></ruby>ったりします。<span class="exercise-en"> — They raise a flag to warn cars, and watch over the children as they cross the road.</span></p>
+      <p class="grammar-meta"><ruby>子<rt>こ</rt></ruby>どもたちはふじわらさんに<ruby>元気<rt>げんき</rt></ruby>にあいさつをして<ruby>学校<rt>がっこう</rt></ruby>へ<ruby>行<rt>い</rt></ruby>きます。<span class="exercise-en"> — The children greet Fujiwara-san cheerfully and go on to school.</span></p>
+    </div>
+  </section>
+
+  <section id="rikai">
+    <div class="section-head">
+      <span class="section-num">05</span>
+      <h2>りかい pp.82–84 — だい8か「コンサートは もう <ruby>始<rt>はじ</rt></ruby>まりましたか」</h2>
+    </div>
+    <div class="callout" style="margin-bottom:32px;">
+      <strong>だい8か:</strong> コンサートは もう <ruby>始<rt>はじ</rt></ruby>まりましたか<span class="exercise-en"> — Has the concert started already?</span><br>
+      <strong>こたえ:</strong> こたえとスクリプト pp.183–184<span class="exercise-en"> — every answer below is copied from the answer key</span><br>
+      <strong>しゅくだい:</strong> 84ページ（4 どっかい）を <ruby>準備<rt>じゅんび</rt></ruby>しましょう。<span class="exercise-en"> — Homework: prepare p.84 (reading).</span>
+    </div>
+
+    <div class="rikai-page">
+      <h3>3-1 — <ruby>聞<rt>き</rt></ruby>きましょう。 (p.82 · 152)</h3>
+      <div class="audio-block">
+        <div class="audio-block-label">▶ 152</div>
+        <div class="audio-row">
+          <span class="audio-row-label">exercise</span>
+          <audio controls preload="none"><source src="../audio/rikai/152_8_3_1.mp3" type="audio/mpeg"></audio>
+        </div>
+        <div class="audio-row">
+          <span class="audio-row-label">かいわ</span>
+          <audio controls preload="none"><source src="../audio/rikai/152_8_3_1_kaiwa.mp3" type="audio/mpeg"></audio>
+        </div>
+      </div>
+    <div class="rikai-dialogue">
+      <div class="rikai-line">
+        <div class="rikai-speaker"><ruby>客<rt>きゃく</rt></ruby>1</div>
+        <span class="rikai-jp">Jポップコンサートが <ruby>何時<rt>なんじ</rt></ruby>に <ruby>始<rt>はじ</rt></ruby>まるか、<ruby>知<rt>し</rt></ruby>っていますか。</span>
+        <span class="rikai-en">Do you know what time the J-pop concert starts?</span>
+      </div>
+      <div class="rikai-line">
+        <div class="rikai-speaker"><ruby>客<rt>きゃく</rt></ruby>2</div>
+        <span class="rikai-jp">ううん、わかりません。<ruby>受付<rt>うけつけ</rt></ruby>で <ruby>聞<rt>き</rt></ruby>いてみましょう。</span>
+        <span class="rikai-en">No, I don't. Let's ask at reception.</span>
+      </div>
+      <div class="rikai-line">
+        <div class="rikai-speaker"><ruby>客<rt>きゃく</rt></ruby>2</div>
+        <span class="rikai-jp">あの、すみません。Jポップコンサートは <ruby>何時<rt>なんじ</rt></ruby>からですか。</span>
+        <span class="rikai-en">Um, excuse me. What time is the J-pop concert from?</span>
+      </div>
+      <div class="rikai-line">
+        <div class="rikai-speaker"><ruby>受付<rt>うけつけ</rt></ruby></div>
+        <span class="rikai-jp">3<ruby>時<rt>じ</rt></ruby>からです。</span>
+        <span class="rikai-en">From 3 o'clock.</span>
+      </div>
+      <div class="rikai-line">
+        <div class="rikai-speaker"><ruby>客<rt>きゃく</rt></ruby>2</div>
+        <span class="rikai-jp">3<ruby>時<rt>じ</rt></ruby>からですね。ありがとうございます。</span>
+        <span class="rikai-en">From 3, then. Thank you.</span>
+      </div>
+    </div>
+    </div>
+
+    <div class="rikai-page">
+      <h3>3-2 — S〔いつ／どこ／<ruby>何<rt>なに</rt></ruby>…（ふつうけい）か〕、しっていますか／わかりますか (p.82)</h3>
+      <div class="pattern-box">
+        <div class="pattern-formula">コンサートが <ruby>何時<rt>なんじ</rt></ruby>に <strong><ruby>始<rt>はじ</rt></ruby>まるか</strong>、<ruby>知<rt>し</rt></ruby>っていますか。</div>
+        <div class="pattern-gloss">Do you know when / where / who / what…? · <ruby>話<rt>はな</rt></ruby>し<ruby>言葉<rt>ことば</rt></ruby>: しってますか · <ruby>注意<rt>ちゅうい</rt></ruby>: N／ナA <s>だ</s> + か → どんな マンガか／どこが べんりか しっていますか</div>
+      </div>
+      <h4 style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin:18px 0 10px;">① ことばを えらんで、ただしい かたちを <ruby>書<rt>か</rt></ruby>きましょう。 (CHECK! 153)</h4>
+      <div class="audio-block">
+        <div class="audio-block-label">▶ CHECK! 153</div>
+        <div class="audio-row">
+          <span class="audio-row-label">exercise</span>
+          <audio controls preload="none"><source src="../audio/rikai/153_8_3_2(1).mp3" type="audio/mpeg"></audio>
+        </div>
+        <div class="audio-row">
+          <span class="audio-row-label">こたえ</span>
+          <audio controls preload="none"><source src="../audio/rikai/track_153_answers.mp3" type="audio/mpeg"></audio>
+        </div>
+      </div>
+      <div class="exercise-item">
+        <div class="exercise-num">❶</div>
+        <div class="exercise-context">マンガきょうしつが <ruby>何時<rt>なんじ</rt></ruby>に（　）、<ruby>知<rt>し</rt></ruby>っていますか。</div>
+        <div class="exercise-answer"><span class="answer-arrow">→</span><span class="answer-val">c おわるか</span></div>
+        <div class="exercise-en"><span class="opts"><span class="opt-no">a かきます — draw</span><span class="opt-no">b やります — do / hold</span><span class="opt-ok">c おわります — end ✓</span><span class="opt-no">d もらえます — can get</span><span class="opt-no">e ひつようです — is needed</span></span>Do you know what time the manga class ends? (example)</div>
+      </div>
+      <div class="exercise-item">
+        <div class="exercise-num">❷</div>
+        <div class="exercise-context">マンガきょうしつで どんな マンガを（　）、<ruby>聞<rt>き</rt></ruby>いてみましょう。</div>
+        <div class="exercise-answer"><span class="answer-arrow">→</span><span class="answer-val">a かくか</span></div>
+        <div class="exercise-en"><span class="opts"><span class="opt-ok">a かきます — draw ✓</span><span class="opt-no">b やります — do / hold</span><span class="opt-no">c おわります — end</span><span class="opt-no">d もらえます — can get</span><span class="opt-no">e ひつようです — is needed</span></span>Let's ask what kind of manga we'll draw in the manga class.</div>
+      </div>
+      <div class="exercise-item">
+        <div class="exercise-num">❸</div>
+        <div class="exercise-context">マンガの どうぐは <ruby>何<rt>なに</rt></ruby>が（　）、わかりますか。</div>
+        <div class="exercise-answer"><span class="answer-arrow">→</span><span class="answer-val">e ひつようか</span></div>
+        <div class="exercise-en"><span class="opts"><span class="opt-no">a かきます — draw</span><span class="opt-no">b やります — do / hold</span><span class="opt-no">c おわります — end</span><span class="opt-no">d もらえます — can get</span><span class="opt-ok">e ひつようです — is needed ✓</span></span>Do you know what tools you need for manga? (ナA: ひつようだ → ひつようか, だ drops)</div>
+      </div>
+      <div class="exercise-item">
+        <div class="exercise-num">❹</div>
+        <div class="exercise-context">どこで カラオケコンテストを（　）、<ruby>知<rt>し</rt></ruby>っていますか。</div>
+        <div class="exercise-answer"><span class="answer-arrow">→</span><span class="answer-val">b やるか</span></div>
+        <div class="exercise-en"><span class="opts"><span class="opt-no">a かきます — draw</span><span class="opt-ok">b やります — do / hold ✓</span><span class="opt-no">c おわります — end</span><span class="opt-no">d もらえます — can get</span><span class="opt-no">e ひつようです — is needed</span></span>Do you know where they are holding the karaoke contest?</div>
+      </div>
+      <div class="exercise-item">
+        <div class="exercise-num">❺</div>
+        <div class="exercise-context">カラオケで ゆうしょうしたら <ruby>何<rt>なに</rt></ruby>が（　）、<ruby>聞<rt>き</rt></ruby>いてみましょう。</div>
+        <div class="exercise-answer"><span class="answer-arrow">→</span><span class="answer-val">d もらえるか</span></div>
+        <div class="exercise-en"><span class="opts"><span class="opt-no">a かきます — draw</span><span class="opt-no">b やります — do / hold</span><span class="opt-no">c おわります — end</span><span class="opt-ok">d もらえます — can get ✓</span><span class="opt-no">e ひつようです — is needed</span></span>Let's ask what you get if you win the karaoke contest. (ゆうしょうします = to win first prize)</div>
+      </div>
+      <h4 style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin:18px 0 10px;">② ただしい じゅんに ならべましょう。 (CHECK! 154)</h4>
+      <div class="audio-block">
+        <div class="audio-block-label">▶ CHECK! 154</div>
+        <div class="audio-row">
+          <span class="audio-row-label">exercise</span>
+          <audio controls preload="none"><source src="../audio/rikai/154_8_3_2(2).mp3" type="audio/mpeg"></audio>
+        </div>
+        <div class="audio-row">
+          <span class="audio-row-label">こたえ</span>
+          <audio controls preload="none"><source src="../audio/rikai/track_154_answers.mp3" type="audio/mpeg"></audio>
+        </div>
+      </div>
+      <div class="exercise-item">
+        <div class="exercise-num">❶</div>
+        <div class="exercise-context">A：からてデモンストレーションは <ruby>大人気<rt>だいにんき</rt></ruby>でしたね。<br>B：そうですね。＿＿ ＿＿ ＿＿、<ruby>人<rt>ひと</rt></ruby>が <ruby>多<rt>おお</rt></ruby>かったですね。<br>〔a <ruby>来<rt>き</rt></ruby>たか　b わかりませんが　c <ruby>何人<rt>なんにん</rt></ruby>ぐらい〕</div>
+        <div class="exercise-answer"><span class="answer-arrow">→</span><span class="answer-val">c a b · <ruby>何人<rt>なんにん</rt></ruby>ぐらい <ruby>来<rt>き</rt></ruby>たか わかりませんが</span></div>
+        <div class="exercise-en"><span class="opts"><span class="opt-ok">a 来たか — whether … came ✓</span><span class="opt-ok">b わかりませんが — I don't know, but ✓</span><span class="opt-ok">c 何人ぐらい — about how many people ✓</span></span>A: The karate demonstration was really popular, wasn't it? B: Yes. I don't know about how many people came, but there were a lot. (example)</div>
+      </div>
+      <div class="exercise-item">
+        <div class="exercise-num">❷</div>
+        <div class="exercise-context">A：<ruby>今日<rt>きょう</rt></ruby>の カラオケコンテスト、<ruby>見<rt>み</rt></ruby>に <ruby>行<rt>い</rt></ruby>きましたか。<br>B：はい。みんな うまいですね。でも、＿＿ ＿＿ ＿＿ むずかしいです。<br>〔a <ruby>決<rt>き</rt></ruby>めるのは　b どの <ruby>人<rt>ひと</rt></ruby>が　c <ruby>一番<rt>いちばん</rt></ruby> よかったか〕</div>
+        <div class="exercise-answer"><span class="answer-arrow">→</span><span class="answer-val">b c a · どの <ruby>人<rt>ひと</rt></ruby>が <ruby>一番<rt>いちばん</rt></ruby> よかったか <ruby>決<rt>き</rt></ruby>めるのは</span></div>
+        <div class="exercise-en"><span class="opts"><span class="opt-ok">a 決めるのは — deciding ✓</span><span class="opt-ok">b どの人が — which person ✓</span><span class="opt-ok">c 一番よかったか — was the best ✓</span></span>A: Did you go and see today's karaoke contest? B: Yes. Everyone's good. But deciding who was the best is hard.</div>
+      </div>
+      <div class="exercise-item">
+        <div class="exercise-num">❸</div>
+        <div class="exercise-context">A：マンガきょうしつ、おもしろかったですか。<br>B：とても おもしろかったです。＿＿ ＿＿ ＿＿。<br>〔a わかりました　b マンガを かくか　c どうやって〕</div>
+        <div class="exercise-answer"><span class="answer-arrow">→</span><span class="answer-val">c b a · どうやって マンガを かくか わかりました</span></div>
+        <div class="exercise-en"><span class="opts"><span class="opt-ok">a わかりました — I understood ✓</span><span class="opt-ok">b マンガをかくか — draw manga ✓</span><span class="opt-ok">c どうやって — how ✓</span></span>A: Was the manga class interesting? B: Very. I learned how to draw manga.</div>
+      </div>
+      <div class="exercise-item">
+        <div class="exercise-num">❹</div>
+        <div class="exercise-context">A：Jポップコンサートは よかったですか。<br>B：はい。<ruby>今<rt>いま</rt></ruby>、＿＿ ＿＿ ＿＿ よかったです。<br>〔a どんな <ruby>歌<rt>うた</rt></ruby>が　b わかって　c <ruby>人気<rt>にんき</rt></ruby>が あるか〕</div>
+        <div class="exercise-answer"><span class="answer-arrow">→</span><span class="answer-val">a c b · どんな <ruby>歌<rt>うた</rt></ruby>が <ruby>人気<rt>にんき</rt></ruby>が あるか わかって</span></div>
+        <div class="exercise-en"><span class="opts"><span class="opt-ok">a どんな歌が — what kind of songs ✓</span><span class="opt-ok">b わかって — understanding ✓</span><span class="opt-ok">c 人気があるか — are popular ✓</span></span>A: Was the J-pop concert good? B: Yes. It was good to find out what kind of songs are popular right now.</div>
+      </div>
+      <h4 style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin:18px 0 10px;">3-3 — ① の かいわを れんしゅうしましょう。</h4>
+      <p class="grammar-meta">3-1 の かいわを ペアで れんしゅうしましょう。<span class="exercise-en"> — Practise the 3-1 conversation in pairs.</span></p>
+    </div>
+
+    <div class="rikai-page">
+      <h3>4 — どっかい「<ruby>日本祭<rt>にほんまつり</rt></ruby>の アンケート」 (p.84 · 155–157)</h3>
+      <div class="audio-block">
+        <div class="audio-block-label">▶ 155–157</div>
+        <div class="audio-row">
+          <span class="audio-row-label">exercise</span>
+          <audio controls preload="none"><source src="../audio/rikai/155_8_4.mp3" type="audio/mpeg"></audio>
+        </div>
+        <div class="audio-row">
+          <span class="audio-row-label">❶ 155</span>
+          <audio controls preload="none"><source src="../audio/rikai/track_155_item1.mp3" type="audio/mpeg"></audio>
+        </div>
+        <div class="audio-row">
+          <span class="audio-row-label">❷ 156</span>
+          <audio controls preload="none"><source src="../audio/rikai/track_156_item2.mp3" type="audio/mpeg"></audio>
+        </div>
+        <div class="audio-row">
+          <span class="audio-row-label">❸ 157</span>
+          <audio controls preload="none"><source src="../audio/rikai/track_157_item3.mp3" type="audio/mpeg"></audio>
+        </div>
+      </div>
+      <p class="grammar-meta"><ruby>下<rt>した</rt></ruby>の アンケートは <ruby>参加<rt>さんか</rt></ruby>した イベントが なにか わかりません。アンケートの ＜かんそう＞を <ruby>読<rt>よ</rt></ruby>んで こたえましょう。<span class="exercise-en"> — In the questionnaires below, you can't tell which event the person took part in. Read their &lt;comments&gt; and answer.</span></p>
+      <div class="callout" style="margin-bottom:16px;">
+        <strong>a</strong> たいこきょうしつ<span class="exercise-en"> — taiko drumming class</span><br>
+        <strong>b</strong> ぼんおどり<span class="exercise-en"> — Bon dance</span><br>
+        <strong>c</strong> カラオケコンテスト<span class="exercise-en"> — karaoke contest</span><br>
+        <strong>d</strong> マンガきょうしつ<span class="exercise-en"> — manga class</span>
+      </div>
+      <p class="grammar-meta">① 3<ruby>人<rt>にん</rt></ruby>は どの イベントに <ruby>参加<rt>さんか</rt></ruby>しましたか。② 3<ruby>人<rt>にん</rt></ruby>の かんそうは どうでしたか。（よかった ○、よくなかった ×）<span class="exercise-en"> — ① Which event did each of the three take part in? ② How did each of them feel about it? (good ○ / not good ×)</span></p>
+      <div class="exercise-item">
+        <div class="exercise-num">❶</div>
+        <div class="exercise-context">☑ <ruby>男性<rt>だんせい</rt></ruby><br><ruby>見<rt>み</rt></ruby>るのは <ruby>好<rt>す</rt></ruby>きだけど、かくのは <ruby>今日<rt>きょう</rt></ruby>が はじめてでした。どうやって かくのか わかったので、うれしかったです。これから いろいろ かいてみたいと <ruby>思<rt>おも</rt></ruby>います。</div>
+        <div class="exercise-en">Man: I like reading (manga), but today was my first time drawing. I was happy because I learned how to draw. From now on I'd like to try drawing all sorts of things.</div>
+        <div class="exercise-answer"><span class="answer-arrow">→</span><span class="answer-val">① d マンガきょうしつ · ② ○</span></div>
+      </div>
+      <div class="exercise-item">
+        <div class="exercise-num">❷</div>
+        <div class="exercise-context">☑ <ruby>女性<rt>じょせい</rt></ruby><br>はじめ どうやって おどるか わかりませんでした。<ruby>時間<rt>じかん</rt></ruby>も <ruby>短<rt>みじか</rt></ruby>くて、あまり おどれなかったので、つまらなかったです。<ruby>来年<rt>らいねん</rt></ruby>は ひとばん<ruby>中<rt>じゅう</rt></ruby> おどりたいです。</div>
+        <div class="exercise-en">Woman: At first I didn't know how to dance. The time was short too, and I could hardly dance, so it was boring. Next year I want to dance all night long.</div>
+        <div class="exercise-answer"><span class="answer-arrow">→</span><span class="answer-val">① b ぼんおどり · ② ×</span></div>
+      </div>
+      <div class="exercise-item">
+        <div class="exercise-num">❸</div>
+        <div class="exercise-context">☑ <ruby>男性<rt>だんせい</rt></ruby><br>いろいろな <ruby>歌<rt>うた</rt></ruby>が <ruby>聞<rt>き</rt></ruby>けて、よかったです。<ruby>私<rt>わたし</rt></ruby>は まだ <ruby>日本語<rt>にほんご</rt></ruby>で <ruby>上手<rt>じょうず</rt></ruby>に <ruby>歌<rt>うた</rt></ruby>えません。もっと <ruby>上手<rt>じょうず</rt></ruby>に なったら <ruby>歌<rt>うた</rt></ruby>ってみたいです。こんばんから れんしゅうします。</div>
+        <div class="exercise-en">Man: It was good to be able to hear all kinds of songs. I can't sing well in Japanese yet. When I get better, I'd like to try singing. I'll start practising tonight.</div>
+        <div class="exercise-answer"><span class="answer-arrow">→</span><span class="answer-val">① c カラオケコンテスト · ② ○</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="katsudoo">
+    <div class="section-head">
+      <span class="section-num">06</span>
+      <h2>かつどう pp.74–76 — だい9か「お<ruby>正月<rt>しょうがつ</rt></ruby>は どう していましたか」</h2>
+    </div>
+    <div class="callout" style="margin-bottom:32px;">
+      <strong>トピック5:</strong> とくべつな <ruby>日<rt>ひ</rt></ruby><span class="exercise-en"> — Special Days</span><br>
+      <strong>だい9か:</strong> お<ruby>正月<rt>しょうがつ</rt></ruby>は どう していましたか<span class="exercise-en"> — What did you do over New Year?</span><br>
+      <strong>こたえ:</strong> こたえとスクリプト pp.167–168<span class="exercise-en"> — answers and scripts below are copied from the answer key</span>
+    </div>
+
+    <div class="rikai-page">
+      <h3>1 — <ruby>正月<rt>しょうがつ</rt></ruby>の <ruby>休<rt>やす</rt></ruby>み (p.74 · 088·089)</h3>
+      <div class="audio-block">
+        <div class="audio-block-label">▶ 088 · 089</div>
+        <div class="audio-row">
+          <span class="audio-row-label">exercise</span>
+          <audio controls preload="none"><source src="../audio/katsudoo/088_9_1.mp3" type="audio/mpeg"></audio>
+        </div>
+        <div class="audio-row">
+          <span class="audio-row-label">(1) a–f</span>
+          <audio controls preload="none"><source src="../audio/katsudoo/track_088_items.mp3" type="audio/mpeg"></audio>
+        </div>
+        <div class="audio-row">
+          <span class="audio-row-label">(2) g–j</span>
+          <audio controls preload="none"><source src="../audio/katsudoo/track_089_items.mp3" type="audio/mpeg"></audio>
+        </div>
+      </div>
+      <p class="grammar-meta"><strong>(1) <ruby>正月<rt>しょうがつ</rt></ruby></strong> — 1<ruby>月<rt>がつ</rt></ruby><ruby>1日<rt>ついたち</rt></ruby> <ruby>元日<rt>がんじつ</rt></ruby><span class="exercise-en"> — New Year · 1 January, New Year's Day</span></p>
+      <div class="grammar-table-wrap">
+        <table class="grammar-table">
+          <thead><tr><th></th><th>すること</th><th>ことば</th><th class="kanji-en-col">Meaning</th></tr></thead>
+          <tbody>
+            <tr><td>a</td><td>あいさつを します</td><td>あけまして おめでとう ございます</td><td class="kanji-en-col">exchange greetings — "Happy New Year"</td></tr>
+            <tr><td>b</td><td>あいさつを <ruby>読<rt>よ</rt></ruby>みます</td><td>ねんがじょう</td><td class="kanji-en-col">read greetings — New Year's cards</td></tr>
+            <tr><td>c</td><td>じんじゃや てらに <ruby>行<rt>い</rt></ruby>きます</td><td>はつもうで</td><td class="kanji-en-col">go to shrines and temples — first shrine visit of the year</td></tr>
+            <tr><td>d</td><td>ごちそうを <ruby>食<rt>た</rt></ruby>べます</td><td>おせち<ruby>料理<rt>りょうり</rt></ruby></td><td class="kanji-en-col">eat a feast — osechi New Year food</td></tr>
+            <tr><td>e</td><td>あげます／もらいます</td><td>おとしだま</td><td class="kanji-en-col">give / receive — New Year's money for children</td></tr>
+            <tr><td>f</td><td>あそびます</td><td>かるた</td><td class="kanji-en-col">play — karuta card game</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="grammar-meta" style="margin-top:16px;"><strong>(2) <ruby>正月<rt>しょうがつ</rt></ruby>の じゅんび</strong> — 12<ruby>月<rt>がつ</rt></ruby>31<ruby>日<rt>にち</rt></ruby> おおみそか<span class="exercise-en"> — New Year preparations · 31 December, New Year's Eve</span></p>
+      <div class="grammar-table-wrap">
+        <table class="grammar-table">
+          <thead><tr><th></th><th>すること</th><th class="kanji-en-col">Meaning</th></tr></thead>
+          <tbody>
+            <tr><td>g</td><td><ruby>買<rt>か</rt></ruby>い<ruby>物<rt>もの</rt></ruby>を します</td><td class="kanji-en-col">go shopping</td></tr>
+            <tr><td>h</td><td><ruby>料理<rt>りょうり</rt></ruby>を <ruby>作<rt>つく</rt></ruby>ります</td><td class="kanji-en-col">cook</td></tr>
+            <tr><td>i</td><td>そうじを します（<ruby>大<rt>おお</rt></ruby>そうじ）</td><td class="kanji-en-col">clean (the big year-end clean)</td></tr>
+            <tr><td>j</td><td><ruby>家<rt>いえ</rt></ruby>を かざります</td><td class="kanji-en-col">decorate the house</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout" style="margin-top:16px;">● あなたの <ruby>国<rt>くに</rt></ruby>で、いちばん とくべつな <ruby>日<rt>ひ</rt></ruby>は いつですか。<span class="exercise-en"> — In your country, what is the most special day?</span></div>
+    </div>
+
+    <div class="rikai-page">
+      <h3>2-1 — <ruby>正月<rt>しょうがつ</rt></ruby>について かぞく4<ruby>人<rt>にん</rt></ruby>の <ruby>話<rt>はなし</rt></ruby>を <ruby>聞<rt>き</rt></ruby>きましょう。 (p.75 · 090–093)</h3>
+      <div class="audio-block">
+        <div class="audio-block-label">▶ 090–093</div>
+        <div class="audio-row">
+          <span class="audio-row-label">exercise</span>
+          <audio controls preload="none"><source src="../audio/katsudoo/090_9_2_1.mp3" type="audio/mpeg"></audio>
+        </div>
+        <div class="audio-row"><span class="audio-row-label">1 お母さん</span><audio controls preload="none"><source src="../audio/katsudoo/track_090_okaasan.mp3" type="audio/mpeg"></audio></div>
+        <div class="audio-row"><span class="audio-row-label">1 (n)</span><audio controls preload="none"><source src="../audio/katsudoo/track_090n_okaasan.mp3" type="audio/mpeg"></audio></div>
+        <div class="audio-row"><span class="audio-row-label">2 お父さん</span><audio controls preload="none"><source src="../audio/katsudoo/track_091_otoosan.mp3" type="audio/mpeg"></audio></div>
+        <div class="audio-row"><span class="audio-row-label">2 (n)</span><audio controls preload="none"><source src="../audio/katsudoo/track_091n_otoosan.mp3" type="audio/mpeg"></audio></div>
+        <div class="audio-row"><span class="audio-row-label">3 子ども 16</span><audio controls preload="none"><source src="../audio/katsudoo/track_092_kodomo_16sai.mp3" type="audio/mpeg"></audio></div>
+        <div class="audio-row"><span class="audio-row-label">3 (n)</span><audio controls preload="none"><source src="../audio/katsudoo/track_092n_kodomo_16sai.mp3" type="audio/mpeg"></audio></div>
+        <div class="audio-row"><span class="audio-row-label">4 子ども 11</span><audio controls preload="none"><source src="../audio/katsudoo/track_093_kodomo_11sai.mp3" type="audio/mpeg"></audio></div>
+        <div class="audio-row"><span class="audio-row-label">4 (n)</span><audio controls preload="none"><source src="../audio/katsudoo/track_093n_kodomo_11sai.mp3" type="audio/mpeg"></audio></div>
+      </div>
+      <p class="grammar-meta">(1) 4<ruby>人<rt>にん</rt></ruby>は <ruby>何<rt>なに</rt></ruby>について <ruby>話<rt>はな</rt></ruby>していますか。（p74 a–j）　(2) 4<ruby>人<rt>にん</rt></ruby>は どう <ruby>思<rt>おも</rt></ruby>っていますか。 ア <ruby>楽<rt>たの</rt></ruby>しい ／ イ <ruby>楽<rt>たの</rt></ruby>しくない<span class="exercise-en"> — (1) What are the four talking about? (p.74 a–j) (2) How do they feel? ア fun / イ not fun. Hint words: めんどう (a hassle), つまらない (boring), しんせき (relatives).</span></p>
+      <div class="grammar-table-wrap">
+        <table class="grammar-table">
+          <thead><tr><th></th><th>1 お<ruby>母<rt>かあ</rt></ruby>さん</th><th>2 お<ruby>父<rt>とう</rt></ruby>さん</th><th>3 <ruby>子<rt>こ</rt></ruby>ども（16さい）</th><th>4 <ruby>子<rt>こ</rt></ruby>ども（11さい）</th></tr></thead>
+          <tbody>
+            <tr><td>(1)</td><td>g, h <span style="color:var(--muted)">(れい)</span></td><td>i, j</td><td>b, c</td><td>d, e</td></tr>
+            <tr><td>(2)</td><td>イ <span style="color:var(--muted)">(れい)</span></td><td>ア</td><td>イ</td><td>ア</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="grammar-meta" style="margin-top:16px;"><strong>スクリプト</strong><span class="exercise-en"> — from こたえとスクリプト p.167</span></p>
+      <div class="rikai-dialogue">
+        <div class="rikai-line"><div class="rikai-speaker">1 A</div><span class="rikai-jp">お<ruby>正月<rt>しょうがつ</rt></ruby>は まいとし、いそがしいですか。</span><span class="rikai-en">Is New Year busy every year?</span></div>
+        <div class="rikai-line"><div class="rikai-speaker">お<ruby>母<rt>かあ</rt></ruby>さん</div><span class="rikai-jp">ええ、いそがしいですよ。<ruby>買<rt>か</rt></ruby>いものとか、りょうりとか、じゅんびが たくさん ありますから。</span><span class="rikai-en">Yes, it's busy. There's lots of preparation — shopping, cooking and so on.</span></div>
+        <div class="rikai-line"><div class="rikai-speaker">A</div><span class="rikai-jp">お<ruby>正月<rt>しょうがつ</rt></ruby>の りょうりですか。</span><span class="rikai-en">New Year's food?</span></div>
+        <div class="rikai-line"><div class="rikai-speaker">お<ruby>母<rt>かあ</rt></ruby>さん</div><span class="rikai-jp">はい。<ruby>正月<rt>しょうがつ</rt></ruby>は しんせきが <ruby>来<rt>く</rt></ruby>るので、たくさん つくります。ああ、ことしも たいへん。</span><span class="rikai-en">Yes. Relatives come at New Year, so I make a lot. Oh, it'll be hard work again this year.</span></div>
+        <div class="rikai-line"><div class="rikai-speaker">A</div><span class="rikai-jp">そうですか。</span><span class="rikai-en">I see.</span></div>
+        <div class="rikai-line"><div class="rikai-speaker">2 A</div><span class="rikai-jp">お<ruby>正月<rt>しょうがつ</rt></ruby>は、どうですか。</span><span class="rikai-en">How is New Year for you?</span></div>
+        <div class="rikai-line"><div class="rikai-speaker">お<ruby>父<rt>とう</rt></ruby>さん</div><span class="rikai-jp">そうですね、ちょっと めんどうですね。おおそうじとか、<ruby>正月<rt>しょうがつ</rt></ruby>の かざりつけとか。</span><span class="rikai-en">Well, it's a bit of a hassle. The big clean, the New Year decorations…</span></div>
+        <div class="rikai-line"><div class="rikai-speaker">A</div><span class="rikai-jp">おおそうじ？</span><span class="rikai-en">The big clean?</span></div>
+        <div class="rikai-line"><div class="rikai-speaker">お<ruby>父<rt>とう</rt></ruby>さん</div><span class="rikai-jp">はい。<ruby>正月<rt>しょうがつ</rt></ruby>の まえに、いえじゅうを きれいに そうじします。それから、いえを かざります。</span><span class="rikai-en">Yes. Before New Year we clean the whole house. Then we decorate it.</span></div>
+        <div class="rikai-line"><div class="rikai-speaker">A</div><span class="rikai-jp">そうですか。めんどうですね。</span><span class="rikai-en">I see. That is a hassle.</span></div>
+        <div class="rikai-line"><div class="rikai-speaker">お<ruby>父<rt>とう</rt></ruby>さん</div><span class="rikai-jp">ええ、でも たのしいですよ。こどもと いっしょに しますから。</span><span class="rikai-en">Yes, but it's fun. I do it together with the kids.</span></div>
+        <div class="rikai-line"><div class="rikai-speaker">A</div><span class="rikai-jp">じゃあ、たのしいですね。</span><span class="rikai-en">Then it's fun.</span></div>
+        <div class="rikai-line"><div class="rikai-speaker">お<ruby>父<rt>とう</rt></ruby>さん</div><span class="rikai-jp">はい。</span><span class="rikai-en">Yes.</span></div>
+        <div class="rikai-line"><div class="rikai-speaker">3 A</div><span class="rikai-jp">お<ruby>正月<rt>しょうがつ</rt></ruby>は、どうですか。</span><span class="rikai-en">How is New Year for you?</span></div>
+        <div class="rikai-line"><div class="rikai-speaker">こども</div><span class="rikai-jp">ええ、つまらない。わたしは きょうみ、ありません。</span><span class="rikai-en">Boring. I'm not interested.</span></div>
+        <div class="rikai-line"><div class="rikai-speaker">A</div><span class="rikai-jp">どうしてですか。</span><span class="rikai-en">Why?</span></div>
+        <div class="rikai-line"><div class="rikai-speaker">こども</div><span class="rikai-jp">だって、はつもうでとか ねんがじょうとか、まいとし まいとし おなじで つまらないです。</span><span class="rikai-en">Because the shrine visit, the New Year's cards… it's the same every single year, so it's boring.</span></div>
+        <div class="rikai-line"><div class="rikai-speaker">A</div><span class="rikai-jp">へえ、そうですか。</span><span class="rikai-en">Oh, really.</span></div>
+        <div class="rikai-line"><div class="rikai-speaker">4 A</div><span class="rikai-jp">お<ruby>正月<rt>しょうがつ</rt></ruby>は どうですか。</span><span class="rikai-en">How is New Year for you?</span></div>
+        <div class="rikai-line"><div class="rikai-speaker">こども</div><span class="rikai-jp">お<ruby>正月<rt>しょうがつ</rt></ruby>、だいすきです。おとしだまとか、ごちそうとか、たのしい ことが たくさん あります。</span><span class="rikai-en">I love New Year. There are lots of fun things — New Year's money, good food…</span></div>
+        <div class="rikai-line"><div class="rikai-speaker">A</div><span class="rikai-jp">おとしだま？</span><span class="rikai-en">New Year's money?</span></div>
+        <div class="rikai-line"><div class="rikai-speaker">こども</div><span class="rikai-jp">ことし、50000<ruby>円<rt>えん</rt></ruby>（ごまんえん） もらいました。</span><span class="rikai-en">This year I got 50,000 yen.</span></div>
+        <div class="rikai-line"><div class="rikai-speaker">A</div><span class="rikai-jp">50000<ruby>円<rt>えん</rt></ruby>！すごいですねえ。</span><span class="rikai-en">50,000 yen! Amazing.</span></div>
+      </div>
+    </div>
+
+    <div class="rikai-page">
+      <h3>2-2 — ルールを はっけんしましょう。 (p.75)</h3>
+      <div class="pattern-box">
+        <div class="pattern-formula">お<ruby>正月<rt>しょうがつ</rt></ruby>は <ruby>買<rt>か</rt></ruby>い<ruby>物<rt>もの</rt></ruby><strong>とか</strong> <ruby>料理<rt>りょうり</rt></ruby><strong>とか</strong> じゅんびが たくさん あります。</div>
+        <div class="pattern-gloss">N とか N とか — listing examples ("things like N and N"), casual version of N や N</div>
+      </div>
+      <div class="exercise-item">
+        <div class="exercise-num">れい</div>
+        <div class="exercise-context">お<ruby>正月<rt>しょうがつ</rt></ruby>は はつもうでとか ねんがじょうとか <ruby>毎年<rt>まいとし</rt></ruby> おなじで つまらないです。</div>
+        <div class="exercise-en">New Year — the shrine visit, the New Year's cards — it's the same every year, so it's boring.</div>
+      </div>
+      <div class="exercise-item">
+        <div class="exercise-num">❶</div>
+        <div class="exercise-context"><ruby>正月<rt>しょうがつ</rt></ruby>は（おおそうじ →　　）（かざりつけ →　　）ちょっと めんどうです。</div>
+        <div class="exercise-answer"><span class="answer-arrow">→</span><span class="answer-val">おおそうじとか · かざりつけとか</span></div>
+        <div class="exercise-en">New Year is a bit of a hassle — the big clean, the decorating and so on.</div>
+      </div>
+      <div class="exercise-item">
+        <div class="exercise-num">❷</div>
+        <div class="exercise-context">お<ruby>正月<rt>しょうがつ</rt></ruby>は（おとしだま →　　）（ごちそう →　　）<ruby>楽<rt>たの</rt></ruby>しい ことが たくさん あります。</div>
+        <div class="exercise-answer"><span class="answer-arrow">→</span><span class="answer-val">おとしだまとか · ごちそうとか</span></div>
+        <div class="exercise-en">At New Year there are lots of fun things — New Year's money, good food and so on.</div>
+      </div>
+    </div>
+
+    <div class="rikai-page">
+      <h3>2-3 — あなたの <ruby>国<rt>くに</rt></ruby>の <ruby>正月<rt>しょうがつ</rt></ruby>について <ruby>話<rt>はな</rt></ruby>しましょう。 (p.76 · Can-do 25)</h3>
+      <div class="rikai-dialogue">
+        <div class="rikai-line"><div class="rikai-speaker">A</div><span class="rikai-jp"><ruby>正月<rt>しょうがつ</rt></ruby>／<ruby>正月<rt>しょうがつ</rt></ruby>の じゅんびは どうですか。</span><span class="rikai-en">How is New Year / the New Year preparation?</span></div>
+        <div class="rikai-line"><div class="rikai-speaker">B</div><span class="rikai-jp">いそがしいですよ。<ruby>買<rt>か</rt></ruby>い<ruby>物<rt>もの</rt></ruby>とか <ruby>料理<rt>りょうり</rt></ruby>とか じゅんびが たくさん ありますから。</span><span class="rikai-en">It's busy. There's lots of preparation — shopping, cooking and so on.</span></div>
+        <div class="rikai-line"><div class="rikai-speaker">A</div><span class="rikai-jp"><ruby>正月<rt>しょうがつ</rt></ruby>の <ruby>料理<rt>りょうり</rt></ruby>ですか。</span><span class="rikai-en">New Year's food?</span></div>
+        <div class="rikai-line"><div class="rikai-speaker">B</div><span class="rikai-jp">はい。<ruby>正月<rt>しょうがつ</rt></ruby>は <ruby>料理<rt>りょうり</rt></ruby>を たくさん <ruby>作<rt>つく</rt></ruby>ります。</span><span class="rikai-en">Yes. At New Year we cook a lot.</span></div>
+        <div class="rikai-line"><div class="rikai-speaker">A</div><span class="rikai-jp">そうですか。</span><span class="rikai-en">I see.</span></div>
+      </div>
+      <div class="callout" style="margin-top:16px;">
+        <strong>〜<ruby>間<rt>かん</rt></ruby></strong> — <ruby>3日間<rt>みっかかん</rt></ruby> ＝ <ruby>3日<rt>みっか</rt></ruby><span class="exercise-en"> — 〜間 = for a period of … (3日間 = for three days)</span><br>
+        <ruby>休<rt>やす</rt></ruby>みは <ruby>3日間<rt>みっかかん</rt></ruby><strong>しか</strong> ありま<strong>せん</strong>。<span class="exercise-en"> — The holiday is only three days. (しか + negative = only)</span>
+      </div>
+    </div>
+
+    <div class="rikai-page">
+      <h3>3-1 — <ruby>正月<rt>しょうがつ</rt></ruby>の <ruby>休<rt>やす</rt></ruby>みについて 4<ruby>人<rt>にん</rt></ruby>の <ruby>話<rt>はなし</rt></ruby>を <ruby>聞<rt>き</rt></ruby>きましょう。 (pp.76–77 · 094–097)</h3>
+      <div class="audio-block">
+        <div class="audio-block-label">▶ 094–097</div>
+        <div class="audio-row">
+          <span class="audio-row-label">exercise</span>
+          <audio controls preload="none"><source src="../audio/katsudoo/094_9_3_1.mp3" type="audio/mpeg"></audio>
+        </div>
+        <div class="audio-row"><span class="audio-row-label">1 カーラ</span><audio controls preload="none"><source src="../audio/katsudoo/track_094_kaara_san.mp3" type="audio/mpeg"></audio></div>
+        <div class="audio-row"><span class="audio-row-label">1 (n)</span><audio controls preload="none"><source src="../audio/katsudoo/track_094n_kaara_san.mp3" type="audio/mpeg"></audio></div>
+        <div class="audio-row"><span class="audio-row-label">2 キム</span><audio controls preload="none"><source src="../audio/katsudoo/track_095_kimu_san.mp3" type="audio/mpeg"></audio></div>
+        <div class="audio-row"><span class="audio-row-label">2 (n)</span><audio controls preload="none"><source src="../audio/katsudoo/track_095n_kimu_san.mp3" type="audio/mpeg"></audio></div>
+        <div class="audio-row"><span class="audio-row-label">3 シン</span><audio controls preload="none"><source src="../audio/katsudoo/track_096_shin_san.mp3" type="audio/mpeg"></audio></div>
+        <div class="audio-row"><span class="audio-row-label">3 (n)</span><audio controls preload="none"><source src="../audio/katsudoo/track_096n_shin_san.mp3" type="audio/mpeg"></audio></div>
+        <div class="audio-row"><span class="audio-row-label">4 よしだ</span><audio controls preload="none"><source src="../audio/katsudoo/track_097_yoshida_san.mp3" type="audio/mpeg"></audio></div>
+        <div class="audio-row"><span class="audio-row-label">4 (n)</span><audio controls preload="none"><source src="../audio/katsudoo/track_097n_yoshida_san.mp3" type="audio/mpeg"></audio></div>
+      </div>
+      <p class="grammar-meta">(1) 4<ruby>人<rt>にん</rt></ruby>は <ruby>正月<rt>しょうがつ</rt></ruby>の <ruby>休<rt>やす</rt></ruby>みに どこに いましたか。 a フランス　b ホンコン　c <ruby>東京<rt>とうきょう</rt></ruby>　d <ruby>自分<rt>じぶん</rt></ruby>の <ruby>家<rt>いえ</rt></ruby><span class="exercise-en"> — (1) Where were the four during the New Year holiday? a France · b Hong Kong · c Tokyo · d their own home</span></p>
+      <p class="grammar-meta">(2) <ruby>何<rt>なに</rt></ruby>を しましたか。（p.77 の え e–h）<span class="exercise-en"> — (2) What did they do? (pictures on p.77: e hugging family/relatives · f bus tour in Hong Kong · g showing someone around the city · h lazing at home with DVDs)</span></p>
+      <div class="grammar-table-wrap">
+        <table class="grammar-table">
+          <thead><tr><th></th><th>1 カーラさん</th><th>2 キムさん</th><th>3 シンさん</th><th>4 よしださん</th></tr></thead>
+          <tbody>
+            <tr><td>(1)</td><td>a <span style="color:var(--muted)">(れい)</span></td><td>c</td><td>d</td><td>b</td></tr>
+            <tr><td>(2)</td><td>e <span style="color:var(--muted)">(れい)</span></td><td>g</td><td>h</td><td>f</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="grammar-meta" style="margin-top:16px;"><strong>スクリプト</strong><span class="exercise-en"> — from こたえとスクリプト p.168</span></p>
+      <div class="rikai-dialogue">
+        <div class="rikai-line"><div class="rikai-speaker">1 A</div><span class="rikai-jp">カーラさん、<ruby>正月<rt>しょうがつ</rt></ruby>の <ruby>休<rt>やす</rt></ruby>みは どう していましたか。</span><span class="rikai-en">Carla, what did you do over the New Year holiday?</span></div>
+        <div class="rikai-line"><div class="rikai-speaker">カーラ</div><span class="rikai-jp">お<ruby>正月<rt>しょうがつ</rt></ruby>は ずっと フランスに かえってました。</span><span class="rikai-en">I was back in France the whole New Year.</span></div>
+        <div class="rikai-line"><div class="rikai-speaker">A</div><span class="rikai-jp">ああ、そうですか。どうでしたか、フランスは。</span><span class="rikai-en">Oh, really? How was France?</span></div>
+        <div class="rikai-line"><div class="rikai-speaker">カーラ</div><span class="rikai-jp">はい、ひさしぶりに おやや しんせきに <ruby>会<rt>あ</rt></ruby>えて、よかったです。</span><span class="rikai-en">It was great to be able to see my parents and relatives after so long.</span></div>
+        <div class="rikai-line"><div class="rikai-speaker">A</div><span class="rikai-jp">そうですか。</span><span class="rikai-en">I see.</span></div>
+        <div class="rikai-line"><div class="rikai-speaker">2 A</div><span class="rikai-jp">キムさん、お<ruby>正月<rt>しょうがつ</rt></ruby>の <ruby>休<rt>やす</rt></ruby>みは どう してましたか。</span><span class="rikai-en">Kim, what did you do over the New Year holiday?</span></div>
+        <div class="rikai-line"><div class="rikai-speaker">キム</div><span class="rikai-jp">ことしは いもうとが かんこくから あそびに <ruby>来<rt>き</rt></ruby>てたので、<ruby>東京<rt>とうきょう</rt></ruby>に いました。</span><span class="rikai-en">This year my younger sister was visiting from Korea, so I stayed in Tokyo.</span></div>
+        <div class="rikai-line"><div class="rikai-speaker">A</div><span class="rikai-jp">そうですか。いもうとさんと いっしょで、よかったですね。</span><span class="rikai-en">I see. How nice to be with your sister.</span></div>
+        <div class="rikai-line"><div class="rikai-speaker">キム</div><span class="rikai-jp">はい、<ruby>東京<rt>とうきょう</rt></ruby>を あちこち あんないできて、よかったです。</span><span class="rikai-en">Yes, it was great to be able to show her around all over Tokyo.</span></div>
+        <div class="rikai-line"><div class="rikai-speaker">3 A</div><span class="rikai-jp">シンさん、お<ruby>正月<rt>しょうがつ</rt></ruby>の <ruby>休<rt>やす</rt></ruby>みは どう してましたか。</span><span class="rikai-en">Singh, what did you do over the New Year holiday?</span></div>
+        <div class="rikai-line"><div class="rikai-speaker">シン</div><span class="rikai-jp"><ruby>休<rt>やす</rt></ruby>みが みじかかったので、うちで ごろごろしてました。</span><span class="rikai-en">The holiday was short, so I lazed around at home.</span></div>
+        <div class="rikai-line"><div class="rikai-speaker">A</div><span class="rikai-jp">え？<ruby>休<rt>やす</rt></ruby>みは なんにちぐらいでしたか。</span><span class="rikai-en">Huh? About how many days off did you have?</span></div>
+        <div class="rikai-line"><div class="rikai-speaker">シン</div><span class="rikai-jp">ことしは <ruby>3日<rt>みっか</rt></ruby>かんしか ありませんでした。</span><span class="rikai-en">This year I only had three days.</span></div>
+        <div class="rikai-line"><div class="rikai-speaker">A</div><span class="rikai-jp">え、<ruby>3日<rt>みっか</rt></ruby>？</span><span class="rikai-en">What, three days?</span></div>
+        <div class="rikai-line"><div class="rikai-speaker">シン</div><span class="rikai-jp">ええ。でも、インドえいがの DVD が たくさん <ruby>見<rt>み</rt></ruby>れて、よかったですよ。</span><span class="rikai-en">Yes. But it was nice to be able to watch lots of Indian film DVDs.</span></div>
+        <div class="rikai-line"><div class="rikai-speaker">A</div><span class="rikai-jp">そうですか。</span><span class="rikai-en">I see.</span></div>
+        <div class="rikai-line"><div class="rikai-speaker">4 A</div><span class="rikai-jp">よしださん、<ruby>正月<rt>しょうがつ</rt></ruby>の <ruby>休<rt>やす</rt></ruby>みは どうでしたか。</span><span class="rikai-en">Yoshida-san, how was your New Year holiday?</span></div>
+        <div class="rikai-line"><div class="rikai-speaker">よしだ</div><span class="rikai-jp">かぞくで ホンコンに りょこうに <ruby>行<rt>い</rt></ruby>ってました。</span><span class="rikai-en">I went on a family trip to Hong Kong.</span></div>
+        <div class="rikai-line"><div class="rikai-speaker">A</div><span class="rikai-jp">わあ、ホンコンりょこうですか。どのぐらい？</span><span class="rikai-en">Wow, a trip to Hong Kong! For how long?</span></div>
+        <div class="rikai-line"><div class="rikai-speaker">よしだ</div><span class="rikai-jp"><ruby>4日<rt>よっか</rt></ruby>かん（よっかかん）です。<ruby>休<rt>やす</rt></ruby>みが <ruby>4日<rt>よっか</rt></ruby>かんしか とれませんでしたから。でも、つまや こどもと いっしょに すごせて、よかったです。</span><span class="rikai-en">Four days. I could only get four days off. But it was good to be able to spend time with my wife and kids.</span></div>
+        <div class="rikai-line"><div class="rikai-speaker">A</div><span class="rikai-jp">そうですか。</span><span class="rikai-en">I see.</span></div>
+      </div>
+    </div>
+
+    <div class="rikai-page">
+      <h3>3-2 — ルールを はっけんしましょう。 (p.77 · preview)</h3>
+      <div class="pattern-box">
+        <div class="pattern-formula">(1) お<ruby>正月<rt>しょうがつ</rt></ruby>の <ruby>休<rt>やす</rt></ruby>みは ずっと フランスに <strong>かえって（い）ました</strong>。</div>
+        <div class="pattern-gloss">V-て（い）ました — what you were doing over a period (spoken: かえってました) · ごろごろします → ごろごろして · かえります → かえって · きます → きて · いきます → いって</div>
+      </div>
+      <div class="exercise-item">
+        <div class="exercise-num">❶</div>
+        <div class="exercise-context">いもうとが <ruby>東京<rt>とうきょう</rt></ruby>に（あそびに きます →　　いました）。</div>
+        <div class="exercise-answer"><span class="answer-arrow">→</span><span class="answer-val">あそびに きていました</span></div>
+        <div class="exercise-en">My younger sister was visiting Tokyo. (れい: 4日間、ホンコンに 旅行に 行って（い）ました — I was on a trip to Hong Kong for four days.)</div>
+      </div>
+      <div class="exercise-item">
+        <div class="exercise-num">❷</div>
+        <div class="exercise-context">うちで（ごろごろします →　　いました）。</div>
+        <div class="exercise-answer"><span class="answer-arrow">→</span><span class="answer-val">ごろごろしていました</span></div>
+        <div class="exercise-en">I was lazing around at home.</div>
+      </div>
+      <div class="pattern-box" style="margin-top:20px;">
+        <div class="pattern-formula">(2) ひさしぶりに おやや しんせきに <strong><ruby>会<rt>あ</rt></ruby>えて</strong>、よかったです。</div>
+        <div class="pattern-gloss">V-(られ)て、よかったです — it was good to be able to … (potential て-form) · あんないできます → あんないできて · あえます → あえて · みられます → みられて／みれて · すごせます → すごせて</div>
+      </div>
+      <div class="exercise-item">
+        <div class="exercise-num">❸</div>
+        <div class="exercise-context">いもうとに <ruby>東京<rt>とうきょう</rt></ruby>を（あんないできます →　　）、よかったです。</div>
+        <div class="exercise-answer"><span class="answer-arrow">→</span><span class="answer-val">あんないできて</span></div>
+        <div class="exercise-en">It was good to be able to show my sister around Tokyo. (れい: つまや 子どもと いっしょに すごせて、よかったです — It was good to be able to spend time with my wife and kids.)</div>
+      </div>
+      <div class="exercise-item">
+        <div class="exercise-num">❹</div>
+        <div class="exercise-context">インドえいがの DVD が たくさん（みられます →　　）、よかったです。</div>
+        <div class="exercise-answer"><span class="answer-arrow">→</span><span class="answer-val">みられて</span></div>
+        <div class="exercise-en">It was good to be able to watch lots of Indian film DVDs.</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    まるごと<ruby>初級<rt>しょきゅう</rt></ruby>2 A2 · だい8か・だい9か · 2026年11月23日 · Tolaria
+  </footer>
+
+</div><!-- end container -->
+
+<button class="toggle-translations" onclick="document.body.classList.toggle('translations-visible');this.textContent=document.body.classList.contains('translations-visible')?'EN ✓':'EN'">EN</button>
+
+<script>
+function saveCheckbox(id, checked) {
+  try { localStorage.setItem(id, checked ? '1' : '0'); } catch(e) {}
+}
+(function() {
+  for (var i = 0; i < 8; i++) {
+    try {
+      var id = 'nov23_cb' + i, el = document.getElementById(id);
+      if (el && localStorage.getItem(id) === '1') el.checked = true;
+    } catch(e) {}
+  }
+})();
+</script>
+<script src="../../assets/nav-tree.js"></script>
+<script src="../../assets/nav.js" defer></script>
+</body>
+</html>
