@@ -21,3 +21,6 @@
 # Playwright local install (pre-installed, ~300MB — do not commit)
 .playwright/
 __pycache__/
+
+# Local secrets (API keys) — never commit
+.env

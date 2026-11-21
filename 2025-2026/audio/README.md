@@ -20,3 +20,11 @@ Naming: `NNN_lesson_section.mp3` (independent numbering from りかい)
 HTML path from `files/`: `../audio/katsudoo/NNN_*.mp3`
 
 Note: track numbers overlap between the two sets — 001 in かつどう ≠ 001 in りかい.
+
+## tts/ — generated audio (Gemini TTS via Google AI Studio API)
+
+Audio for page content the textbook has no track for. One folder per set:
+`tts/L8_bunpou/<pattern>-<example>.mp3` = grammar examples of だい8か (e.g. `2-3.mp3` = pattern 2, example 3).
+A/B dialogues use two voices (A = Kore, B = Puck) joined into one clip with a 0.5 s gap.
+Generated with `tts()` in `make_video.py` (key: `GOOGLE_AI_STUDIO_API_KEY` in `.env`); every clip is
+trimmed of the noise bursts Gemini adds at the start/end (`clean_pcm`).
