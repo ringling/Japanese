@@ -1,0 +1,2037 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>オーディオ · しゅくだい</title>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;700&family=Noto+Serif+JP:wght@400;500;700&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1a1a; --ink-soft: #3a3a3a; --paper: #f4efe6; --paper-soft: #ebe4d6; --paper-deep: #e2d9c4;
+  --accent: #8b1a1a; --accent-soft: #b85450; --gold: #b8893d; --muted: #6b6357; --rule: #c9bfa9; --rule-soft: #ddd3bd;
+}
+* { box-sizing: border-box; }
+body { margin: 0; padding: 48px 24px; background: var(--paper); color: var(--ink);
+  font-family: 'IBM Plex Sans', 'Noto Serif JP', sans-serif; line-height: 1.6;
+  background-image: radial-gradient(circle at 15% 10%, rgba(184,137,61,0.05), transparent 40%), radial-gradient(circle at 85% 80%, rgba(139,26,26,0.04), transparent 40%); }
+.container { max-width: 880px; margin: 0 auto; }
+.page-nav { display: flex; justify-content: space-between; font-family: 'IBM Plex Mono', monospace; font-size: 11px;
+  letter-spacing: 1px; padding-bottom: 14px; border-bottom: 1px solid var(--rule); margin-bottom: 36px; }
+.page-nav a { color: var(--accent); text-decoration: none; }
+.page-nav .center { color: var(--muted); }
+.masthead { display: grid; grid-template-columns: auto 1fr; gap: 28px; align-items: center;
+  border-bottom: 2px solid var(--ink); padding-bottom: 22px; margin-bottom: 28px; }
+.masthead-mark { font-family: 'Shippori Mincho', serif; font-size: 84px; line-height: 1; color: var(--accent); }
+.masthead h1 { font-family: 'Shippori Mincho', serif; font-weight: 500; font-size: 34px; margin: 0 0 6px; letter-spacing: 2px; }
+.masthead .sub { font-size: 13px; color: var(--muted); }
+.tools { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 36px; }
+.tools input { flex: 1 1 220px; font: inherit; font-size: 14px; padding: 7px 12px; background: var(--paper-soft);
+  color: var(--ink); border: 1px solid var(--rule); border-radius: 2px; }
+.tools a { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 1px; color: var(--accent);
+  background: var(--paper-soft); border: 1px solid var(--rule); padding: 5px 12px; text-decoration: none; border-radius: 2px; }
+.tools a:hover { background: var(--paper-deep); }
+.section-head { display: flex; align-items: baseline; gap: 16px; border-bottom: 1px solid var(--rule);
+  padding-bottom: 10px; margin: 48px 0 8px; }
+.section-num { font-family: 'Shippori Mincho', serif; font-size: 28px; color: var(--accent); }
+.section-head h2 { font-family: 'Shippori Mincho', serif; font-weight: 500; font-size: 22px; margin: 0; }
+.count { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--muted); font-weight: 400; letter-spacing: 1px; }
+h3.book { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--accent); margin: 24px 0 8px; font-weight: 500; }
+.ai-note { color: var(--muted); text-transform: none; letter-spacing: 0; font-style: italic; margin-left: 6px; }
+.ex { padding: 12px 0 10px; border-bottom: 1px dashed var(--rule-soft); }
+.ex-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 12px; align-items: baseline; margin-bottom: 4px; }
+.ex-what { font-family: 'Noto Serif JP', serif; font-size: 14px; color: var(--ink-soft); }
+.clip { display: grid; grid-template-columns: 40px minmax(90px, 170px) 1fr; gap: 10px; align-items: center; padding: 2px 0; }
+.clip-num { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--gold); }
+.clip-label { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--muted); overflow-wrap: anywhere; }
+.clip audio { width: 100%; max-width: 420px; height: 30px; }
+.clip-page { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.clip-page:hover { color: var(--accent); }
+.hidden { display: none; }
+footer { margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--rule); font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px; color: var(--muted); text-align: center; }
+@media (max-width: 600px) { body { padding: 28px 16px; } .masthead-mark { font-size: 60px; } .clip { grid-template-columns: 36px 1fr; } .clip audio { grid-column: 1 / -1; } }
+</style>
+<link rel="stylesheet" href="../../assets/theme.css">
+<script src="../../assets/theme.js"></script>
+</head>
+<body>
+<div class="container">
+
+  <nav class="page-nav">
+    <a href="../index.html">← ホーム</a>
+    <span class="center">オーディオ · まるごと A2-2</span>
+    <span style="color:var(--rule)">—</span>
+  </nav>
+
+  <header class="masthead">
+    <div class="masthead-mark">音</div>
+    <div>
+      <h1>オーディオ</h1>
+      <div class="sub">Every audio clip from the しゅくだい pages in one place, newest lesson first: 296 clips.
+        Each clip has its track number, the exercise it belongs to and a link to the homework page that uses it.
+        Built by <code>build_audio.py</code>, which runs with <code>build_nav.py</code> whenever a new page is added.</div>
+    </div>
+  </header>
+
+  <div class="tools">
+    <input id="q" type="search" placeholder="Filter: track, lesson, exercise… (e.g. 097, L9, かいわ)" autocomplete="off">
+    <a href="#l9">L9</a>
+    <a href="#l8">L8</a>
+    <a href="#l7">L7</a>
+    <a href="#l6">L6</a>
+    <a href="#l5">L5</a>
+    <a href="#l4">L4</a>
+    <a href="#l1">L1</a>
+  </div>
+
+  <section id="l9" class="lesson">
+    <div class="section-head">
+      <span class="section-num">九</span>
+      <h2>だい9か 「お正月は どう していましたか」 <span class="count">· とくべつな 日</span> <span class="count">31 clips</span></h2>
+    </div>
+    <h3 class="book">かつどう <span class="count">21</span></h3>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">1 — 正月の 休み (p.74 · 088·089)</span>
+          <a class="clip-page" href="2026年11月30日_しゅくだい.html">11月30日 しゅくだい →</a></div>
+        <div class="clip" data-search="088 かつどう l9 1 — 正月の 休み (p.74 · 088·089) exercise">
+          <span class="clip-num">088</span>
+          <span class="clip-label">exercise</span>
+          <audio controls preload="none" src="../audio/katsudoo/088_9_1.mp3"></audio>
+        </div>
+        <div class="clip" data-search="088 かつどう l9 1 — 正月の 休み (p.74 · 088·089) (1) a–f">
+          <span class="clip-num">088</span>
+          <span class="clip-label">(1) a–f</span>
+          <audio controls preload="none" src="../audio/katsudoo/track_088_items.mp3"></audio>
+        </div>
+        <div class="clip" data-search="089 かつどう l9 1 — 正月の 休み (p.74 · 088·089) (2) g–j">
+          <span class="clip-num">089</span>
+          <span class="clip-label">(2) g–j</span>
+          <audio controls preload="none" src="../audio/katsudoo/track_089_items.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">2-1 — 正月について かぞく4人の 話を 聞きましょう。 (p.75 · 090–093)</span>
+          <a class="clip-page" href="2026年11月30日_しゅくだい.html">11月30日 しゅくだい →</a></div>
+        <div class="clip" data-search="090 かつどう l9 2-1 — 正月について かぞく4人の 話を 聞きましょう。 (p.75 · 090–093) exercise">
+          <span class="clip-num">090</span>
+          <span class="clip-label">exercise</span>
+          <audio controls preload="none" src="../audio/katsudoo/090_9_2_1.mp3"></audio>
+        </div>
+        <div class="clip" data-search="090 かつどう l9 2-1 — 正月について かぞく4人の 話を 聞きましょう。 (p.75 · 090–093) 1 お母さん">
+          <span class="clip-num">090</span>
+          <span class="clip-label">1 お母さん</span>
+          <audio controls preload="none" src="../audio/katsudoo/track_090_okaasan.mp3"></audio>
+        </div>
+        <div class="clip" data-search="090 かつどう l9 2-1 — 正月について かぞく4人の 話を 聞きましょう。 (p.75 · 090–093) 1 (n)">
+          <span class="clip-num">090</span>
+          <span class="clip-label">1 (n)</span>
+          <audio controls preload="none" src="../audio/katsudoo/track_090n_okaasan.mp3"></audio>
+        </div>
+        <div class="clip" data-search="091 かつどう l9 2-1 — 正月について かぞく4人の 話を 聞きましょう。 (p.75 · 090–093) 2 お父さん">
+          <span class="clip-num">091</span>
+          <span class="clip-label">2 お父さん</span>
+          <audio controls preload="none" src="../audio/katsudoo/track_091_otoosan.mp3"></audio>
+        </div>
+        <div class="clip" data-search="091 かつどう l9 2-1 — 正月について かぞく4人の 話を 聞きましょう。 (p.75 · 090–093) 2 (n)">
+          <span class="clip-num">091</span>
+          <span class="clip-label">2 (n)</span>
+          <audio controls preload="none" src="../audio/katsudoo/track_091n_otoosan.mp3"></audio>
+        </div>
+        <div class="clip" data-search="092 かつどう l9 2-1 — 正月について かぞく4人の 話を 聞きましょう。 (p.75 · 090–093) 3 子ども 16">
+          <span class="clip-num">092</span>
+          <span class="clip-label">3 子ども 16</span>
+          <audio controls preload="none" src="../audio/katsudoo/track_092_kodomo_16sai.mp3"></audio>
+        </div>
+        <div class="clip" data-search="092 かつどう l9 2-1 — 正月について かぞく4人の 話を 聞きましょう。 (p.75 · 090–093) 3 (n)">
+          <span class="clip-num">092</span>
+          <span class="clip-label">3 (n)</span>
+          <audio controls preload="none" src="../audio/katsudoo/track_092n_kodomo_16sai.mp3"></audio>
+        </div>
+        <div class="clip" data-search="093 かつどう l9 2-1 — 正月について かぞく4人の 話を 聞きましょう。 (p.75 · 090–093) 4 子ども 11">
+          <span class="clip-num">093</span>
+          <span class="clip-label">4 子ども 11</span>
+          <audio controls preload="none" src="../audio/katsudoo/track_093_kodomo_11sai.mp3"></audio>
+        </div>
+        <div class="clip" data-search="093 かつどう l9 2-1 — 正月について かぞく4人の 話を 聞きましょう。 (p.75 · 090–093) 4 (n)">
+          <span class="clip-num">093</span>
+          <span class="clip-label">4 (n)</span>
+          <audio controls preload="none" src="../audio/katsudoo/track_093n_kodomo_11sai.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">3-1 — 正月の 休みについて 4人の 話を 聞きましょう。 (pp.76–77 · 094–097)</span>
+          <a class="clip-page" href="2026年11月30日_しゅくだい.html">11月30日 しゅくだい →</a></div>
+        <div class="clip" data-search="094 かつどう l9 3-1 — 正月の 休みについて 4人の 話を 聞きましょう。 (pp.76–77 · 094–097) exercise">
+          <span class="clip-num">094</span>
+          <span class="clip-label">exercise</span>
+          <audio controls preload="none" src="../audio/katsudoo/094_9_3_1.mp3"></audio>
+        </div>
+        <div class="clip" data-search="094 かつどう l9 3-1 — 正月の 休みについて 4人の 話を 聞きましょう。 (pp.76–77 · 094–097) 1 カーラ">
+          <span class="clip-num">094</span>
+          <span class="clip-label">1 カーラ</span>
+          <audio controls preload="none" src="../audio/katsudoo/track_094_kaara_san.mp3"></audio>
+        </div>
+        <div class="clip" data-search="094 かつどう l9 3-1 — 正月の 休みについて 4人の 話を 聞きましょう。 (pp.76–77 · 094–097) 1 (n)">
+          <span class="clip-num">094</span>
+          <span class="clip-label">1 (n)</span>
+          <audio controls preload="none" src="../audio/katsudoo/track_094n_kaara_san.mp3"></audio>
+        </div>
+        <div class="clip" data-search="095 かつどう l9 3-1 — 正月の 休みについて 4人の 話を 聞きましょう。 (pp.76–77 · 094–097) 2 キム">
+          <span class="clip-num">095</span>
+          <span class="clip-label">2 キム</span>
+          <audio controls preload="none" src="../audio/katsudoo/track_095_kimu_san.mp3"></audio>
+        </div>
+        <div class="clip" data-search="095 かつどう l9 3-1 — 正月の 休みについて 4人の 話を 聞きましょう。 (pp.76–77 · 094–097) 2 (n)">
+          <span class="clip-num">095</span>
+          <span class="clip-label">2 (n)</span>
+          <audio controls preload="none" src="../audio/katsudoo/track_095n_kimu_san.mp3"></audio>
+        </div>
+        <div class="clip" data-search="096 かつどう l9 3-1 — 正月の 休みについて 4人の 話を 聞きましょう。 (pp.76–77 · 094–097) 3 シン">
+          <span class="clip-num">096</span>
+          <span class="clip-label">3 シン</span>
+          <audio controls preload="none" src="../audio/katsudoo/track_096_shin_san.mp3"></audio>
+        </div>
+        <div class="clip" data-search="096 かつどう l9 3-1 — 正月の 休みについて 4人の 話を 聞きましょう。 (pp.76–77 · 094–097) 3 (n)">
+          <span class="clip-num">096</span>
+          <span class="clip-label">3 (n)</span>
+          <audio controls preload="none" src="../audio/katsudoo/track_096n_shin_san.mp3"></audio>
+        </div>
+        <div class="clip" data-search="097 かつどう l9 3-1 — 正月の 休みについて 4人の 話を 聞きましょう。 (pp.76–77 · 094–097) 4 よしだ">
+          <span class="clip-num">097</span>
+          <span class="clip-label">4 よしだ</span>
+          <audio controls preload="none" src="../audio/katsudoo/track_097_yoshida_san.mp3"></audio>
+        </div>
+        <div class="clip" data-search="097 かつどう l9 3-1 — 正月の 休みについて 4人の 話を 聞きましょう。 (pp.76–77 · 094–097) 4 (n)">
+          <span class="clip-num">097</span>
+          <span class="clip-label">4 (n)</span>
+          <audio controls preload="none" src="../audio/katsudoo/track_097n_yoshida_san.mp3"></audio>
+        </div>
+      </div>
+    <h3 class="book">AI音声 <span class="count">10</span> <span class="ai-note">generated with Gemini TTS — not book audio</span></h3>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">お正月の 休みは、ホンコンに 旅行に 行っていました。</span>
+          <a class="clip-page" href="2026年11月30日_しゅくだい.html">11月30日 しゅくだい →</a></div>
+        <div class="clip" data-search="ai ai音声 l9 お正月の 休みは、ホンコンに 旅行に 行っていました。 grammar example">
+          <span class="clip-num">AI</span>
+          <span class="clip-label">grammar example</span>
+          <audio controls preload="none" src="../audio/tts/L9_bunpou/1-1.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">A) 年末年始の 休みは どう していましたか。B) ゆうびんきょくで アルバイトを していました。</span>
+          <a class="clip-page" href="2026年11月30日_しゅくだい.html">11月30日 しゅくだい →</a></div>
+        <div class="clip" data-search="ai ai音声 l9 a) 年末年始の 休みは どう していましたか。b) ゆうびんきょくで アルバイトを していました。 grammar example">
+          <span class="clip-num">AI</span>
+          <span class="clip-label">grammar example</span>
+          <audio controls preload="none" src="../audio/tts/L9_bunpou/1-2.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">冬休みは、うちで ごろごろ していました。</span>
+          <a class="clip-page" href="2026年11月30日_しゅくだい.html">11月30日 しゅくだい →</a></div>
+        <div class="clip" data-search="ai ai音声 l9 冬休みは、うちで ごろごろ していました。 grammar example">
+          <span class="clip-num">AI</span>
+          <span class="clip-label">grammar example</span>
+          <audio controls preload="none" src="../audio/tts/L9_bunpou/1-3.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">長い 休みは ゆっくり 好きな ことが できて、うれしいです。</span>
+          <a class="clip-page" href="2026年11月30日_しゅくだい.html">11月30日 しゅくだい →</a></div>
+        <div class="clip" data-search="ai ai音声 l9 長い 休みは ゆっくり 好きな ことが できて、うれしいです。 grammar example">
+          <span class="clip-num">AI</span>
+          <span class="clip-label">grammar example</span>
+          <audio controls preload="none" src="../audio/tts/L9_bunpou/2-1.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">冬休みは ひさしぶりに 国に 帰れて、よかったです。</span>
+          <a class="clip-page" href="2026年11月30日_しゅくだい.html">11月30日 しゅくだい →</a></div>
+        <div class="clip" data-search="ai ai音声 l9 冬休みは ひさしぶりに 国に 帰れて、よかったです。 grammar example">
+          <span class="clip-num">AI</span>
+          <span class="clip-label">grammar example</span>
+          <audio controls preload="none" src="../audio/tts/L9_bunpou/2-2.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">クリスマスコンサートの チケットが うりきれで 買えなくて、ざんねんです。</span>
+          <a class="clip-page" href="2026年11月30日_しゅくだい.html">11月30日 しゅくだい →</a></div>
+        <div class="clip" data-search="ai ai音声 l9 クリスマスコンサートの チケットが うりきれで 買えなくて、ざんねんです。 grammar example">
+          <span class="clip-num">AI</span>
+          <span class="clip-label">grammar example</span>
+          <audio controls preload="none" src="../audio/tts/L9_bunpou/2-3.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">かぜで パーティーに さんかできなくて、ざんねんでした。</span>
+          <a class="clip-page" href="2026年11月30日_しゅくだい.html">11月30日 しゅくだい →</a></div>
+        <div class="clip" data-search="ai ai音声 l9 かぜで パーティーに さんかできなくて、ざんねんでした。 grammar example">
+          <span class="clip-num">AI</span>
+          <span class="clip-label">grammar example</span>
+          <audio controls preload="none" src="../audio/tts/L9_bunpou/2-4.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">クリスマスに プレゼントを 1つしか もらいませんでした。</span>
+          <a class="clip-page" href="2026年11月30日_しゅくだい.html">11月30日 しゅくだい →</a></div>
+        <div class="clip" data-search="ai ai音声 l9 クリスマスに プレゼントを 1つしか もらいませんでした。 grammar example">
+          <span class="clip-num">AI</span>
+          <span class="clip-label">grammar example</span>
+          <audio controls preload="none" src="../audio/tts/L9_bunpou/3-1.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">去年、私は 1日だけ 仕事を 休みました。</span>
+          <a class="clip-page" href="2026年11月30日_しゅくだい.html">11月30日 しゅくだい →</a></div>
+        <div class="clip" data-search="ai ai音声 l9 去年、私は 1日だけ 仕事を 休みました。 grammar example">
+          <span class="clip-num">AI</span>
+          <span class="clip-label">grammar example</span>
+          <audio controls preload="none" src="../audio/tts/L9_bunpou/3-2.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">A) ひこうきの チケット、もう 買いましたか。B) いいえ、高い チケットしか なかったので、買いませんでした。</span>
+          <a class="clip-page" href="2026年11月30日_しゅくだい.html">11月30日 しゅくだい →</a></div>
+        <div class="clip" data-search="ai ai音声 l9 a) ひこうきの チケット、もう 買いましたか。b) いいえ、高い チケットしか なかったので、買いませんでした。 grammar example">
+          <span class="clip-num">AI</span>
+          <span class="clip-label">grammar example</span>
+          <audio controls preload="none" src="../audio/tts/L9_bunpou/3-3.mp3"></audio>
+        </div>
+      </div>
+  </section>
+  <section id="l8" class="lesson">
+    <div class="section-head">
+      <span class="section-num">八</span>
+      <h2>だい8か 「コンサートは もう はじまりましたか」 <span class="count">· 日本まつり</span> <span class="count">62 clips</span></h2>
+    </div>
+    <h3 class="book">かつどう <span class="count">22</span></h3>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">1 — 日本まつりの イベント (p.68 · 077)</span>
+          <a class="clip-page" href="2026年11月09日_しゅくだい.html">11月9日 しゅくだい →</a></div>
+        <div class="clip" data-search="077 かつどう l8 1 — 日本まつりの イベント (p.68 · 077) exercise">
+          <span class="clip-num">077</span>
+          <span class="clip-label">exercise</span>
+          <audio controls preload="none" src="../audio/katsudoo/077_8_1.mp3"></audio>
+        </div>
+        <div class="clip" data-search="077 かつどう l8 1 — 日本まつりの イベント (p.68 · 077) a–f">
+          <span class="clip-num">077</span>
+          <span class="clip-label">a–f</span>
+          <audio controls preload="none" src="../audio/katsudoo/track_077_events.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">2-1 — 何時に はじまるか、しっていますか (p.69 · CHECK! 078–081)</span>
+          <a class="clip-page" href="2026年11月09日_しゅくだい.html">11月9日 しゅくだい →</a></div>
+        <div class="clip" data-search="078 かつどう l8 2-1 — 何時に はじまるか、しっていますか (p.69 · check! 078–081) exercise">
+          <span class="clip-num">078</span>
+          <span class="clip-label">exercise</span>
+          <audio controls preload="none" src="../audio/katsudoo/078_8_2_1.mp3"></audio>
+        </div>
+        <div class="clip" data-search="078 かつどう l8 2-1 — 何時に はじまるか、しっていますか (p.69 · check! 078–081) 1">
+          <span class="clip-num">078</span>
+          <span class="clip-label">1</span>
+          <audio controls preload="none" src="../audio/katsudoo/078_8_2_1[1].mp3"></audio>
+        </div>
+        <div class="clip" data-search="078 かつどう l8 2-1 — 何時に はじまるか、しっていますか (p.69 · check! 078–081) 1 (n)">
+          <span class="clip-num">078</span>
+          <span class="clip-label">1 (n)</span>
+          <audio controls preload="none" src="../audio/katsudoo/078n_8_2_1[1]n.mp3"></audio>
+        </div>
+        <div class="clip" data-search="079 かつどう l8 2-1 — 何時に はじまるか、しっていますか (p.69 · check! 078–081) 2">
+          <span class="clip-num">079</span>
+          <span class="clip-label">2</span>
+          <audio controls preload="none" src="../audio/katsudoo/079_8_2_1[2].mp3"></audio>
+        </div>
+        <div class="clip" data-search="079 かつどう l8 2-1 — 何時に はじまるか、しっていますか (p.69 · check! 078–081) 2 (n)">
+          <span class="clip-num">079</span>
+          <span class="clip-label">2 (n)</span>
+          <audio controls preload="none" src="../audio/katsudoo/079n_8_2_1[2]n.mp3"></audio>
+        </div>
+        <div class="clip" data-search="080 かつどう l8 2-1 — 何時に はじまるか、しっていますか (p.69 · check! 078–081) 3">
+          <span class="clip-num">080</span>
+          <span class="clip-label">3</span>
+          <audio controls preload="none" src="../audio/katsudoo/080_8_2_1[3].mp3"></audio>
+        </div>
+        <div class="clip" data-search="080 かつどう l8 2-1 — 何時に はじまるか、しっていますか (p.69 · check! 078–081) 3 (n)">
+          <span class="clip-num">080</span>
+          <span class="clip-label">3 (n)</span>
+          <audio controls preload="none" src="../audio/katsudoo/080n_8_2_1[3]n.mp3"></audio>
+        </div>
+        <div class="clip" data-search="081 かつどう l8 2-1 — 何時に はじまるか、しっていますか (p.69 · check! 078–081) 4">
+          <span class="clip-num">081</span>
+          <span class="clip-label">4</span>
+          <audio controls preload="none" src="../audio/katsudoo/081_8_2_1[4].mp3"></audio>
+        </div>
+        <div class="clip" data-search="081 かつどう l8 2-1 — 何時に はじまるか、しっていますか (p.69 · check! 078–081) 4 (n)">
+          <span class="clip-num">081</span>
+          <span class="clip-label">4 (n)</span>
+          <audio controls preload="none" src="../audio/katsudoo/081n_8_2_1[4]n.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">3-1 — まだ やっていますか · 見たい イベントは 今、やっていますか。 (p.70 · CHECK! 082–086)</span>
+          <a class="clip-page" href="2026年11月09日_しゅくだい.html">11月9日 しゅくだい →</a></div>
+        <div class="clip" data-search="082 かつどう l8 3-1 — まだ やっていますか · 見たい イベントは 今、やっていますか。 (p.70 · check! 082–086) exercise">
+          <span class="clip-num">082</span>
+          <span class="clip-label">exercise</span>
+          <audio controls preload="none" src="../audio/katsudoo/082_8_3_1.mp3"></audio>
+        </div>
+        <div class="clip" data-search="082 かつどう l8 3-1 — まだ やっていますか · 見たい イベントは 今、やっていますか。 (p.70 · check! 082–086) 1">
+          <span class="clip-num">082</span>
+          <span class="clip-label">1</span>
+          <audio controls preload="none" src="../audio/katsudoo/082_8_3_1[1].mp3"></audio>
+        </div>
+        <div class="clip" data-search="083 かつどう l8 3-1 — まだ やっていますか · 見たい イベントは 今、やっていますか。 (p.70 · check! 082–086) 2">
+          <span class="clip-num">083</span>
+          <span class="clip-label">2</span>
+          <audio controls preload="none" src="../audio/katsudoo/083_8_3_1[2].mp3"></audio>
+        </div>
+        <div class="clip" data-search="084 かつどう l8 3-1 — まだ やっていますか · 見たい イベントは 今、やっていますか。 (p.70 · check! 082–086) 3">
+          <span class="clip-num">084</span>
+          <span class="clip-label">3</span>
+          <audio controls preload="none" src="../audio/katsudoo/084_8_3_1[3].mp3"></audio>
+        </div>
+        <div class="clip" data-search="085 かつどう l8 3-1 — まだ やっていますか · 見たい イベントは 今、やっていますか。 (p.70 · check! 082–086) 4">
+          <span class="clip-num">085</span>
+          <span class="clip-label">4</span>
+          <audio controls preload="none" src="../audio/katsudoo/085_8_3_1[4].mp3"></audio>
+        </div>
+        <div class="clip" data-search="086 かつどう l8 3-1 — まだ やっていますか · 見たい イベントは 今、やっていますか。 (p.70 · check! 082–086) 5">
+          <span class="clip-num">086</span>
+          <span class="clip-label">5</span>
+          <audio controls preload="none" src="../audio/katsudoo/086_8_3_1[5].mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">4-1 — ビデオは ごえんりょください · しかいの 人が 話しています。 (p.71 · 087)</span>
+          <a class="clip-page" href="2026年11月09日_しゅくだい.html">11月9日 しゅくだい →</a></div>
+        <div class="clip" data-search="087 かつどう l8 4-1 — ビデオは ごえんりょください · しかいの 人が 話しています。 (p.71 · 087) exercise">
+          <span class="clip-num">087</span>
+          <span class="clip-label">exercise</span>
+          <audio controls preload="none" src="../audio/katsudoo/087_8_4_1.mp3"></audio>
+        </div>
+        <div class="clip" data-search="087 かつどう l8 4-1 — ビデオは ごえんりょください · しかいの 人が 話しています。 (p.71 · 087) かいじょうで">
+          <span class="clip-num">087</span>
+          <span class="clip-label">かいじょうで</span>
+          <audio controls preload="none" src="../audio/katsudoo/087_8_4_1_kaijode.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">2-3 — Can-do 22 · p.68の イベントについて 話しましょう。 (p.69)</span>
+          <a class="clip-page" href="2026年11月09日_しゅくだい.html">11月9日 しゅくだい →</a></div>
+        <div class="clip" data-search="204 かつどう l8 2-3 — can-do 22 · p.68の イベントについて 話しましょう。 (p.69) can-do">
+          <span class="clip-num">204</span>
+          <span class="clip-label">can-do</span>
+          <audio controls preload="none" src="../audio/katsudoo/204_can-do_22_(8_2_3).mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">3-3 — Can-do 23 · p.68の イベントについて うけつけで 聞きましょう。 (pp.70–71)</span>
+          <a class="clip-page" href="2026年11月09日_しゅくだい.html">11月9日 しゅくだい →</a></div>
+        <div class="clip" data-search="205 かつどう l8 3-3 — can-do 23 · p.68の イベントについて うけつけで 聞きましょう。 (pp.70–71) can-do">
+          <span class="clip-num">205</span>
+          <span class="clip-label">can-do</span>
+          <audio controls preload="none" src="../audio/katsudoo/205_can-do_23_(8_3_3).mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">4-2 — Can-do 24 · メモを 見て、しかいを しましょう。 (p.71)</span>
+          <a class="clip-page" href="2026年11月09日_しゅくだい.html">11月9日 しゅくだい →</a></div>
+        <div class="clip" data-search="206 かつどう l8 4-2 — can-do 24 · メモを 見て、しかいを しましょう。 (p.71) can-do">
+          <span class="clip-num">206</span>
+          <span class="clip-label">can-do</span>
+          <audio controls preload="none" src="../audio/katsudoo/206_can-do_24_(8_4_2).mp3"></audio>
+        </div>
+      </div>
+    <h3 class="book">りかい <span class="count">30</span></h3>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">1-3 — ただしい ことばを えらびましょう。 (p.79 · CHECK! 138)</span>
+          <a class="clip-page" href="2026年11月16日_しゅくだい.html">11月16日 しゅくだい →</a></div>
+        <div class="clip" data-search="138 りかい l8 1-3 — ただしい ことばを えらびましょう。 (p.79 · check! 138) exercise">
+          <span class="clip-num">138</span>
+          <span class="clip-label">exercise</span>
+          <audio controls preload="none" src="../audio/rikai/138_8_1_3.mp3"></audio>
+        </div>
+        <div class="clip" data-search="138 りかい l8 1-3 — ただしい ことばを えらびましょう。 (p.79 · check! 138) こたえ">
+          <span class="clip-num">138</span>
+          <span class="clip-label">こたえ</span>
+          <audio controls preload="none" src="../audio/rikai/track_138_answers.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">1-4 — 聞いて 書きましょう。 (p.79 · 139)</span>
+          <a class="clip-page" href="2026年11月16日_しゅくだい.html">11月16日 しゅくだい →</a></div>
+        <div class="clip" data-search="139 りかい l8 1-4 — 聞いて 書きましょう。 (p.79 · 139) exercise">
+          <span class="clip-num">139</span>
+          <span class="clip-label">exercise</span>
+          <audio controls preload="none" src="../audio/rikai/139_8_1_4.mp3"></audio>
+        </div>
+        <div class="clip" data-search="139 りかい l8 1-4 — 聞いて 書きましょう。 (p.79 · 139) きいて かく">
+          <span class="clip-num">139</span>
+          <span class="clip-label">きいて かく</span>
+          <audio controls preload="none" src="../audio/rikai/track_139_kiite_kaki.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">1-5 — 漢字を 読みましょう。 (p.79 · CHECK! 140)</span>
+          <a class="clip-page" href="2026年11月16日_しゅくだい.html">11月16日 しゅくだい →</a></div>
+        <div class="clip" data-search="140 りかい l8 1-5 — 漢字を 読みましょう。 (p.79 · check! 140) exercise">
+          <span class="clip-num">140</span>
+          <span class="clip-label">exercise</span>
+          <audio controls preload="none" src="../audio/rikai/140_8_1_5.mp3"></audio>
+        </div>
+        <div class="clip" data-search="140 りかい l8 1-5 — 漢字を 読みましょう。 (p.79 · check! 140) 漢字">
+          <span class="clip-num">140</span>
+          <span class="clip-label">漢字</span>
+          <audio controls preload="none" src="../audio/rikai/140_8_1_5_kanji.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">2-1 — 聞きましょう。 (p.80 · 141)</span>
+          <a class="clip-page" href="2026年11月16日_しゅくだい.html">11月16日 しゅくだい →</a></div>
+        <div class="clip" data-search="141 りかい l8 2-1 — 聞きましょう。 (p.80 · 141) exercise">
+          <span class="clip-num">141</span>
+          <span class="clip-label">exercise</span>
+          <audio controls preload="none" src="../audio/rikai/141_8_2_1.mp3"></audio>
+        </div>
+        <div class="clip" data-search="141 りかい l8 2-1 — 聞きましょう。 (p.80 · 141) かいわ">
+          <span class="clip-num">141</span>
+          <span class="clip-label">かいわ</span>
+          <audio controls preload="none" src="../audio/rikai/141_8_2_1_kaiwa.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">2-2 — もう V ました ／ まだ V-て いません (p.80–81)</span>
+          <a class="clip-page" href="2026年11月16日_しゅくだい.html">11月16日 しゅくだい →</a></div>
+        <div class="clip" data-search="142 りかい l8 2-2 — もう v ました ／ まだ v-て いません (p.80–81) exercise">
+          <span class="clip-num">142</span>
+          <span class="clip-label">exercise</span>
+          <audio controls preload="none" src="../audio/rikai/142_8_2_2(1).mp3"></audio>
+        </div>
+        <div class="clip" data-search="142 りかい l8 2-2 — もう v ました ／ まだ v-て いません (p.80–81) 1">
+          <span class="clip-num">142</span>
+          <span class="clip-label">1</span>
+          <audio controls preload="none" src="../audio/rikai/track_142_item1.mp3"></audio>
+        </div>
+        <div class="clip" data-search="143 りかい l8 2-2 — もう v ました ／ まだ v-て いません (p.80–81) 2">
+          <span class="clip-num">143</span>
+          <span class="clip-label">2</span>
+          <audio controls preload="none" src="../audio/rikai/track_143_item2.mp3"></audio>
+        </div>
+        <div class="clip" data-search="144 りかい l8 2-2 — もう v ました ／ まだ v-て いません (p.80–81) 3">
+          <span class="clip-num">144</span>
+          <span class="clip-label">3</span>
+          <audio controls preload="none" src="../audio/rikai/track_144_item3.mp3"></audio>
+        </div>
+        <div class="clip" data-search="145 りかい l8 2-2 — もう v ました ／ まだ v-て いません (p.80–81) 4">
+          <span class="clip-num">145</span>
+          <span class="clip-label">4</span>
+          <audio controls preload="none" src="../audio/rikai/track_145_item4.mp3"></audio>
+        </div>
+        <div class="clip" data-search="146 りかい l8 2-2 — もう v ました ／ まだ v-て いません (p.80–81) こたえ">
+          <span class="clip-num">146</span>
+          <span class="clip-label">こたえ</span>
+          <audio controls preload="none" src="../audio/rikai/track_146_answers.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">2-3 — まだ V1 ます／V1-て います ・ もう V1 ません／V2 ました (p.81)</span>
+          <a class="clip-page" href="2026年11月16日_しゅくだい.html">11月16日 しゅくだい →</a></div>
+        <div class="clip" data-search="147 りかい l8 2-3 — まだ v1 ます／v1-て います ・ もう v1 ません／v2 ました (p.81) exercise">
+          <span class="clip-num">147</span>
+          <span class="clip-label">exercise</span>
+          <audio controls preload="none" src="../audio/rikai/147_8_2_3(1).mp3"></audio>
+        </div>
+        <div class="clip" data-search="147 りかい l8 2-3 — まだ v1 ます／v1-て います ・ もう v1 ません／v2 ました (p.81) 1">
+          <span class="clip-num">147</span>
+          <span class="clip-label">1</span>
+          <audio controls preload="none" src="../audio/rikai/track_147_item1.mp3"></audio>
+        </div>
+        <div class="clip" data-search="148 りかい l8 2-3 — まだ v1 ます／v1-て います ・ もう v1 ません／v2 ました (p.81) 2">
+          <span class="clip-num">148</span>
+          <span class="clip-label">2</span>
+          <audio controls preload="none" src="../audio/rikai/track_148_item2.mp3"></audio>
+        </div>
+        <div class="clip" data-search="149 りかい l8 2-3 — まだ v1 ます／v1-て います ・ もう v1 ません／v2 ました (p.81) 3">
+          <span class="clip-num">149</span>
+          <span class="clip-label">3</span>
+          <audio controls preload="none" src="../audio/rikai/track_149_item3.mp3"></audio>
+        </div>
+        <div class="clip" data-search="150 りかい l8 2-3 — まだ v1 ます／v1-て います ・ もう v1 ません／v2 ました (p.81) 4">
+          <span class="clip-num">150</span>
+          <span class="clip-label">4</span>
+          <audio controls preload="none" src="../audio/rikai/track_150_item4.mp3"></audio>
+        </div>
+        <div class="clip" data-search="151 りかい l8 2-3 — まだ v1 ます／v1-て います ・ もう v1 ません／v2 ました (p.81) こたえ">
+          <span class="clip-num">151</span>
+          <span class="clip-label">こたえ</span>
+          <audio controls preload="none" src="../audio/rikai/track_151_answers.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">3-1 — 聞きましょう。 (p.82 · 152)</span>
+          <a class="clip-page" href="2026年11月23日_しゅくだい.html">11月23日 しゅくだい →</a></div>
+        <div class="clip" data-search="152 りかい l8 3-1 — 聞きましょう。 (p.82 · 152) exercise">
+          <span class="clip-num">152</span>
+          <span class="clip-label">exercise</span>
+          <audio controls preload="none" src="../audio/rikai/152_8_3_1.mp3"></audio>
+        </div>
+        <div class="clip" data-search="152 りかい l8 3-1 — 聞きましょう。 (p.82 · 152) かいわ">
+          <span class="clip-num">152</span>
+          <span class="clip-label">かいわ</span>
+          <audio controls preload="none" src="../audio/rikai/152_8_3_1_kaiwa.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">3-2 — S〔いつ／どこ／何…（ふつうけい）か〕、しっていますか／わかりますか (p.82)</span>
+          <a class="clip-page" href="2026年11月23日_しゅくだい.html">11月23日 しゅくだい →</a></div>
+        <div class="clip" data-search="153 りかい l8 3-2 — s〔いつ／どこ／何…（ふつうけい）か〕、しっていますか／わかりますか (p.82) exercise">
+          <span class="clip-num">153</span>
+          <span class="clip-label">exercise</span>
+          <audio controls preload="none" src="../audio/rikai/153_8_3_2(1).mp3"></audio>
+        </div>
+        <div class="clip" data-search="153 りかい l8 3-2 — s〔いつ／どこ／何…（ふつうけい）か〕、しっていますか／わかりますか (p.82) こたえ">
+          <span class="clip-num">153</span>
+          <span class="clip-label">こたえ</span>
+          <audio controls preload="none" src="../audio/rikai/track_153_answers.mp3"></audio>
+        </div>
+        <div class="clip" data-search="154 りかい l8 3-2 — s〔いつ／どこ／何…（ふつうけい）か〕、しっていますか／わかりますか (p.82) exercise">
+          <span class="clip-num">154</span>
+          <span class="clip-label">exercise</span>
+          <audio controls preload="none" src="../audio/rikai/154_8_3_2(2).mp3"></audio>
+        </div>
+        <div class="clip" data-search="154 りかい l8 3-2 — s〔いつ／どこ／何…（ふつうけい）か〕、しっていますか／わかりますか (p.82) こたえ">
+          <span class="clip-num">154</span>
+          <span class="clip-label">こたえ</span>
+          <audio controls preload="none" src="../audio/rikai/track_154_answers.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">4 — どっかい「日本祭の アンケート」 (p.84 · 155–157)</span>
+          <a class="clip-page" href="2026年11月23日_しゅくだい.html">11月23日 しゅくだい →</a></div>
+        <div class="clip" data-search="155 りかい l8 4 — どっかい「日本祭の アンケート」 (p.84 · 155–157) exercise">
+          <span class="clip-num">155</span>
+          <span class="clip-label">exercise</span>
+          <audio controls preload="none" src="../audio/rikai/155_8_4.mp3"></audio>
+        </div>
+        <div class="clip" data-search="155 りかい l8 4 — どっかい「日本祭の アンケート」 (p.84 · 155–157) ❶ 155">
+          <span class="clip-num">155</span>
+          <span class="clip-label">❶ 155</span>
+          <audio controls preload="none" src="../audio/rikai/track_155_item1.mp3"></audio>
+        </div>
+        <div class="clip" data-search="156 りかい l8 4 — どっかい「日本祭の アンケート」 (p.84 · 155–157) ❷ 156">
+          <span class="clip-num">156</span>
+          <span class="clip-label">❷ 156</span>
+          <audio controls preload="none" src="../audio/rikai/track_156_item2.mp3"></audio>
+        </div>
+        <div class="clip" data-search="157 りかい l8 4 — どっかい「日本祭の アンケート」 (p.84 · 155–157) ❸ 157">
+          <span class="clip-num">157</span>
+          <span class="clip-label">❸ 157</span>
+          <audio controls preload="none" src="../audio/rikai/track_157_item3.mp3"></audio>
+        </div>
+      </div>
+    <h3 class="book">AI音声 <span class="count">10</span> <span class="ai-note">generated with Gemini TTS — not book audio</span></h3>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">受付の じゅんびは もう できました。</span>
+          <a class="clip-page" href="2026年11月23日_しゅくだい.html">11月23日 しゅくだい →</a></div>
+        <div class="clip" data-search="ai ai音声 l8 受付の じゅんびは もう できました。 grammar example">
+          <span class="clip-num">AI</span>
+          <span class="clip-label">grammar example</span>
+          <audio controls preload="none" src="../audio/tts/L8_bunpou/1-1.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">14時からの えいがは もう 始まりました。つぎは 16時からです。</span>
+          <a class="clip-page" href="2026年11月23日_しゅくだい.html">11月23日 しゅくだい →</a></div>
+        <div class="clip" data-search="ai ai音声 l8 14時からの えいがは もう 始まりました。つぎは 16時からです。 grammar example">
+          <span class="clip-num">AI</span>
+          <span class="clip-label">grammar example</span>
+          <audio controls preload="none" src="../audio/tts/L8_bunpou/1-2.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">A) カラオケコンテストの 参加者は もう 来ましたか。B) いいえ、まだ 来ていません。</span>
+          <a class="clip-page" href="2026年11月23日_しゅくだい.html">11月23日 しゅくだい →</a></div>
+        <div class="clip" data-search="ai ai音声 l8 a) カラオケコンテストの 参加者は もう 来ましたか。b) いいえ、まだ 来ていません。 grammar example">
+          <span class="clip-num">AI</span>
+          <span class="clip-label">grammar example</span>
+          <audio controls preload="none" src="../audio/tts/L8_bunpou/1-3.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">A) カラオケコンテスト、まだ さんかできますか。B) はい、まだ できますよ。</span>
+          <a class="clip-page" href="2026年11月23日_しゅくだい.html">11月23日 しゅくだい →</a></div>
+        <div class="clip" data-search="ai ai音声 l8 a) カラオケコンテスト、まだ さんかできますか。b) はい、まだ できますよ。 grammar example">
+          <span class="clip-num">AI</span>
+          <span class="clip-label">grammar example</span>
+          <audio controls preload="none" src="../audio/tts/L8_bunpou/2-1.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">A) おかしは まだ ありますか。B) いいえ、もう ありません。おかしは もう 全部 食べました。</span>
+          <a class="clip-page" href="2026年11月23日_しゅくだい.html">11月23日 しゅくだい →</a></div>
+        <div class="clip" data-search="ai ai音声 l8 a) おかしは まだ ありますか。b) いいえ、もう ありません。おかしは もう 全部 食べました。 grammar example">
+          <span class="clip-num">AI</span>
+          <span class="clip-label">grammar example</span>
+          <audio controls preload="none" src="../audio/tts/L8_bunpou/2-2.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">A) すみません。からて デモンストレーションは まだ やっていますか。B) はい、まだ やっていますよ。こちらから どうぞ。</span>
+          <a class="clip-page" href="2026年11月23日_しゅくだい.html">11月23日 しゅくだい →</a></div>
+        <div class="clip" data-search="ai ai音声 l8 a) すみません。からて デモンストレーションは まだ やっていますか。b) はい、まだ やっていますよ。こちらから どうぞ。 grammar example">
+          <span class="clip-num">AI</span>
+          <span class="clip-label">grammar example</span>
+          <audio controls preload="none" src="../audio/tts/L8_bunpou/2-3.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">A) Jポップコンサートは まだ やっていますか。B) すみません、もう 終わりました。</span>
+          <a class="clip-page" href="2026年11月23日_しゅくだい.html">11月23日 しゅくだい →</a></div>
+        <div class="clip" data-search="ai ai音声 l8 a) jポップコンサートは まだ やっていますか。b) すみません、もう 終わりました。 grammar example">
+          <span class="clip-num">AI</span>
+          <span class="clip-label">grammar example</span>
+          <audio controls preload="none" src="../audio/tts/L8_bunpou/2-4.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">A) 何時に マンガきょうしつが 終わるか、知っていますか。B) わかりません。受付で 聞いてみましょう。</span>
+          <a class="clip-page" href="2026年11月23日_しゅくだい.html">11月23日 しゅくだい →</a></div>
+        <div class="clip" data-search="ai ai音声 l8 a) 何時に マンガきょうしつが 終わるか、知っていますか。b) わかりません。受付で 聞いてみましょう。 grammar example">
+          <span class="clip-num">AI</span>
+          <span class="clip-label">grammar example</span>
+          <audio controls preload="none" src="../audio/tts/L8_bunpou/3-1.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">A) どこで カラオケコンテストを やるか、わかりますか。B) あの 大きい ホールですよ。</span>
+          <a class="clip-page" href="2026年11月23日_しゅくだい.html">11月23日 しゅくだい →</a></div>
+        <div class="clip" data-search="ai ai音声 l8 a) どこで カラオケコンテストを やるか、わかりますか。b) あの 大きい ホールですよ。 grammar example">
+          <span class="clip-num">AI</span>
+          <span class="clip-label">grammar example</span>
+          <audio controls preload="none" src="../audio/tts/L8_bunpou/3-2.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">A) たいこ きょうしつは どこで やっているか、わかりますか。B) たいこ きょうしつは 1かいの ホールですよ。</span>
+          <a class="clip-page" href="2026年11月23日_しゅくだい.html">11月23日 しゅくだい →</a></div>
+        <div class="clip" data-search="ai ai音声 l8 a) たいこ きょうしつは どこで やっているか、わかりますか。b) たいこ きょうしつは 1かいの ホールですよ。 grammar example">
+          <span class="clip-num">AI</span>
+          <span class="clip-label">grammar example</span>
+          <audio controls preload="none" src="../audio/tts/L8_bunpou/3-3.mp3"></audio>
+        </div>
+      </div>
+  </section>
+  <section id="l7" class="lesson">
+    <div class="section-head">
+      <span class="section-num">七</span>
+      <h2>だい7か 「雨が ふったら、どう しますか」 <span class="count">· 日本まつり</span> <span class="count">52 clips</span></h2>
+    </div>
+    <h3 class="book">かつどう <span class="count">19</span></h3>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">1 — 日本まつりの ボランティア (p.62)</span>
+          <a class="clip-page" href="2026年09月28日_しゅくだい.html">9月28日 しゅくだい →</a></div>
+        <div class="clip" data-search="067 かつどう l7 1 — 日本まつりの ボランティア (p.62) exercise">
+          <span class="clip-num">067</span>
+          <span class="clip-label">exercise</span>
+          <audio controls preload="none" src="../audio/katsudoo/067_7_1.mp3"></audio>
+        </div>
+        <div class="clip" data-search="067 かつどう l7 1 — 日本まつりの ボランティア (p.62) a–i">
+          <span class="clip-num">067</span>
+          <span class="clip-label">a–i</span>
+          <audio controls preload="none" src="../audio/katsudoo/track_067_activities.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">2 — ヨサコイが おしえられる 人を さがしています (pp.63–64)</span>
+          <a class="clip-page" href="2026年09月28日_しゅくだい.html">9月28日 しゅくだい →</a></div>
+        <div class="clip" data-search="068 かつどう l7 2 — ヨサコイが おしえられる 人を さがしています (pp.63–64) main">
+          <span class="clip-num">068</span>
+          <span class="clip-label">main</span>
+          <audio controls preload="none" src="../audio/katsudoo/068_7_2_1.mp3"></audio>
+        </div>
+        <div class="clip" data-search="068 かつどう l7 2 — ヨサコイが おしえられる 人を さがしています (pp.63–64) エドワード">
+          <span class="clip-num">068</span>
+          <span class="clip-label">エドワード</span>
+          <audio controls preload="none" src="../audio/katsudoo/068_7_2_1[1]_edowaado_san.mp3"></audio>
+        </div>
+        <div class="clip" data-search="069 かつどう l7 2 — ヨサコイが おしえられる 人を さがしています (pp.63–64) ナターリヤ">
+          <span class="clip-num">069</span>
+          <span class="clip-label">ナターリヤ</span>
+          <audio controls preload="none" src="../audio/katsudoo/069_7_2_1[2]_nataariya_san.mp3"></audio>
+        </div>
+        <div class="clip" data-search="070 かつどう l7 2 — ヨサコイが おしえられる 人を さがしています (pp.63–64) エスター">
+          <span class="clip-num">070</span>
+          <span class="clip-label">エスター</span>
+          <audio controls preload="none" src="../audio/katsudoo/070_7_2_1[3]_esutaa_san.mp3"></audio>
+        </div>
+        <div class="clip" data-search="071 かつどう l7 2 — ヨサコイが おしえられる 人を さがしています (pp.63–64) タイラー">
+          <span class="clip-num">071</span>
+          <span class="clip-label">タイラー</span>
+          <audio controls preload="none" src="../audio/katsudoo/071_7_2_1[4]_tairaa_san.mp3"></audio>
+        </div>
+        <div class="clip" data-search="072 かつどう l7 2 — ヨサコイが おしえられる 人を さがしています (pp.63–64) キャシー">
+          <span class="clip-num">072</span>
+          <span class="clip-label">キャシー</span>
+          <audio controls preload="none" src="../audio/katsudoo/072_7_2_1[5]_kyashii_san.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">3-1 — もんだいが あったら、れんらくして ください (p.65 · CHECK! 073–076)</span>
+          <a class="clip-page" href="2026年10月05日_しゅくだい.html">10月5日 しゅくだい →</a></div>
+        <div class="clip" data-search="073 かつどう l7 3-1 — もんだいが あったら、れんらくして ください (p.65 · check! 073–076) main">
+          <span class="clip-num">073</span>
+          <span class="clip-label">main</span>
+          <audio controls preload="none" src="../audio/katsudoo/073_7_3_1.mp3"></audio>
+        </div>
+        <div class="clip" data-search="073 かつどう l7 3-1 — もんだいが あったら、れんらくして ください (p.65 · check! 073–076) エドワード">
+          <span class="clip-num">073</span>
+          <span class="clip-label">エドワード</span>
+          <audio controls preload="none" src="../audio/katsudoo/073_7_3_1[1]_edowaado_san.mp3"></audio>
+        </div>
+        <div class="clip" data-search="073 かつどう l7 3-1 — もんだいが あったら、れんらくして ください (p.65 · check! 073–076) エドワード (n)">
+          <span class="clip-num">073</span>
+          <span class="clip-label">エドワード (n)</span>
+          <audio controls preload="none" src="../audio/katsudoo/073n_7_3_1[1]n_edowaado_san.mp3"></audio>
+        </div>
+        <div class="clip" data-search="074 かつどう l7 3-1 — もんだいが あったら、れんらくして ください (p.65 · check! 073–076) ナターリヤ">
+          <span class="clip-num">074</span>
+          <span class="clip-label">ナターリヤ</span>
+          <audio controls preload="none" src="../audio/katsudoo/074_7_3_1[2]_nataariya_san.mp3"></audio>
+        </div>
+        <div class="clip" data-search="074 かつどう l7 3-1 — もんだいが あったら、れんらくして ください (p.65 · check! 073–076) ナターリヤ (n)">
+          <span class="clip-num">074</span>
+          <span class="clip-label">ナターリヤ (n)</span>
+          <audio controls preload="none" src="../audio/katsudoo/074n_7_3_1[2]n_nataariya_san.mp3"></audio>
+        </div>
+        <div class="clip" data-search="075 かつどう l7 3-1 — もんだいが あったら、れんらくして ください (p.65 · check! 073–076) タイラー">
+          <span class="clip-num">075</span>
+          <span class="clip-label">タイラー</span>
+          <audio controls preload="none" src="../audio/katsudoo/075_7_3_1[3]_tairaa_san.mp3"></audio>
+        </div>
+        <div class="clip" data-search="075 かつどう l7 3-1 — もんだいが あったら、れんらくして ください (p.65 · check! 073–076) タイラー (n)">
+          <span class="clip-num">075</span>
+          <span class="clip-label">タイラー (n)</span>
+          <audio controls preload="none" src="../audio/katsudoo/075n_7_3_1[3]n_tairaa_san.mp3"></audio>
+        </div>
+        <div class="clip" data-search="076 かつどう l7 3-1 — もんだいが あったら、れんらくして ください (p.65 · check! 073–076) エスター">
+          <span class="clip-num">076</span>
+          <span class="clip-label">エスター</span>
+          <audio controls preload="none" src="../audio/katsudoo/076_7_3_1[4]_esutaa_san.mp3"></audio>
+        </div>
+        <div class="clip" data-search="076 かつどう l7 3-1 — もんだいが あったら、れんらくして ください (p.65 · check! 073–076) エスター (n)">
+          <span class="clip-num">076</span>
+          <span class="clip-label">エスター (n)</span>
+          <audio controls preload="none" src="../audio/katsudoo/076n_7_3_1[4]n_esutaa_san.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">2-3 — Can-do 19 · 友だちに イベントの ボランティアを たのみましょう。 (p.64)</span>
+          <a class="clip-page" href="2026年10月05日_しゅくだい.html">10月5日 しゅくだい →</a></div>
+        <div class="clip" data-search="202 かつどう l7 2-3 — can-do 19 · 友だちに イベントの ボランティアを たのみましょう。 (p.64) can-do">
+          <span class="clip-num">202</span>
+          <span class="clip-label">can-do</span>
+          <audio controls preload="none" src="../audio/katsudoo/202_can-do_19_(7_2_3).mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">3-2 — ルールを はっけんしましょう。 (p.66)</span>
+          <a class="clip-page" href="2026年10月19日_しゅくだい.html">10月19日 しゅくだい →</a></div>
+        <div class="clip" data-search="203 かつどう l7 3-2 — ルールを はっけんしましょう。 (p.66) can-do">
+          <span class="clip-num">203</span>
+          <span class="clip-label">can-do</span>
+          <audio controls preload="none" src="../audio/katsudoo/203_can-do_20_(7_3_3).mp3"></audio>
+        </div>
+      </div>
+    <h3 class="book">りかい <span class="count">33</span></h3>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">2 — ただしい ことばを えらびましょう。 (p.70 · CHECK! 117)</span>
+          <a class="clip-page" href="2026年10月19日_しゅくだい.html">10月19日 しゅくだい →</a></div>
+        <div class="clip" data-search="117 りかい l7 2 — ただしい ことばを えらびましょう。 (p.70 · check! 117) exercise">
+          <span class="clip-num">117</span>
+          <span class="clip-label">exercise</span>
+          <audio controls preload="none" src="../audio/rikai/117_7_1_2.mp3"></audio>
+        </div>
+        <div class="clip" data-search="117 りかい l7 2 — ただしい ことばを えらびましょう。 (p.70 · check! 117) こたえ">
+          <span class="clip-num">117</span>
+          <span class="clip-label">こたえ</span>
+          <audio controls preload="none" src="../audio/rikai/track_117_answers.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">① 3 — ただしい ことばを えらびましょう。 (p.71 · CHECK! 118)</span>
+          <a class="clip-page" href="2026年10月26日_しゅくだい.html">10月26日 しゅくだい →</a></div>
+        <div class="clip" data-search="118 りかい l7 ① 3 — ただしい ことばを えらびましょう。 (p.71 · check! 118) exercise">
+          <span class="clip-num">118</span>
+          <span class="clip-label">exercise</span>
+          <audio controls preload="none" src="../audio/rikai/118_7_1_3.mp3"></audio>
+        </div>
+        <div class="clip" data-search="118 りかい l7 ① 3 — ただしい ことばを えらびましょう。 (p.71 · check! 118) こたえ">
+          <span class="clip-num">118</span>
+          <span class="clip-label">こたえ</span>
+          <audio controls preload="none" src="../audio/rikai/track_118_answers.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">4 — 聞いて 書きましょう。 (p.71 · 119)</span>
+          <a class="clip-page" href="2026年10月26日_しゅくだい.html">10月26日 しゅくだい →</a></div>
+        <div class="clip" data-search="119 りかい l7 4 — 聞いて 書きましょう。 (p.71 · 119) exercise">
+          <span class="clip-num">119</span>
+          <span class="clip-label">exercise</span>
+          <audio controls preload="none" src="../audio/rikai/119_7_1_4.mp3"></audio>
+        </div>
+        <div class="clip" data-search="119 りかい l7 4 — 聞いて 書きましょう。 (p.71 · 119) 聞いて書き">
+          <span class="clip-num">119</span>
+          <span class="clip-label">聞いて書き</span>
+          <audio controls preload="none" src="../audio/rikai/track_119_kiite_kaki.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">5 — 漢字を 読みましょう。 (p.71 · CHECK! 120)</span>
+          <a class="clip-page" href="2026年10月26日_しゅくだい.html">10月26日 しゅくだい →</a></div>
+        <div class="clip" data-search="120 りかい l7 5 — 漢字を 読みましょう。 (p.71 · check! 120) exercise">
+          <span class="clip-num">120</span>
+          <span class="clip-label">exercise</span>
+          <audio controls preload="none" src="../audio/rikai/120_7_1_5.mp3"></audio>
+        </div>
+        <div class="clip" data-search="120 りかい l7 5 — 漢字を 読みましょう。 (p.71 · check! 120) 漢字">
+          <span class="clip-num">120</span>
+          <span class="clip-label">漢字</span>
+          <audio controls preload="none" src="../audio/rikai/120_7_1_5_kanji.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">② かいわとぶんぽう · 1 — 聞きましょう。 (p.72 · 121)</span>
+          <a class="clip-page" href="2026年10月26日_しゅくだい.html">10月26日 しゅくだい →</a></div>
+        <div class="clip" data-search="121 りかい l7 ② かいわとぶんぽう · 1 — 聞きましょう。 (p.72 · 121) exercise">
+          <span class="clip-num">121</span>
+          <span class="clip-label">exercise</span>
+          <audio controls preload="none" src="../audio/rikai/121_7_2_1.mp3"></audio>
+        </div>
+        <div class="clip" data-search="121 りかい l7 ② かいわとぶんぽう · 1 — 聞きましょう。 (p.72 · 121) かいわ">
+          <span class="clip-num">121</span>
+          <span class="clip-label">かいわ</span>
+          <audio controls preload="none" src="../audio/rikai/121_7_2_1_kaiwa.mp3"></audio>
+        </div>
+        <div class="clip" data-search="121 りかい l7 ② かいわとぶんぽう · 1 — 聞きましょう。 (p.72 · 121) かいわ (n)">
+          <span class="clip-num">121</span>
+          <span class="clip-label">かいわ (n)</span>
+          <audio controls preload="none" src="../audio/rikai/121n_7_2_1n_kaiwa.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">② 2 — かのう ② Potential (pp.72–73) · p.73 = 2②–2④, 3</span>
+          <a class="clip-page" href="2026年11月02日_しゅくだい.html">11月2日 しゅくだい →</a></div>
+        <div class="clip" data-search="122 りかい l7 ② 2 — かのう ② potential (pp.72–73) · p.73 = 2②–2④, 3 main">
+          <span class="clip-num">122</span>
+          <span class="clip-label">main</span>
+          <audio controls preload="none" src="../audio/rikai/122_7_2_2(2).mp3"></audio>
+        </div>
+        <div class="clip" data-search="122 りかい l7 ② 2 — かのう ② potential (pp.72–73) · p.73 = 2②–2④, 3 ❶ フリオ">
+          <span class="clip-num">122</span>
+          <span class="clip-label">❶ フリオ</span>
+          <audio controls preload="none" src="../audio/rikai/track_122_item1.mp3"></audio>
+        </div>
+        <div class="clip" data-search="123 りかい l7 ② 2 — かのう ② potential (pp.72–73) · p.73 = 2②–2④, 3 ❷ フリオ">
+          <span class="clip-num">123</span>
+          <span class="clip-label">❷ フリオ</span>
+          <audio controls preload="none" src="../audio/rikai/track_123_item2.mp3"></audio>
+        </div>
+        <div class="clip" data-search="124 りかい l7 ② 2 — かのう ② potential (pp.72–73) · p.73 = 2②–2④, 3 ❸ ロザナ">
+          <span class="clip-num">124</span>
+          <span class="clip-label">❸ ロザナ</span>
+          <audio controls preload="none" src="../audio/rikai/track_124_item3.mp3"></audio>
+        </div>
+        <div class="clip" data-search="125 りかい l7 ② 2 — かのう ② potential (pp.72–73) · p.73 = 2②–2④, 3 ❹ ロザナ">
+          <span class="clip-num">125</span>
+          <span class="clip-label">❹ ロザナ</span>
+          <audio controls preload="none" src="../audio/rikai/track_125_item4.mp3"></audio>
+        </div>
+        <div class="clip" data-search="126 りかい l7 ② 2 — かのう ② potential (pp.72–73) · p.73 = 2②–2④, 3 こたえ">
+          <span class="clip-num">126</span>
+          <span class="clip-label">こたえ</span>
+          <audio controls preload="none" src="../audio/rikai/track_126_answers.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">③ かいわとぶんぽう · 1 — 聞きましょう。 (p.74 · 127)</span>
+          <a class="clip-page" href="2026年11月02日_しゅくだい.html">11月2日 しゅくだい →</a></div>
+        <div class="clip" data-search="127 りかい l7 ③ かいわとぶんぽう · 1 — 聞きましょう。 (p.74 · 127) exercise">
+          <span class="clip-num">127</span>
+          <span class="clip-label">exercise</span>
+          <audio controls preload="none" src="../audio/rikai/127_7_3_1.mp3"></audio>
+        </div>
+        <div class="clip" data-search="127 りかい l7 ③ かいわとぶんぽう · 1 — 聞きましょう。 (p.74 · 127) かいわ">
+          <span class="clip-num">127</span>
+          <span class="clip-label">かいわ</span>
+          <audio controls preload="none" src="../audio/rikai/127_7_3_1_kaiwa.mp3"></audio>
+        </div>
+        <div class="clip" data-search="127 りかい l7 ③ かいわとぶんぽう · 1 — 聞きましょう。 (p.74 · 127) かいわ (n)">
+          <span class="clip-num">127</span>
+          <span class="clip-label">かいわ (n)</span>
+          <audio controls preload="none" src="../audio/rikai/127n_7_3_1n_kaiwa.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">2 — じょうけん ① Conditional (p.74)</span>
+          <a class="clip-page" href="2026年11月02日_しゅくだい.html">11月2日 しゅくだい →</a></div>
+        <div class="clip" data-search="128 りかい l7 2 — じょうけん ① conditional (p.74) exercise">
+          <span class="clip-num">128</span>
+          <span class="clip-label">exercise</span>
+          <audio controls preload="none" src="../audio/rikai/128_7_3_2(1).mp3"></audio>
+        </div>
+        <div class="clip" data-search="128 りかい l7 2 — じょうけん ① conditional (p.74) こたえ">
+          <span class="clip-num">128</span>
+          <span class="clip-label">こたえ</span>
+          <audio controls preload="none" src="../audio/rikai/track_128_erabi.mp3"></audio>
+        </div>
+        <div class="clip" data-search="129 りかい l7 2 — じょうけん ① conditional (p.74) exercise">
+          <span class="clip-num">129</span>
+          <span class="clip-label">exercise</span>
+          <audio controls preload="none" src="../audio/rikai/129_7_3_2(2).mp3"></audio>
+        </div>
+        <div class="clip" data-search="129 りかい l7 2 — じょうけん ① conditional (p.74) ❶">
+          <span class="clip-num">129</span>
+          <span class="clip-label">❶</span>
+          <audio controls preload="none" src="../audio/rikai/129_7_3_2(2)[1].mp3"></audio>
+        </div>
+        <div class="clip" data-search="130 りかい l7 2 — じょうけん ① conditional (p.74) ❷">
+          <span class="clip-num">130</span>
+          <span class="clip-label">❷</span>
+          <audio controls preload="none" src="../audio/rikai/130_7_3_2(2)[2].mp3"></audio>
+        </div>
+        <div class="clip" data-search="131 りかい l7 2 — じょうけん ① conditional (p.74) ❸">
+          <span class="clip-num">131</span>
+          <span class="clip-label">❸</span>
+          <audio controls preload="none" src="../audio/rikai/131_7_3_2(2)[3].mp3"></audio>
+        </div>
+        <div class="clip" data-search="132 りかい l7 2 — じょうけん ① conditional (p.74) ❹">
+          <span class="clip-num">132</span>
+          <span class="clip-label">❹</span>
+          <audio controls preload="none" src="../audio/rikai/132_7_3_2(2)[4].mp3"></audio>
+        </div>
+        <div class="clip" data-search="133 りかい l7 2 — じょうけん ① conditional (p.74) ❺">
+          <span class="clip-num">133</span>
+          <span class="clip-label">❺</span>
+          <audio controls preload="none" src="../audio/rikai/133_7_3_2(2)[5].mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">④ どっかい「日本まつりの ボランティア」 (p.76 · 134–137) ★ しゅくだい</span>
+          <a class="clip-page" href="2026年11月02日_しゅくだい.html">11月2日 しゅくだい →</a></div>
+        <div class="clip" data-search="134 りかい l7 ④ どっかい「日本まつりの ボランティア」 (p.76 · 134–137) ★ しゅくだい exercise">
+          <span class="clip-num">134</span>
+          <span class="clip-label">exercise</span>
+          <audio controls preload="none" src="../audio/rikai/134_7_4.mp3"></audio>
+        </div>
+        <div class="clip" data-search="134 りかい l7 ④ どっかい「日本まつりの ボランティア」 (p.76 · 134–137) ★ しゅくだい ❶">
+          <span class="clip-num">134</span>
+          <span class="clip-label">❶</span>
+          <audio controls preload="none" src="../audio/rikai/134_7_4[1].mp3"></audio>
+        </div>
+        <div class="clip" data-search="135 りかい l7 ④ どっかい「日本まつりの ボランティア」 (p.76 · 134–137) ★ しゅくだい ❷">
+          <span class="clip-num">135</span>
+          <span class="clip-label">❷</span>
+          <audio controls preload="none" src="../audio/rikai/135_7_4[2].mp3"></audio>
+        </div>
+        <div class="clip" data-search="136 りかい l7 ④ どっかい「日本まつりの ボランティア」 (p.76 · 134–137) ★ しゅくだい ❸">
+          <span class="clip-num">136</span>
+          <span class="clip-label">❸</span>
+          <audio controls preload="none" src="../audio/rikai/136_7_4[3].mp3"></audio>
+        </div>
+        <div class="clip" data-search="137 りかい l7 ④ どっかい「日本まつりの ボランティア」 (p.76 · 134–137) ★ しゅくだい ❹">
+          <span class="clip-num">137</span>
+          <span class="clip-label">❹</span>
+          <audio controls preload="none" src="../audio/rikai/137_7_4[4].mp3"></audio>
+        </div>
+      </div>
+  </section>
+  <section id="l6" class="lesson">
+    <div class="section-head">
+      <span class="section-num">六</span>
+      <h2>だい6か 「イルカの ショーが 見られます」 <span class="count">· 沖縄旅行</span> <span class="count">40 clips</span></h2>
+    </div>
+    <h3 class="book">かつどう <span class="count">11</span></h3>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">p.54 — section 1 · 旅行のパンフレット</span>
+          <a class="clip-page" href="2026年06月15日_しゅくだい.html">6月15日 しゅくだい →</a></div>
+        <div class="clip" data-search="058 かつどう l6 p.54 — section 1 · 旅行のパンフレット exercise">
+          <span class="clip-num">058</span>
+          <span class="clip-label">exercise</span>
+          <audio controls preload="none" src="../audio/katsudoo/track_058.mp3"></audio>
+        </div>
+        <div class="clip" data-search="058 かつどう l6 p.54 — section 1 · 旅行のパンフレット variants">
+          <span class="clip-num">058</span>
+          <span class="clip-label">variants</span>
+          <audio controls preload="none" src="../audio/katsudoo/track_058_variants.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">p.55 — section 2 · ex.1 · 4人は ホテルの人に ツアーについて聞きます</span>
+          <a class="clip-page" href="2026年06月15日_しゅくだい.html">6月15日 しゅくだい →</a></div>
+        <div class="clip" data-search="059 かつどう l6 p.55 — section 2 · ex.1 · 4人は ホテルの人に ツアーについて聞きます shin-san">
+          <span class="clip-num">059</span>
+          <span class="clip-label">shin-san</span>
+          <audio controls preload="none" src="../audio/katsudoo/059_6_2_1[1]_shin_san.mp3"></audio>
+        </div>
+        <div class="clip" data-search="059 かつどう l6 p.55 — section 2 · ex.1 · 4人は ホテルの人に ツアーについて聞きます 059">
+          <span class="clip-num">059</span>
+          <span class="clip-label">059</span>
+          <audio controls preload="none" src="../audio/katsudoo/track_059.mp3"></audio>
+        </div>
+        <div class="clip" data-search="060 かつどう l6 p.55 — section 2 · ex.1 · 4人は ホテルの人に ツアーについて聞きます 060">
+          <span class="clip-num">060</span>
+          <span class="clip-label">060</span>
+          <audio controls preload="none" src="../audio/katsudoo/track_060.mp3"></audio>
+        </div>
+        <div class="clip" data-search="061 かつどう l6 p.55 — section 2 · ex.1 · 4人は ホテルの人に ツアーについて聞きます 061">
+          <span class="clip-num">061</span>
+          <span class="clip-label">061</span>
+          <audio controls preload="none" src="../audio/katsudoo/track_061.mp3"></audio>
+        </div>
+        <div class="clip" data-search="062 かつどう l6 p.55 — section 2 · ex.1 · 4人は ホテルの人に ツアーについて聞きます 062">
+          <span class="clip-num">062</span>
+          <span class="clip-label">062</span>
+          <audio controls preload="none" src="../audio/katsudoo/track_062.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">p.56 — section 3 · ex.1 · ホテルの人は ツアーが どうだったか聞きます</span>
+          <a class="clip-page" href="2026年06月15日_しゅくだい.html">6月15日 しゅくだい →</a></div>
+        <div class="clip" data-search="063 かつどう l6 p.56 — section 3 · ex.1 · ホテルの人は ツアーが どうだったか聞きます 063">
+          <span class="clip-num">063</span>
+          <span class="clip-label">063</span>
+          <audio controls preload="none" src="../audio/katsudoo/track_063.mp3"></audio>
+        </div>
+        <div class="clip" data-search="064 かつどう l6 p.56 — section 3 · ex.1 · ホテルの人は ツアーが どうだったか聞きます 064">
+          <span class="clip-num">064</span>
+          <span class="clip-label">064</span>
+          <audio controls preload="none" src="../audio/katsudoo/track_064.mp3"></audio>
+        </div>
+        <div class="clip" data-search="065 かつどう l6 p.56 — section 3 · ex.1 · ホテルの人は ツアーが どうだったか聞きます 065">
+          <span class="clip-num">065</span>
+          <span class="clip-label">065</span>
+          <audio controls preload="none" src="../audio/katsudoo/track_065.mp3"></audio>
+        </div>
+        <div class="clip" data-search="066 かつどう l6 p.56 — section 3 · ex.1 · ホテルの人は ツアーが どうだったか聞きます 066">
+          <span class="clip-num">066</span>
+          <span class="clip-label">066</span>
+          <audio controls preload="none" src="../audio/katsudoo/track_066.mp3"></audio>
+        </div>
+      </div>
+    <h3 class="book">りかい <span class="count">29</span></h3>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">Ex.3 — 聞いて 書きましょう (p.63, track 099)</span>
+          <a class="clip-page" href="2026年09月21日_しゅくだい.html">9月21日 しゅくだい →</a></div>
+        <div class="clip" data-search="099 りかい l6 ex.3 — 聞いて 書きましょう (p.63, track 099) exercise">
+          <span class="clip-num">099</span>
+          <span class="clip-label">exercise</span>
+          <audio controls preload="none" src="../audio/rikai/track_099.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">p.63 — section 1 · ex.3 · 聞いて 書きましょう</span>
+          <a class="clip-page" href="2026年06月22日_しゅくだい.html">6月22日 しゅくだい →</a></div>
+        <div class="clip" data-search="099 りかい l6 p.63 — section 1 · ex.3 · 聞いて 書きましょう 聞いて書き">
+          <span class="clip-num">099</span>
+          <span class="clip-label">聞いて書き</span>
+          <audio controls preload="none" src="../audio/rikai/track_099_kiite_kaki.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">Ex.4 — 漢字を 読みましょう (p.63, CHECK! 100)</span>
+          <a class="clip-page" href="2026年09月21日_しゅくだい.html">9月21日 しゅくだい →</a></div>
+        <div class="clip" data-search="100 りかい l6 ex.4 — 漢字を 読みましょう (p.63, check! 100) exercise">
+          <span class="clip-num">100</span>
+          <span class="clip-label">exercise</span>
+          <audio controls preload="none" src="../audio/rikai/track_100.mp3"></audio>
+        </div>
+        <div class="clip" data-search="100 りかい l6 ex.4 — 漢字を 読みましょう (p.63, check! 100) かんじ">
+          <span class="clip-num">100</span>
+          <span class="clip-label">かんじ</span>
+          <audio controls preload="none" src="../audio/rikai/track_100_kanji.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">Ex.1 — 聞きましょう (p.64, track 101)</span>
+          <a class="clip-page" href="2026年09月21日_しゅくだい.html">9月21日 しゅくだい →</a></div>
+        <div class="clip" data-search="101 りかい l6 ex.1 — 聞きましょう (p.64, track 101) dialogue">
+          <span class="clip-num">101</span>
+          <span class="clip-label">dialogue</span>
+          <audio controls preload="none" src="../audio/rikai/track_101.mp3"></audio>
+        </div>
+        <div class="clip" data-search="101 りかい l6 ex.1 — 聞きましょう (p.64, track 101) かいわ">
+          <span class="clip-num">101</span>
+          <span class="clip-label">かいわ</span>
+          <audio controls preload="none" src="../audio/rikai/track_101_kaiwa.mp3"></audio>
+        </div>
+        <div class="clip" data-search="101 りかい l6 ex.1 — 聞きましょう (p.64, track 101) かいわ (n)">
+          <span class="clip-num">101</span>
+          <span class="clip-label">かいわ (n)</span>
+          <audio controls preload="none" src="../audio/rikai/track_101_kaiwa_n.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">Ex.2① — 聞いて、ただしい ほうを えらびましょう (p.64–65, tracks 102–105 → CHECK! 106)</span>
+          <a class="clip-page" href="2026年09月21日_しゅくだい.html">9月21日 しゅくだい →</a></div>
+        <div class="clip" data-search="102 りかい l6 ex.2① — 聞いて、ただしい ほうを えらびましょう (p.64–65, tracks 102–105 → check! 106) exercise">
+          <span class="clip-num">102</span>
+          <span class="clip-label">exercise</span>
+          <audio controls preload="none" src="../audio/rikai/track_102.mp3"></audio>
+        </div>
+        <div class="clip" data-search="102 りかい l6 ex.2① — 聞いて、ただしい ほうを えらびましょう (p.64–65, tracks 102–105 → check! 106) item 1">
+          <span class="clip-num">102</span>
+          <span class="clip-label">item 1</span>
+          <audio controls preload="none" src="../audio/rikai/track_102_1.mp3"></audio>
+        </div>
+        <div class="clip" data-search="103 りかい l6 ex.2① — 聞いて、ただしい ほうを えらびましょう (p.64–65, tracks 102–105 → check! 106) item 2">
+          <span class="clip-num">103</span>
+          <span class="clip-label">item 2</span>
+          <audio controls preload="none" src="../audio/rikai/track_103_2.mp3"></audio>
+        </div>
+        <div class="clip" data-search="104 りかい l6 ex.2① — 聞いて、ただしい ほうを えらびましょう (p.64–65, tracks 102–105 → check! 106) item 3">
+          <span class="clip-num">104</span>
+          <span class="clip-label">item 3</span>
+          <audio controls preload="none" src="../audio/rikai/track_104_3.mp3"></audio>
+        </div>
+        <div class="clip" data-search="105 りかい l6 ex.2① — 聞いて、ただしい ほうを えらびましょう (p.64–65, tracks 102–105 → check! 106) item 4">
+          <span class="clip-num">105</span>
+          <span class="clip-label">item 4</span>
+          <audio controls preload="none" src="../audio/rikai/track_105_4.mp3"></audio>
+        </div>
+        <div class="clip" data-search="106 りかい l6 ex.2① — 聞いて、ただしい ほうを えらびましょう (p.64–65, tracks 102–105 → check! 106) こたえ">
+          <span class="clip-num">106</span>
+          <span class="clip-label">こたえ</span>
+          <audio controls preload="none" src="../audio/rikai/track_106_answers.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">Ex.2② — ただしい かたちを 書きましょう (p.65, CHECK! 107) — 沖縄体験ツアー</span>
+          <a class="clip-page" href="2026年09月21日_しゅくだい.html">9月21日 しゅくだい →</a></div>
+        <div class="clip" data-search="107 りかい l6 ex.2② — ただしい かたちを 書きましょう (p.65, check! 107) — 沖縄体験ツアー exercise">
+          <span class="clip-num">107</span>
+          <span class="clip-label">exercise</span>
+          <audio controls preload="none" src="../audio/rikai/track_107.mp3"></audio>
+        </div>
+        <div class="clip" data-search="107 りかい l6 ex.2② — ただしい かたちを 書きましょう (p.65, check! 107) — 沖縄体験ツアー こたえ">
+          <span class="clip-num">107</span>
+          <span class="clip-label">こたえ</span>
+          <audio controls preload="none" src="../audio/rikai/track_107_answers.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">Ex.1 — 聞きましょう (p.66, track 108)</span>
+          <a class="clip-page" href="2026年09月21日_しゅくだい.html">9月21日 しゅくだい →</a></div>
+        <div class="clip" data-search="108 りかい l6 ex.1 — 聞きましょう (p.66, track 108) dialogue">
+          <span class="clip-num">108</span>
+          <span class="clip-label">dialogue</span>
+          <audio controls preload="none" src="../audio/rikai/track_108.mp3"></audio>
+        </div>
+        <div class="clip" data-search="108 りかい l6 ex.1 — 聞きましょう (p.66, track 108) かいわ">
+          <span class="clip-num">108</span>
+          <span class="clip-label">かいわ</span>
+          <audio controls preload="none" src="../audio/rikai/track_108_kaiwa.mp3"></audio>
+        </div>
+        <div class="clip" data-search="108 りかい l6 ex.1 — 聞きましょう (p.66, track 108) かいわ (n)">
+          <span class="clip-num">108</span>
+          <span class="clip-label">かいわ (n)</span>
+          <audio controls preload="none" src="../audio/rikai/track_108_kaiwa_n.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">Ex.2① — ただしい かたちを 書きましょう (p.66–67, tracks 109–112)</span>
+          <a class="clip-page" href="2026年09月21日_しゅくだい.html">9月21日 しゅくだい →</a></div>
+        <div class="clip" data-search="109 りかい l6 ex.2① — ただしい かたちを 書きましょう (p.66–67, tracks 109–112) exercise">
+          <span class="clip-num">109</span>
+          <span class="clip-label">exercise</span>
+          <audio controls preload="none" src="../audio/rikai/track_109.mp3"></audio>
+        </div>
+        <div class="clip" data-search="109 りかい l6 ex.2① — ただしい かたちを 書きましょう (p.66–67, tracks 109–112) item 1">
+          <span class="clip-num">109</span>
+          <span class="clip-label">item 1</span>
+          <audio controls preload="none" src="../audio/rikai/track_109_1.mp3"></audio>
+        </div>
+        <div class="clip" data-search="110 りかい l6 ex.2① — ただしい かたちを 書きましょう (p.66–67, tracks 109–112) item 2">
+          <span class="clip-num">110</span>
+          <span class="clip-label">item 2</span>
+          <audio controls preload="none" src="../audio/rikai/track_110_2.mp3"></audio>
+        </div>
+        <div class="clip" data-search="111 りかい l6 ex.2① — ただしい かたちを 書きましょう (p.66–67, tracks 109–112) item 3">
+          <span class="clip-num">111</span>
+          <span class="clip-label">item 3</span>
+          <audio controls preload="none" src="../audio/rikai/track_111_3.mp3"></audio>
+        </div>
+        <div class="clip" data-search="112 りかい l6 ex.2① — ただしい かたちを 書きましょう (p.66–67, tracks 109–112) item 4">
+          <span class="clip-num">112</span>
+          <span class="clip-label">item 4</span>
+          <audio controls preload="none" src="../audio/rikai/track_112_4.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">Ex.2② — しつもんの こたえを えらびましょう (p.67, CHECK! 113)</span>
+          <a class="clip-page" href="2026年09月21日_しゅくだい.html">9月21日 しゅくだい →</a></div>
+        <div class="clip" data-search="113 りかい l6 ex.2② — しつもんの こたえを えらびましょう (p.67, check! 113) exercise">
+          <span class="clip-num">113</span>
+          <span class="clip-label">exercise</span>
+          <audio controls preload="none" src="../audio/rikai/track_113.mp3"></audio>
+        </div>
+        <div class="clip" data-search="113 りかい l6 ex.2② — しつもんの こたえを えらびましょう (p.67, check! 113) しつもん">
+          <span class="clip-num">113</span>
+          <span class="clip-label">しつもん</span>
+          <audio controls preload="none" src="../audio/rikai/track_113_questions.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">「ツアーの かんそう」— CHECK! 114–116</span>
+          <a class="clip-page" href="2026年09月28日_しゅくだい.html">9月28日 しゅくだい →</a></div>
+        <div class="clip" data-search="114 りかい l6 「ツアーの かんそう」— check! 114–116 exercise">
+          <span class="clip-num">114</span>
+          <span class="clip-label">exercise</span>
+          <audio controls preload="none" src="../audio/rikai/114_6_4.mp3"></audio>
+        </div>
+        <div class="clip" data-search="114 りかい l6 「ツアーの かんそう」— check! 114–116 ❶">
+          <span class="clip-num">114</span>
+          <span class="clip-label">❶</span>
+          <audio controls preload="none" src="../audio/rikai/114_6_4[1].mp3"></audio>
+        </div>
+        <div class="clip" data-search="115 りかい l6 「ツアーの かんそう」— check! 114–116 ❷">
+          <span class="clip-num">115</span>
+          <span class="clip-label">❷</span>
+          <audio controls preload="none" src="../audio/rikai/115_6_4[2].mp3"></audio>
+        </div>
+        <div class="clip" data-search="116 りかい l6 「ツアーの かんそう」— check! 114–116 ❸">
+          <span class="clip-num">116</span>
+          <span class="clip-label">❸</span>
+          <audio controls preload="none" src="../audio/rikai/116_6_4[3].mp3"></audio>
+        </div>
+      </div>
+  </section>
+  <section id="l5" class="lesson">
+    <div class="section-head">
+      <span class="section-num">五</span>
+      <h2>だい5か 「ぼうしを 持っていった ほうが いいですよ」 <span class="count">· 沖縄旅行</span> <span class="count">32 clips</span></h2>
+    </div>
+    <h3 class="book">かつどう <span class="count">2</span></h3>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">p.52 — ex.1 · 交通 リスニング</span>
+          <a class="clip-page" href="2026年5月18日_しゅくだい.html">5月18日 しゅくだい →</a></div>
+        <div class="clip" data-search="045 かつどう l5 p.52 — ex.1 · 交通 リスニング exercise">
+          <span class="clip-num">045</span>
+          <span class="clip-label">exercise</span>
+          <audio controls preload="none" src="../audio/katsudoo/045_5_1.mp3"></audio>
+        </div>
+        <div class="clip" data-search="045 かつどう l5 p.52 — ex.1 · 交通 リスニング okinawa">
+          <span class="clip-num">045</span>
+          <span class="clip-label">okinawa</span>
+          <audio controls preload="none" src="../audio/katsudoo/track_045_okinawa.mp3"></audio>
+        </div>
+      </div>
+    <h3 class="book">りかい <span class="count">30</span></h3>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">p.54 — ex.2 · ただしいことばを 1つ えらびましょう</span>
+          <a class="clip-page" href="2026年06月08日_しゅくだい.html">6月8日 しゅくだい →</a></div>
+        <div class="clip" data-search="081 りかい l5 p.54 — ex.2 · ただしいことばを 1つ えらびましょう exercise">
+          <span class="clip-num">081</span>
+          <span class="clip-label">exercise</span>
+          <audio controls preload="none" src="../audio/rikai/081_5_1_2.mp3"></audio>
+        </div>
+        <div class="clip" data-search="081 りかい l5 p.54 — ex.2 · ただしいことばを 1つ えらびましょう こたえ">
+          <span class="clip-num">081</span>
+          <span class="clip-label">こたえ</span>
+          <audio controls preload="none" src="../audio/rikai/track_081_answers.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">p.55 — ex.4 · 聞いて書きましょう</span>
+          <a class="clip-page" href="2026年06月08日_しゅくだい.html">6月8日 しゅくだい →</a></div>
+        <div class="clip" data-search="082 りかい l5 p.55 — ex.4 · 聞いて書きましょう exercise">
+          <span class="clip-num">082</span>
+          <span class="clip-label">exercise</span>
+          <audio controls preload="none" src="../audio/rikai/082_5_1_4.mp3"></audio>
+        </div>
+        <div class="clip" data-search="082 りかい l5 p.55 — ex.4 · 聞いて書きましょう kiite kaki">
+          <span class="clip-num">082</span>
+          <span class="clip-label">kiite kaki</span>
+          <audio controls preload="none" src="../audio/rikai/track_082_kiite_kaki.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">p.55 — ex.5 · 漢字を読みましょう</span>
+          <a class="clip-page" href="2026年06月08日_しゅくだい.html">6月8日 しゅくだい →</a></div>
+        <div class="clip" data-search="083 りかい l5 p.55 — ex.5 · 漢字を読みましょう exercise">
+          <span class="clip-num">083</span>
+          <span class="clip-label">exercise</span>
+          <audio controls preload="none" src="../audio/rikai/083_5_1_5.mp3"></audio>
+        </div>
+        <div class="clip" data-search="083 りかい l5 p.55 — ex.5 · 漢字を読みましょう kanji">
+          <span class="clip-num">083</span>
+          <span class="clip-label">kanji</span>
+          <audio controls preload="none" src="../audio/rikai/track_083_kanji.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">① 聞きましょう</span>
+          <a class="clip-page" href="2026年06月08日_しゅくだい.html">6月8日 しゅくだい →</a></div>
+        <div class="clip" data-search="084 りかい l5 ① 聞きましょう exercise">
+          <span class="clip-num">084</span>
+          <span class="clip-label">exercise</span>
+          <audio controls preload="none" src="../audio/rikai/084_5_2_1.mp3"></audio>
+        </div>
+        <div class="clip" data-search="084 りかい l5 ① 聞きましょう かいわ">
+          <span class="clip-num">084</span>
+          <span class="clip-label">かいわ</span>
+          <audio controls preload="none" src="../audio/rikai/084_5_2_1_kaiwa.mp3"></audio>
+        </div>
+        <div class="clip" data-search="084 りかい l5 ① 聞きましょう かいわ (n)">
+          <span class="clip-num">084</span>
+          <span class="clip-label">かいわ (n)</span>
+          <audio controls preload="none" src="../audio/rikai/084n_5_2_1n_kaiwa.mp3"></audio>
+        </div>
+        <div class="clip" data-search="087 りかい l5 ① 聞きましょう exercise">
+          <span class="clip-num">087</span>
+          <span class="clip-label">exercise</span>
+          <audio controls preload="none" src="../audio/rikai/087_5_3_1.mp3"></audio>
+        </div>
+        <div class="clip" data-search="087 りかい l5 ① 聞きましょう かいわ">
+          <span class="clip-num">087</span>
+          <span class="clip-label">かいわ</span>
+          <audio controls preload="none" src="../audio/rikai/087_5_3_1_kaiwa.mp3"></audio>
+        </div>
+        <div class="clip" data-search="087 りかい l5 ① 聞きましょう かいわ (n)">
+          <span class="clip-num">087</span>
+          <span class="clip-label">かいわ (n)</span>
+          <audio controls preload="none" src="../audio/rikai/087n_5_3_1n_kaiwa.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">② ただしい ほうを えらびましょう</span>
+          <a class="clip-page" href="2026年06月08日_しゅくだい.html">6月8日 しゅくだい →</a></div>
+        <div class="clip" data-search="085 りかい l5 ② ただしい ほうを えらびましょう exercise">
+          <span class="clip-num">085</span>
+          <span class="clip-label">exercise</span>
+          <audio controls preload="none" src="../audio/rikai/085_5_2_2(1).mp3"></audio>
+        </div>
+        <div class="clip" data-search="085 りかい l5 ② ただしい ほうを えらびましょう こたえ">
+          <span class="clip-num">085</span>
+          <span class="clip-label">こたえ</span>
+          <audio controls preload="none" src="../audio/rikai/track_085_answers.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">p.57 — ex.2② · ただしい かたちを 書きましょう〈沖縄旅行の アドバイス〉</span>
+          <a class="clip-page" href="2026年06月08日_しゅくだい.html">6月8日 しゅくだい →</a></div>
+        <div class="clip" data-search="086 りかい l5 p.57 — ex.2② · ただしい かたちを 書きましょう〈沖縄旅行の アドバイス〉 exercise">
+          <span class="clip-num">086</span>
+          <span class="clip-label">exercise</span>
+          <audio controls preload="none" src="../audio/rikai/086_5_2_2(2).mp3"></audio>
+        </div>
+        <div class="clip" data-search="086 りかい l5 p.57 — ex.2② · ただしい かたちを 書きましょう〈沖縄旅行の アドバイス〉 こたえ">
+          <span class="clip-num">086</span>
+          <span class="clip-label">こたえ</span>
+          <audio controls preload="none" src="../audio/rikai/track_086_answers.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">② 聞いて、ただしい ほうを えらびましょう</span>
+          <a class="clip-page" href="2026年06月08日_しゅくだい.html">6月8日 しゅくだい →</a></div>
+        <div class="clip" data-search="088 りかい l5 ② 聞いて、ただしい ほうを えらびましょう item ❶">
+          <span class="clip-num">088</span>
+          <span class="clip-label">item ❶</span>
+          <audio controls preload="none" src="../audio/rikai/track_088.mp3"></audio>
+        </div>
+        <div class="clip" data-search="089 りかい l5 ② 聞いて、ただしい ほうを えらびましょう item ❷">
+          <span class="clip-num">089</span>
+          <span class="clip-label">item ❷</span>
+          <audio controls preload="none" src="../audio/rikai/track_089.mp3"></audio>
+        </div>
+        <div class="clip" data-search="090 りかい l5 ② 聞いて、ただしい ほうを えらびましょう item ❸">
+          <span class="clip-num">090</span>
+          <span class="clip-label">item ❸</span>
+          <audio controls preload="none" src="../audio/rikai/track_090.mp3"></audio>
+        </div>
+        <div class="clip" data-search="091 りかい l5 ② 聞いて、ただしい ほうを えらびましょう item ❹">
+          <span class="clip-num">091</span>
+          <span class="clip-label">item ❹</span>
+          <audio controls preload="none" src="../audio/rikai/track_091.mp3"></audio>
+        </div>
+        <div class="clip" data-search="092 りかい l5 ② 聞いて、ただしい ほうを えらびましょう こたえ">
+          <span class="clip-num">092</span>
+          <span class="clip-label">こたえ</span>
+          <audio controls preload="none" src="../audio/rikai/track_092_answers.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">p.59 — ex.2② · イラストを見て、ただしい かたちを書きましょう</span>
+          <a class="clip-page" href="2026年06月08日_しゅくだい.html">6月8日 しゅくだい →</a></div>
+        <div class="clip" data-search="093 りかい l5 p.59 — ex.2② · イラストを見て、ただしい かたちを書きましょう exercise">
+          <span class="clip-num">093</span>
+          <span class="clip-label">exercise</span>
+          <audio controls preload="none" src="../audio/rikai/track_093.mp3"></audio>
+        </div>
+        <div class="clip" data-search="093 りかい l5 p.59 — ex.2② · イラストを見て、ただしい かたちを書きましょう variants">
+          <span class="clip-num">093</span>
+          <span class="clip-label">variants</span>
+          <audio controls preload="none" src="../audio/rikai/track_093_variants.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">p.59 — ex.3 · （）に じょし（は・も・が）を書きましょう</span>
+          <a class="clip-page" href="2026年06月08日_しゅくだい.html">6月8日 しゅくだい →</a></div>
+        <div class="clip" data-search="094 りかい l5 p.59 — ex.3 · （）に じょし（は・も・が）を書きましょう 094 · item ❶">
+          <span class="clip-num">094</span>
+          <span class="clip-label">094 · item ❶</span>
+          <audio controls preload="none" src="../audio/rikai/track_094.mp3"></audio>
+        </div>
+        <div class="clip" data-search="094 りかい l5 p.59 — ex.3 · （）に じょし（は・も・が）を書きましょう 094 · [1]">
+          <span class="clip-num">094</span>
+          <span class="clip-label">094 · [1]</span>
+          <audio controls preload="none" src="../audio/rikai/track_094_1.mp3"></audio>
+        </div>
+        <div class="clip" data-search="095 りかい l5 p.59 — ex.3 · （）に じょし（は・も・が）を書きましょう 095 · item ❷">
+          <span class="clip-num">095</span>
+          <span class="clip-label">095 · item ❷</span>
+          <audio controls preload="none" src="../audio/rikai/track_095.mp3"></audio>
+        </div>
+        <div class="clip" data-search="096 りかい l5 p.59 — ex.3 · （）に じょし（は・も・が）を書きましょう 096 · item ❸">
+          <span class="clip-num">096</span>
+          <span class="clip-label">096 · item ❸</span>
+          <audio controls preload="none" src="../audio/rikai/track_096.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">p.60 — section 4 · どっかい「旅行の アドバイス」</span>
+          <a class="clip-page" href="2026年06月15日_しゅくだい.html">6月15日 しゅくだい →</a></div>
+        <div class="clip" data-search="097 りかい l5 p.60 — section 4 · どっかい「旅行の アドバイス」 097">
+          <span class="clip-num">097</span>
+          <span class="clip-label">097</span>
+          <audio controls preload="none" src="../audio/rikai/track_097.mp3"></audio>
+        </div>
+        <div class="clip" data-search="097 りかい l5 p.60 — section 4 · どっかい「旅行の アドバイス」 097 variants">
+          <span class="clip-num">097</span>
+          <span class="clip-label">097 variants</span>
+          <audio controls preload="none" src="../audio/rikai/track_097_variants.mp3"></audio>
+        </div>
+        <div class="clip" data-search="098 りかい l5 p.60 — section 4 · どっかい「旅行の アドバイス」 098">
+          <span class="clip-num">098</span>
+          <span class="clip-label">098</span>
+          <audio controls preload="none" src="../audio/rikai/track_098.mp3"></audio>
+        </div>
+      </div>
+  </section>
+  <section id="l4" class="lesson">
+    <div class="section-head">
+      <span class="section-num">四</span>
+      <h2>だい4か 「どうやって 食べますか」 <span class="count">· 店で 食べる</span> <span class="count">20 clips</span></h2>
+    </div>
+    <h3 class="book">りかい <span class="count">20</span></h3>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">p.47 — ex.4 · 聞いて書きましょう (track 065)</span>
+          <a class="clip-page" href="2026年4月20日_しゅくだい.html">4月20日 しゅくだい →</a></div>
+        <div class="clip" data-search="065 りかい l4 p.47 — ex.4 · 聞いて書きましょう (track 065) exercise">
+          <span class="clip-num">065</span>
+          <span class="clip-label">exercise</span>
+          <audio controls preload="none" src="../audio/rikai/track_065.mp3"></audio>
+        </div>
+        <div class="clip" data-search="065 りかい l4 p.47 — ex.4 · 聞いて書きましょう (track 065) 聞いて書き">
+          <span class="clip-num">065</span>
+          <span class="clip-label">聞いて書き</span>
+          <audio controls preload="none" src="../audio/rikai/track_065_kiite_kaki.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">p.47 — ex.5 · 漢字を読みましょう (track 066)</span>
+          <a class="clip-page" href="2026年4月20日_しゅくだい.html">4月20日 しゅくだい →</a></div>
+        <div class="clip" data-search="066 りかい l4 p.47 — ex.5 · 漢字を読みましょう (track 066) exercise">
+          <span class="clip-num">066</span>
+          <span class="clip-label">exercise</span>
+          <audio controls preload="none" src="../audio/rikai/track_066.mp3"></audio>
+        </div>
+        <div class="clip" data-search="066 りかい l4 p.47 — ex.5 · 漢字を読みましょう (track 066) 漢字">
+          <span class="clip-num">066</span>
+          <span class="clip-label">漢字</span>
+          <audio controls preload="none" src="../audio/rikai/track_066_kanji.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">Episode 4「いただきます」</span>
+          <a class="clip-page" href="2026年5月4日_しゅくだい.html">5月4日 しゅくだい →</a></div>
+        <div class="clip" data-search="067 りかい l4 episode 4「いただきます」 exercise">
+          <span class="clip-num">067</span>
+          <span class="clip-label">exercise</span>
+          <audio controls preload="none" src="../audio/rikai/067_4_2_1.mp3"></audio>
+        </div>
+        <div class="clip" data-search="067 りかい l4 episode 4「いただきます」 かいわ">
+          <span class="clip-num">067</span>
+          <span class="clip-label">かいわ</span>
+          <audio controls preload="none" src="../audio/rikai/067_4_2_1_kaiwa.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">p.48 — ex.1 · 聞きましょう (track 067)</span>
+          <a class="clip-page" href="2026年4月20日_しゅくだい.html">4月20日 しゅくだい →</a></div>
+        <div class="clip" data-search="067 りかい l4 p.48 — ex.1 · 聞きましょう (track 067) exercise">
+          <span class="clip-num">067</span>
+          <span class="clip-label">exercise</span>
+          <audio controls preload="none" src="../audio/rikai/track_067.mp3"></audio>
+        </div>
+        <div class="clip" data-search="067 りかい l4 p.48 — ex.1 · 聞きましょう (track 067) かいわ">
+          <span class="clip-num">067</span>
+          <span class="clip-label">かいわ</span>
+          <audio controls preload="none" src="../audio/rikai/track_067_kaiwa.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">p.48 — ex.2① · ただしい ほうを えらびましょう (track 068)</span>
+          <a class="clip-page" href="2026年4月20日_しゅくだい.html">4月20日 しゅくだい →</a></div>
+        <div class="clip" data-search="068 りかい l4 p.48 — ex.2① · ただしい ほうを えらびましょう (track 068) exercise">
+          <span class="clip-num">068</span>
+          <span class="clip-label">exercise</span>
+          <audio controls preload="none" src="../audio/rikai/track_068.mp3"></audio>
+        </div>
+        <div class="clip" data-search="068 りかい l4 p.48 — ex.2① · ただしい ほうを えらびましょう (track 068) こたえ">
+          <span class="clip-num">068</span>
+          <span class="clip-label">こたえ</span>
+          <audio controls preload="none" src="../audio/rikai/track_068_answers.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">p.48 — ex.2② · 4人の国の マナー (tracks 069–072)</span>
+          <a class="clip-page" href="2026年4月20日_しゅくだい.html">4月20日 しゅくだい →</a></div>
+        <div class="clip" data-search="069 りかい l4 p.48 — ex.2② · 4人の国の マナー (tracks 069–072) 069 · フランス">
+          <span class="clip-num">069</span>
+          <span class="clip-label">069 · フランス</span>
+          <audio controls preload="none" src="../audio/rikai/069_4_2_2(2).mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">p.48 — ex.2③ · テーformを書きましょう (track 073)</span>
+          <a class="clip-page" href="2026年4月20日_しゅくだい.html">4月20日 しゅくだい →</a></div>
+        <div class="clip" data-search="073 りかい l4 p.48 — ex.2③ · テーformを書きましょう (track 073) こたえ">
+          <span class="clip-num">073</span>
+          <span class="clip-label">こたえ</span>
+          <audio controls preload="none" src="../audio/rikai/track_073_answers.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">p.49 — ex.3 · ことばを えらんで、ただしい かたちを書きましょう (track 074)</span>
+          <a class="clip-page" href="2026年4月20日_しゅくだい.html">4月20日 しゅくだい →</a></div>
+        <div class="clip" data-search="074 りかい l4 p.49 — ex.3 · ことばを えらんで、ただしい かたちを書きましょう (track 074) exercise">
+          <span class="clip-num">074</span>
+          <span class="clip-label">exercise</span>
+          <audio controls preload="none" src="../audio/rikai/track_074.mp3"></audio>
+        </div>
+        <div class="clip" data-search="074 りかい l4 p.49 — ex.3 · ことばを えらんで、ただしい かたちを書きましょう (track 074) variants">
+          <span class="clip-num">074</span>
+          <span class="clip-label">variants</span>
+          <audio controls preload="none" src="../audio/rikai/track_074_variants.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">p.50 — ex.1 · 聞きましょう (track 075)</span>
+          <a class="clip-page" href="2026年4月20日_しゅくだい.html">4月20日 しゅくだい →</a></div>
+        <div class="clip" data-search="075 りかい l4 p.50 — ex.1 · 聞きましょう (track 075) exercise">
+          <span class="clip-num">075</span>
+          <span class="clip-label">exercise</span>
+          <audio controls preload="none" src="../audio/rikai/track_075.mp3"></audio>
+        </div>
+        <div class="clip" data-search="075 りかい l4 p.50 — ex.1 · 聞きましょう (track 075) かいわ">
+          <span class="clip-num">075</span>
+          <span class="clip-label">かいわ</span>
+          <audio controls preload="none" src="../audio/rikai/track_075_kaiwa.mp3"></audio>
+        </div>
+        <div class="clip" data-search="075 りかい l4 p.50 — ex.1 · 聞きましょう (track 075) かいわ (n)">
+          <span class="clip-num">075</span>
+          <span class="clip-label">かいわ (n)</span>
+          <audio controls preload="none" src="../audio/rikai/track_075_kaiwa_n.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">p.50 — ex.2 · かんがえて、1つ えらびましょう (track 076)</span>
+          <a class="clip-page" href="2026年4月20日_しゅくだい.html">4月20日 しゅくだい →</a></div>
+        <div class="clip" data-search="076 りかい l4 p.50 — ex.2 · かんがえて、1つ えらびましょう (track 076) exercise">
+          <span class="clip-num">076</span>
+          <span class="clip-label">exercise</span>
+          <audio controls preload="none" src="../audio/rikai/track_076.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">p.51 — ex.3 · ただしい ものを えらびましょう (track 077)</span>
+          <a class="clip-page" href="2026年4月20日_しゅくだい.html">4月20日 しゅくだい →</a></div>
+        <div class="clip" data-search="077 りかい l4 p.51 — ex.3 · ただしい ものを えらびましょう (track 077) exercise">
+          <span class="clip-num">077</span>
+          <span class="clip-label">exercise</span>
+          <audio controls preload="none" src="../audio/rikai/track_077.mp3"></audio>
+        </div>
+        <div class="clip" data-search="077 りかい l4 p.51 — ex.3 · ただしい ものを えらびましょう (track 077) こたえ">
+          <span class="clip-num">077</span>
+          <span class="clip-label">こたえ</span>
+          <audio controls preload="none" src="../audio/rikai/track_077_answers.mp3"></audio>
+        </div>
+      </div>
+  </section>
+  <section id="l1" class="lesson">
+    <div class="section-head">
+      <span class="section-num">一</span>
+      <h2>だい1か 「いい なまえですね」 <span class="count">· 新しい 友だち</span> <span class="count">59 clips</span></h2>
+    </div>
+    <h3 class="book">かつどう <span class="count">29</span></h3>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">Section 2 · p.23 「やさしい子と いう いみです」</span>
+          <a class="clip-page" href="2025年12月08日_しゅくだい.html">12月8日 しゅくだい →</a></div>
+        <div class="clip" data-search="004 かつどう l1 section 2 · p.23 「やさしい子と いう いみです」 004 main">
+          <span class="clip-num">004</span>
+          <span class="clip-label">004 main</span>
+          <audio controls preload="none" src="../audio/katsudoo/004_1_2_1.mp3"></audio>
+        </div>
+        <div class="clip" data-search="004 かつどう l1 section 2 · p.23 「やさしい子と いう いみです」 004 [1] よしだ">
+          <span class="clip-num">004</span>
+          <span class="clip-label">004 [1] よしだ</span>
+          <audio controls preload="none" src="../audio/katsudoo/004_1_2_1[1]_yoshida.mp3"></audio>
+        </div>
+        <div class="clip" data-search="004 かつどう l1 section 2 · p.23 「やさしい子と いう いみです」 004n [1] ゆっくり">
+          <span class="clip-num">004</span>
+          <span class="clip-label">004n [1] ゆっくり</span>
+          <audio controls preload="none" src="../audio/katsudoo/004n_1_2_1[1]n_yoshida.mp3"></audio>
+        </div>
+        <div class="clip" data-search="005 かつどう l1 section 2 · p.23 「やさしい子と いう いみです」 005 [2] あさの">
+          <span class="clip-num">005</span>
+          <span class="clip-label">005 [2] あさの</span>
+          <audio controls preload="none" src="../audio/katsudoo/005_1_2_1[2]_asano.mp3"></audio>
+        </div>
+        <div class="clip" data-search="005 かつどう l1 section 2 · p.23 「やさしい子と いう いみです」 005n [2] ゆっくり">
+          <span class="clip-num">005</span>
+          <span class="clip-label">005n [2] ゆっくり</span>
+          <audio controls preload="none" src="../audio/katsudoo/005n_1_2_1[2]n_asano.mp3"></audio>
+        </div>
+        <div class="clip" data-search="006 かつどう l1 section 2 · p.23 「やさしい子と いう いみです」 006 [3] やまだ">
+          <span class="clip-num">006</span>
+          <span class="clip-label">006 [3] やまだ</span>
+          <audio controls preload="none" src="../audio/katsudoo/006_1_2_1[3]_yamada.mp3"></audio>
+        </div>
+        <div class="clip" data-search="006 かつどう l1 section 2 · p.23 「やさしい子と いう いみです」 006n [3] ゆっくり">
+          <span class="clip-num">006</span>
+          <span class="clip-label">006n [3] ゆっくり</span>
+          <audio controls preload="none" src="../audio/katsudoo/006n_1_2_1[3]n_yamada.mp3"></audio>
+        </div>
+        <div class="clip" data-search="007 かつどう l1 section 2 · p.23 「やさしい子と いう いみです」 007 [4] かとう">
+          <span class="clip-num">007</span>
+          <span class="clip-label">007 [4] かとう</span>
+          <audio controls preload="none" src="../audio/katsudoo/007_1_2_1[4]_katoo.mp3"></audio>
+        </div>
+        <div class="clip" data-search="007 かつどう l1 section 2 · p.23 「やさしい子と いう いみです」 007n [4] ゆっくり">
+          <span class="clip-num">007</span>
+          <span class="clip-label">007n [4] ゆっくり</span>
+          <audio controls preload="none" src="../audio/katsudoo/007n_1_2_1[4]n_katoo.mp3"></audio>
+        </div>
+        <div class="clip" data-search="008 かつどう l1 section 2 · p.23 「やさしい子と いう いみです」 008 [5] のだ">
+          <span class="clip-num">008</span>
+          <span class="clip-label">008 [5] のだ</span>
+          <audio controls preload="none" src="../audio/katsudoo/008_1_2_1[5]_noda.mp3"></audio>
+        </div>
+        <div class="clip" data-search="008 かつどう l1 section 2 · p.23 「やさしい子と いう いみです」 008n [5] ゆっくり">
+          <span class="clip-num">008</span>
+          <span class="clip-label">008n [5] ゆっくり</span>
+          <audio controls preload="none" src="../audio/katsudoo/008n_1_2_1[5]n_noda.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">Section 3 · p.24 「JFフーズと いう 会社で はたらいています」</span>
+          <a class="clip-page" href="2025年12月08日_しゅくだい.html">12月8日 しゅくだい →</a></div>
+        <div class="clip" data-search="009 かつどう l1 section 3 · p.24 「jfフーズと いう 会社で はたらいています」 009 main">
+          <span class="clip-num">009</span>
+          <span class="clip-label">009 main</span>
+          <audio controls preload="none" src="../audio/katsudoo/009_1_3_1.mp3"></audio>
+        </div>
+        <div class="clip" data-search="009 かつどう l1 section 3 · p.24 「jfフーズと いう 会社で はたらいています」 009 [1] やまださん">
+          <span class="clip-num">009</span>
+          <span class="clip-label">009 [1] やまださん</span>
+          <audio controls preload="none" src="../audio/katsudoo/009_1_3_1[1]_yamada_san.mp3"></audio>
+        </div>
+        <div class="clip" data-search="009 かつどう l1 section 3 · p.24 「jfフーズと いう 会社で はたらいています」 009n [1] ゆっくり">
+          <span class="clip-num">009</span>
+          <span class="clip-label">009n [1] ゆっくり</span>
+          <audio controls preload="none" src="../audio/katsudoo/009n_1_3_1[1]n_yamada_san.mp3"></audio>
+        </div>
+        <div class="clip" data-search="010 かつどう l1 section 3 · p.24 「jfフーズと いう 会社で はたらいています」 010 [2] リリーさん">
+          <span class="clip-num">010</span>
+          <span class="clip-label">010 [2] リリーさん</span>
+          <audio controls preload="none" src="../audio/katsudoo/010_1_3_1[2]_ririi_san.mp3"></audio>
+        </div>
+        <div class="clip" data-search="010 かつどう l1 section 3 · p.24 「jfフーズと いう 会社で はたらいています」 010n [2] ゆっくり">
+          <span class="clip-num">010</span>
+          <span class="clip-label">010n [2] ゆっくり</span>
+          <audio controls preload="none" src="../audio/katsudoo/010n_1_3_1[2]n_ririi_san.mp3"></audio>
+        </div>
+        <div class="clip" data-search="011 かつどう l1 section 3 · p.24 「jfフーズと いう 会社で はたらいています」 011 [3] あさのさん">
+          <span class="clip-num">011</span>
+          <span class="clip-label">011 [3] あさのさん</span>
+          <audio controls preload="none" src="../audio/katsudoo/011_1_3_1[3]_asano_san.mp3"></audio>
+        </div>
+        <div class="clip" data-search="011 かつどう l1 section 3 · p.24 「jfフーズと いう 会社で はたらいています」 011n [3] ゆっくり">
+          <span class="clip-num">011</span>
+          <span class="clip-label">011n [3] ゆっくり</span>
+          <audio controls preload="none" src="../audio/katsudoo/011n_1_3_1[3]n_asano_san.mp3"></audio>
+        </div>
+        <div class="clip" data-search="012 かつどう l1 section 3 · p.24 「jfフーズと いう 会社で はたらいています」 012 [4] いしかわさん">
+          <span class="clip-num">012</span>
+          <span class="clip-label">012 [4] いしかわさん</span>
+          <audio controls preload="none" src="../audio/katsudoo/012_1_3_1[4]_ishikawa_san.mp3"></audio>
+        </div>
+        <div class="clip" data-search="012 かつどう l1 section 3 · p.24 「jfフーズと いう 会社で はたらいています」 012n [4] ゆっくり">
+          <span class="clip-num">012</span>
+          <span class="clip-label">012n [4] ゆっくり</span>
+          <audio controls preload="none" src="../audio/katsudoo/012n_1_3_1[4]n_ishikawa_san.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">Section 4 · p.26–27 「さいきん 見た えいがは…」</span>
+          <a class="clip-page" href="2025年12月15日_しゅくだい.html">12月15日 しゅくだい →</a></div>
+        <div class="clip" data-search="013 かつどう l1 section 4 · p.26–27 「さいきん 見た えいがは…」 013 main">
+          <span class="clip-num">013</span>
+          <span class="clip-label">013 main</span>
+          <audio controls preload="none" src="../audio/katsudoo/013_1_4_1.mp3"></audio>
+        </div>
+        <div class="clip" data-search="013 かつどう l1 section 4 · p.26–27 「さいきん 見た えいがは…」 013 [1] やまださん">
+          <span class="clip-num">013</span>
+          <span class="clip-label">013 [1] やまださん</span>
+          <audio controls preload="none" src="../audio/katsudoo/013_1_4_1[1]_yamada_san.mp3"></audio>
+        </div>
+        <div class="clip" data-search="013 かつどう l1 section 4 · p.26–27 「さいきん 見た えいがは…」 013n [1] ゆっくり">
+          <span class="clip-num">013</span>
+          <span class="clip-label">013n [1] ゆっくり</span>
+          <audio controls preload="none" src="../audio/katsudoo/013n_1_4_1[1]n_yamada_san.mp3"></audio>
+        </div>
+        <div class="clip" data-search="014 かつどう l1 section 4 · p.26–27 「さいきん 見た えいがは…」 014 [2] パクさん">
+          <span class="clip-num">014</span>
+          <span class="clip-label">014 [2] パクさん</span>
+          <audio controls preload="none" src="../audio/katsudoo/014_1_4_1[2]_paku_san.mp3"></audio>
+        </div>
+        <div class="clip" data-search="014 かつどう l1 section 4 · p.26–27 「さいきん 見た えいがは…」 014n [2] ゆっくり">
+          <span class="clip-num">014</span>
+          <span class="clip-label">014n [2] ゆっくり</span>
+          <audio controls preload="none" src="../audio/katsudoo/014n_1_4_1[2]n_paku_san.mp3"></audio>
+        </div>
+        <div class="clip" data-search="015 かつどう l1 section 4 · p.26–27 「さいきん 見た えいがは…」 015 [3] ケイトさん">
+          <span class="clip-num">015</span>
+          <span class="clip-label">015 [3] ケイトさん</span>
+          <audio controls preload="none" src="../audio/katsudoo/015_1_4_1[3]_keito_san.mp3"></audio>
+        </div>
+        <div class="clip" data-search="015 かつどう l1 section 4 · p.26–27 「さいきん 見た えいがは…」 015n [3] ゆっくり">
+          <span class="clip-num">015</span>
+          <span class="clip-label">015n [3] ゆっくり</span>
+          <audio controls preload="none" src="../audio/katsudoo/015n_1_4_1[3]n_keito_san.mp3"></audio>
+        </div>
+        <div class="clip" data-search="016 かつどう l1 section 4 · p.26–27 「さいきん 見た えいがは…」 016 [4] くのさん">
+          <span class="clip-num">016</span>
+          <span class="clip-label">016 [4] くのさん</span>
+          <audio controls preload="none" src="../audio/katsudoo/016_1_4_1[1]_kuno_san.mp3"></audio>
+        </div>
+        <div class="clip" data-search="016 かつどう l1 section 4 · p.26–27 「さいきん 見た えいがは…」 016n [4] ゆっくり">
+          <span class="clip-num">016</span>
+          <span class="clip-label">016n [4] ゆっくり</span>
+          <audio controls preload="none" src="../audio/katsudoo/016n_1_4_1[1]n_kuno_san.mp3"></audio>
+        </div>
+      </div>
+    <h3 class="book">りかい <span class="count">30</span></h3>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">Section 1 · もじとことば · pp.22–23</span>
+          <a class="clip-page" href="2025年12月15日_しゅくだい.html">12月15日 しゅくだい →</a></div>
+        <div class="clip" data-search="002 りかい l1 section 1 · もじとことば · pp.22–23 002">
+          <span class="clip-num">002</span>
+          <span class="clip-label">002</span>
+          <audio controls preload="none" src="../audio/rikai/002_1_1_2.mp3"></audio>
+        </div>
+        <div class="clip" data-search="003 りかい l1 section 1 · もじとことば · pp.22–23 003">
+          <span class="clip-num">003</span>
+          <span class="clip-label">003</span>
+          <audio controls preload="none" src="../audio/rikai/003_1_1_3.mp3"></audio>
+        </div>
+        <div class="clip" data-search="004 りかい l1 section 1 · もじとことば · pp.22–23 004">
+          <span class="clip-num">004</span>
+          <span class="clip-label">004</span>
+          <audio controls preload="none" src="../audio/rikai/004_1_1_4.mp3"></audio>
+        </div>
+        <div class="clip" data-search="004 りかい l1 section 1 · もじとことば · pp.22–23 004 かんじ">
+          <span class="clip-num">004</span>
+          <span class="clip-label">004 かんじ</span>
+          <audio controls preload="none" src="../audio/rikai/004_1_1_4_kanji.mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">Section 2 · かいわとぶんぼう · pp.24–25</span>
+          <a class="clip-page" href="2025年12月15日_しゅくだい.html">12月15日 しゅくだい →</a></div>
+        <div class="clip" data-search="005 りかい l1 section 2 · かいわとぶんぼう · pp.24–25 005">
+          <span class="clip-num">005</span>
+          <span class="clip-label">005</span>
+          <audio controls preload="none" src="../audio/rikai/005_1_2_1.mp3"></audio>
+        </div>
+        <div class="clip" data-search="005 りかい l1 section 2 · かいわとぶんぼう · pp.24–25 005 かいわ">
+          <span class="clip-num">005</span>
+          <span class="clip-label">005 かいわ</span>
+          <audio controls preload="none" src="../audio/rikai/005_1_2_1_kaiwa.mp3"></audio>
+        </div>
+        <div class="clip" data-search="006 りかい l1 section 2 · かいわとぶんぼう · pp.24–25 006 main">
+          <span class="clip-num">006</span>
+          <span class="clip-label">006 main</span>
+          <audio controls preload="none" src="../audio/rikai/006_1_2_2.mp3"></audio>
+        </div>
+        <div class="clip" data-search="006 りかい l1 section 2 · かいわとぶんぼう · pp.24–25 006 [1]">
+          <span class="clip-num">006</span>
+          <span class="clip-label">006 [1]</span>
+          <audio controls preload="none" src="../audio/rikai/006_1_2_2[1].mp3"></audio>
+        </div>
+        <div class="clip" data-search="007 りかい l1 section 2 · かいわとぶんぼう · pp.24–25 007 [2]">
+          <span class="clip-num">007</span>
+          <span class="clip-label">007 [2]</span>
+          <audio controls preload="none" src="../audio/rikai/007_1_2_2[2].mp3"></audio>
+        </div>
+        <div class="clip" data-search="008 りかい l1 section 2 · かいわとぶんぼう · pp.24–25 008 [3]">
+          <span class="clip-num">008</span>
+          <span class="clip-label">008 [3]</span>
+          <audio controls preload="none" src="../audio/rikai/008_1_2_2[3].mp3"></audio>
+        </div>
+        <div class="clip" data-search="009 りかい l1 section 2 · かいわとぶんぼう · pp.24–25 009 [4]">
+          <span class="clip-num">009</span>
+          <span class="clip-label">009 [4]</span>
+          <audio controls preload="none" src="../audio/rikai/009_1_2_2[4].mp3"></audio>
+        </div>
+        <div class="clip" data-search="010 りかい l1 section 2 · かいわとぶんぼう · pp.24–25 010 main">
+          <span class="clip-num">010</span>
+          <span class="clip-label">010 main</span>
+          <audio controls preload="none" src="../audio/rikai/010_1_2_3.mp3"></audio>
+        </div>
+        <div class="clip" data-search="010 りかい l1 section 2 · かいわとぶんぼう · pp.24–25 010 [1] たなかさん">
+          <span class="clip-num">010</span>
+          <span class="clip-label">010 [1] たなかさん</span>
+          <audio controls preload="none" src="../audio/rikai/010_1_2_3[1]_tanaka_san.mp3"></audio>
+        </div>
+        <div class="clip" data-search="011 りかい l1 section 2 · かいわとぶんぼう · pp.24–25 011 [2] カーラさん">
+          <span class="clip-num">011</span>
+          <span class="clip-label">011 [2] カーラさん</span>
+          <audio controls preload="none" src="../audio/rikai/011_1_2_3[2]_kaara_san.mp3"></audio>
+        </div>
+        <div class="clip" data-search="012 りかい l1 section 2 · かいわとぶんぼう · pp.24–25 012 [3] のださん">
+          <span class="clip-num">012</span>
+          <span class="clip-label">012 [3] のださん</span>
+          <audio controls preload="none" src="../audio/rikai/012_1_2_3[3]_noda_san.mp3"></audio>
+        </div>
+        <div class="clip" data-search="013 りかい l1 section 2 · かいわとぶんぼう · pp.24–25 013 [4] シンさん">
+          <span class="clip-num">013</span>
+          <span class="clip-label">013 [4] シンさん</span>
+          <audio controls preload="none" src="../audio/rikai/013_1_2_3[4]_shin_san.mp3"></audio>
+        </div>
+        <div class="clip" data-search="014 りかい l1 section 2 · かいわとぶんぼう · pp.24–25 014">
+          <span class="clip-num">014</span>
+          <span class="clip-label">014</span>
+          <audio controls preload="none" src="../audio/rikai/014_1_2_3(3).mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">Section 3 · かいわとぶんぼう · pp.26–27 ★NEW</span>
+          <a class="clip-page" href="2026年01月12日_しゅくだい.html">1月12日 しゅくだい →</a></div>
+        <div class="clip" data-search="015 りかい l1 section 3 · かいわとぶんぼう · pp.26–27 ★new 015 main">
+          <span class="clip-num">015</span>
+          <span class="clip-label">015 main</span>
+          <audio controls preload="none" src="../audio/rikai/015_1_3_1.mp3"></audio>
+        </div>
+        <div class="clip" data-search="015 りかい l1 section 3 · かいわとぶんぼう · pp.26–27 ★new 015 かいわ">
+          <span class="clip-num">015</span>
+          <span class="clip-label">015 かいわ</span>
+          <audio controls preload="none" src="../audio/rikai/015_1_3_1_kaiwa.mp3"></audio>
+        </div>
+        <div class="clip" data-search="016 りかい l1 section 3 · かいわとぶんぼう · pp.26–27 ★new 016">
+          <span class="clip-num">016</span>
+          <span class="clip-label">016</span>
+          <audio controls preload="none" src="../audio/rikai/016_1_3_2(1).mp3"></audio>
+        </div>
+        <div class="clip" data-search="017 りかい l1 section 3 · かいわとぶんぼう · pp.26–27 ★new 017 main">
+          <span class="clip-num">017</span>
+          <span class="clip-label">017 main</span>
+          <audio controls preload="none" src="../audio/rikai/017_1_3_2(2).mp3"></audio>
+        </div>
+        <div class="clip" data-search="017 りかい l1 section 3 · かいわとぶんぼう · pp.26–27 ★new 017 [1] たなかさん">
+          <span class="clip-num">017</span>
+          <span class="clip-label">017 [1] たなかさん</span>
+          <audio controls preload="none" src="../audio/rikai/017_1_3_2(2)[1].mp3"></audio>
+        </div>
+        <div class="clip" data-search="018 りかい l1 section 3 · かいわとぶんぼう · pp.26–27 ★new 018 [2] キムさん">
+          <span class="clip-num">018</span>
+          <span class="clip-label">018 [2] キムさん</span>
+          <audio controls preload="none" src="../audio/rikai/018_1_3_2(2)[2].mp3"></audio>
+        </div>
+        <div class="clip" data-search="019 りかい l1 section 3 · かいわとぶんぼう · pp.26–27 ★new 019 [3] あべさん">
+          <span class="clip-num">019</span>
+          <span class="clip-label">019 [3] あべさん</span>
+          <audio controls preload="none" src="../audio/rikai/019_1_3_2(2)[3].mp3"></audio>
+        </div>
+        <div class="clip" data-search="020 りかい l1 section 3 · かいわとぶんぼう · pp.26–27 ★new 020 [4] ワンさん">
+          <span class="clip-num">020</span>
+          <span class="clip-label">020 [4] ワンさん</span>
+          <audio controls preload="none" src="../audio/rikai/020_1_3_2(2)[4].mp3"></audio>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="ex-head"><span class="ex-what">Section 4 · どっかい · p.28「あかちゃんの 名前」</span>
+          <a class="clip-page" href="2025年12月08日_しゅくだい.html">12月8日 しゅくだい →</a></div>
+        <div class="clip" data-search="022 りかい l1 section 4 · どっかい · p.28「あかちゃんの 名前」 022 main">
+          <span class="clip-num">022</span>
+          <span class="clip-label">022 main</span>
+          <audio controls preload="none" src="../audio/rikai/022_1_4.mp3"></audio>
+        </div>
+        <div class="clip" data-search="022 りかい l1 section 4 · どっかい · p.28「あかちゃんの 名前」 022 a けんた">
+          <span class="clip-num">022</span>
+          <span class="clip-label">022 a けんた</span>
+          <audio controls preload="none" src="../audio/rikai/022_1_4[a].mp3"></audio>
+        </div>
+        <div class="clip" data-search="023 りかい l1 section 4 · どっかい · p.28「あかちゃんの 名前」 023 b あきひこ">
+          <span class="clip-num">023</span>
+          <span class="clip-label">023 b あきひこ</span>
+          <audio controls preload="none" src="../audio/rikai/023_1_4[b].mp3"></audio>
+        </div>
+        <div class="clip" data-search="024 りかい l1 section 4 · どっかい · p.28「あかちゃんの 名前」 024 c たいき">
+          <span class="clip-num">024</span>
+          <span class="clip-label">024 c たいき</span>
+          <audio controls preload="none" src="../audio/rikai/024_1_4[c].mp3"></audio>
+        </div>
+        <div class="clip" data-search="025 りかい l1 section 4 · どっかい · p.28「あかちゃんの 名前」 025 d まこと">
+          <span class="clip-num">025</span>
+          <span class="clip-label">025 d まこと</span>
+          <audio controls preload="none" src="../audio/rikai/025_1_4[d].mp3"></audio>
+        </div>
+      </div>
+  </section>
+
+  <footer>まるごと<ruby>初級<rt>しょきゅう</rt></ruby>2 A2 · オーディオ · generated by build_audio.py</footer>
+</div>
+
+<script>
+(function () {
+  var q = document.getElementById('q');
+  // only one clip plays at a time
+  document.addEventListener('play', function (e) {
+    document.querySelectorAll('audio').forEach(function (a) { if (a !== e.target) a.pause(); });
+  }, true);
+  q.addEventListener('input', function () {
+    var t = q.value.trim().toLowerCase();
+    document.querySelectorAll('.clip').forEach(function (c) {
+      c.classList.toggle('hidden', t && c.dataset.search.indexOf(t) < 0);
+    });
+    document.querySelectorAll('.ex').forEach(function (e) {
+      e.classList.toggle('hidden', !e.querySelector('.clip:not(.hidden)'));
+    });
+    document.querySelectorAll('section.lesson').forEach(function (s) {
+      s.classList.toggle('hidden', !s.querySelector('.clip:not(.hidden)'));
+    });
+    document.querySelectorAll('h3.book').forEach(function (h) {
+      var n = h.nextElementSibling, any = false;
+      while (n && n.classList.contains('ex')) { if (!n.classList.contains('hidden')) any = true; n = n.nextElementSibling; }
+      h.classList.toggle('hidden', !any);
+    });
+  });
+})();
+</script>
+<script src="../../assets/nav-tree.js"></script>
+<script src="../../assets/nav.js" defer></script>
+</body>
+</html>

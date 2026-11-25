@@ -15,6 +15,10 @@ window.SITE_TREE = [
     "label": "しゅくだい",
     "children": [
      {
+      "label": "🔊 オーディオ (all audio)",
+      "href": "2025-2026/files/audio.html"
+     },
+     {
       "label": "2026年",
       "children": [
        {
@@ -133,6 +137,14 @@ window.SITE_TREE = [
      {
       "label": "Lesson 6 復習",
       "href": "2025-2026/復習/marugoto_a2_l6_recap.html"
+     },
+     {
+      "label": "Lesson 7 復習",
+      "href": "2025-2026/復習/marugoto_a2_l7_recap.html"
+     },
+     {
+      "label": "Lesson 8 復習",
+      "href": "2025-2026/復習/marugoto_a2_l8_recap.html"
      }
     ]
    },

@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 8 Recap · Marugoto A2 · コンサートはもうはじまりましたか</title>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;700&family=Noto+Serif+JP:wght@400;500;700&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1a1a;
+  --ink-soft: #3a3a3a;
+  --paper: #f4efe6;
+  --paper-soft: #ebe4d6;
+  --paper-deep: #e2d9c4;
+  --rule: #c9bfa9;
+  --rule-soft: #d8cfb9;
+  --accent: #8b1a1a;
+  --accent-soft: #b85c5c;
+  --muted: #6b6357;
+  --gold: #b8893d;
+  --done: #5a7a3a;
+  --done-bg: #d8e0c4;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 300;
+  line-height: 1.7;
+  padding: 50px 32px;
+  background-image:
+    radial-gradient(circle at 15% 25%, rgba(139, 26, 26, 0.03) 0%, transparent 40%),
+    radial-gradient(circle at 85% 75%, rgba(184, 137, 61, 0.04) 0%, transparent 50%);
+}
+
+.container { max-width: 880px; margin: 0 auto; }
+
+/* Nav */
+.page-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--rule);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+.page-nav a { color: var(--accent); text-decoration: none; text-transform: uppercase; }
+.page-nav a:hover { text-decoration: underline; }
+.page-nav .center { color: var(--muted); }
+.page-nav .disabled { color: var(--rule); pointer-events: none; cursor: default; }
+
+/* Masthead */
+.masthead {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: end;
+  gap: 30px;
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 20px;
+  margin-bottom: 40px;
+}
+.masthead-mark {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 80px;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 0.85;
+  letter-spacing: -4px;
+}
+.masthead-title h1 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 32px;
+  font-weight: 500;
+  letter-spacing: -1px;
+  line-height: 1.1;
+  margin-bottom: 6px;
+}
+.masthead-title .sub {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.masthead-meta {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 1.5px;
+  text-align: right;
+  text-transform: uppercase;
+  line-height: 1.8;
+}
+
+/* Session intro */
+.session-intro {
+  background: var(--paper-soft);
+  border-left: 3px solid var(--accent);
+  padding: 26px 32px;
+  margin-bottom: 50px;
+}
+.session-intro h3 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+.session-intro p {
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 10px;
+  color: var(--ink-soft);
+}
+.session-intro p:last-child { margin-bottom: 0; }
+.session-intro strong { font-weight: 500; color: var(--ink); }
+
+/* Section */
+section { margin-bottom: 60px; }
+.section-head {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: baseline;
+  gap: 20px;
+  padding-bottom: 14px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid var(--rule);
+}
+.section-num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: 2px;
+  font-weight: 500;
+}
+.section-head h2 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 26px;
+  font-weight: 500;
+}
+.section-head .tag {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Grammar card */
+.grammar-card {
+  background: var(--paper-soft);
+  border: 1px solid var(--rule);
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+.grammar-head {
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+  background: var(--paper-deep);
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--rule);
+}
+.grammar-pattern-jp {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 22px;
+  color: var(--accent);
+  font-weight: 500;
+}
+.grammar-english {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+}
+.grammar-body { padding: 20px 24px; }
+.grammar-formation {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  color: var(--ink-soft);
+  background: var(--paper);
+  border: 1px dashed var(--rule);
+  padding: 8px 14px;
+  margin-bottom: 12px;
+  letter-spacing: 0.5px;
+}
+.grammar-usage {
+  font-size: 13px;
+  color: var(--muted);
+  font-style: italic;
+  margin-bottom: 14px;
+  line-height: 1.6;
+}
+.grammar-examples { list-style: none; }
+.grammar-examples li {
+  padding: 8px 0;
+  border-bottom: 1px dashed var(--rule-soft);
+  font-size: 14px;
+  line-height: 1.6;
+}
+.grammar-examples li:last-child { border-bottom: none; }
+.grammar-examples .jp {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 16px;
+  color: var(--ink);
+  display: block;
+  margin-bottom: 3px;
+}
+.grammar-examples ruby rt { font-size: 9px; color: var(--accent); }
+.grammar-examples .en {
+  color: var(--muted);
+  font-size: 13px;
+  display: block;
+}
+.grammar-note {
+  font-size: 12px;
+  color: var(--muted);
+  background: var(--paper);
+  border: 1px solid var(--rule-soft);
+  padding: 8px 14px;
+  margin-top: 12px;
+  font-style: italic;
+}
+
+/* Timing table */
+.timing-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  margin: 12px 0;
+}
+.timing-table th {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 8px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--rule);
+  background: var(--paper);
+}
+.timing-table td {
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--rule-soft);
+  vertical-align: top;
+}
+.timing-table tr:last-child td { border-bottom: none; }
+.timing-table .form-cell {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 15px;
+  color: var(--accent);
+  width: 160px;
+  font-weight: 500;
+}
+.timing-table .meaning-cell { color: var(--ink-soft); }
+
+/* Conversation highlight */
+.convo-box {
+  background: var(--paper-soft);
+  border: 1px solid var(--rule);
+  overflow: hidden;
+}
+.convo-title {
+  background: var(--paper-deep);
+  padding: 14px 24px;
+  border-bottom: 1px solid var(--rule);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.convo-title span {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 16px;
+  color: var(--ink);
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+  margin-left: 8px;
+}
+.convo-lines { padding: 20px 24px; }
+.convo-line {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 16px;
+  padding: 10px 0;
+  border-bottom: 1px dashed var(--rule-soft);
+  font-size: 14px;
+}
+.convo-line:last-child { border-bottom: none; }
+.convo-speaker {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--accent);
+  padding-top: 3px;
+}
+.convo-jp {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 16px;
+  color: var(--ink);
+  display: block;
+  margin-bottom: 3px;
+}
+.convo-jp ruby rt { font-size: 9px; color: var(--accent); }
+.convo-en { font-size: 13px; color: var(--muted); }
+
+/* Vocabulary table */
+.vocab-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+.vocab-table th {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 8px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--rule);
+  background: var(--paper-deep);
+}
+.vocab-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--rule-soft);
+  vertical-align: middle;
+}
+.vocab-table tr:last-child td { border-bottom: none; }
+.vocab-table .jp-cell {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 18px;
+  color: var(--ink);
+  width: 220px;
+}
+.vocab-table .read-cell {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  color: var(--muted);
+  width: 200px;
+}
+.vocab-table .en-cell { font-size: 13px; color: var(--ink-soft); }
+
+/* Drills */
+.drill-block {
+  background: var(--paper-soft);
+  border-left: 3px solid var(--gold);
+  padding: 22px 26px;
+  margin-bottom: 24px;
+}
+.drill-block h3 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+.drill-block p {
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 10px;
+  color: var(--ink-soft);
+}
+.drill-block ol, .drill-block ul {
+  margin-left: 20px;
+  font-size: 14px;
+  line-height: 1.9;
+  color: var(--ink-soft);
+}
+.drill-block ol li, .drill-block ul li { margin-bottom: 4px; }
+.drill-block .jp-inline {
+  font-family: 'Noto Serif JP', 'Shippori Mincho', serif;
+  font-size: 17px;
+  color: var(--ink);
+}
+.drill-block .answer {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  padding: 6px 12px;
+  margin-top: 12px;
+  font-size: 13px;
+  color: var(--muted);
+  cursor: pointer;
+  font-family: 'IBM Plex Mono', monospace;
+  letter-spacing: 0.5px;
+  user-select: none;
+}
+.drill-block .answer.shown {
+  background: var(--done-bg);
+  color: var(--done);
+  border-color: var(--done);
+}
+
+footer {
+  margin-top: 50px;
+  padding-top: 20px;
+  border-top: 1px solid var(--rule);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+  text-align: center;
+  line-height: 1.8;
+}
+
+/* ====== Translation toggle ====== */
+.convo-en,
+.grammar-examples .en { display: none; }
+body.translations-visible .convo-en,
+body.translations-visible .grammar-examples .en { display: block; }
+.toggle-translations { position: fixed; bottom: 24px; right: 24px; z-index: 100; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; background: var(--paper-deep); border: 1px solid var(--rule); color: var(--muted); padding: 8px 14px; cursor: pointer; border-radius: 3px; box-shadow: 0 2px 8px rgba(0,0,0,0.10); }
+.toggle-translations:hover { background: var(--paper-soft); color: var(--accent); border-color: var(--accent-soft); }
+body.translations-visible .toggle-translations { background: var(--done-bg); color: var(--done); border-color: var(--done); }
+@media (max-width: 700px) {
+  body { padding: 30px 18px; }
+  .masthead { grid-template-columns: 1fr; gap: 16px; }
+  .masthead-meta { text-align: left; }
+  .section-head { grid-template-columns: 1fr; gap: 4px; }
+  .convo-line { grid-template-columns: 1fr; gap: 4px; }
+  .vocab-table .read-cell { display: none; }
+}
+</style>
+<link rel="stylesheet" href="../../assets/theme.css">
+<script src="../../assets/theme.js"></script>
+</head>
+<body>
+<div class="container">
+
+  <!-- Nav -->
+  <nav class="page-nav">
+    <a href="marugoto_a2_l7_recap.html">← L7 Recap</a>
+    <a class="center" href="../../index.html">↑ Course Index</a>
+    <span class="disabled">— →</span>
+  </nav>
+
+  <!-- Masthead -->
+  <header class="masthead">
+    <div class="masthead-mark">八</div>
+    <div class="masthead-title">
+      <h1>Lesson 8 · コンサートは もう はじまりましたか</h1>
+      <div class="sub">Has the concert started yet? · At the Japan Festival</div>
+    </div>
+    <div class="masthead-meta">
+      Topic 4<br>
+      3 grammar patterns<br>
+      Episode 8
+    </div>
+  </header>
+
+  <!-- Intro -->
+  <div class="session-intro">
+    <h3>About this lesson</h3>
+    <p>Lesson 8 is the day of the Japan Festival (Topic 4). リサ and ロイ check the programme at reception: what time things start, whether they <strong>have already started</strong>, and whether they are <strong>still on</strong>. Three patterns carry the lesson.</p>
+    <p><strong>もう V-ました ／ まだ V-て いません</strong> — "already / not yet": has it happened?</p>
+    <p><strong>まだ V-ます／V-て います ・ もう V-ません</strong> — "still / no longer": is it still going on, is there still some left?</p>
+    <p><strong>〔question word … plain form か〕、知っていますか</strong> — a question inside a question: "do you know what time it starts?"</p>
+  </div>
+
+  <!-- Grammar -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">Grammar</span>
+      <h2>Three Patterns</h2>
+      <span class="tag">もう／まだ · 〜か</span>
+    </div>
+
+    <div class="grammar-card">
+      <div class="grammar-head">
+        <div class="grammar-pattern-jp">もう V-ました ／ まだ V-て いません</div>
+        <div class="grammar-english">already / not yet</div>
+      </div>
+      <div class="grammar-body">
+        <div class="grammar-formation">もう + V-ました · まだ + V-て いません (spoken: 〜てません)</div>
+        <div class="grammar-usage">Asks or says whether an event has happened. The "not yet" answer uses <strong>まだ V-て いません</strong>, not まだ V-ませんでした — the state of not-having-happened continues.</div>
+
+        <ul class="grammar-examples" style="margin-top: 12px;">
+          <li>
+            <span class="jp"><ruby>受付<rt>うけつけ</rt></ruby>の じゅんびは もう できました。</span>
+            <span class="en">The reception preparations are already done.</span>
+          </li>
+          <li>
+            <span class="jp">14<ruby>時<rt>じ</rt></ruby>からの えいがは もう <ruby>始<rt>はじ</rt></ruby>まりました。つぎは 16<ruby>時<rt>じ</rt></ruby>からです。</span>
+            <span class="en">The 2 p.m. film has already started. The next one is from 4 p.m.</span>
+          </li>
+          <li>
+            <span class="jp">A) カラオケコンテストの <ruby>参加者<rt>さんかしゃ</rt></ruby>は もう <ruby>来<rt>き</rt></ruby>ましたか。<br>B) いいえ、まだ <ruby>来<rt>き</rt></ruby>ていません。</span>
+            <span class="en">A) Have the karaoke contest participants arrived yet? B) No, not yet.</span>
+          </li>
+        </ul>
+        <div class="grammar-note">もう〜ましたか？ — はい、もう〜ました / いいえ、まだ〜ていません. Episode 8: じゅうどうデモンストレーション、もう <ruby>始<rt>はじ</rt></ruby>まりましたか。— いいえ、まだ <ruby>始<rt>はじ</rt></ruby>まってません。</div>
+      </div>
+    </div>
+    <div class="grammar-card">
+      <div class="grammar-head">
+        <div class="grammar-pattern-jp">まだ V-ます／V-て います ・ もう V-ません</div>
+        <div class="grammar-english">still / no longer</div>
+      </div>
+      <div class="grammar-body">
+        <div class="grammar-formation">まだ + V-ます／V-て います (still) · もう + V-ません (no longer) · もう + V-ました (already over)</div>
+        <div class="grammar-usage">Asks whether something is still available or still going on. "No longer" is <strong>もう + negative</strong>; for an event that has ended, もう <ruby>終<rt>お</rt></ruby>わりました.</div>
+
+        <ul class="grammar-examples" style="margin-top: 12px;">
+          <li>
+            <span class="jp">A) カラオケコンテスト、まだ さんかできますか。<br>B) はい、まだ できますよ。</span>
+            <span class="en">A) Can I still enter the karaoke contest? B) Yes, you still can.</span>
+          </li>
+          <li>
+            <span class="jp">A) おかしは まだ ありますか。<br>B) いいえ、もう ありません。</span>
+            <span class="en">A) Are there still snacks? B) No, there aren't any more.</span>
+          </li>
+          <li>
+            <span class="jp">A) Jポップコンサートは まだ やっていますか。<br>B) すみません、もう <ruby>終<rt>お</rt></ruby>わりました。</span>
+            <span class="en">A) Is the J-pop concert still on? B) Sorry, it's already finished.</span>
+          </li>
+        </ul>
+        <div class="grammar-note">The same two words flip meaning with the verb: まだ + positive = still; まだ + 〜ていません = not yet; もう + positive = already; もう + negative = no longer.</div>
+      </div>
+    </div>
+    <div class="grammar-card">
+      <div class="grammar-head">
+        <div class="grammar-pattern-jp">〔いつ／どこ／何 … ふつうけい か〕、<ruby>知<rt>し</rt></ruby>っていますか</div>
+        <div class="grammar-english">do you know when / where / what …?</div>
+      </div>
+      <div class="grammar-body">
+        <div class="grammar-formation">question word + plain form + か + 知っていますか／わかりますか · はじまりますか → はじまるか · やっていますか → やっているか</div>
+        <div class="grammar-usage">Puts a question inside a bigger sentence. The inner question uses the <strong>plain form + か</strong>; with nouns and な-adjectives だ drops: どんな マンガか · ひつようか.</div>
+
+        <ul class="grammar-examples" style="margin-top: 12px;">
+          <li>
+            <span class="jp">コンサートが <ruby>何時<rt>なんじ</rt></ruby>に <ruby>始<rt>はじ</rt></ruby>まるか、<ruby>知<rt>し</rt></ruby>っていますか。</span>
+            <span class="en">Do you know what time the concert starts?</span>
+          </li>
+          <li>
+            <span class="jp">A) どこで カラオケコンテストを やるか、わかりますか。<br>B) あの <ruby>大<rt>おお</rt></ruby>きい ホールですよ。</span>
+            <span class="en">A) Do you know where the karaoke contest is held? B) In that big hall.</span>
+          </li>
+          <li>
+            <span class="jp">A) <ruby>何時<rt>なんじ</rt></ruby>に マンガきょうしつが <ruby>終<rt>お</rt></ruby>わるか、<ruby>知<rt>し</rt></ruby>っていますか。<br>B) わかりません。<ruby>受付<rt>うけつけ</rt></ruby>で <ruby>聞<rt>き</rt></ruby>いてみましょう。</span>
+            <span class="en">A) Do you know what time the manga class finishes? B) I don't know. Let's ask at reception.</span>
+          </li>
+        </ul>
+        <div class="grammar-note">知っていますか asks if the listener knows; わかりますか is a little softer. "I don't know" is 知りません or わかりません — never 知っていません.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Conversation highlight -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">Conversation</span>
+      <h2>Episode 8 Highlight</h2>
+      <span class="tag">Key lines</span>
+    </div>
+    <div class="convo-box">
+      <div class="convo-title">Episode 8 <span><ruby>祭<rt>まつ</rt></ruby>りの <ruby>日<rt>ひ</rt></ruby></span></div>
+      <div class="convo-lines">
+        <div class="convo-line">
+          <div class="convo-speaker">リサ</div>
+          <div>
+            <span class="convo-jp">Jポップコンサート、<ruby>何時<rt>なんじ</rt></ruby>に <ruby>始<rt>はじ</rt></ruby>まるか、<ruby>知<rt>し</rt></ruby>ってますか。</span>
+            <span class="convo-en">Do you know what time the J-pop concert starts?</span>
+          </div>
+        </div>
+        <div class="convo-line">
+          <div class="convo-speaker">ロイ</div>
+          <div>
+            <span class="convo-jp">わかりません。<ruby>受付<rt>うけつけ</rt></ruby>で <ruby>聞<rt>き</rt></ruby>いてみましょう。</span>
+            <span class="convo-en">I don't know. Let's ask at reception.</span>
+          </div>
+        </div>
+        <div class="convo-line">
+          <div class="convo-speaker">ロイ</div>
+          <div>
+            <span class="convo-jp">すみません。じゅうどうデモンストレーション、もう <ruby>始<rt>はじ</rt></ruby>まりましたか。</span>
+            <span class="convo-en">Excuse me. Has the judo demonstration started yet?</span>
+          </div>
+        </div>
+        <div class="convo-line">
+          <div class="convo-speaker"><ruby>受付<rt>うけつけ</rt></ruby></div>
+          <div>
+            <span class="convo-jp">いいえ、まだ <ruby>始<rt>はじ</rt></ruby>まってません。</span>
+            <span class="convo-en">No, it hasn't started yet.</span>
+          </div>
+        </div>
+        <div class="convo-line">
+          <div class="convo-speaker">ジェームズ</div>
+          <div>
+            <span class="convo-jp">この かいじょうでは <ruby>飲食<rt>いんしょく</rt></ruby>は ごえんりょください。</span>
+            <span class="convo-en">Please refrain from eating and drinking in this venue.</span>
+          </div>
+        </div>
+        <div class="convo-line">
+          <div class="convo-speaker">ロイ</div>
+          <div>
+            <span class="convo-jp">すみません。Jポップコンサート、まだ やってますか。</span>
+            <span class="convo-en">Excuse me. Is the J-pop concert still on?</span>
+          </div>
+        </div>
+        <div class="convo-line">
+          <div class="convo-speaker"><ruby>受付<rt>うけつけ</rt></ruby></div>
+          <div>
+            <span class="convo-jp">はい、まだ やってます。</span>
+            <span class="convo-en">Yes, it's still on.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Vocabulary -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">Vocabulary</span>
+      <h2>Key Words — Lesson 8</h2>
+      <span class="tag">16 items</span>
+    </div>
+    <table class="vocab-table">
+      <thead>
+        <tr><th>Japanese</th><th>Reading</th><th>Meaning</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="jp-cell"><ruby>急<rt>いそ</rt></ruby>ぎます</td>
+          <td class="read-cell">isogimasu</td>
+          <td class="en-cell">to hurry</td>
+        </tr>
+        <tr>
+          <td class="jp-cell"><ruby>参加者<rt>さんかしゃ</rt></ruby></td>
+          <td class="read-cell">sankasha</td>
+          <td class="en-cell">participant</td>
+        </tr>
+        <tr>
+          <td class="jp-cell"><ruby>参加費<rt>さんかひ</rt></ruby></td>
+          <td class="read-cell">sankahi</td>
+          <td class="en-cell">participation fee</td>
+        </tr>
+        <tr>
+          <td class="jp-cell"><ruby>入場料<rt>にゅうじょうりょう</rt></ruby></td>
+          <td class="read-cell">nyuujooryoo</td>
+          <td class="en-cell">entrance fee</td>
+        </tr>
+        <tr>
+          <td class="jp-cell"><ruby>日時<rt>にちじ</rt></ruby></td>
+          <td class="read-cell">nichiji</td>
+          <td class="en-cell">date and time</td>
+        </tr>
+        <tr>
+          <td class="jp-cell">イベントプログラム</td>
+          <td class="read-cell">ibento puroguramu</td>
+          <td class="en-cell">event programme</td>
+        </tr>
+        <tr>
+          <td class="jp-cell">デモンストレーション</td>
+          <td class="read-cell">demonsutoreeshon</td>
+          <td class="en-cell">demonstration</td>
+        </tr>
+        <tr>
+          <td class="jp-cell">たいこ<ruby>教室<rt>きょうしつ</rt></ruby></td>
+          <td class="read-cell">taiko kyooshitsu</td>
+          <td class="en-cell">taiko drumming class</td>
+        </tr>
+        <tr>
+          <td class="jp-cell"><ruby>遠慮<rt>えんりょ</rt></ruby>（します）</td>
+          <td class="read-cell">enryo (shimasu)</td>
+          <td class="en-cell">to refrain</td>
+        </tr>
+        <tr>
+          <td class="jp-cell"><ruby>本日<rt>ほんじつ</rt></ruby></td>
+          <td class="read-cell">honjitsu</td>
+          <td class="en-cell">today (formal)</td>
+        </tr>
+        <tr>
+          <td class="jp-cell">はじめに</td>
+          <td class="read-cell">hajimeni</td>
+          <td class="en-cell">first of all</td>
+        </tr>
+        <tr>
+          <td class="jp-cell">もうすぐ</td>
+          <td class="read-cell">moosugu</td>
+          <td class="en-cell">soon</td>
+        </tr>
+        <tr>
+          <td class="jp-cell"><ruby>大人気<rt>だいにんき</rt></ruby></td>
+          <td class="read-cell">daininki</td>
+          <td class="en-cell">very popular</td>
+        </tr>
+        <tr>
+          <td class="jp-cell">ゆうしょう（します）</td>
+          <td class="read-cell">yuushoo (shimasu)</td>
+          <td class="en-cell">to win (first prize)</td>
+        </tr>
+        <tr>
+          <td class="jp-cell">つまらない</td>
+          <td class="read-cell">tsumaranai</td>
+          <td class="en-cell">boring</td>
+        </tr>
+        <tr>
+          <td class="jp-cell">だいじょうぶ（な）</td>
+          <td class="read-cell">daijoobu (na)</td>
+          <td class="en-cell">OK / all right</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Drills -->
+  <section>
+    <div class="section-head">
+      <span class="section-num">Drills</span>
+      <h2>Practice</h2>
+      <span class="tag">Tap to reveal</span>
+    </div>
+
+    <div class="drill-block">
+      <h3>Drill 1 · もう／まだ</h3>
+      <p>Answer with もう or まだ and the right verb form.</p>
+      <ol>
+        <li>コンサートは もう <ruby>始<rt>はじ</rt></ruby>まりましたか。— いいえ、＿＿＿。</li>
+        <li>おかしは まだ ありますか。— いいえ、＿＿＿。</li>
+        <li>じゅんびは もう できましたか。— はい、＿＿＿。</li>
+        <li>からて デモンストレーションは まだ やっていますか。— はい、＿＿＿。</li>
+      </ol>
+      <div class="answer" data-content="① まだ 始まっていません (not yet → まだ V-ていません) · ② もう ありません (no longer) · ③ もう できました (already) · ④ まだ やっています (still)">▸ Tap to reveal answer</div>
+    </div>
+
+    <div class="drill-block">
+      <h3>Drill 2 · 〜か、知っていますか</h3>
+      <p>Turn the question in brackets into the plain form + か.</p>
+      <ol>
+        <li>（<ruby>何時<rt>なんじ</rt></ruby>に <ruby>終<rt>お</rt></ruby>わりますか）、<ruby>知<rt>し</rt></ruby>っていますか。</li>
+        <li>（どこで やっていますか）、わかりますか。</li>
+        <li>（<ruby>何<rt>なに</rt></ruby>が ひつようですか）、<ruby>知<rt>し</rt></ruby>っていますか。</li>
+        <li>（だれが ゆうしょうしましたか）、わかりますか。</li>
+      </ol>
+      <div class="answer" data-content="① 何時に 終わるか · ② どこで やっているか · ③ 何が ひつようか (な-adjective: drop だ) · ④ だれが ゆうしょうしたか (past plain)">▸ Tap to reveal answer</div>
+    </div>
+  </section>
+
+  <!-- Bottom nav -->
+  <nav class="page-nav">
+    <a href="marugoto_a2_l7_recap.html">← L7 Recap</a>
+    <a class="center" href="../../index.html">↑ Course Index</a>
+    <span class="disabled">— →</span>
+  </nav>
+
+  <footer>
+    <div>まるごと<ruby>初級<rt>しょきゅう</rt></ruby>２ A2 · Topic 4 · Lesson 8</div>
+  </footer>
+
+</div>
+
+<script>
+document.querySelectorAll('.answer').forEach(function(el) {
+  el.addEventListener('click', function() {
+    this.classList.toggle('shown');
+    if (this.classList.contains('shown')) {
+      this.textContent = '✓ ' + this.dataset.content;
+    } else {
+      this.textContent = '▸ Tap to reveal answer';
+    }
+  });
+});
+</script>
+<button class="toggle-translations" onclick="document.body.classList.toggle('translations-visible');this.textContent=document.body.classList.contains('translations-visible')?'EN ✓':'EN'">EN</button>
+<script src="../../assets/nav-tree.js"></script>
+<script src="../../assets/nav.js" defer></script>
+</body>
+</html>

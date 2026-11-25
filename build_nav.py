@@ -13,6 +13,9 @@ import subprocess
 ROOT = os.path.dirname(os.path.abspath(__file__))
 os.chdir(ROOT)
 
+import build_audio  # noqa: E402  — refresh 2025-2026/files/audio.html before the page list is read
+build_audio.main()
+
 files = subprocess.run(
     ["git", "ls-files", "-z", "--cached", "--others", "--exclude-standard"],
     capture_output=True, text=True, check=True,
@@ -66,7 +69,8 @@ weeks = [{"label": f"Week {w}", "children": sorted(v, key=lambda n: week_order.i
 
 a2 = [
     take("2025-2026/index.html", "クラスノート — 全体"),
-    {"label": "しゅくだい", "children": homework},
+    {"label": "しゅくだい", "children": ([take("2025-2026/files/audio.html", "🔊 オーディオ (all audio)")]
+                                       if "2025-2026/files/audio.html" in pages else []) + homework},
     {"label": "復習 (Lesson recaps)", "children": recaps},
 ]
 for p, lab in [("2025-2026/anki.html", "たんごカード"),
