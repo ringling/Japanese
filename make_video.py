@@ -11,7 +11,7 @@ Reads GOOGLE_AI_STUDIO_API_KEY from .env. For each slide in the spec it
   3. joins slide + its clips into a segment, then concatenates all segments into
      2025-2026/video/<id>.mp4.
 """
-import array, base64, html, json, math, os, subprocess, sys, tempfile, time, urllib.error, urllib.request, wave
+import array, base64, html, io, json, math, os, subprocess, sys, tempfile, time, urllib.error, urllib.request, wave
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
@@ -52,15 +52,57 @@ def tts(text, voice, style, out_mp3):
             print(f'  HTTP {e.code}, retrying in {wait}s')
             time.sleep(wait)
     part = d['candidates'][0]['content']['parts'][0]['inlineData']
-    pcm = base64.b64decode(part['data'])
-    rate = 24000
-    for bit in part.get('mimeType', '').split(';'):
-        if bit.strip().startswith('rate='):
-            rate = int(bit.split('=')[1])
+    pcm, rate = decode_audio(base64.b64decode(part['data']), part.get('mimeType', ''))
     write_mp3(clean_pcm(pcm, rate), rate, out_mp3)
 
 
+def decode_audio(raw, mime):
+    """gemini-3.x TTS returns a full WAV file (mimeType audio/wav): a 44-byte header, the PCM, then a
+    ~7 KB provenance/metadata trailer (IPTC 'trainedAlgorithmicMedia'). Reading all of it as raw PCM
+    turns the header and trailer into a click at the start and a ~0.15 s noise burst at the end.
+    Older models return bare PCM ('audio/L16;codec=pcm;rate=24000')."""
+    if raw[:4] == b'RIFF':
+        with wave.open(io.BytesIO(raw)) as w:
+            return w.readframes(w.getnframes()), w.getframerate()
+    rate = 24000
+    for bit in mime.split(';'):
+        if bit.strip().startswith('rate='):
+            rate = int(bit.split('=')[1])
+    return raw, rate
+
+
 def clean_pcm(pcm, rate, thresh_db=-45):
+    """Repeat _clean_once until nothing changes: Gemini sometimes leaves two bursts at an edge."""
+    for _ in range(5):
+        out = _clean_once(pcm, rate, thresh_db)
+        if len(out) >= len(pcm) - rate // 25:  # only the fade/edge trim changed → done
+            pcm = out
+            break
+        pcm = out
+    return _cut_tail_burst(pcm, rate, thresh_db)
+
+
+def _cut_tail_burst(pcm, rate, thresh_db=-45):
+    """Cut a < 0.4 s tail that follows >= 0.25 s of silence, even if the burst itself has small
+    dips in it (which _clean_once treats as several separate runs and misses)."""
+    a = array.array('h', pcm)
+    win = rate // 50
+    q = [20 * math.log10(max(math.sqrt(sum(x * x for x in a[i:i + win]) / max(1, len(a[i:i + win]))), 1) / 32768) < thresh_db
+         for i in range(0, len(a), win)]
+    i = len(q) - 1
+    while i >= 12 and not all(q[i - 12:i + 1]):
+        i -= 1
+    tail = (len(q) - 1 - i) * win / rate
+    if i < 12 or not 0 < tail < 0.4:
+        return pcm
+    a = a[:(i - 6) * win]
+    fade = rate // 50
+    for k in range(min(fade, len(a))):
+        a[-1 - k] = int(a[-1 - k] * k / fade)
+    return a.tobytes()
+
+
+def _clean_once(pcm, rate, thresh_db=-45):
     """Drop the short noise bursts Gemini TTS leaves before/after the speech, then fade in/out.
 
     A burst = a loud run shorter than 0.15 s (start) / 0.4 s (end) that is cut off from
